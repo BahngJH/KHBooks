@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+<section>
+        <div class="container">
 
-    <div class="container">
-		<section>
             <div id="carousel-id" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-id" data-slide-to="0" class=""></li>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-    	</section>
-    </div>
+        </div>
+    </section>
 
 <%@include file="/views/common/footer.jsp"%>
