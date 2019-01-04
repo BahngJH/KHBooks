@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>KH Books</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
