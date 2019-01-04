@@ -1,0 +1,70 @@
+@charset "UTF-8";
+    <style>
+
+    .col-lg-3 ol{
+        color: black;
+
+    }
+    .col-lg-3 ol a{
+        color: black;
+
+    }
+    #QA{
+        text-align:left;
+        color: black;
+    }
+    .col-lg-9 text{
+       text-align: center;
+      
+
+    }
+    .col-lg-2>ol{
+        list-style-type: disc;
+            color: black;
+    }
+    #a  li{
+        color: black;
+    }
+    #a1{
+        list-style-type: disc;
+            color: black;
+    }
+    #a2{
+        list-style-type: disc;
+            color: black;
+    }
+ 
+    .QAtitle, .QAtitle a{       
+        color: black;  
+    }
+    #QAtitle2 a{
+      
+        color: black;
+       
+        height: 200px;
+    }
+    .col-xs-12{
+        text-align: center;
+        background-color: darkgray;
+    }
+    #notice a{
+        color: black;
+    }
+  .text{
+      text-align: center;
+      width: 300px;
+      padding-left: 100px;
+  }
+
+  #n-surve{
+      background-color: antiquewhite;
+  }
+  .surve-tag{
+      background-color: lightgray;
+      border: 1px solid azure
+  }
+.sidemenu{
+  	padding : 10px;
+  
+  }
+    </style>
