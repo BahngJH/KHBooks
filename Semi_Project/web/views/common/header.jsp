@@ -8,10 +8,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
 	<header>
@@ -45,7 +42,6 @@
 	                </ul>
 	            </div>
 	        </div>
-	
 	        <div class="collapse navbar-collapse" id="navbar-collapse-1">
 	            <form class="navbar-form navbar-left" role="search">
 	                <div class="form-group">
@@ -54,15 +50,9 @@
 	                        <span class="input-group-btn">
 	                            <button type="submit" class="btn btn-default">검색</button>
 	                        </span>
-	
 	                    </div>
-	
-	
 	                </div>
-	
-	
 	            </form>
-	
 	            <ul class="nav navbar-nav navbar-right">
 	                <li><button type="button" class="btn btn-default navbar-btn">로그인</button>
 	                    <button type="button" class="btn btn-default navbar-btn">회원가입</button></li>
@@ -71,7 +61,6 @@
 	                <li><a href="#"><img src="" alt=" "></a></li>
 	                <li><a href="#"><img src="" alt=" "></a></li>
 	            </ul>
-	
 	        </div>
 	    </div>
 	</nav>
