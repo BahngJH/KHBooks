@@ -1,0 +1,46 @@
+div {
+            text-align: center;
+        } 
+        a{
+            text-decoration: none;
+            color: pink;
+        }
+        input[type=text],input[type=email],input[type=password],input[type=number]{
+            width:305px; height:40px;
+        }
+        table{
+            width: 305px;
+        }
+        input[type=button], input[type=submit]{
+            width: 152px; height: 40px;
+        }
+        table a{
+            float: right;
+        }
+        #logo a{
+            font-size: 150%;
+        }
+        
+        input[type='radio'] {
+            display: none;
+        }
+        #checkGender label {
+            padding-top: 10px;
+            width: 152px; height: 40px;
+            border: 1px solid gray;
+            border-radius: 10px 10px 10px 10px;
+        }
+        #man:checked ~ label:nth-of-type(1) {
+            color: white;
+            background: black
+        }
+        #woman:checked ~ label:nth-of-type(2) {
+            color: white;
+            background: black
+        }
+        #sample6_postcode{
+            width: 181px;
+        }
+       #addrBtn{
+           width: 120px;
+       }
