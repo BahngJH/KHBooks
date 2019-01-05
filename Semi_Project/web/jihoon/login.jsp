@@ -21,7 +21,7 @@
                 <br><br>
                 <input type="submit" value="로그인" class="btn btn-primary" style="width:305px; height:50px;"></button><br><br>
         </form>
-        <form method="GET" action="signUp.html">
+        <form method="GET" action="<%=request.getContextPath()%>/jihoon/enroll.jsp">
             <input type="submit" value="회원가입" class="btn btn-default" style="width:305px; height:50px;"></button>
         </form>
     </div>
