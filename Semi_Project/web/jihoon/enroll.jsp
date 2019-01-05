@@ -21,19 +21,17 @@
                 <input type="hidden" value="0" name="idValid"></div><br>
             <div id="inputPasswod"><input type="password" id="password" name="createPassword" required placeholder="비밀번호"><br>
                 <input type="password" id="password_ck" required placeholder="비밀번호 확인"></div><br>
-            <div id="inputEmail"><input type="email" id="email" required name="createEmail" placeholder="이메일주소"></div><br>
             <div id="inputName"><input type="text" id="name" required name="createName" placeholder="이름"></div>
-            <input type="text" id="birth" name="createBirth" required placeholder="생년월일 ex)19830324">
-            <br><br>
+            <input type="text" id="birth" name="createBirth" required placeholder="생년월일 ex)19830324"><br>
+            <input type="text" id="phone" name="createPhone" required placeholder="연락처 ('-'없이 입력)"><br>
+            <div id="inputEmail"><input type="email" id="email" required name="createEmail" placeholder="이메일주소"></div><br>
+
             <div id="checkGender">
                 <input type="radio" name="gender" id="man" checked>
                 <input type="radio" name="gender" id="woman">
                 <label for="man">남자</label>
                 <label for="woman">여자</label>
-            </div>
-            <br>
-            <input type="text" id="phone" name="createPhone" required placeholder="연락처 ('-'없이 입력)"><br>
-            <br>
+            </div><br>
             <input type="text" id="sample6_postcode" placeholder="우편번호">
             <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="우편번호 찾기"><br>
             <input type="text" id="sample6_address" placeholder="주소"><br>
