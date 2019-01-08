@@ -6,6 +6,11 @@
 
 
 <style>
+html, body
+{
+	width:100%; height:100%;
+}
+
 body {
 /* 	margin-top:40px; */
 	background-color: silver;
@@ -172,31 +177,26 @@ li {
 
 .wrline {
 	display: inline-block;
-	width: 1030px;
 	white-space: inherit;
 }
 
 .wrline1 {
 	display: inline-block;
-	width: 1008px;
 	white-space: inherit;
 }
 
 .biline {
 	display: inline-block;
-	width: 1030px;
 	white-space: inherit;
 }
 
 .bsline {
 	display: inline-block;
-	width: 1030px;
 	white-space: inherit;
 }
 
 .snline {
 	display: inline-block;
-	width: 200px;
 	white-space: inherit;
 }
 
@@ -423,13 +423,11 @@ input:checked+.inner4 {
 					<br>
 					<br>
 					<ul>
-						<pre class='wrline'>
-							<small>
-                    <pre class='wrline1' style='border: 1px solid gray;'>
-									<small><strong>
-                    저자 : 앙투안 드 생텍쥐페리
-                    </strong></small>
-								</pre><br>
+					<pre class='wrline' style='width:96%;'>
+					<small>
+                    <pre class='wrline1' style='border: 1px solid gray; width:100%'>
+					<small><strong>저자 : 앙투안 드 생텍쥐페리</strong></small>
+					</pre><br>
                     저자 앙투안 드 생텍쥐페리(Antoine de Saint-Exupery)는 프랑스 리옹 출생. 
                     1920년 공군에 입대, 1929년 장편소설 [남방 우편기]로 작가로 데뷔. 
                     두 번째 소설 [야간 비행]으로 페미나상을 수상, 이후 [인간의 대지]로 아카데미 프랑세즈 소설 대상 수상.
@@ -439,11 +437,11 @@ input:checked+.inner4 {
                     [어린 왕자]는 1946년 프랑스 Gallimard 출판사에서 다시 출간되었다. 
                     생텍쥐페리는 1943년에 프랑스로 돌아가 공군 조종사로 활동했으며, 1944년 지중해 상공에서 마지막 정찰비행 중 실종되었다.
                     이후에 친구들이 생텍쥐페리의 녹음본과 초벌 원고를 정리하여 [성채]를 출간했다.
-                </small>
-						</pre>
-						<ul>
-							<br>
-							<br>
+                	</small>
+					</pre>
+					</ul>
+			<br>
+			<br>
 				</table>
 			</div>
 
@@ -452,10 +450,10 @@ input:checked+.inner4 {
 					<thead class='bookinfor'>
 						<strong>책소개</strong>
 					</thead>
-					<br>
-					<br>
+			<br>
+			<br>
 					<ul>
-						<pre class='biline'>
+						<pre class='biline' style='width:96%;'>
 							<small>
                     『어린 왕자』는 하나하나의 문장이 시(詩)만큼 간결하고 정교하게 구축된 작품이다. 
                     작품 전체가 주는 감동과 여운은 생텍쥐페리의 그 같은 시적 정서에 크게 의존한다.
@@ -463,11 +461,11 @@ input:checked+.inner4 {
                     기존 역자들이 tu와 vous의 구분을 무시한 채 임의로 번역했던 것을 바로잡아 불어의 뉘앙스를 그대로 살렸으며, 
                     아침의 ‘Bonjour’도 ‘안녕’ 저녁의 ‘Bonsoir’도 ‘안녕’ 하는 식으로 번역함으로써 작품의 시간적 배경을 배제시켜온 기존 번역의 오류도 바로잡았다. 
                     이제 바르고 정확한 문장들로 쓰인 번역을 통해 생텍쥐페리가 [어린 왕자]를 통해 지구인들에게 선사하려던 메시지와 감동을 온전하게 파악하고 깊게 느낄 수 있다.
-                </small>
+                			</small>
 						</pre>
 					</ul>
-					<br>
-					<br>
+			<br>
+			<br>
 				</table>
 			</div>
 
@@ -475,9 +473,10 @@ input:checked+.inner4 {
 				<thead class='bookstroy'>
 					<strong>줄거리</strong>
 				</thead>
-				<br> <br>
+			<br>
+			<br>
 				<ul>
-					<pre class='bsline'>
+					<pre class='bsline' style='width:96%;'>
 						<small>
                     비행기 고장으로 사막에 불시착한 조종사는 한 소년을 만난다. 소년은 자신이 사는 작은 별에 사랑하는 장미를 남겨 두고 세상을 보기위해 여행을 온 어린 왕자였다.
 
@@ -505,11 +504,13 @@ input:checked+.inner4 {
                     어린 왕자는 뱀에게 도움을 청해 그의 별로 돌아가고자 한다. 때마침 비행기 엔진 수리를 마친 나는 어린 왕자와의 이별을 몹시 서글퍼하며 그가 모래언덕에서 사라지는 것을 지켜본다. 시간이 지나 ‘나’는 밤하늘을 바라보면서 어린 왕자의 별과 그의 장미꽃에 대해 생각한다.
                     
                     그리고 어떤 마음으로 바라보느냐에 따라 세상이 달라질 수 있다는 것을 깨달으며 어린 왕자를 그리워한다.
-                </small>
+	                	</small>
 					</pre>
 				</ul>
-				<br> <br>
+			<br>
+			<br>
 			</div>
+			
 			<div class='inforstorysn'>
 				<table>
 					<thead class='storynum'>
@@ -518,7 +519,7 @@ input:checked+.inner4 {
 					<br>
 					<br>
 					<ul>
-						<pre class='snline'>
+						<pre class='snline' style='width:20%;'>
 							<small>
                     이 책은 목차가 없습니다.
                 </small>
@@ -533,9 +534,10 @@ input:checked+.inner4 {
 				<thead class='reviewth'>
 					<strong>회원리뷰</strong>
 				</thead>
-				<br> <br>
+				<br>
+				<br>
 				<ul>
-					<pre class='reviewpre'>
+					<pre class='reviewpre' style='width:96%'>
                     <div class='writereview'>
                         <button class='reviewwrite btn-xs'
 								onclick="location.href='#'">
@@ -560,7 +562,7 @@ input:checked+.inner4 {
                     <div class='content'>
                         <small>
                             <input type='checkbox' id='readmore1' /> 
-                            <div class='inner1'>
+                            <div class='inner1' style='width:100%'>
                                 화가가 꿈이었는데 코끼리를 삼킨 보아뱀을 6살적에 그렸는데 순수함을 무시하고 어른들은 그 그림을 모자라고 하며 다른 길을 택하라고 하여,
                                 화가의 꿈을 접고 비행사의 길을 가게 된 어린왕자의 마지막처럼 비행기를 몰다 실종되어 버린 너무도 유명한 작가 생텍쥐페리의 자전적 소설 
                                 어린왕자는 읽는 이에게 삶의 많은 방향타를 제시해준다. 
@@ -608,8 +610,8 @@ input:checked+.inner4 {
                     </div>
                     <div class='content'>
                         <small>
-                            <input type='checkbox' id='readmore2' />
-                            <div class='inner2'>
+                            <input type='checkbox' id='readmore2'/>
+                            <div class='inner2' style='width:100%'>
                                 정말이지, 어린 왕자는 전 세계가 사랑하는 아름다운 이야기라는 타이틀이 딱 맞다. 집집마다 한 권씩은 있을 것이다. 오래 전에 처음 본 건 세로 쓰기로 되어 있는 작은 책이었고, 그 다음은 여러 다른 디자인이었는데 그래도 제일 기억 나는 건, 세로 쓰기 작은 책이다. 작고 귀여운 어린 왕자와 여우, 뱀 그림을 보면서 신기하고 혼자 몰래 보는 재미가 있었다. 
 
 
@@ -676,7 +678,7 @@ input:checked+.inner4 {
                     <div class='content'>
                         <small>
                             <input type='checkbox' id='readmore3' />
-                            <div class='inner3'>
+                            <div class='inner3' style='width:100%'>
                                 읽으라고 추천하는 책은 이상하게 읽고 싶지 않다. 
                                 코끼리를 삼킨 보아뱀 그림이 나오는 부분만 되면 시시해져서 책을 덮었었다. 
                                 항상. 언제나. 
@@ -722,7 +724,7 @@ input:checked+.inner4 {
                     <div class='content'>
                         <small>
                             <input type='checkbox' id='readmore4' />
-                            <div class='inner4'>
+                            <div class='inner4' style='width:100%'>
                                 「어린 왕자」 너무나도 유명한 이야기이다. 그래서 서평을 쓰는 내내 스포할 내용이 없어 솔직히 마음이 아주 편안했다. 「어린 왕자」는 아주 어릴 적에 읽었지만 아직까지도 내용이 기억나는 작품이다. 자기 별에 두고 온 장미를 사랑하고 지구에서 만난 여우와 꽤 철학적인 대화를 주고 받던 소년 아니던가? 
 
                                 어린 왕자의 이야기는 그때나 지금이나 한결같이 활자로 남아있지만, 독자인 나는 어느덧 서른을 앞둔 처녀가 되어 있었다. 사실 이번에 책을 다시 읽기 전까지도 어린 왕자는 내게 있어 어느 동화책 주인공과 다름 없는 보편적인 인물이었다.  
