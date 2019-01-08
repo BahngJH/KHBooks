@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>
+    	function fn_search(){
+    		var search = $("#searchBar").val();
+    		location.href = "<%=request.getContextPath()%>/search/search?key="+search;
+    	}
+    </script>
 </head>
 <body>
 	<header>
@@ -48,7 +54,7 @@
 	                    <div class="input-group">
 	                        <input type="text" class="form-control" placeholder="검색">
 	                        <span class="input-group-btn">
-	                            <button type="submit" class="btn btn-default">검색</button>
+	                            <button type="submit" class="btn btn-default" id="searchBar" onclick="fn_search();">검색</button>
 	                        </span>
 	                    </div>
 	                </div>

@@ -4,14 +4,14 @@
  <%@ include file="/views/common/header.jsp"%>
  
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/Notice.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/notice.css"/>
 
-<body>
-<div class="container">
+
+	<div class="container">
                 <div class="row header">
-                    <div class="col-sm-11">
+                    <div class="col-xs-12">
 <br>
-<br>
+
 		     </div>
                 </div>
         <div class="sidemenu">
@@ -22,9 +22,9 @@
                 <ol id="a"><strong>게시판</strong>
                     <br>
                     <br>
-                   <A href="http://www.naver.com" style="text-decoration:none" target="_blank">
+                   <a href="http://www.naver.com" style="text-decoration:none" target="blank">
                         <li>자유게시판</li>
-                    </A>
+                    </a>
                     <a href="" style="text-decoration:none">
                         <li>1:1문의 게시판</li>
                     </a>
@@ -131,6 +131,6 @@
 </div>
 
 
-</body>
+
 
 <%@include file="/views/common/footer.jsp"%>
