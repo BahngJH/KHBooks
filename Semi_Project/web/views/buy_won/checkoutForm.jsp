@@ -5,7 +5,7 @@
 <%@ include file="/views/common/header.jsp"%>
 
 
-<link rel="stylesheet" href="css/kh_order.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/checkout.css">
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 
