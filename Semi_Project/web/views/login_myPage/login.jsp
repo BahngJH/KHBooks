@@ -12,7 +12,7 @@
 <div id="container">
         <div id="logo"><a href="#">KH BOOKS</a></div>
         <hr>
-        <form method="POST" name="memberInfo" action="#" target="_self">
+        <form method="POST" name="memberInfo" action="<%=request.getContextPath() %>/member/login" target="_self">
             <div id="login">
                 <input type="text" id="id" name="id" placeholder="아이디" style="width:305px; height:40px;"><br>
                 <input type="password" id="password" name="password" placeholder="비밀번호" style="width:305px; height:40px;"><br>
@@ -21,7 +21,7 @@
                 <br><br>
                 <input type="submit" value="로그인" class="btn btn-primary" style="width:305px; height:50px;"></button><br><br>
         </form>
-        <form method="GET" action="<%=request.getContextPath()%>/jihoon/enroll.jsp">
+        <form method="GET" action="<%=request.getContextPath()%>/views/login_myPage/enroll.jsp">
             <input type="submit" value="회원가입" class="btn btn-default" style="width:305px; height:50px;"></button>
         </form>
     </div>
