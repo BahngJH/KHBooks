@@ -114,6 +114,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+driver.properties
 
 # End of https://www.gitignore.io/api/windows,eclipse,java-web
 # 
