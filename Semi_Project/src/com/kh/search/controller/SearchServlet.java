@@ -32,7 +32,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("key");
-		
+		System.out.println(key);
 		List<Book> list = new SearchService().selectBook(key);
 		
 	}
