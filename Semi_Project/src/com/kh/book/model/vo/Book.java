@@ -10,7 +10,7 @@ public class Book {
 	private int authorNum;
 	private String genre;
 	private int bookId;
-	private int inbn;
+	private int isbn;
 	private String bookImage;
 	private Date bookDate;
 	private String bookInfo;
@@ -23,7 +23,7 @@ public class Book {
 	public Book() {
 		super();
 	}
-	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, int inbn,
+	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, int isbn,
 			String bookImage, Date bookDate, String bookInfo, String editor, String translator, int pageNum, int stock,
 			int sales) {
 		super();
@@ -33,7 +33,7 @@ public class Book {
 		this.authorNum = authorNum;
 		this.genre = genre;
 		this.bookId = bookId;
-		this.inbn = inbn;
+		this.isbn = isbn;
 		this.bookImage = bookImage;
 		this.bookDate = bookDate;
 		this.bookInfo = bookInfo;
@@ -46,7 +46,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookName=" + bookName + ", price=" + price + ", publisher=" + publisher + ", authorNum="
-				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", inbn=" + inbn + ", bookImage=" + bookImage
+				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", inbn=" + isbn + ", bookImage=" + bookImage
 				+ ", bookDate=" + bookDate + ", bookInfo=" + bookInfo + ", editor=" + editor + ", translator="
 				+ translator + ", pageNum=" + pageNum + ", stock=" + stock + ", sales=" + sales + "]";
 	}
@@ -87,10 +87,10 @@ public class Book {
 		this.bookId = bookId;
 	}
 	public int getInbn() {
-		return inbn;
+		return isbn;
 	}
 	public void setInbn(int inbn) {
-		this.inbn = inbn;
+		this.isbn = inbn;
 	}
 	public String getBookImage() {
 		return bookImage;

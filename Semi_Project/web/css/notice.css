@@ -1,11 +1,13 @@
 @charset "UTF-8";
     <style>
-
-    .col-lg-3 ol{
+ div{
+            text-align: center;
+        }
+    div.sidemenu col-lg-2 ol{
         color: black;
 
     }
-    .col-lg-3 ol a{
+    div.sidemenu .col-lg-2 ol a{
         color: black;
 
     }
@@ -66,5 +68,23 @@
 .sidemenu{
   	padding : 10px;
   
+  }
+   .title,.default{
+      float: left;
+  }
+  .title{
+      margin: 0px 30px 20px 100px;
+  }
+  .Notice_List{
+  color: black;
+  }
+  #n1,#d1{
+      float: left;
+  }
+  #n1{
+    margin: 0px 20px 20px 50px;
+  }
+    #n1,#d1{
+      float: left;
   }
     </style>
