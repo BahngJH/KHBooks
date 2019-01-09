@@ -25,7 +25,7 @@
 		
 		<form class="form-horizontal" action="/action_page.php">
 			<div class="form-group col-md-7">
-				<label class="control-label col-sm-2" for="country">지역구분 *</label>
+				<label class="control-label col-sm-2" for="country">지역구분</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="country"
 						placeholder="지역" name="country">
