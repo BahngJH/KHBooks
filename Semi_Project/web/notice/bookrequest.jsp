@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet"
-	href="<%= request.getContextPath()%>/css/Notice.css">
+	href="<%=request.getContextPath()%>/css/notice.css">
 
 
 <body>
@@ -19,16 +19,13 @@
 					<strong>게시판</strong>
 					<br>
 					<br>
-					<A href="http://www.naver.com" style="text-decoration: none"
-						target="_blank">
-						<li>자유게시판</li>
-					</A>
+					<a href="http://www.naver.com" style="text-decoration: none"
+						target="_blank"><li>자유게시판</li></a>
 					<a href="" style="text-decoration: none">
 						<li>1:1문의 게시판</li>
 					</a>
 
 				</ol>
-
 				<hr>
 				<a href="" id="a1" style="text-decoration: none"><strong>도서신청</strong></a>
 				<hr>
@@ -43,26 +40,15 @@
 
 					</address>
 				</div>
-
-
 			</div>
 			<div class="col-sm-9">
 				<h2>도서 신청 하기 ~</h2>
-
-
 			</div>
 
 			<div class="row footer">
-				<div class="col-sm-11">
-
-
-
-				</div>
+				<div class="col-sm-11"></div>
 			</div>
-
-
-
 		</div>
-</body>
 
-					<%@include file="/views/common/footer.jsp"%>
+
+		<%@include file="/views/common/footer.jsp"%>
