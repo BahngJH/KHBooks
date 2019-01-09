@@ -1,19 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    
-<%@ include file="/views/common/header.jsp"%>
+	pageEncoding="UTF-8"%>
 
-<title>희망도서신청 -KH북스</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!DOCTYPE title PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/views/common/header.jsp"%>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/appendBookForm.css">
 
-</head>
-<body>
 
+<title>희망도서신청 -KH북스</title>
 
 	<div class="container">
 		<h1>희망 도서 신청</h1>
@@ -23,7 +16,7 @@
 		
 		<table>
 		
-		<form class="form-horizontal" action="/action_page.php">
+		<form class="form-horizontal" action="<%=request.getContextPath()%>/appendBook/appendBookFormEnd" method="post">
 			<div class="form-group col-md-7">
 				<label class="control-label col-sm-2" for="country">지역구분</label>
 				<div class="col-sm-10">
@@ -37,17 +30,17 @@
 				<label class="control-label col-sm-2" for="bookName">도서명 *</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="bookName"
-						placeholder="도서명" name="bookName">
+						placeholder="도서명" name="bookName" required="required">
 				</div>
 			</div>
 
 
 
 			<div class="form-group col-md-7">
-				<label class="control-label col-sm-2" for="author">저자 *</label>
+				<label class="control-label col-sm-2" for="authorName">저자 *</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="author"
-						placeholder="저자" name="author">
+					<input type="text" class="form-control" id="authorName"
+						placeholder="저자" name="authorName" required="required">
 				</div>
 			</div>
 			
@@ -67,8 +60,8 @@
 			<div class="form-group col-md-7">
 				<label class="control-label col-sm-2" for="">발행년도 </label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="issueDate"
-						placeholder="발행년도" name="issueDate">
+					<input type="text" class="form-control" id="bookDate"
+						placeholder="발행년도" name="bookDate">
 				</div>
 			</div>
 			
@@ -84,16 +77,16 @@
 
 		
 			<div class="form-group col-md-7">
-				<label class="control-label col-sm-2" for="isbn">ISBN *</label>
+				<label class="control-label col-sm-2" for="isbn" >ISBN *</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="isbn"
-						placeholder="ISBN" name="isbn">
+						placeholder="ISBN" name="isbn" required="required">
 				</div>
 			</div>
 		
 			<div class="form-group col-md-7">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default" onclick="return validate();">Submit</button>
 				</div>
 			</div>
 		</form>
@@ -102,10 +95,17 @@
 	</div>
 
 
+<!-- <script>
 
 
-</body>
-</html>
+	function validate() {
 
+		var content = $('[name=content]').val();
+		if (content.trim().length == 0) {
+			alert("내용을 입력하세요!");
+		}
+		return true;
+	}
+</script> -->
 
 <%@ include file="/views/common/footer.jsp"%>
