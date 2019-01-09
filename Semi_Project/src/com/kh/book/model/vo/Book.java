@@ -90,7 +90,7 @@ public class Book {
 		return isbn;
 	}
 	public void setIsbn(int inbn) {
-		this.isbn = inbn;
+		this.isbn = isbn;
 	}
 	public String getBookImage() {
 		return bookImage;
