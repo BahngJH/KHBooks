@@ -86,11 +86,11 @@ public class Book {
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-	public int getInbn() {
+	public int getIsbn() {
 		return isbn;
 	}
-	public void setInbn(int inbn) {
-		this.isbn = inbn;
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
 	}
 	public String getBookImage() {
 		return bookImage;

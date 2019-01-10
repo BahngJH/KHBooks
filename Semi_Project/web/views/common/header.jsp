@@ -6,12 +6,13 @@
 <meta charset="UTF-8">
 <title>KH Books</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css" type="text/css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script>
     	function fn_search(){
-    		var search = $("#searchBar").val();
+    		var search = $("#keyword").val();
+    		console.log(search);
     		location.href = "<%=request.getContextPath()%>/search/search?key="+search;
     	}
     </script>
@@ -52,9 +53,9 @@
 	            <form class="navbar-form navbar-left" role="search">
 	                <div class="form-group">
 	                    <div class="input-group">
-	                        <input type="text" class="form-control" placeholder="검색">
+	                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
 	                        <span class="input-group-btn">
-	                            <button type="submit" class="btn btn-default" id="searchBar" onclick="fn_search();">검색</button>
+	                            <button type="button" class="btn btn-default" id="searchBar" onclick="fn_search();">검색</button>
 	                        </span>
 	                    </div>
 	                </div>
