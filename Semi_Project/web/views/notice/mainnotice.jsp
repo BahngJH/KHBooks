@@ -1,31 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/notice.css"/>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="js/jquery-3.3.1.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/notice.css" />
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
 
 
-	
+
 <body>
 
 	<div class="container">
 		<div class="row header">
-			<div class="col-xs-12">
-				
-
-			</div>
+			<div class="col-sm-11"></div>
 		</div>
 
 
 		<div class="sidemenu">
-			<div class="nav col-lg-2">
+			<div class="col-sm-2">
 				<h2 id>고객센터</h2>
 				<hr>
 
@@ -91,7 +91,7 @@
 									</p>
 								</div>
 							</section>
-							<div class="article col-lg-1">
+							<div class="col-sm-9">
 
 								<ul class="pager">
 									<li><a href="#">Previous</a></li>
@@ -101,10 +101,10 @@
 				</div>
 			</div>
 		</div>
-		<br> 
+		<br>
 	</div>
-	
+
 
 </body>
 
-						<%@include file="/views/common/footer.jsp"%>
+<%@include file="/views/common/footer.jsp"%>

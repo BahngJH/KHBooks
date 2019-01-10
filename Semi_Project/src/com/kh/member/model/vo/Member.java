@@ -4,22 +4,24 @@ import java.sql.Date;
 
 public class Member {
 	
+	private Date enrollDate;
+	private int isAdmin;
+	private int mileage;
 	private int memberNum;
+	//아래부터 실제 데이터 삽입
 	private String memberId;
 	private String memberPw;
 	private String memberName;
 	private String address;
-	private Date birth;
+	private String birth;
 	private String phone;
 	private String email;
-	private Date enrollDate;
 	private String gender;
-	private int isAdmin;
-	private int mileage;
+	
 	
 	public Member() {}
 
-	public Member(int memberNum, String memberId, String memberPw, String memberName, String address, Date birth,
+	public Member(int memberNum, String memberId, String memberPw, String memberName, String address, String birth,
 			String phone, String email, Date enrollDate, String gender, int isAdmin, int mileage) {
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -75,11 +77,11 @@ public class Member {
 		this.address = address;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
