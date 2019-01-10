@@ -17,16 +17,10 @@
 		<table>
 		
 		<form class="form-horizontal" action="<%=request.getContextPath()%>/appendBook/appendBookFormEnd" method="post">
-			<div class="form-group col-md-7">
-				<label class="control-label col-sm-2" for="country">지역구분</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="country"
-						placeholder="지역" name="country">
-				</div>
-			</div>
+		
 			
-			
-			<div class="form-group  col-md-7">
+		
+			<div class="form-group  col-md-offset-2 col-md-8">
 				<label class="control-label col-sm-2" for="bookName">도서명 *</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="bookName"
@@ -36,7 +30,7 @@
 
 
 
-			<div class="form-group col-md-7">
+			<div class="form-group col-md-offset-2 col-md-8">
 				<label class="control-label col-sm-2" for="authorName">저자 *</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="authorName"
@@ -47,7 +41,7 @@
 			
 			
 
-			<div class="form-group col-md-7">
+			<div class="form-group col-md-offset-2 col-md-8">
 				<label class="control-label col-sm-2" for="publisher">발행처 </label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="publisher"
@@ -57,7 +51,7 @@
 			
 			
 
-			<div class="form-group col-md-7">
+			<div class="form-group col-md-offset-2 col-md-8">
 				<label class="control-label col-sm-2" for="">발행년도 </label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="bookDate"
@@ -67,16 +61,9 @@
 			
 			
 
-			<div class="form-group col-md-7">
-				<label class="control-label col-sm-2" for="email">통화 </label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="currency"
-						placeholder="통화" name="currency">
-				</div>
-			</div>
 
 		
-			<div class="form-group col-md-7">
+			<div class="form-group col-md-offset-2 col-md-8">
 				<label class="control-label col-sm-2" for="isbn" >ISBN *</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="isbn"
@@ -84,7 +71,7 @@
 				</div>
 			</div>
 		
-			<div class="form-group col-md-7">
+			<div class="form-group col-md-offset-2 col-md-8">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default" onclick="return validate();">Submit</button>
 				</div>

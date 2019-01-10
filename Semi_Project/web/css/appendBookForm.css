@@ -2,7 +2,7 @@
 	font-size: 1.2em;
 	position: relative;
 	top: 5px;
-	width: 100px;
+
 }
 
 
@@ -13,7 +13,7 @@ div, section, header, aside, footer {
 .form-control{
 	position: relative;
 	top: -1.5px;
-	width: 350px;
+	
 }
 
 h1, h3{
