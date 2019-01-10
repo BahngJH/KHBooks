@@ -6,7 +6,7 @@ import java.util.List;
 import com.kh.book.model.vo.Book;
 import com.kh.search.model.dao.SearchDao;
 
-import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.*;
 
 public class SearchService {
 
@@ -19,6 +19,8 @@ public class SearchService {
 	public List<Book> selectBook(String key) {
 		List<Book> list = new SearchDao().selectBook(conn, key);
 
+		close(conn);
+		
 		return list;
 	}
 

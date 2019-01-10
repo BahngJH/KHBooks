@@ -11,9 +11,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script>
     	function fn_search(){
-    		var search = $("#keyword").val();
-    		console.log(search);
-    		location.href = "<%=request.getContextPath()%>/search/search?key="+search;
+    		var keyword = $("#keyword").val().trim().length;
+    		
+    		if(keyword === 0){
+    			return false;
+    		}
+    		
+    		return true;   
     	}
     </script>
 </head>
@@ -22,6 +26,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container-fluid">
 	        <div class="navbar-header">
+	        <!-- 카테고리 버튼 -->
 	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
 	                <span class="sr-only">Toggle navigation</span>
 	                <span class="icon-bar"></span>
@@ -49,17 +54,19 @@
 	                </ul>
 	            </div>
 	        </div>
+	        <!-- 상단 검색창 -->
 	        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-	            <form class="navbar-form navbar-left" role="search">
+	            <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
 	                <div class="form-group">
 	                    <div class="input-group">
 	                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
 	                        <span class="input-group-btn">
-	                            <button type="button" class="btn btn-default" id="searchBar" onclick="fn_search();">검색</button>
+	                            <button type="submit" class="btn btn-default" id="searchBar">검색</button>
 	                        </span>
 	                    </div>
 	                </div>
 	            </form>
+	            <!-- 좌측 버튼 -->
 	            <ul class="nav navbar-nav navbar-right">
 	                <li><button type="button" class="btn btn-default navbar-btn">로그인</button>
 	                    <button type="button" class="btn btn-default navbar-btn">회원가입</button></li>
