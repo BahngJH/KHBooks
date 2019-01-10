@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-<div id="container">
+<div class="container">
         <div id="logo"><a href="#">KH BOOKS</a></div>
         <hr>
+       <div id="login">
         <form method="POST" name="memberInfo" onsubmit="return fn_log();" action="<%=request.getContextPath() %>/member/login" target="_self">
-            <div id="login">
                 <input type="text" id="id" name="id" placeholder="아이디" style="width:305px; height:40px;"><br>
                 <input type="password" id="password" name="password" placeholder="비밀번호" style="width:305px; height:40px;"><br>
                 <input type="checkbox" id="checkbox" class="keepLogin" name="logincheck" value="true"><label class="keepLogin">로그인
@@ -26,23 +26,20 @@
         <form method="GET" action="<%=request.getContextPath()%>/views/login_myPage/enroll.jsp">
             <input type="submit" value="회원가입" class="btn btn-default" style="width:305px; height:50px;"></button>
         </form>
-    </div>
-    </div>
+ 	   </div>
+  </div>
     <script>
     	function fn_log(){
-    		var id = $('#id').val().trim().length();
+    		var id = $('#id').val().trim().length;
     		
-    		var pw = $('#password').val().trim().length();
+    		var pw = $('#password').val().trim().length;
     		
-    		console.log(id);
-    		console.log(pw);
-    		
-    		if(id<0 || pw<0)
+    		if(id==0 || pw==0)
     		{
     			alert("아이디와 비밀번호를 입력해주세요");
     			return false;
     		}
-    		return false; 
+    		return true; 
     	}
     
     </script>

@@ -34,7 +34,7 @@ public class AppendBookEndServlet extends HttpServlet {
 		String bookName=request.getParameter("bookName");
 		String authorName=request.getParameter("authorName");
 		String publisher=request.getParameter("publisher");
-		Date bookDate=request.getParameter("country");
+		String bookDate=request.getParameter("country");
 		String currency=request.getParameter("currency");
 		String isbn=request.getParameter("isbn");
 		
