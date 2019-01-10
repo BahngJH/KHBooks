@@ -15,28 +15,28 @@
         <div id="logo"><a href="#">KH BOOKS</a></div>
         <hr>
 
-        <form method="POST" action="login.html" name="createMember" onsubmit="return fn_enroll_validate();">
+        <form method="POST" action="<%=request.getContextPath() %>/member/enrollEnd" name="enrollMember" onsubmit="return fn_enroll_validate();">
             <div id="inputId">
-                <input type="text" id="id" name="createId" placeholder="아이디" required>
+                <input type="text" id="id" name="memberId" placeholder="아이디" required>
                 <input type="hidden" value="0" name="idValid"></div><br>
-            <div id="inputPasswod"><input type="password" id="password" name="createPassword" required placeholder="비밀번호"><br>
-                <input type="password" id="password_ck" required placeholder="비밀번호 확인"></div><br>
-            <div id="inputName"><input type="text" id="name" required name="createName" placeholder="이름"></div>
-            <input type="text" id="birth" name="createBirth" required placeholder="생년월일 ex)19830324"><br>
-            <input type="text" id="phone" name="createPhone" required placeholder="연락처 ('-'없이 입력)"><br>
-            <div id="inputEmail"><input type="email" id="email" required name="createEmail" placeholder="이메일주소"></div><br>
+            <div id="inputPasswod"><input type="password" id="password" name="memberPw" required placeholder="비밀번호"><br>
+                <input type="password" id="password_ck" placeholder="비밀번호 확인"  required></div><br>
+            <div id="inputName"><input type="text" id="name" required name="memberName" placeholder="이름"></div>
+            <input type="text" id="birth" name="birth" required placeholder="생년월일 ex)19830324"><br>
+            <input type="text" id="phone" name="phone" required placeholder="연락처 ('-'없이 입력)"><br>
+            <div id="inputEmail"><input type="email" id="email" name="email" required name="createEmail" placeholder="이메일주소"></div><br>
 
             <div id="checkGender">
-                <input type="radio" name="gender" id="man" checked>
-                <input type="radio" name="gender" id="woman">
+                <input type="radio" name="gender" value="남" id="man" checked>
+                <input type="radio" name="gender" value="여" id="woman">
                 <label for="man">남자</label>
                 <label for="woman">여자</label>
             </div><br>
-            <input type="text" id="sample6_postcode" placeholder="우편번호">
-            <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="우편번호 찾기"><br>
-            <input type="text" id="sample6_address" placeholder="주소"><br>
-            <input type="text" id="sample6_extraAddress" placeholder="참고항목"><br>
-            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+            <input type="text" id="sample6_postcode" placeholder="우편번호" required="required">
+            <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="우편번호 찾기" ><br>
+            <input type="text" id="sample6_address" placeholder="주소" name="address1" required="required"><br>
+            <input type="text" id="sample6_extraAddress" placeholder="참고항목" required="required"><br>
+            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" required="required">
             <br><br>
 
             <!-- <input type="button" onclick="addressPopup();" value="주소입력">
