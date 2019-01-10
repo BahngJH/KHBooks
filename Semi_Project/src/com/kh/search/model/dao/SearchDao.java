@@ -13,6 +13,8 @@ import java.util.Properties;
 
 import com.kh.book.model.vo.Book;
 
+import static common.JDBCTemplate.close;
+
 public class SearchDao {
 
 	private Properties prop;
@@ -57,20 +59,35 @@ public class SearchDao {
 //			}
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("searchList"));
-			pstmt.setString(1, key);
+			pstmt.setString(1, "%"+key+"%");
 			rs = pstmt.executeQuery();
 			list = new ArrayList<Book>();
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("bookname"));
 				Book b = new Book();
-				b.setBookDate(rs.getDate(""));
+				b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				
+				list.add(b);
 			}
-			
-			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		return list;

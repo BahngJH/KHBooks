@@ -1,7 +1,7 @@
 package com.kh.author.model.vo;
 
 public class Author {
-	private int authorId;
+	private int authorNum;
 	private String authorName;
 	private String authorInfo;
 	
@@ -9,19 +9,19 @@ public class Author {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int authorId, String authorName, String authorInfo) {
+	public Author(int authorNum, String authorName, String authorInfo) {
 		super();
-		this.authorId = authorId;
+		this.authorNum = authorNum;
 		this.authorName = authorName;
 		this.authorInfo = authorInfo;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public int getauthorNum() {
+		return authorNum;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setauthorNum(int authorNum) {
+		this.authorNum = authorNum;
 	}
 
 	public String getAuthorName() {
@@ -42,7 +42,7 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Author [authorId=" + authorId + ", authorName=" + authorName + ", authorInfo=" + authorInfo + "]";
+		return "Author [authorNum=" + authorNum + ", authorName=" + authorName + ", authorInfo=" + authorInfo + "]";
 	}
 	
 	
