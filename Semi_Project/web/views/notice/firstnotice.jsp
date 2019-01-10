@@ -142,9 +142,7 @@ $(document).ready(function(){
 				<a href="file:///D:/vscode/vscode/workspace/project/mainNotice.html"
 					id="a2" style="text-decoration: none"><strong>공지사항</strong></a>
 					  
-				<br/>
-				<br/>
-				<br>
+				<br/> <br /> <br>
 				<div class="surve-tag">
 					<address>
 						㈜ **문고 서울시 종로구 종로 1 <br> 대표이사 : <br /> 사업자등록번호 :123-4514<br />
@@ -152,6 +150,21 @@ $(document).ready(function(){
 
 					</address>
 				</div>
+					<br/>
+					<div id="map">
+						<table cellpadding="0" cellspacing="0" width="150">
+							<tr>
+								<td style="border: 1px solid #cecece;"><a
+									href="https://map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=a24cfea0fc4db7f9f4e3b955eadc8593&__fromRestorer=true&mapMode=0&mpx=af51abfe49113423a260cedd1e8f63f9b1619d19c679be4b3d3fe32d5adfb54341116eb5a386f56e955a59b6cb2517aa&pinId=11525091&pinType=site&lat=9d1007022b17059c3db21b29a1ecce8a&dlevel=11&enc=b64"
+									target="_blank">
+										<img src="http://prt.map.naver.com/mashupmap/print?key=p1547133542722_-789146433"
+										width="180" height="180" border="0"
+										style="vertical-align: top;" /></a></td>
+							</tr>
+
+						</table>
+					</div>
+					
 
 
 
