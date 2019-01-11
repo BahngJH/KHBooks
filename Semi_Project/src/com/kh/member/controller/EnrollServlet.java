@@ -27,7 +27,8 @@ public class EnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/views/login_myPage/enroll.jsp").forward(request, response);
+		//request.getRequestDispatcher("/views/login_myPage/enroll.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/views/login_myPage/enroll.jsp");
 	}
 
 	/**
