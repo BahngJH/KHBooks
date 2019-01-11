@@ -66,9 +66,9 @@
 								<tr>
 									<th>비밀번호 변경</th>
 									<td>
-										<input type="text" class="form-control" placeholder="새 비밀번호"/>
+										<input type="password" class="form-control" placeholder="새 비밀번호"/>
 										<br/><br/>
-										<input type="text" class="form-control" placeholder="새 비밀번호 확인"/>
+										<input type="password" class="form-control" placeholder="새 비밀번호 확인"/>
 									</td>
 								</tr>
 								<tr>
