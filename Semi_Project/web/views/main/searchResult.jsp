@@ -140,7 +140,7 @@
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
                                 <a href="#" class="thumbnail">
-                                    <img src="/images/book/<%=b.getBookImage() %>"
+                                    <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
                             </div>
@@ -151,7 +151,8 @@
                                         <span><%=b.getBookName() %></span>
                                     </a>
                                 </h3>
-                                <p class="book_info"><a href="#"><span><%=b.getAuthorNum() %></span></a></p>
+                                <p class="boo_info"><span><a href="#">5.0</a><a href="#"><span><%=b.getAuthorNum() %></span></a></span></p>
+                                
                             </div>
                         </div>
                     
