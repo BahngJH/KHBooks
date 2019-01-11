@@ -31,7 +31,6 @@ public class EnrollEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		String memberName = request.getParameter("memberName");
@@ -54,13 +53,15 @@ public class EnrollEndServlet extends HttpServlet {
 		m.setGender(gender);
 		m.setAddress(address);
 		
+		System.out.println(m);
+		
 		int rs = new MemberService().memberEnroll(m);
 		if(rs>0)
 		{
 			//회원가입 성공!
 			request.setAttribute("msg", "회원가입을 축하합니다!!");
 			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
 		}else
 		{
 			//회원가입 실패!!
