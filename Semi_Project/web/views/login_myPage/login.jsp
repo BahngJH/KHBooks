@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="com.kh.member.model.vo.Member" %>    
 <%
-	String msg = (String)request.getAttribute("msg");
 	Cookie[] c = request.getCookies();
 	String cookieVal="";
 	if(c!=null){
@@ -67,11 +67,11 @@
 			<input type="password" id="password" name="password" placeholder="비밀번호" style="width:305px; height:40px;"><br>
         	<input type="checkbox" id="checkbox" class="keepLogin" name="saveId" <%=cookieVal!=""?"checked" : ""%> ><label class="keepLogin">아이디 저장
         	</label> <a href="searchId.html" class="search">아이디 찾기 </a><a class="search" href="#">비밀번호 찾기</a>
-         	<br> <%-- 일단 주석처리 <span>
+         	<br> <%-- <span>
             		<%if(msg!=null){ %>
             <%=msg %>
             <%msg=null;} %>
-             </span> --%> <br>
+             </span --%> <br>
           	<input type="submit" value="로그인" class="btn btn-primary" style="width:305px; height:50px;"><br><br>
         </form>
             <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default" style="width:305px; height:50px;">

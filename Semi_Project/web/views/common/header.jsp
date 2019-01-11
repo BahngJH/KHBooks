@@ -56,7 +56,7 @@
 	        </div>
 	        <!-- 상단 검색창 -->
 	        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-	            <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
+	            <form class="navbar-form navbar-left" id="navSearchFrm" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
 	                <div class="form-group">
 	                    <div class="input-group">
 	                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
@@ -70,10 +70,10 @@
 	            <ul class="nav navbar-nav navbar-right">
 	                <li><button type="button" class="btn btn-default navbar-btn">로그인</button>
 	                    <button type="button" class="btn btn-default navbar-btn">회원가입</button></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
+	                <li><a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
+	                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
+	                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
+	               
 	            </ul>
 	        </div>
 	    </div>
