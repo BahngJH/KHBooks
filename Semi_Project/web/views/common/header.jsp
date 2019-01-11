@@ -56,7 +56,7 @@
 	        </div>
 	        <!-- 상단 검색창 -->
 	        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-	            <form class="navbar-form navbar-left" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
+	            <form class="navbar-form navbar-left" id="navSearchFrm" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
 	                <div class="form-group">
 	                    <div class="input-group">
 	                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
