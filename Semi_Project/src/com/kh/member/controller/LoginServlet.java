@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		String pw = request.getParameter("password");
 		String saveId = request.getParameter("saveId");
 		
-		
+		//id와 pw로 사용자 정보를 가져옴
 		Member m = new MemberService().memberLogin(id,pw);
 		
 		if(m==null) {
@@ -44,14 +44,14 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("로그인 실패");
 			request.setAttribute("msg", "!아이디와 비밀번호를 다시 확인세요");
 			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-			
 		}else{
 			//로그인 성공
 			System.out.println("로그인 성공");
 			//아이디 저장 여부를 보고 쿠키로 아이디값 저장
 			if(saveId!=null) {
 				Cookie c = new Cookie("saveId",id);
-				c.setMaxAge(60*60*24*7);
+				//쿠키값 저장 시간을 지정함, 숫자당 1초로 계산
+				c.setMaxAge(60*60*24*7); //7일간 저장
 				response.addCookie(c);
 			}else {
 				Cookie c = new Cookie("saveId",id);
@@ -64,9 +64,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginMember", m);
 			//회원정보는 세션에 넣었으니 Redirect로 데이터 없이 화면 전환
 			response.sendRedirect(request.getContextPath()+"/");
-			
-		}
-		
+		}	
 	}
 
 	/**
