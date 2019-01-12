@@ -40,7 +40,7 @@
 				</article>
 				
 				<article class="updateInfo-container">
-					<div class="updateInfo">
+					<div class="updateInfo" style="">
 						<form class="form-inline" role="form">
 							<table class="tbl-updateInfo table-bordered">
 								<tr>
@@ -76,7 +76,7 @@
 									<td>123213123123123123123213</td>
 								</tr>
 							</table>
-							<button type="submit">변경 완료</button>
+							<button type="submit" class="btn btn-primary">변경 완료</button>
 						</form>
 					</div>
 				</article>
