@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+li {
+	list-style: none;
+}
+.cs_title{
+	text-align: center;
+	padding: 0 0 25px 0;	
+}
+
+
+
+
+.bWrap {
+	border: solid 1px #ebebeb;
+	border-top-color: rgb(235, 235, 235);
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #d8d8d8;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-bottom-color: #d8d8d8;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-color: rgb(235, 235, 235);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	border-bottom-color: #d8d8d8;
+	border-right-color: #d8d8d8;
+	background-color: #fff;
+	padding: 15px 0 0 23px;
+	height: 50px;
+	display: block;
+	text-align: left;
+}
+.csInfo{
+	padding: 0 0 0 280px;
+	
+}
+
+li {
+	padding: 0 0 13px;
+	20
+	px;
+}
+
+ul {
+	display: block;
+	list-style-type: disc;
+	padding-inline-start: 40px;
+}
+
+.csCenter {
+	float: right;
+	margin-right: 60px;
+	padding: 25px 0;
+	width: 660px;
+	text-align: left;
+}
+
+em {
+	font-size: 17px;
+}
+
+
+#pager {
+	text-align: center;
+}
+
+ span :hover {
+  background-color: yellow;
+}
