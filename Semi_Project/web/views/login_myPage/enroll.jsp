@@ -20,7 +20,7 @@
 </head>
 <body>
  <div id="container">
-        <div id="logo"><a href="#">KH BOOKS</a></div>
+        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
         <hr>
 
         <form method="POST" action="<%=request.getContextPath() %>/member/enrollEnd" name="enrollMember" onsubmit="return fn_enroll_validate();">
@@ -189,18 +189,26 @@
 
     	//히든값들이 전부 1로 체크되었는지 확인
         function fn_enroll_validate() {
+    		var count =1;
             $('input[type=hidden]').each(function(index,item){
             	if(item.value==0){
-            		alert("정상값을 넣고 회원가입해 주세요");
-            		return false;
+            		/* alert("정상값을 넣고 회원가입해 주세요");
+            		return false; */
+            		count=0;
             	}
-            	return true;
             });
+            //밖에다 조건을 걸어줘야지 each문안에 조건을 걸어주면 제대로 안먹힌다.
+        	if(count==0){
+        		alert("정상값을 넣고 회원가입해 주세요");
+        		return false;
+        	}else{
+        		return true;
+        	}
         }
+    	
 		function bReset(){
 			$('input[type=text]').val("");
 			$('input[type=password]').val("");
-			
 		}
     	
     </script>
