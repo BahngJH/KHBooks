@@ -1,14 +1,90 @@
-
-
-/* nav {
-    min-width: 800px;
-} */
-
+/* 상단 네비바 css */
 header {
-    margin-bottom: 50px;
+	margin-bottom: 81px;
 }
 
-form#navSearchFrm{
+form#navSearchFrm {
 	padding-left: 5px;
 	padding-right: 0px;
+}
+
+header nav.navbar {
+	height: 80px;
+	padding-top: 13px;
+}
+
+header nav.navbar div div.navbar-collapse {
+	background-color: #f8f8f8;
+}
+
+/* 검색 결과 창 css */
+
+h4.book_info{
+	margin: auto;
+}
+
+h4.book_info a, p.book_info a {
+	color: black;
+	text-decoration: none;
+}
+
+p.book_info a {
+	margin-right: 5px;
+}
+
+p.book_info.book_price{
+	display: inline;
+}
+
+p#book_price{
+	color: #1f8ce6;
+}
+
+.order-buttons {
+	margin-left: 20px;
+}
+
+.order-buttons li {
+	padding: 0px;
+}
+
+.order-buttons li a {
+	text-decoration: none;
+	color: black;
+	padding-left: 8px;
+	border-left: 1px solid gray;
+}
+
+.category_title {
+	border-bottom: 1px solid black;
+	color: black;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+#category ul {
+	list-style: none;
+	padding: 0;
+}
+
+#category li {
+	border-bottom: 1px dashed #e1e1e1;
+	/* line-height: 45px; */
+	text-align: left;
+}
+
+#category li span {
+	float: right;
+}
+
+#category li a {
+	color: #333;
+	/* font-size: 14px;
+            font-weight: 400; */
+}
+
+.result {
+	border-bottom: 1px solid gray;
+	margin-top: 15px;
 }
