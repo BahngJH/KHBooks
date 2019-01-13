@@ -3,7 +3,7 @@
 
 <%@ include file="/views/common/header.jsp"%>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/oneOnOneList.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/oneOnOne.css">
 
 
 <div class="container">
