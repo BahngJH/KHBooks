@@ -16,7 +16,7 @@ import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/member/loginEnd")
+@WebServlet(name="LoginEndServlet",urlPatterns="/member/loginEnd")
 public class LoginEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,10 +32,9 @@ public class LoginEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
+		String id = request.getParameter("memberId");
+		String pw = request.getParameter("memberPw");
 		String saveId = request.getParameter("saveId");
-		
 		
 		Member m = new MemberService().memberLogin(id,pw);
 		
