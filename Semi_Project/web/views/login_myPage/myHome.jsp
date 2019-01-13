@@ -53,15 +53,16 @@
 			<section>
 				<article class="myInfo-container">
 					
-					<div class="accountInfo">
+					<div class="accountInfo">	
 						
 					</div>
-					
+						
 					<div class="userInfo">
 						<table class="tbl-userInfo table-bordered">
 							<tr>
 								<th>이름</th>
-								<td>주홍범</td>
+								<%-- <td><%=logined.getMemberName()%></td> --%>
+								<td>test</td>
 							</tr>
 							<tr>
 								<th>마일리지</th>
@@ -69,15 +70,18 @@
 							</tr>
 							<tr>
 								<th>phone</th>
-								<td>123123213213123</td>
+								<%-- <td><%=logined.getPhone()%></td> --%>
+								<td>test</td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td>1231232132132132131213</td>
+								<%-- <td><%=logined.getEmail() %></td> --%>
+								<td>test</td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<td>123213123123123123123213</td>
+								<%-- <td><%=logined.getAddress() %></td> --%>
+								<td>test</td>
 							</tr>
 						</table>
 					</div>
