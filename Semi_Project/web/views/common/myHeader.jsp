@@ -26,7 +26,7 @@
 	                <li><a href="">구매 목록</a></li>
 	                <li><a href=""> 장바구니</a></li>
 	                <li><a href=""> 찜 목록</a></li>
-	                <li><a href=""> 정보 변경</a></li>
+	                <li><a href="<%=request.getContextPath()%>/member/updateInfo"> 정보 변경</a></li>
 	                <li><a href="">리뷰 관리</a></li>
 	                <li><a href="">1:1 문의</a></li>
 				</ul>

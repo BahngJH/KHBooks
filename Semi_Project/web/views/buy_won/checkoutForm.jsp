@@ -263,9 +263,7 @@
                                 </tr>
 
                                 <tr>
-                                    <h3><label>
-                                            <td>결제 수단</td>
-                                        </label></h3>
+                                    <td><label><h3>결제 수단</h3></label></td>
                                     <td></td>
                                 </tr>
 
@@ -275,29 +273,22 @@
 
 
                                     <td>
-
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                네이버페이</label></div>
+                                            <label for="ex_chk"> 네이버페이</label></div>
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                카카오페이</label></div>
+                                            <label for="ex_chk"> 카카오페이</label></div>
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                페이코</label></div>
+                                            <label for="ex_chk"> 페이코</label></div>
                                     </td>
 
 
                                     <td>
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                신용카드</label></div>
+                                            <label for="ex_chk"> 신용카드</label></div>
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                계좌이체</label></div>
+                                            <label for="ex_chk">계좌이체</label></div>
                                         <div class="checks"> <input type="radio" id="ex_chk" name="order_chk_radio">
-                                            <label for="ex_chk">
-                                                도서문화상품권</label></div>
+                                            <label for="ex_chk">도서문화상품권</label></div>
                                     </td>
 
 

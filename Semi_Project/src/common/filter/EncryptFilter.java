@@ -18,10 +18,9 @@ import common.encrypt.EncryptWrapper;
  * Servlet Filter implementation class EncryptFilter
  */
 @WebFilter(servletNames = {
-		"Login",
-		"MemberEnrollEndServlet",
-//		"MemberUpdateServlet"
-		"UpdatePasswordEndServlet"
+		"LoginEndServlet",
+		"EnrollEndServlet",
+		//업데이트 서블릿 추가해야함
 })
 public class EncryptFilter implements Filter {
 
