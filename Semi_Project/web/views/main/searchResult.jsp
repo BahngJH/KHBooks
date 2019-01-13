@@ -23,73 +23,6 @@
             });
         });
     </script>
-    <style>
-        /* div {
-            border: 1px solid black;
-        } */
-        div #category {
-            border: 1px solid blue;
-        }
-
-        .order-buttons {
-            margin-left: 20px;
-        }
-
-        .order-buttons li {
-            padding: 0px;
-        }
-
-        .order-buttons li a {
-            text-decoration: none;
-            color: black;
-            padding-left: 8px;
-            border-left: 1px solid gray;
-        }
-
-        div #search {
-            border: 1px solid red;
-        }
-
-        div #cart {
-            border: 1px solid green;
-
-        }
-
-        .category_title {
-            border-bottom: 1px solid black;
-            color: black;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            position: relative;
-        }
-
-        #category ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #category li {
-            border-bottom: 1px dashed #e1e1e1;
-            /* line-height: 45px; */
-            text-align: left;
-        }
-
-        #category li span {
-            float: right;
-        }
-
-        #category li a {
-            color: #333;
-            /* font-size: 14px;
-            font-weight: 400; */
-        }
-
-        .result{
-            border-bottom: 1px solid gray;
-            margin-top: 15px;
-            
-        }
-    </style>
 </head>
 
 <body>
@@ -144,19 +77,34 @@
                                         alt="책 이미지">
                                 </a>
                             </div>
-                            <!-- 책 정보 -->
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <h3 class='book_info'>
+                            <div class='result-image col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+                            	<!-- 책 정보 -->
+                                <h4 class='book_info'>
                                     <a href="#">
-                                        <span><%=b.getBookName() %></span>
+                                        <span><strong><%=b.getBookName() %></strong></span>
                                     </a>
-                                </h3>
+                                </h4>
                                 <p class="book_info">
                                 	<span class="book_info"><a href="#">5.0</a>|</span>
+                                	<!-- 작가 정보는 서버에서 아직 주지 않았음 -->
                                 	<span class="book_info"><a href="#"><%=b.getAuthorNum() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
-                                <p></p>
+                            	<!-- 책 줄거리 -->
+                            	<p class="book_info book_content">
+                            		<a href="#">
+                            		<%
+                            			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
+                            			String content = b.getBookInfo();
+                            			if(content.length() > 265){
+                            				content = content.substring(0, 265)+"...";
+                            			}
+                            		%>
+                            		
+                            		<%=content %></a>
+                            	</p>
+                            	<!-- 책 가격 -->
+	                            <p class="book_info book_price" >가격</p> <p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
                             </div>
                         </div>
                     
