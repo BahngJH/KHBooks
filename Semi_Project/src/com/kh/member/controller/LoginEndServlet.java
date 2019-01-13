@@ -32,10 +32,9 @@ public class LoginEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
+		String id = request.getParameter("memberId");
+		String pw = request.getParameter("memberPw");
 		String saveId = request.getParameter("saveId");
-		System.out.println(pw);
 		
 		Member m = new MemberService().memberLogin(id,pw);
 		

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.kh.member.model.vo.Member"%>
 <%@ include file="/views/common/myHeader.jsp"%>
+
 
 <style>
 	article.myInfo-container{
@@ -61,23 +62,23 @@
 						<table class="tbl-userInfo table-bordered">
 							<tr>
 								<th>이름</th>
-								<td>주홍범</td>
+								<td><%=logined.getMemberName()%></td>
 							</tr>
 							<tr>
 								<th>마일리지</th>
-								<td>010123123123</td>
+								<td><%=logined.getMileage() %></td>
 							</tr>
 							<tr>
 								<th>phone</th>
-								<td>123123213213123</td>
+								<td><%=logined.getPhone() %></td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td>1231232132132132131213</td>
+								<td><%=logined.getEmail() %></td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<td>123213123123123123123213</td>
+								<td><%=logined.getAddress() %></td>
 							</tr>
 						</table>
 					</div>

@@ -37,6 +37,7 @@ public class MyHomeServlet extends HttpServlet {
 			return;
 		}
 		
+		
 		System.out.println("로그인 확인이 되었기에 마이 페이지 보여줌");
 		response.sendRedirect(request.getContextPath()+"/views/login_myPage/myHome.jsp");
 		
