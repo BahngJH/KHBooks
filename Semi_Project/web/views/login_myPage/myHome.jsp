@@ -44,6 +44,7 @@
 	}
 
 	div.userInfo table.tbl-userInfo td {
+		width: 40%;
 	    padding: 10px;
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;
@@ -70,27 +71,25 @@
 							<tr>
 								<th>아이디</th>
 								<td><%=logined.getMemberId()%></td>
-
-								<th>이름</th>
-								<td><%=logined.getMemberName()%></td>
-
-							</tr>
-							<tr>
 								<th>마일리지</th>
 								<td><%=logined.getMileage() %></td>
 							</tr>
 							<tr>
 								<th>phone</th>
-								<td><%=logined.getPhone()%></td>
+								<td colspan='3'><%=logined.getPhone()%></td>
 
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td><%=logined.getEmail() %></td>
+								<td colspan='3'><%=logined.getEmail() %></td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<td><%=logined.getAddress() %></td>
+								<td colspan='3'><%=logined.getAddress() %></td>
+							</tr>
+							<tr>
+								<th>가입일</th>
+								<td colspan='3'><%=logined.getEnrollDate() %></td>
 							</tr>
 						</table>
 					</div>
