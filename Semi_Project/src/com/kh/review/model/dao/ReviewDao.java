@@ -33,8 +33,7 @@ public class ReviewDao {
 		List<Review> list = new ArrayList();
 		Review r = null;
 		String sql = prop.getProperty("selectList");
-		System.out.println(sql);
-		System.out.println(memberNum);
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
@@ -49,8 +48,7 @@ public class ReviewDao {
 				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
 				r.setCheckOption(rs.getInt("checkOption"));
-				
-				System.out.println(r);
+
 				list.add(r);
 			}
 		} catch(SQLException e) {
