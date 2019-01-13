@@ -80,6 +80,13 @@ public class Review {
 	public void setReviewNum(int reviewNum) {
 		this.reviewNum = reviewNum;
 	}
+
+	@Override
+	public String toString() {
+		return "Review [memberNum=" + memberNum + ", writeDate=" + writeDate + ", grade=" + grade + ", checkOption="
+				+ checkOption + ", reviewContext=" + reviewContext + ", bookId=" + bookId + ", status=" + status
+				+ ", reviewNum=" + reviewNum + "]";
+	}
 	
 	
 }

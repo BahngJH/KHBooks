@@ -22,26 +22,23 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style>
-
-.col-sm-2 ol,.col-sm-2 ol a {
+.col-sm-2 ol, .col-sm-2 ol a {
 	color: black;
 }
-.col-sm-2{
-padding: 0 0 100 0;}
-	
-.menu a{
-color:black;
 
+.menu a {
+	color: black;
 }
 
+a {
+	color: black;
+	cursor: pointer;
+}
 
-a{color:black; cursor:pointer;}
-
-ol{
+ol {
 	list-style-type: disc;
 	color: black;
 }
-
 
 #a1 {
 	list-style-type: disc;
@@ -53,51 +50,93 @@ ol{
 	color: black;
 }
 
-.QAtitle, .QAtitle a {
-	color: black;
-}
-
-#QAtitle2 a {
-	color: black;
-	height: 200px;
-}
-
-.notice a {
-	color: black;
-}
 
 
-.text {
-	text-align: center;
-	width: 300px;
-	padding-left: 100px;
-}
-
-#n-surve {
-	background-color: antiquewhite;
-}
 
 .surve-tag {
 	background-color: azure;
 	border: 1px solid azure
 }
- .menu a{cursor:pointer;}
- .menu .hide{display:none;}
-.Notice_List{color:black;}
 
+.menu a {
+	cursor: pointer;
+}
+
+.menu .hide {
+	display: none;
+}
+
+
+
+.surve-tag {
+	text-align: center;
+}
+
+.dropdown-toggle {
+	data-toggle: dropdown;
+	role: button;
+	aria-expanded: false;
+}
+
+.row a {
+	text-decoration: none;
+}
+
+#map table {
+	cellpadding: 0;
+	cellspacing: 0;
+	width: 150px;
+}
+
+#map table td {
+	border: 1px solid #cecece;
+}
+
+#map table td img {
+	width: 180px;
+	height: 200px;
+	border: 0px;
+	vertical-align: top;
+}
+
+.col-sm-2 h4 {
+	color: blue;
+}
+.col-sm-9 table{
+
+cellspacing:0;
+ cellpadding:0;
+ border:0px;
+ }
+table th{
+
+ border-bottom:1px solid skyblue;
+margin: 5px 0;
+padding: 8px 10px;
+border-width: 2px;
+border-height: 10px;
+ text-align:center;
+
+ }
+
+ .col-sm-9 td{
+ text-align:center;
+ }
+
+hr {
+border: solid 1px darkgray;
+}
 </style>
 </head>
 
 <script>
+	$(document).ready(function() {
 
+		$("a").click(function() {
 
-$(document).ready(function(){
-   
-    $("a").click(function(){
-      
-        $(this).next("ol").toggleClass("hide");
-    });
-});
+			$(this).next("ol").toggleClass("hide");
+		});
+	});
 </script>
 
 
@@ -109,74 +148,92 @@ $(document).ready(function(){
 		</div>
 
 
-		
-		
+
+
 		<div class="row">
 			<div class="col-sm-2">
-			<br/>
-			<br/>
-			<br/>
+				<br /> <br /> <br />
 				<h4>
 					<strong>고객센터</strong>
 				</h4>
-				<hr>
-    
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"style="te xt-decoration:none" aria-expanded="false"><strong>게시판</strong><span class="caret"></span></a>
-            <ol class="hide">
-            <br/>
-             <li><a href="http://www.naver.com" style="text-decoration:none">1:1문의</a></li><br/>
-              <li><a href="http://www.naver.com" style="text-decoration:none">희망도서 신청</a></li><br/>
-            </ol>
+				
+					<hr/>
+				<a class="dropdown-toggle"><strong>게시판</strong><span
+					class="caret"></span></a>
+				<ol class="hide">
+					<br />
+					<li><a href="http://www.naver.com">1:1문의</a></li>
+					<br />
+					<li><a href="http://www.naver.com">희망도서 신청</a></li>
+					<br />
+				</ol>
 
-         
-        
-        
-    
-					<hr>
-				<a
-					href="file:///D:/vscode/vscode/workspace/project/bookrequest.html"
-					id="a1" style="text-decoration: none"><strong>도서신청</strong></a>
+				<hr>
+				<a href="" id="a1"><strong>도서신청</strong></a>
 				<hr>
 
-				<a href="file:///D:/vscode/vscode/workspace/project/mainNotice.html"
-					id="a2" style="text-decoration: none"><strong>공지사항</strong></a>
-					  
-				<br/> <br /> <br>
-				<div class="surve-tag">
-					<address>
-						㈜ **문고 서울시 종로구 종로 1 <br> 대표이사 : <br /> 사업자등록번호 :123-4514<br />
-						대표전화 : 222222222(발신자 부담전화)<br> 팩스 : 222222-222 (지역번호공통)<br />
+				<a href="" id="a2"><strong>공지사항</strong></a> 
+				<hr/>
+				<br/>
+				<br />
+				<div id="map">
+					<table>
+						<tr>
+							<td><a
+								href="https://map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=a24cfea0fc4db7f9f4e3b955eadc8593&__fromRestorer=true&mapMode=0&mpx=af51abfe49113423a260cedd1e8f63f9b1619d19c679be4b3d3fe32d5adfb54341116eb5a386f56e955a59b6cb2517aa&pinId=11525091&pinType=site&lat=9d1007022b17059c3db21b29a1ecce8a&dlevel=11&enc=b64"
+								target="_blank"> <img
+									src="http://prt.map.naver.com/mashupmap/print?key=p1547133542722_-789146433" /></a>
+							</td>
+						</tr>
 
-					</address>
+					</table>
 				</div>
-					<br/>
-					<div id="map">
-						<table cellpadding="0" cellspacing="0" width="150">
-							<tr>
-								<td style="border: 1px solid #cecece;"><a
-									href="https://map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=a24cfea0fc4db7f9f4e3b955eadc8593&__fromRestorer=true&mapMode=0&mpx=af51abfe49113423a260cedd1e8f63f9b1619d19c679be4b3d3fe32d5adfb54341116eb5a386f56e955a59b6cb2517aa&pinId=11525091&pinType=site&lat=9d1007022b17059c3db21b29a1ecce8a&dlevel=11&enc=b64"
-									target="_blank">
-										<img src="http://prt.map.naver.com/mashupmap/print?key=p1547133542722_-789146433"
-										width="180" height="180" border="0"
-										style="vertical-align: top;" /></a></td>
-							</tr>
-
-						</table>
-					</div>
 
 			</div>
-			<br/>
-		<div class="col-sm-1"></div>
+			<br />
+			<div class="col-sm-1"></div>
 			<div class="col-sm-9">
-			<span id="notice"></span>
-			
-			</div>
+				
+				<h2>공지사항</h2>
+				<br/>
+				<table class="table table-hover">
+					<colgroup>
+						<col width="86px" />
+						<col width="*" />
+						<col width="126px" />
+					</colgroup>
 
+					<tr>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>상태</th>
+						<th>날짜</th>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td><a href="#">sdasdasdasds</a></td>
+						<td>미삭제</td>
+						<td>8월31일</td>
+					</tr>
+
+				</table>
+
+			</div>
 			<div class="row">
 
-				<div class="col-sm-12"></div>
-			</div>
-		</div>
+					<div class="col-sm-12">
+						<br /> <br /> <br>
+						<div class="surve-tag">
+							<address>
+								㈜ **문고 서울시 종로구 종로 1 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
+								222222222(발신자 부담전화)<br> 팩스 : 222222-222 (지역번호공통)<br />
+
+							</address>
+						</div>
+					</div>
+				</div>
+				</div>
+			
 </body>
 
 </html>

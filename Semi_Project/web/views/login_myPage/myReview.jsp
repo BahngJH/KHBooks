@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/myHeader.jsp"%>
+<%@ page import="java.util.*, com.kh.review.model.vo.Review" %>
+<% List<Review> list = (List)request.getAttribute("list");%>
 
 <style>
 	article.review-container ul {
@@ -30,20 +32,22 @@
 					<hr/>
 					
 					<ul>
-						<li> 
-							<div class="reviewList">
-								<h5><b>책 제목</b></h5>
-								<h6>날짜</h6>
-								<br/>
-								<p>
-									내용 test
-								</p>
-								<div class="review-options">
-									<button class="btn btn-primary">수정</button>
-									<button class="btn btn-primary">삭제</button>
+						<%for(Review r : list) {%>
+							<li> 
+								<div class="reviewList">
+									<h5><b><%=r.getBookId() %></b></h5>
+									<h6><%=r.getWriteDate() %></h6>
+									<br/>
+									<p>
+										<%=r.getReviewContext()%>
+									</p>
+									<div class="review-options">
+										<button class="btn btn-primary">수정</button>
+										<button class="btn btn-primary">삭제</button>
+									</div>
 								</div>
-							</div>
-						</li>
+							</li>
+						<%} %>
 					</ul>
 				</article>
 			</section>
