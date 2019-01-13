@@ -151,8 +151,12 @@
                                         <span><%=b.getBookName() %></span>
                                     </a>
                                 </h3>
-                                <p class="boo_info"><span><a href="#">5.0</a><a href="#"><span><%=b.getAuthorNum() %></span></a></span></p>
-                                
+                                <p class="book_info">
+                                	<span class="book_info"><a href="#">5.0</a>|</span>
+                                	<span class="book_info"><a href="#"><%=b.getAuthorNum() %></a>|</span>
+                                	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
+                                </p>
+                                <p></p>
                             </div>
                         </div>
                     
