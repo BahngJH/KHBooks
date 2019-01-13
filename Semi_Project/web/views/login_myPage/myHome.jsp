@@ -68,16 +68,21 @@
 						
 					<div class="userInfo">
 						<table class="tbl-userInfo table-bordered">
-							<tr>
+							<tr>	
 								<th>아이디</th>
 								<td><%=logined.getMemberId()%></td>
 								<th>마일리지</th>
 								<td><%=logined.getMileage() %></td>
 							</tr>
 							<tr>
+								<th>이름</th>
+								<td><%=logined.getMemberName()%></td>
+								<th>가입 날짜</th>
+								<td><%=logined.getEnrollDate() %></td>
+							</tr>
+							<tr>
 								<th>phone</th>
 								<td colspan='3'><%=logined.getPhone()%></td>
-
 							</tr>
 							<tr>
 								<th>이메일</th>
@@ -86,10 +91,6 @@
 							<tr>
 								<th>주소</th>
 								<td colspan='3'><%=logined.getAddress() %></td>
-							</tr>
-							<tr>
-								<th>가입일</th>
-								<td colspan='3'><%=logined.getEnrollDate() %></td>
 							</tr>
 						</table>
 					</div>
