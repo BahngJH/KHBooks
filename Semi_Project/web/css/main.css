@@ -5,10 +5,19 @@
 } */
 
 header {
-    margin-bottom: 50px;
+    margin-bottom: 81px;
 }
 
 form#navSearchFrm{
 	padding-left: 5px;
 	padding-right: 0px;
+}
+
+header nav.navbar{
+	height: 80px;
+	padding-top: 13px;
+}
+
+header nav.navbar div div.navbar-collapse{
+	background-color: #f8f8f8;
 }
