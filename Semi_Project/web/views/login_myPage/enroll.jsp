@@ -22,7 +22,6 @@
  <div id="container">
         <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
         <hr>
-
         <form method="POST" action="<%=request.getContextPath() %>/member/enrollEnd" name="enrollMember" onsubmit="return fn_enroll_validate();">
             <div id="inputId">
                 <input type="text" id="id" name="memberId" placeholder="아이디 (소문자와 숫자로 6글자이상)" required><div id="idMsg" class="msg"></div>
@@ -43,7 +42,6 @@
             <input type="text" id="sample6_postcode" placeholder="우편번호" required="required">
             <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="우편번호 찾기" ><br>
             <input type="text" id="sample6_address" placeholder="주소" name="address1" required="required"><br>
-            <input type="text" id="sample6_extraAddress" placeholder="참고항목" required="required"><br>
             <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" required="required">
             <br><br>
 			<input type="hidden" value="0" id="idValid">
@@ -67,7 +65,7 @@
                             target="_blank">약관정보</a><br>
                         <input type="checkbox" id="c3" required><label for="c3">개인정보 제3자 제공 동의(필수)</label><a href="https://ridibooks.com/legal/privacy"
                             target="_blank">약관정보</a><br>
-                        <input type="checkbox" id="c4"><label for="c4">이벤트혜택 알림 수신동의(선택)</label></th>
+                        <!-- <input type="checkbox" id="c4"><label for="c4">이벤트혜택 알림 수신동의(선택)</label> --></th>
                 </tr>
             </table><br>
             <input type="button" class="btn btn-default" onclick="bReset();" value="취소">
@@ -249,8 +247,6 @@
                         if (extraAddr !== '') {
                             extraAddr = ' (' + extraAddr + ')';
                         }
-                        // 조합된 참고항목을 해당 필드에 넣는다.
-                        document.getElementById("sample6_extraAddress").value = extraAddr;
 
                     } else {
                         document.getElementById("sample6_extraAddress").value = '';

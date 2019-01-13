@@ -26,6 +26,9 @@
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;
 	}
+	.btn-update{
+		float:right;
+	}
 </style>
 
 		<div class="col-sm-10">
@@ -55,11 +58,26 @@
 									<td>user01</td>
 								</tr>
 								<tr>
+									<th>생년월일</th>
+									<td>
+										<div>
+											<input type="text" value ="19880427">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>휴대폰</th>
+									<td>
+										<div>
+											<input type="text" value ="01012345678">
+										</div>
+									</td>
+								</tr>
+								<tr>
 									<th>이메일</th>
 									<td>
 										<div>
-											<p>wowow</p>
-											<button>이메일 변경</button>
+											<input type="text" value ="asdfv@gmail.com">
 										</div>
 									</td>
 								</tr>
@@ -69,14 +87,18 @@
 										<input type="password" class="form-control" placeholder="새 비밀번호"/>
 										<br/><br/>
 										<input type="password" class="form-control" placeholder="새 비밀번호 확인"/>
+										<br><br>
+										<h4><b>비밀변호 변경시 주의사항</b></h4>
+										<p>1.비밀번호는 6글자 이상</p>
+										<p>2.비밀번호는 영문자 숫자 특수기호를 조합하여 구성</p>
 									</td>
 								</tr>
 								<tr>
 									<th>주소</th>
 									<td>123213123123123123123213</td>
 								</tr>
-							</table>
-							<button type="submit">변경 완료</button>
+							</table><br>
+							<button class="btn-update" type="submit">변경 완료</button>
 						</form>
 					</div>
 				</article>
