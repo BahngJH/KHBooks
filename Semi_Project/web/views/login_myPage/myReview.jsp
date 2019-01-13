@@ -36,7 +36,12 @@
 							<li> 
 								<div class="reviewList">
 									<h5><b><%=r.getBookId() %></b></h5>
-									<h6><%=r.getWriteDate() %></h6>
+									<h6>
+										<%for(int i = 0; i <r.getGrade(); i++) { %>
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+										<%} %>
+										<%=r.getWriteDate() %>
+									</h6>
 									<br/>
 									<p>
 										<%=r.getReviewContext()%>
