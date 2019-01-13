@@ -26,6 +26,7 @@ public class ReviewDao {
 		} 
 	}
 	
+	// 리뷰 list 반환
 	public List<Review> selectList(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

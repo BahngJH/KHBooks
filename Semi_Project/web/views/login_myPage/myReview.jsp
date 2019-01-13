@@ -39,7 +39,7 @@
 									<h6><%=r.getWriteDate() %></h6>
 									<br/>
 									<p>
-										<%=r.getReviewContext() %>
+										<%=r.getReviewContext()%>
 									</p>
 									<div class="review-options">
 										<button class="btn btn-primary">수정</button>
