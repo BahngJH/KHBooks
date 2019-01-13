@@ -104,6 +104,10 @@ vertical-align: top;
 
 height:20px; 
 }
+.QAtitle{
+border-bottom:2px solid darkgray;
+}
+
 .col-sm-2 h4{color:blue;}
 </style>
 </head>

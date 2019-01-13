@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>고객센터 메인.</title>
+<title>도서신청</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
 	rel="stylesheet">
@@ -157,9 +157,9 @@ $(document).ready(function(){
 
 			</div>
 		<div class="col-sm-1"></div>
-			<div class="col-sm-6">
+			<div class="col-sm-8">
 			
-			<h3>도서구매</h3>
+			<h3>도서신천</h3>
 
 				
 			
