@@ -11,8 +11,14 @@
 	div.accountInfo{
 		width: 25%;
 		height: 100%;
-		background-color: white;		
+		background-color: white;	
+		text-align: center;	
 	}
+	
+	div.accountInfo h4 {
+		margin-top: 30%;
+  }
+	
 	div.userInfo{
 		width: 75%;
 		height: 100%;
@@ -54,15 +60,15 @@
 				<article class="myInfo-container">
 					
 					<div class="accountInfo">	
-						
+						<h4><span><%=logined.getMemberName() %></span> 님</h4>
+						<h6>환영합니다</h6>
 					</div>
 						
 					<div class="userInfo">
 						<table class="tbl-userInfo table-bordered">
 							<tr>
-								<th>이름</th>
-								<%-- <td><%=logined.getMemberName()%></td> --%>
-								<td>test</td>
+								<th>아이디</th>
+								<td><%=logined.getMemberId()%></td>
 							</tr>
 							<tr>
 								<th>마일리지</th>
@@ -70,18 +76,15 @@
 							</tr>
 							<tr>
 								<th>phone</th>
-								<%-- <td><%=logined.getPhone()%></td> --%>
-								<td>test</td>
+								<td><%=logined.getPhone()%></td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<%-- <td><%=logined.getEmail() %></td> --%>
-								<td>test</td>
+								<td><%=logined.getEmail() %></td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<%-- <td><%=logined.getAddress() %></td> --%>
-								<td>test</td>
+								<td><%=logined.getAddress() %></td>
 							</tr>
 						</table>
 					</div>
@@ -90,7 +93,7 @@
 				<article class="buy-container">
 					<div id="buy-title"  style= 'width: 100%; min-height: 40px;'>
 						<h4>구매 목록</h4>
-						<a class="btn btn-primary" id="btn-buyListAll">전체 보기</a>
+						<a href="<%=request.getContextPath()%>/member/buyList" class="btn btn-primary" id="btn-buyListAll">전체 보기</a>
 					</div>
 					
 					<div style= 'width: 100%; height: 250px; border: 1px solid black;'>
