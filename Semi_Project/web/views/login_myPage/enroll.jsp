@@ -101,6 +101,8 @@
             }
             $('#id').css("border","4px solid blue");	
             $('#idMsg').html("좋습니다!");
+           <%-- var checkIcon = $('img').attr("src","<%=request.getContextPath()%>/images/icons/blueCheck"); --%>
+           	//$('#idMsg').append(checkIcon);
             $('#idValid').val(1);
     	});
     	

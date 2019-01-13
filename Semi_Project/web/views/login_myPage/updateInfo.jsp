@@ -61,7 +61,7 @@
 									<th>생년월일</th>
 									<td>
 										<div>
-											<input type="text" value ="19880427">
+											<input type="text" class="form-control" value ="19880427">
 										</div>
 									</td>
 								</tr>
@@ -69,7 +69,7 @@
 									<th>휴대폰</th>
 									<td>
 										<div>
-											<input type="text" value ="01012345678">
+											<input type="text" class="form-control" value ="01012345678">
 										</div>
 									</td>
 								</tr>
@@ -77,7 +77,7 @@
 									<th>이메일</th>
 									<td>
 										<div>
-											<input type="text" value ="asdfv@gmail.com">
+											<input type="text" class="form-control" value ="asdfv@gmail.com">
 										</div>
 									</td>
 								</tr>
