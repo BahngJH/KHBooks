@@ -67,7 +67,7 @@
 						
 					<div class="userInfo">
 						<table class="tbl-userInfo table-bordered">
-							<tr>
+							<tr>	
 								<th>아이디</th>
 								<td><%=logined.getMemberId()%></td>
 
