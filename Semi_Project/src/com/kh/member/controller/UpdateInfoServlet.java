@@ -34,6 +34,7 @@ public class UpdateInfoServlet extends HttpServlet {
 		if(m ==null) {
 			System.out.println("로그인이 안되었기에 로그인페이지로 이동");
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+			return;
 		}
 		
 		request.getRequestDispatcher("/views/login_myPage/updateInfo.jsp").forward(request, response);

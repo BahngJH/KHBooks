@@ -14,6 +14,7 @@
 		color: black;
 	}
 	ul.nav hr{width: 15%; text-align: left; margin-left: 0px;}
+	
 </style>
 
 <div class="container">
