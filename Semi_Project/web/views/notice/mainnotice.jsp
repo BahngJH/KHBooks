@@ -105,7 +105,7 @@ ol {
 }
 
 .col-sm-2 h4 {
-	color: blue;
+	color:black;
 }
 .col-sm-9 table{
 

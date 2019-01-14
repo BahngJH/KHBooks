@@ -14,8 +14,8 @@
 <style>
 	article.myInfo-container{
 		border: 1px solid black;
-		overflow: hidden;
-		height: 200px;
+		overflow: auto;
+		height: 220px;
 	}
 	div.accountInfo{
 		width: 25%;
@@ -47,8 +47,8 @@
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;
 	    background: #f3f6f7;
-	    text-align: right;
-	    width: 15%
+	    text-align: center;
+	    width: 20%
 	}
 
 	div.userInfo table.tbl-userInfo td {
@@ -85,7 +85,7 @@
 							<tr>
 								<th>이름</th>
 								<td><%=logined.getMemberName()%></td>
-								<th>가입 날짜</th>
+								<th>가입날짜</th>
 								<td><%=logined.getEnrollDate() %></td>
 							</tr>
 							<tr>

@@ -23,7 +23,16 @@
 	article.review-container div.review-options{
 		float: right;
 	}
+	div.modal{
+		
+	}
 </style>
+
+<script>
+	function updateReview() {
+		$('.modal').modal();
+	}
+</script>
 
 		<div class="col-sm-10">
 			<section>
@@ -60,6 +69,7 @@
 			</section>
 		</div>
 		
+		<!-- 리뷰 수정 모달창 -->
 		<div class="modal" id="testModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -67,9 +77,15 @@
 						리뷰 수정하기
 					</div>
 					<div class="modal-body">
-						<h1> modal test </h1>
+						<form action="" method="post">
+							<label>평점</label>
+							
+							<label for="updateContext">내용</label>
+							<textarea name="updateContext" id="updateContext"></textarea>
+						</form>
 					</div>
 					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">수정</button>
 						<button type="button" class="btn" data-dismiss="modal">닫기</button>
 					</div>
 				</div>

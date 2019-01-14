@@ -38,7 +38,7 @@ public class LoginEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().memberLogin(id);
 		System.out.println(m);
-		if(!m.getMemberPw().equals(pw)) {
+		if(m==null || !m.getMemberPw().equals(pw)) {
 			//로그인 실패 or 없는 회원
 			System.out.println("로그인 실패");
 			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
