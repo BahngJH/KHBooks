@@ -48,7 +48,7 @@ public class MemberDao {
 		return rs;
 	}
 	
-	public Member memberLogin(Connection conn, String id, String pw) 
+	public Member memberLogin(Connection conn, String id) 
 	{
 		PreparedStatement pstmt =null;
 		ResultSet rs =null;
@@ -56,9 +56,8 @@ public class MemberDao {
 		Member m =null;
 		
 		try {
-			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next())
@@ -84,6 +83,56 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return m;
+	}
+	
+	public int updateInfoPw(Connection conn, Member m)
+	{
+		PreparedStatement pstmt = null;
+		int rs =0;
+		String sql=prop.getProperty("updateInfoPw");
+		
+		try {
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberPw());
+			pstmt.setString(2, m.getAddress());
+			pstmt.setString(3, m.getBirth());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getMemberId());
+			
+			rs = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+	}
+	public int updateInfo(Connection conn, Member m)
+	{
+		PreparedStatement pstmt = null;
+		int rs =0;
+		String sql=prop.getProperty("updateInfo");
+		
+		try {
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, m.getAddress());
+			pstmt.setString(2, m.getBirth());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getMemberId());
+			
+			rs = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
 	}
 
 }

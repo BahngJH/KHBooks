@@ -2,6 +2,8 @@ package com.kh.book.model.vo;
 
 import java.util.Date;
 
+import com.kh.author.model.vo.Author;
+
 //책 정보 객체
 public class Book {
 	private String bookName;
@@ -19,6 +21,8 @@ public class Book {
 	private int pageNum;
 	private int stock;
 	private int sales;
+	private Author author;
+	
 	
 	public Book() {
 		super();
@@ -42,6 +46,104 @@ public class Book {
 		this.pageNum = pageNum;
 		this.stock = stock;
 		this.sales = sales;
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + authorNum;
+		result = prime * result + ((bookDate == null) ? 0 : bookDate.hashCode());
+		result = prime * result + bookId;
+		result = prime * result + ((bookImage == null) ? 0 : bookImage.hashCode());
+		result = prime * result + ((bookInfo == null) ? 0 : bookInfo.hashCode());
+		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
+		result = prime * result + ((editor == null) ? 0 : editor.hashCode());
+		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + pageNum;
+		result = prime * result + price;
+		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+		result = prime * result + sales;
+		result = prime * result + stock;
+		result = prime * result + ((translator == null) ? 0 : translator.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (authorNum != other.authorNum)
+			return false;
+		if (bookDate == null) {
+			if (other.bookDate != null)
+				return false;
+		} else if (!bookDate.equals(other.bookDate))
+			return false;
+		if (bookId != other.bookId)
+			return false;
+		if (bookImage == null) {
+			if (other.bookImage != null)
+				return false;
+		} else if (!bookImage.equals(other.bookImage))
+			return false;
+		if (bookInfo == null) {
+			if (other.bookInfo != null)
+				return false;
+		} else if (!bookInfo.equals(other.bookInfo))
+			return false;
+		if (bookName == null) {
+			if (other.bookName != null)
+				return false;
+		} else if (!bookName.equals(other.bookName))
+			return false;
+		if (editor == null) {
+			if (other.editor != null)
+				return false;
+		} else if (!editor.equals(other.editor))
+			return false;
+		if (genre == null) {
+			if (other.genre != null)
+				return false;
+		} else if (!genre.equals(other.genre))
+			return false;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		if (pageNum != other.pageNum)
+			return false;
+		if (price != other.price)
+			return false;
+		if (publisher == null) {
+			if (other.publisher != null)
+				return false;
+		} else if (!publisher.equals(other.publisher))
+			return false;
+		if (sales != other.sales)
+			return false;
+		if (stock != other.stock)
+			return false;
+		if (translator == null) {
+			if (other.translator != null)
+				return false;
+		} else if (!translator.equals(other.translator))
+			return false;
+		return true;
 	}
 	@Override
 	public String toString() {
@@ -139,6 +241,12 @@ public class Book {
 	}
 	public void setSales(int sales) {
 		this.sales = sales;
+	}
+	public Author getAuthor() {
+		return author;
+	}
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 	
 	
