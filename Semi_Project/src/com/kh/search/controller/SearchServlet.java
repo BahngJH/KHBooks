@@ -1,6 +1,7 @@
 package com.kh.search.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.search.model.service.SearchService;
 
@@ -33,9 +35,21 @@ public class SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("keyword");
 		
-		List<Book> list = new SearchService().selectBook(key);
+		List<Book> bList = new SearchService().selectBook(key);
+
+		/*같은 책이 들어있을 수 있기 때문에 중복을 제거함*/
+		List<Book> deduplicationList = new ArrayList<>();
 		
-		request.setAttribute("bookList", list);
+		for(Book b : bList) {
+			if(!deduplicationList.contains(b)) {
+				deduplicationList.add(b);
+			}
+		}
+		
+		List<Author> aList = new SearchService().selectAuthor(key);
+		
+		request.setAttribute("bookList", deduplicationList);
+		request.setAttribute("authorList", aList);
 		request.getRequestDispatcher("/views/main/searchResult.jsp").forward(request, response);
 		
 	}
