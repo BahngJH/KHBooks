@@ -52,7 +52,7 @@
 	}
 
 	div.userInfo table.tbl-userInfo td {
-		width: 40%;
+		width: 30%;
 	    padding: 10px;
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;

@@ -36,10 +36,7 @@
     	{
     		location.href="<%=request.getContextPath()%>/member/logout";		
     	}
-    	function goNotice()
-    	{
-    		location.href="<%=request.getContextPath()%>/notice/firstNotice";	
-    	}
+    
     	
     </script>
 </head>
@@ -94,7 +91,6 @@
 			            <ul class="nav navbar-nav navbar-right nav-button">
 			                <li><button type="button" class="btn btn-default navbar-btn" onclick="goLogin();">로그인</button>
 			                    <button type="button" class="btn btn-default navbar-btn" onclick="goEnroll();">회원가입</button></li>
-			             <li><button type="button" class="btn btn-default navbar-btn" onclick="goNotice();">고객센터</button></li>
 			                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/buyList"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
@@ -102,7 +98,6 @@
 			            <%}else{ %>
 			            <ul class="nav navbar-nav navbar-right nav-button">
 			                <li><button type="button" class="btn btn-default navbar-btn" onclick="goLogout();">로그아웃</button></li>
-			                <li><button type="button" class="btn btn-default navbar-btn" onclick="goNotice();">고객센터</button></li>
 			                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/buyList"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>

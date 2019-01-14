@@ -112,7 +112,7 @@ border-bottom:2px solid darkgray;
 .col-sm-2{
 margin:120px 0 0 0 ;
 }
-.notice{
+.notice1{
 margin:50px 0 0 0 ;
 border-bottom:2px solid darkgray;
 
@@ -141,21 +141,30 @@ $(document).ready(function(){
 			<div class="col-sm-9">
 
 				
-				<div class="notice">
-					<section id="books_notice" class="Footer_Notice">
-						<article class="Notice">
-							<h2 class="Notice_Title">
-								<a class="Notice_PageLink" href=""> 공지사항 <span
-									class="icon-arrow_1_right Notice_PageLink_ArrowIcon"></span>
-								</a>
-							</h2>
+				<div class="notice1">
+					
 						
-						</article>
-					</section>
+							<h2 class="Notice_Title">
+								<a class="Notice_PageLink"><strong>공지사항</strong></a>
+							</h2>
+							<hr/>
+							
+                    <a href=""> kh문고 시스템 점검 안내</a>
+                    <hr/>
+				    <a href="">개인정보처리방침 개정 안내</a>
+                    <hr/>
+                    <a href="">설 연휴기간 주문 안내</a>
+                    <hr/>
+                    <a href="">도서 신청 안내</a>
+					<hr/>
+					<a href="">2019년 휴무일 안내</a>
+                  
 				</div>
-				<br> <br>
+
+				<br/> <br/><br/> <br/>
 				<div class="QAtitle">
-					<h3>자주묻는질문</h3>
+					
+					<h2><strong>자주묻는질문</strong></h2>
 					 <hr/>
                     <a href=""  style="text-decoration:none">도서 주문후 얼마나 걸리나요?</a>
                     <hr/>
@@ -166,14 +175,14 @@ $(document).ready(function(){
 					<a href=""  style="text-decoration:none">부재도서 신청은 어떻게 하나요?</a>
                     <hr/>
                     <a href=""  style="text-decoration:none">방문결제도 가능한가요?</a>
-                    <hr/>
+                    
                     
 				
 
 				</div>
 				<br> <br> <br>
 				<div id="QAtitle2">
-					<h3>고객센터 안내사항</h3>
+					<h2><strong>고객센터 안내사항</strong></h2>
 					<hr>
 					<a href="" style="text-decoration: none">고객센터 단축운영 공지사항</a>
 					<hr>
@@ -189,15 +198,11 @@ $(document).ready(function(){
 				<div class="col-sm-12">
 				<br/> <br /> <br>
 				<div class="surve-tag">
-					<address>
-						㈜ **문고 서울시 종로구 종로 1  대표이사 : 사업자등록번호 :123-4514 <br/>
-						대표전화 : 222222222(발신자 부담전화)<br> 팩스 : 222222-222 (지역번호공통)<br />
-
-					</address>
+				
 				</div>
 				</div>
 			</div>
-		</div>
+		
 </body>
 
 </html>
