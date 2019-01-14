@@ -58,31 +58,37 @@
                         <h2 class='text-center'>베스트 셀러</h2>
                     </div>
 
-                    <div class="col-xs-6 col-lg-2 col-lg-offset-1">
+                    <div class="col-xs-6 col-md-4 col-lg-2">
                         <a href="#" class="thumbnail">
                             <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-xs-6 col-lg-2 ">
+                    <div class="col-xs-6 col-md-4  col-lg-2 ">
                         <a href="#" class="thumbnail">
                             <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-xs-6 col-lg-2 ">
+                    <div class="col-xs-6 col-md-4  col-lg-2 ">
                         <a href="#" class="thumbnail">
                             <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-xs-6 col-lg-2 ">
+                    <div class="col-xs-6 col-md-4  col-lg-2 ">
                         <a href="#" class="thumbnail">
                             <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
                                 alt="">
                         </a>
                     </div>
-                    <div class="col-xs-6 col-lg-2 ">
+                    <div class="col-xs-6 col-md-4  col-lg-2 ">
+                        <a href="#" class="thumbnail">
+                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
+                                alt="">
+                        </a>
+                    </div>
+                     <div class="col-xs-6 col-md-4  col-lg-2 ">
                         <a href="#" class="thumbnail">
                             <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
                                 alt="">

@@ -1,29 +1,23 @@
-package com.kh.review.controller;
+package com.kh.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
-import com.kh.review.model.service.ReviewService;
-import com.kh.review.model.vo.Review;
-
 /**
- * Servlet implementation class MyReviewServlet
+ * Servlet implementation class NoticeFirstServlet
  */
-@WebServlet("/member/review")
-public class MyReviewServlet extends HttpServlet {
+@WebServlet("/notice/firstNotice")
+public class NoticeFirstServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewServlet() {
+    public NoticeFirstServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +27,8 @@ public class MyReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Member logined = (Member) request.getSession(false).getAttribute("logined");
-
-		if (logined != null) {
-			int memberNum = logined.getMemberNum();	
-			List<Review> list=new ReviewService().selectList(memberNum);
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
-		}
-		else {
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("/views/notice/firstnotice.jsp").forward(request, response);
+	
 	}
 
 	/**
