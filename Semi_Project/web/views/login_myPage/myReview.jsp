@@ -23,6 +23,22 @@
 	}
 </style>
 
+<script>
+$(function(){
+	$('#deleteReview').click(function() {
+		if(!confirm("정말로 삭제하시겠습니까?")) {
+			return;
+		}
+		
+	});
+	
+	$('#updateReview').click(function() {
+		
+	});
+});
+	
+</script>
+
 		<div class="col-sm-10">
 			<section>
 				<article class="review-container">
@@ -43,12 +59,12 @@
 										<%=r.getWriteDate() %>
 									</h6>
 									<br/>
-									<p>
+									<p id="reviewContext">
 										<%=r.getReviewContext()%>
 									</p>
 									<div class="review-options">
-										<button class="btn btn-primary">수정</button>
-										<button class="btn btn-primary">삭제</button>
+										<button class="btn btn-primary" id="updateReview">수정</button>
+										<button class="btn btn-primary" id="deleteReview">삭제</button>
 									</div>
 								</div>
 							</li>
