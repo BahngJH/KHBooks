@@ -156,7 +156,7 @@ $(document).ready(function(){
 				<a href=""id="a1" ><strong>도서신청</strong></a>
 				<hr>
 
-				<a href=""id="a2" ><strong>공지사항</strong></a>
+				<a href="<%=request.getContextPath()%>/notice/noticemain"id="a2" ><strong>공지사항</strong></a>
 					  
 				
 					<br/>

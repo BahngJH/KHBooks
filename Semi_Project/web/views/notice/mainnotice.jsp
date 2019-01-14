@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.util.*,com.kh.notice.model.vo.Notice" %>
+	
+	<%
+		List<Notice> list=(List)request.getAttribute("list");
+	%>
 
 <%@ include file="/views/common/header.jsp"%>
 <!DOCTYPE html>
@@ -14,7 +19,7 @@
 	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3. /css/bootstrap.min.css">
 
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -206,16 +211,20 @@ border: solid 1px darkgray;
 					<tr>
 						<th>글번호</th>
 						<th>제목</th>
-						<th>상태</th>
 						<th>날짜</th>
 					</tr>
+					
+				
+					<%for(Notice n : list){ %>
+					<% if(n.getStatus().equals("Y")){ %>
 					<tr>
-						<td>2</td>
-						<td><a href="#">sdasdasdasds</a></td>
-						<td>미삭제</td>
-						<td>8월31일</td>
-					</tr>
-
+						<td><%=n.getNoticeNo() %></td>
+						<td><a><%=n.getNoticeTitle()%></a></td>
+						<td><%=n.getNoticeDate()%></td>
+					
+					</tr> 
+					<%} 
+					}%>					
 				</table>
 
 			</div>
