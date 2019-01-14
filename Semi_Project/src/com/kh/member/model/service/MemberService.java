@@ -53,5 +53,12 @@ public class MemberService {
 		close(conn);
 		return rs;	
 	}
+	public String overlapCheck(String id)
+	{
+		Connection conn=getConnection();
+		String checkedId = new MemberDao().overlapCheck(conn,id);
+		close(conn);
+		return checkedId;
+	}
 	
 }

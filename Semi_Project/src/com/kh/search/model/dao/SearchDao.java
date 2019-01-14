@@ -147,4 +147,29 @@ public class SearchDao {
 		return list;
 	}
 
+	public int getBookCount(Connection conn, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getBookCount"));
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+key+"%");
+			pstmt.setString(3, "%"+key+"%");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("CNT");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
 }

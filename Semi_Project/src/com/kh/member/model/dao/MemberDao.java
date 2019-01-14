@@ -134,5 +134,31 @@ public class MemberDao {
 		}
 		return rs;
 	}
+	
+	public String overlapCheck(Connection conn, String id)
+	{
+		PreparedStatement pstmt =null;
+		String sql=prop.getProperty("overlapCheck");
+		ResultSet rs =null;
+		String checkedId="";
+		try {
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				checkedId=rs.getString("memberid");
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return checkedId;
+	}
 
 }

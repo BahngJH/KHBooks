@@ -38,4 +38,10 @@ public class SearchService {
 		return list;
 	}
 
+	public int getBookCount(String key) {
+		int totalBook = new SearchDao().getBookCount(conn, key);
+		close(conn);
+		return totalBook;
+	}
+
 }
