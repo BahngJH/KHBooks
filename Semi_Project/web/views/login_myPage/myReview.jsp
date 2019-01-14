@@ -48,7 +48,7 @@ function updateReview() {
 					<hr/>
 					
 					<ul>
-						<%for(Review r : list) {%>
+						<%for(Review r : list) { %>
 							<li> 
 								<div class="reviewList">
 									<h5><b><%=r.getBookId() %></b></h5>
