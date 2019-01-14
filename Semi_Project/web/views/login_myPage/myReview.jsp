@@ -25,20 +25,6 @@
 	}
 </style>
 
-<script>
-
-function deleteReview() {
-	if(!confirm("정말로 삭제하시겠습니까?")) {
-		return;
-	}
-}
-	
-function updateReview() {
-	$('#testModal').modal();
-}
-	
-</script>
-
 		<div class="col-sm-10">
 			<section>
 				<article class="review-container">
