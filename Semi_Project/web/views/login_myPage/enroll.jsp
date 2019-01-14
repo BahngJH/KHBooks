@@ -40,7 +40,7 @@
                 <label for="woman">여자</label>
             </div><br>
             <input type="text" id="sample6_postcode" placeholder="우편번호" required="required">
-            <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="우편번호 찾기" ><br>
+            <input type="button" id="addrBtn" class="btn btn-default" onclick="addressPopup();" value="주소 찾기" ><br>
             <input type="text" id="sample6_address" placeholder="주소" name="address1" required="required"><br>
             <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" required="required">
             <br><br>
@@ -140,7 +140,6 @@
             if ($("#birth").val().length != 8 ) {
                 //alert("생년월일을 다시 입력하세요");
 	                $('#bthMsg').html("다시 입력하세요");
-	                $("#birth").val('');
 	                $('#birth').css("border","4px solid red");
 	                return;
             }
