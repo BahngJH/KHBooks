@@ -33,7 +33,7 @@
         }
         a{
             text-decoration: none;
-            color: pink;
+           	color:pink;
         }
         #checkdiv{
             width:305px; height:40px;
@@ -47,12 +47,15 @@
             position: relative;
            right: 10px;
         }
-        #logo{
+        #logo {
+        
             font-size: 200%;
         }
         span{
         	color:red;
         }
+        
+        
 </style>
 </head>
 
@@ -60,7 +63,7 @@
 <div class="container">
 
 
-        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
+        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS<b></b></a></div>
         <hr>
         <form method="POST" name="memberInfo" onsubmit="return fn_log();" action="<%=request.getContextPath() %>/member/loginEnd" target="_self">
 			<input type="text" id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디" style="width:305px; height:40px;"><br>
