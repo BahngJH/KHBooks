@@ -63,8 +63,8 @@
         <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
         <hr>
         <form method="POST" name="memberInfo" onsubmit="return fn_log();" action="<%=request.getContextPath() %>/member/loginEnd" target="_self">
-			<input type="text" id="id" name="id" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디" style="width:305px; height:40px;"><br>
-			<input type="password" id="password" name="password" placeholder="비밀번호" style="width:305px; height:40px;"><br>
+			<input type="text" id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디" style="width:305px; height:40px;"><br>
+			<input type="password" id="password" name="memberPw" placeholder="비밀번호" style="width:305px; height:40px;"><br>
         	<label class="keepLogin">아이디 저장 <input type="checkbox" id="checkbox" class="keepLogin" name="saveId" <%=cookieVal!=""?"checked" : ""%> ></label> 
         	<a href="searchId.html" class="search">아이디 찾기 </a><a class="search" href="#">비밀번호 찾기</a>
          	<br> <%-- <span>

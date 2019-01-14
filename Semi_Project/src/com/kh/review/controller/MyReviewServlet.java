@@ -1,6 +1,7 @@
-package com.kh.member.controller;
+package com.kh.review.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,18 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
+import com.kh.review.model.service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class MyHomeServlet
+ * Servlet implementation class MyReviewServlet
  */
-@WebServlet("/member/myHome")
-public class MyHomeServlet extends HttpServlet {
+@WebServlet("/member/review")
+public class MyReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyHomeServlet() {
+    public MyReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +32,12 @@ public class MyHomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		if(logined==null) {
-			System.out.println("로그인 정보가 없기 때문에 로그인으로 이동");
-			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
-			return;
-		}
+		int memberNum = logined.getMemberNum();
+		List<Review> list=new ReviewService().selectList(memberNum);
 		
-		
-		System.out.println("로그인 확인이 되었기에 마이 페이지 보여줌");
-		response.sendRedirect(request.getContextPath()+"/views/login_myPage/myHome.jsp");
-		
-		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
 	}
 
 	/**

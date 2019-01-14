@@ -26,17 +26,20 @@
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;
 	}
+	.btn-update{
+		float:right;
+	}
 </style>
 
 		<div class="col-sm-10">
 			<section>
 				<h4>정보 변경</h4>
 				<article class="checkAccount">
-					<h6>보안을 위해 비밀번호를 한번 더 입력해주세요</h6>
+					<!-- <h6>보안을 위해 비밀번호를 한번 더 입력해주세요</h6>
 					<div class="input-group">
 						<input type="text" class="form-control" name="btn-search" aria-describedby="basic-addon2"/>
 						<span class="input-group-addon" id="basic-addon2">비밀번호 입력</span>
-					</div>
+					</div> -->
 				</article>
 				
 				<article class="updateInfo-container">
@@ -46,37 +49,62 @@
 								<tr>
 									<th>이름</th>
 									<td>
-										<span>주홍범</span>
+										<input type="hidden" name="memberName" value="<%=logined.getMemberName()%>">
+										<span><%=logined.getMemberName() %></span>
 										<a class="btn btn-primary" style="float : right;">회원탈퇴</a>
 									</td>
 								</tr>
 								<tr>
 									<th>아이디</th>
-									<td>user01</td>
+									<td>
+										<input type="hidden" name="memberId" value="<%=logined.getMemberId()%>">
+										<%=logined.getMemberId()%>
+									</td>
+								</tr>
+								<tr>
+									<th>생년월일</th>
+									<td>
+										<input type="hidden" name="birth" value="<%=logined.getBirth()%>">
+										<%=logined.getBirth() %>
+									</td>
+								</tr>
+								<tr>
+									<th>휴대폰</th>
+									<td>
+										<div>
+											<input type="text" class="form-control" name="phone" value ="<%=logined.getPhone()%>">
+										</div>
+									</td>
 								</tr>
 								<tr>
 									<th>이메일</th>
 									<td>
 										<div>
-											<p>wowow</p>
-											<button>이메일 변경</button>
+											<input type="text" class="form-control" name="email" value ="<%=logined.getEmail()%>">
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<th>비밀번호 변경</th>
 									<td>
-										<input type="password" class="form-control" placeholder="새 비밀번호"/>
+										<input type="password" name="memberPwNew" class="form-control" placeholder="새 비밀번호"/>
 										<br/><br/>
 										<input type="password" class="form-control" placeholder="새 비밀번호 확인"/>
+										<br><br>
+										<h4><b>비밀변호 변경시 주의사항</b></h4>
+										<p>1.비밀번호는 6글자 이상</p>
+										<p>2.비밀번호는 영문자 숫자 특수기호를 조합하여 구성</p>
+										<input type="hidden" name="memberPw" value="<%=logined.getMemberPw()%>">
 									</td>
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td>123213123123123123123213</td>
+									<td>
+										<input type="text" class="form-control" name="address" value="<%=logined.getAddress()%>">
+									</td>
 								</tr>
-							</table>
-							<button type="submit">변경 완료</button>
+							</table><br>
+							<button class="btn-update" type="submit">변경 완료</button>
 						</form>
 					</div>
 				</article>
