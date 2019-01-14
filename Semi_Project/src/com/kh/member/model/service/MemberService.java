@@ -16,4 +16,18 @@ public class MemberService {
 		
 		return m;
 	}
+	
+	public int memberEnroll(Member m) 
+	{
+		Connection conn= getConnection();
+		int rs = new MemberDao().memberEnroll(conn,m);
+		if(rs>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return rs;
+	}
+	
 }

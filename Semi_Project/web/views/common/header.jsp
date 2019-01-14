@@ -1,19 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="com.kh.member.model.vo.Member" %>    
+<%
+	Member logined=null;
+	logined = (Member)session.getAttribute("logined");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>KH Books</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css" type="text/css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script>
     	function fn_search(){
-    		var search = $("#searchBar").val();
-    		location.href = "<%=request.getContextPath()%>/search/search?key="+search;
+    		var keyword = $("#keyword").val().trim().length;
+    		
+    		if(keyword === 0){
+    			return false;
+    		}
+    		
+    		return true;   
     	}
+    	function goLogin()
+    	{
+    		location.href="<%=request.getContextPath()%>/member/login";	
+    	}
+    	function goEnroll()
+    	{
+    		location.href="<%=request.getContextPath()%>/member/enroll";		
+    	}
+    	function goLogout()
+    	{
+    		location.href="<%=request.getContextPath()%>/member/logout";		
+    	}
+    	
     </script>
 </head>
 <body>
@@ -21,6 +44,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container-fluid">
 	        <div class="navbar-header">
+	        <!-- 카테고리 버튼 -->
 	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
 	                <span class="sr-only">Toggle navigation</span>
 	                <span class="icon-bar"></span>
@@ -48,25 +72,35 @@
 	                </ul>
 	            </div>
 	        </div>
+	        <!-- 상단 검색창 -->
 	        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-	            <form class="navbar-form navbar-left" role="search">
+	            <form class="navbar-form navbar-left" id="navSearchFrm" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
 	                <div class="form-group">
 	                    <div class="input-group">
-	                        <input type="text" class="form-control" placeholder="검색">
+	                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
 	                        <span class="input-group-btn">
-	                            <button type="submit" class="btn btn-default" id="searchBar" onclick="fn_search();">검색</button>
+	                            <button type="submit" class="btn btn-default" id="searchBar">검색</button>
 	                        </span>
 	                    </div>
 	                </div>
 	            </form>
+	            <!-- 좌측 버튼 -->
+	            <%if(logined==null){ %>
 	            <ul class="nav navbar-nav navbar-right">
-	                <li><button type="button" class="btn btn-default navbar-btn">로그인</button>
-	                    <button type="button" class="btn btn-default navbar-btn">회원가입</button></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
-	                <li><a href="#"><img src="" alt=" "></a></li>
+	                <li><button type="button" class="btn btn-default navbar-btn" onclick="goLogin();">로그인</button>
+	                    <button type="button" class="btn btn-default navbar-btn" onclick="goEnroll();">회원가입</button></li>
+	                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
+	                <li><a href="<%=request.getContextPath()%>/member/buyList"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
+	                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
 	            </ul>
+	            <%}else{ %>
+	            <ul class="nav navbar-nav navbar-right">
+	                <li><button type="button" class="btn btn-default navbar-btn" onclick="goLogout();">로그아웃</button></li>
+	                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
+	                <li><a href="<%=request.getContextPath()%>/member/buyList"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
+	                <li><a href="#"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
+	            </ul>
+	            <%} %>
 	        </div>
 	    </div>
 	</nav>

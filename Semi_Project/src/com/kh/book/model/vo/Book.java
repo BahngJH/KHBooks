@@ -10,7 +10,7 @@ public class Book {
 	private int authorNum;
 	private String genre;
 	private int bookId;
-	private int isbn;
+	private String isbn;
 	private String bookImage;
 	private Date bookDate;
 	private String bookInfo;
@@ -23,7 +23,7 @@ public class Book {
 	public Book() {
 		super();
 	}
-	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, int isbn,
+	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
 			String bookImage, Date bookDate, String bookInfo, String editor, String translator, int pageNum, int stock,
 			int sales) {
 		super();
@@ -86,11 +86,11 @@ public class Book {
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-	public int getInbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setInbn(int inbn) {
-		this.isbn = inbn;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	public String getBookImage() {
 		return bookImage;

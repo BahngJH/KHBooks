@@ -31,9 +31,12 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String key = request.getParameter("key");
+		String key = request.getParameter("keyword");
 		
 		List<Book> list = new SearchService().selectBook(key);
+		
+		request.setAttribute("bookList", list);
+		request.getRequestDispatcher("/views/main/searchResult.jsp").forward(request, response);
 		
 	}
 

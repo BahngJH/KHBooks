@@ -1,26 +1,20 @@
-@charset "UTF-8";
-    <style>
- div{
-            text-align: center;
-        }
-    div.sidemenu col-lg-2 ol{
+
+  
+    .col-sm-2 ol{
         color: black;
 
     }
-    div.sidemenu .col-lg-2 ol a{
+    .col-sm-2 ol a li{
         color: black;
 
     }
-    #QA{
-        text-align:left;
-        color: black;
-    }
-    .col-lg-9 text{
+   
+    .col-sm-9 text{
        text-align: center;
       
 
     }
-    .col-lg-2>ol{
+    .col-sm-2>ol{
         list-style-type: disc;
             color: black;
     }
@@ -36,7 +30,7 @@
             color: black;
     }
  
-    .QAtitle, .QAtitle a{       
+    div.QAtitle, {       
         color: black;  
     }
     #QAtitle2 a{
@@ -45,11 +39,8 @@
        
         height: 200px;
     }
-    .col-xs-12{
-        text-align: center;
-        background-color: darkgray;
-    }
-    #notice a{
+ 
+    .notice a{
         color: black;
     }
   .text{
@@ -62,29 +53,6 @@
       background-color: antiquewhite;
   }
   .surve-tag{
-      background-color: lightgray;
+      background-color: darkgray;
       border: 1px solid azure
   }
-.sidemenu{
-  	padding : 10px;
-  
-  }
-   .title,.default{
-      float: left;
-  }
-  .title{
-      margin: 0px 30px 20px 100px;
-  }
-  .Notice_List{
-  color: black;
-  }
-  #n1,#d1{
-      float: left;
-  }
-  #n1{
-    margin: 0px 20px 20px 50px;
-  }
-    #n1,#d1{
-      float: left;
-  }
-    </style>
