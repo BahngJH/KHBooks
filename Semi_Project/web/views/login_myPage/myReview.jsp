@@ -23,8 +23,8 @@
 	article.review-container div.review-options{
 		float: right;
 	}
-	div.modal{
-		
+	div.modal-body{
+		width: 400px;
 	}
 </style>
 
@@ -74,14 +74,18 @@
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header">
-						리뷰 수정하기
+						리뷰 수정
 					</div>
 					<div class="modal-body">
 						<form action="" method="post">
-							<label>평점</label>
-							
-							<label for="updateContext">내용</label>
-							<textarea name="updateContext" id="updateContext"></textarea>
+							<table>
+								<tr>
+									<th><label>평점</label></th>
+									<td><span class="glyphicon glyphicon-star-empty"></span></td>
+								</tr>
+								<th><label for="updateContext">내용</label></th>
+								<td><textarea name="updateContext" id="updateContext" class="form-control"></textarea></td>
+							</table>
 						</form>
 					</div>
 					<div class="modal-footer">
