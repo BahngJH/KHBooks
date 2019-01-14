@@ -90,20 +90,35 @@
     	});
     	
     	//아이디 체크
+    	//먼저 아이디 조합 조건을 체크 후 조건에 부합하면 ajax로 중복여부 확인
     	$('#id').blur(function(){
-    		var id = $('#id').val();
+    		var id = $('#id').val().trim();
             var idck = /^[a-z]+[a-z0-9]{5,19}$/g;
             if(!idck.test(id)){
             	$('#idMsg').html("다시 입력하세요");
-                //alert("소문자로 시작, 5글자 이상해주세요");
                 $('#id').css("border","4px solid red");
                 return;
             }
-            $('#id').css("border","4px solid blue");	
-            $('#idMsg').html("좋습니다!");
-           <%-- var checkIcon = $('img').attr("src","<%=request.getContextPath()%>/images/icons/blueCheck"); --%>
-           	//$('#idMsg').append(checkIcon);
-            $('#idValid').val(1);
+            
+            //AJAX로 아이디 중복 구현
+            $.ajax({
+            	url:"<%=request.getContextPath()%>/member/overlapCheck",
+            	data:{"searchId":id},
+            	Type:"get",
+            	success:function(data){
+            		var id = data;
+            		console.log("ajax반환값 : "+data);
+            		if(id.length>1){
+            			$('#idMsg').html("중복된 아이디가 존재합니다.");
+                        $('#id').css("border","4px solid red");
+                        $('#idMsg').css("color","red");
+            		}else{
+            			$('#id').css("border","4px solid blue");	
+                        $('#idMsg').html("");
+                        $('#idValid').val(1);
+            		}
+            	}
+            });
     	});
     	
     	//패스워드 체크
@@ -111,7 +126,6 @@
     		var pw = $('#pw').val();
             var pwck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
             if(!pwck.test(pw)){
-                //alert("6글자 이상, 영문,숫자,특수문자를 조합해주세요");
                 $('#pwMsg').html("다시 입력하세요");
                 $('#pw').css("border","4px solid red");
                 return;
@@ -126,7 +140,6 @@
     		var pw = $('#pw').val();
             var pw_ck = $('#pw_ck').val();
             if(pw!=pw_ck){
-                //alert("비밀번호가 서로 다릅니다");
                 $('#pwckMsg').html("다시 입력하세요");
                 $('#pw_ck').css("border","4px solid red");
                 return;
@@ -138,7 +151,6 @@
     	//생년월일 체크
     	$('#birth').blur(function () {
             if ($("#birth").val().length != 8 ) {
-                //alert("생년월일을 다시 입력하세요");
 	                $('#bthMsg').html("다시 입력하세요");
 	                $('#birth').css("border","4px solid red");
 	                return;
@@ -165,7 +177,6 @@
     		var email = $('#email').val();
             var emailck= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             if(!emailck.test(email)){
-                //alert("6글자 이상, 영문,숫자,특수문자를 조합해주세요");
                 $('#emailMsg').html("다시 입력하세요");
                 $('#email').css("border","4px solid red");
                 return;
