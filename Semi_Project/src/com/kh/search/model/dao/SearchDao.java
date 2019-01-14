@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
+import com.kh.search.model.vo.GenreCount;
 
 import static common.JDBCTemplate.close;
 
@@ -106,6 +107,35 @@ public class SearchDao {
 				a.setAuthorName(rs.getString("authorname"));
 				a.setauthorNum(rs.getInt("authornum"));
 				list.add(a);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public List<GenreCount> getGenreCount(Connection conn, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<GenreCount> list = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getGenreCount"));
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+key+"%");
+			pstmt.setString(3, "%"+key+"%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList<GenreCount>();
+			
+			while(rs.next()) {
+				GenreCount c = new GenreCount();
+				c.setCnt(rs.getInt("cnt"));
+				c.setGenre(rs.getString("genre"));
+				list.add(c);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

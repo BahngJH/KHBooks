@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.search.model.service.SearchService;
+import com.kh.search.model.vo.GenreCount;
 
 /**
  * Servlet implementation class SearchServlet
@@ -48,8 +49,11 @@ public class SearchServlet extends HttpServlet {
 		
 		List<Author> aList = new SearchService().selectAuthor(key);
 		
+		List<GenreCount> gList = new SearchService().getGenreCount(key); 
+		
 		request.setAttribute("bookList", deduplicationList);
 		request.setAttribute("authorList", aList);
+		request.setAttribute("genreList", gList);
 		request.getRequestDispatcher("/views/main/searchResult.jsp").forward(request, response);
 		
 	}
