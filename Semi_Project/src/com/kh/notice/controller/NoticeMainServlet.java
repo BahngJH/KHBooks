@@ -1,6 +1,7 @@
-package com.kh.member.controller;
+package com.kh.notice.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
+import com.kh.notice.model.service.NoticeService;
+import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class MyHomeServlet
+ * Servlet implementation class NoticeMainServlet
  */
-@WebServlet("/member/myHome")
-public class MyHomeServlet extends HttpServlet {
+@WebServlet("/notice/noticemain")
+public class NoticeMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyHomeServlet() {
+    public NoticeMainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +31,13 @@ public class MyHomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		if(logined==null) {
-			System.out.println("로그인 정보가 없기 때문에 로그인으로 이동");
-			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
-			return;
-		}
-		
-		
-		System.out.println("로그인 확인이 되었기에 마이 페이지 보여줌");
-		request.setAttribute("flag", "pass");
-		request.getRequestDispatcher("/views/login_myPage/myHome.jsp").forward(request, response);
-		
-		
+			
+		List<Notice> list=new NoticeService().selectAllNotice();
+			
+			request.setAttribute("list", list);
+			
+			request.getRequestDispatcher("/views/notice/mainnotice.jsp").forward(request, response);
+			
 		
 	}
 

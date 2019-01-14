@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.kh.book.model.vo.Book, java.util.*" %>
+<%@page import="com.kh.book.model.vo.Book, com.kh.author.model.vo.Author, com.kh.search.model.vo.GenreCount, java.util.*" %>
 <%@ include file="/views/common/header.jsp"%>
-<% List<Book> books = (List<Book>)request.getAttribute("bookList"); %>
+<% 
+	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
+	List<Author> authors = (List<Author>)request.getAttribute("authorList");
+	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+%>
 <script>
-        $(document).ready(function () {
-            $("#nav").load("navbar.html");
-        });
-
         $(function () {
             var currentPosition = parseInt($("#cart").css("top"));
             //$('#cart').css('height', $(window).height()-100);
@@ -15,7 +15,7 @@
                 var width = $(window).width();
                 if (width >= 992) {
                     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
-                    console.log(position);
+                    
                     $("#cart").stop().animate({
                         "top": position + currentPosition + "px"
                     }, 500);
@@ -31,24 +31,37 @@
         
         	<!-- 좌측 카테고리 -->
             <div id='category' class="col-xs-12 col-md-3">
-                <h3 class="category_title">결과 내 카테고리</h3>
+            <%if(!genres.isEmpty()){%>
+            	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
-                    <li class="list-group-item"><a href="#">소설<span class="badge">(3)</span></a></li>
+            <%	for(GenreCount c : genres){%>
+                    <li class="list-group-item"><a href="#"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
+				<%}%>            	
                 </ul>
+            <%}%> 
+                    
             </div>
             <!-- 중앙 검색 결과 -->
             <div id='search' class="col-xs-12 col-md-8">
      			<!-- 저자 검색 결과 -->
                 <div id="author" class="col-xs-12 col-md-12">
                     <h3>저자 검색</h3>
+                    <%if(!authors.isEmpty()){ 
+                    	for(Author a : authors){%>
+                    		<div class="row result">
+                    			<div class="col-xs-12 col-md-12 author_info">
+                    				<p><a href="#"><%=a.getAuthorName() %></a></p>
+                    			</div>
+                    		</div>
+                    	
+                    		
+                    <%
+                    	}
+                    %>
+                    	
+                    <%}else{%>
+                    <h4><strong>검색 결과 없음</strong></h4>
+                    <%} %>
                 </div>
                 
                 <!-- 책 검색 결과 -->
@@ -66,7 +79,7 @@
                     </div>
                     <div>
                     <!-- 검색 결과가 있을 경우 -->
-                    <%if(!(books.isEmpty())) {
+                    <%if(!books.isEmpty()) {
                     	for(Book b : books){
                    	%>
                     	<div class='result row'>
@@ -87,7 +100,7 @@
                                 <p class="book_info">
                                 	<span class="book_info"><a href="#">5.0</a>|</span>
                                 	<!-- 작가 정보는 서버에서 아직 주지 않았음 -->
-                                	<span class="book_info"><a href="#"><%=b.getAuthorNum() %></a>|</span>
+                                	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
                             	<!-- 책 줄거리 -->
@@ -113,134 +126,6 @@
                     	}
                     }
                     %>
-                        
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>0
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-                        <div class='result row'>
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-
-                                <a href="#" class="thumbnail">
-                                    <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                        alt="">
-                                </a>
-
-                            </div>
-                            <div class='result-info col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-                                <span>
-                                    <p>골든아워</p>
-                                </span>
-                                <span>
-                                    <p>이국종</p>
-                                </span>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
                 <!--페이지네이션-->

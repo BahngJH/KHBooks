@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%@ page import="java.util.*,com.kh.notice.model.vo.Notice" %>
+	
+	<%
+		List<Notice> list=(List)request.getAttribute("list");
+	%>
+<%@ include file="/views/common/noticeHeader.jsp"%>
 <%@ include file="/views/common/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +19,7 @@
 	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3. /css/bootstrap.min.css">
 
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -100,7 +105,7 @@ ol {
 }
 
 .col-sm-2 h4 {
-	color: blue;
+	color:black;
 }
 .col-sm-9 table{
 
@@ -126,9 +131,14 @@ border-height: 10px;
 hr {
 border: solid 1px darkgray;
 }
+.col-sm-2{
+margin:230px 0 0 0 ;
+}
+.notice{
+margin:100px 0 0 0 ;
+}
 </style>
 </head>
-
 <script>
 	$(document).ready(function() {
 
@@ -140,57 +150,10 @@ border: solid 1px darkgray;
 </script>
 
 
+
 <body>
 
-	<div class="container">
-		<div class="row header">
-			<div class="col-sm-12"></div>
-		</div>
-
-
-
-
-		<div class="row">
-			<div class="col-sm-2">
-				<br /> <br /> <br />
-				<h4>
-					<strong>고객센터</strong>
-				</h4>
-				
-					<hr/>
-				<a class="dropdown-toggle"><strong>게시판</strong><span
-					class="caret"></span></a>
-				<ol class="hide">
-					<br />
-					<li><a href="http://www.naver.com">1:1문의</a></li>
-					<br />
-					<li><a href="http://www.naver.com">희망도서 신청</a></li>
-					<br />
-				</ol>
-
-				<hr>
-				<a href="" id="a1"><strong>도서신청</strong></a>
-				<hr>
-
-				<a href="" id="a2"><strong>공지사항</strong></a> 
-				<hr/>
-				<br/>
-				<br />
-				<div id="map">
-					<table>
-						<tr>
-							<td><a
-								href="https://map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=a24cfea0fc4db7f9f4e3b955eadc8593&__fromRestorer=true&mapMode=0&mpx=af51abfe49113423a260cedd1e8f63f9b1619d19c679be4b3d3fe32d5adfb54341116eb5a386f56e955a59b6cb2517aa&pinId=11525091&pinType=site&lat=9d1007022b17059c3db21b29a1ecce8a&dlevel=11&enc=b64"
-								target="_blank"> <img
-									src="http://prt.map.naver.com/mashupmap/print?key=p1547133542722_-789146433" /></a>
-							</td>
-						</tr>
-
-					</table>
-				</div>
-
-			</div>
-			<br />
+	
 			<div class="col-sm-1"></div>
 			<div class="col-sm-9">
 				
@@ -206,16 +169,20 @@ border: solid 1px darkgray;
 					<tr>
 						<th>글번호</th>
 						<th>제목</th>
-						<th>상태</th>
 						<th>날짜</th>
 					</tr>
+					
+				
+					<%for(Notice n : list){ %>
+					<% if(n.getStatus().equals("Y")){ %>
 					<tr>
-						<td>2</td>
-						<td><a href="#">sdasdasdasds</a></td>
-						<td>미삭제</td>
-						<td>8월31일</td>
-					</tr>
-
+						<td><%=n.getNoticeNo() %></td>
+						<td><a><%=n.getNoticeTitle()%></a></td>
+						<td><%=n.getNoticeDate()%></td>
+					
+					</tr> 
+					<%} 
+					}%>					
 				</table>
 
 			</div>

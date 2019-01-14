@@ -5,7 +5,7 @@
 
 <style>
 	div.container{margin-top: 100px;}
-	nav.myNav ul{line-height: 3em;}
+	nav.myNav ul{line-height: 3em; text-align:center;}
 	nav.myNav li a {
 		font-family: Georgia, "맑은 고딕", serif;
 		font-weight: bold;
@@ -14,6 +14,8 @@
 		color: black;
 	}
 	ul.nav hr{width: 15%; text-align: left; margin-left: 0px;}
+	
+	
 </style>
 
 <div class="container">
