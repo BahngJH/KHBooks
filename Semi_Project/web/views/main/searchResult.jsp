@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.kh.book.model.vo.Book, java.util.*" %>
+<%@page import="com.kh.book.model.vo.Book, com.kh.author.model.vo.Author, java.util.*" %>
 <%@ include file="/views/common/header.jsp"%>
-<% List<Book> books = (List<Book>)request.getAttribute("bookList"); %>
+<% 
+	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
+	List<Author> authors = (List<Author>)request.getAttribute("authorList");
+
+%>
 <script>
         $(document).ready(function () {
             $("#nav").load("navbar.html");
@@ -49,6 +53,22 @@
      			<!-- 저자 검색 결과 -->
                 <div id="author" class="col-xs-12 col-md-12">
                     <h3>저자 검색</h3>
+                    <%if(!authors.isEmpty()){ 
+                    	for(Author a : authors){%>
+                    		<div class="row result">
+                    			<div class="col-xs-12 col-md-12 author_info">
+                    				<p><a href="#"><%=a.getAuthorName() %></a></p>
+                    			</div>
+                    		</div>
+                    	
+                    		
+                    <%
+                    	}
+                    %>
+                    	
+                    <%}else{%>
+                    <h4>검색 결과 없음</h4>
+                    <%} %>
                 </div>
                 
                 <!-- 책 검색 결과 -->
@@ -66,7 +86,7 @@
                     </div>
                     <div>
                     <!-- 검색 결과가 있을 경우 -->
-                    <%if(!(books.isEmpty())) {
+                    <%if(!books.isEmpty()) {
                     	for(Book b : books){
                    	%>
                     	<div class='result row'>
@@ -87,7 +107,7 @@
                                 <p class="book_info">
                                 	<span class="book_info"><a href="#">5.0</a>|</span>
                                 	<!-- 작가 정보는 서버에서 아직 주지 않았음 -->
-                                	<span class="book_info"><a href="#"><%=b.getAuthorNum() %></a>|</span>
+                                	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
                             	<!-- 책 줄거리 -->
