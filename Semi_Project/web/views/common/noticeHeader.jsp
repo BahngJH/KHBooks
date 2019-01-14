@@ -9,6 +9,15 @@
 .col-sm-2{
 margin:120px 0 0 0 ;
 }
+.col-sm-2 hr {
+border: solid 1px darkgray;
+}
+.col-sm-2 span  {
+	color:black;
+}
+.col-sm-2 h4{
+	color:black;
+}
 
 </style>
 </head>
@@ -22,10 +31,10 @@ margin:120px 0 0 0 ;
 		<div class="row">
 			<div class="col-sm-2">
 			
-			
-				<h4>
-					<strong>고객센터</strong>
-				</h4>
+					<h4>
+				 <span class="glyphicon glyphicon-phone-alt" aria-hidden="true">
+				 <strong>고객센터</strong></h4></span>
+					
 				<hr>
     
     <a  class="dropdown-toggle" ><strong>게시판</strong><span class="caret"></span></a>
@@ -35,12 +44,12 @@ margin:120px 0 0 0 ;
               <li><a href="http://www.naver.com" >희망도서 신청</a></li><br/>
             </ol>
 
-					<hr>
+				<hr>
 				<a href=""id="a1" ><strong>도서신청</strong></a>
 				<hr>
 
 				<a href="<%=request.getContextPath()%>/notice/noticemain"id="a2" ><strong>공지사항</strong></a>
-					  
+					  <hr/>
 				
 					<br/>
 					<br/>
