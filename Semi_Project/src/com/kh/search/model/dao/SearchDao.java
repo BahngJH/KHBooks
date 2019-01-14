@@ -159,9 +159,8 @@ public class SearchDao {
 			pstmt.setString(3, "%"+key+"%");
 			rs = pstmt.executeQuery();
 			
-			
-			while(rs.next()) {
-				count = rs.getInt("cnt");
+			if(rs.next()) {
+				count = rs.getInt("CNT");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
