@@ -38,11 +38,11 @@ public class MyReviewServlet extends HttpServlet {
 		if (logined != null) {
 			int memberNum = logined.getMemberNum();	
 			List<Review> list=new ReviewService().selectList(memberNum);
-	
-			request.getRequestDispatcher(request.getContextPath()+"/views/login_myPage/myReview.jsp").forward(request, response);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
 		}
 		else {
-			request.getRequestDispatcher(request.getContextPath()+"/views/login_myPage/login.jsp").forward(request, response);;
+			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
 		}
 	}
 
