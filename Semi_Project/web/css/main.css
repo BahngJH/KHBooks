@@ -1,8 +1,36 @@
-/* 상단 네비바 css */
-header {
-	margin-bottom: 81px;
+body, header nav{
+	min-width: 370px;
 }
 
+
+/* 상단 네비바 css */
+@media (max-width: 768px){	
+	header {
+		margin-bottom: 81px;
+	}
+	form#navSearchFrm{
+		max-width: 100%;
+	}
+	ul.nav>li>a{
+		display: inline;
+	}
+}
+
+@media (min-width: 768px){
+	header{
+		margin-bottom: 120px;
+	}
+	form#navSearchFrm{
+		max-width: 400px;
+	}
+	.navbar>.container-fluid .navbar-brand{
+		margin-left: 15px;
+	}
+	
+}
+ul.nav>li{
+		display: inline;
+	}
 form#navSearchFrm {
 	padding-left: 5px;
 	padding-right: 0px;
@@ -15,6 +43,27 @@ header nav.navbar {
 
 header nav.navbar div div.navbar-collapse {
 	background-color: #f8f8f8;
+}
+
+nav div:first-child{
+	padding: 0px;
+}
+
+div#navbar-collapse-1{
+	padding: 0px 15px 0px 15px;
+}
+
+div#navbar-collapse-1 div.row ul.nav{
+	padding: 0px 15px 0px 20px;
+}
+
+nav div div.row{
+	margin: 0px;
+	padding: 0px 15px 0px 15px;
+}
+
+div.navbar-header a.navbar-brand{
+	margin-left: 15px;
 }
 
 /* 검색 결과 창 css */

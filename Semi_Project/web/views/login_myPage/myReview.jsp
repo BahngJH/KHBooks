@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/myHeader.jsp"%>
 <%@ page import="java.util.*, com.kh.review.model.vo.Review" %>
-<% List<Review> list = (List)request.getAttribute("list");%>
+<% 
+	List<Review> list = (List)request.getAttribute("list");
+%>
 
 <style>
 	article.review-container ul {
@@ -24,18 +26,16 @@
 </style>
 
 <script>
-$(function(){
-	$('#deleteReview').click(function() {
-		if(!confirm("정말로 삭제하시겠습니까?")) {
-			return;
-		}
-		
-	});
+
+function deleteReview() {
+	if(!confirm("정말로 삭제하시겠습니까?")) {
+		return;
+	}
+}
 	
-	$('#updateReview').click(function() {
-		
-	});
-});
+function updateReview() {
+	$('#testModal').modal();
+}
 	
 </script>
 
@@ -63,8 +63,8 @@ $(function(){
 										<%=r.getReviewContext()%>
 									</p>
 									<div class="review-options">
-										<button class="btn btn-primary" id="updateReview">수정</button>
-										<button class="btn btn-primary" id="deleteReview">삭제</button>
+										<button class="btn btn-primary" id="update-<%=r.getReviewNum() %>" onclick="updateReview();">수정</button>
+										<button class="btn btn-primary" id="delete-<%=r.getReviewNum() %>" onclick="deleteReview();">삭제</button>
 									</div>
 								</div>
 							</li>
@@ -73,5 +73,22 @@ $(function(){
 				</article>
 			</section>
 		</div>
+		
+		<div class="modal" id="testModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						리뷰 수정하기
+					</div>
+					<div class="modal-body">
+						<h1> modal test </h1>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
