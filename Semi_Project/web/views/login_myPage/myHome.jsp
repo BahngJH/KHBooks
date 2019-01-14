@@ -2,6 +2,14 @@
     pageEncoding="UTF-8" import = "com.kh.member.model.vo.Member"%>
 <%@ include file="/views/common/myHeader.jsp"%>
 
+<%
+	String flag = (String)request.getAttribute("flag");
+	if(flag == null){
+		response.sendRedirect(request.getContextPath()+"/member/login");
+		return;
+	}
+%>
+
 
 <style>
 	article.myInfo-container{
