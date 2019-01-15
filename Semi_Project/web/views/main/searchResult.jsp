@@ -8,6 +8,7 @@
 	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (int)request.getAttribute("cPage"); 
+	String keyword = (String)request.getAttribute("keyword");
 %>
 <script>
         $(function () {
@@ -33,11 +34,18 @@
         
         	<!-- 좌측 카테고리 -->
             <div id='category' class="col-xs-12 col-md-3">
-            <%if(!genres.isEmpty()){%>
+            <%if(!genres.isEmpty()){
+            	int allGenre = 0;
+            	for(GenreCount g : genres){
+            		allGenre += g.getCnt();
+            	}
+            
+            %>
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
+                	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
             <%	for(GenreCount c : genres){%>
-                    <li class="list-group-item"><a href="#"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
+                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>&category=<%=c.getGenre()%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
 				<%}%>            	
                 </ul>
             <%}%> 

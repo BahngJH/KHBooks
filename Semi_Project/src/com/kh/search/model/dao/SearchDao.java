@@ -33,7 +33,7 @@ public class SearchDao {
 		
 	}
 	
-	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage) {
+	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre) {
 		List<Book> list=new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
@@ -43,8 +43,9 @@ public class SearchDao {
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");
-			pstmt.setInt(4, (cPage-1) * numPerPage+1);
-			pstmt.setInt(5, cPage * numPerPage);
+			pstmt.setString(4, "%"+genre+"%");
+			pstmt.setInt(5, (cPage-1) * numPerPage+1);
+			pstmt.setInt(6, cPage * numPerPage);
 			
 			rs = pstmt.executeQuery();
 			
@@ -142,7 +143,7 @@ public class SearchDao {
 		return list;
 	}
 
-	public int getBookCount(Connection conn, String key) {
+	public int getBookCount(Connection conn, String key, String genre) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
@@ -152,6 +153,7 @@ public class SearchDao {
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");
+			pstmt.setString(4, "%"+genre+"%");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

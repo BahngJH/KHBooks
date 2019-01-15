@@ -18,8 +18,8 @@ public class SearchService {
 		conn = getConnection();
 	}
 	
-	public List<Book> selectBook(String key, int cPage, int numPerPage) {
-		List<Book> list = new SearchDao().selectBook(conn, key, cPage, numPerPage);
+	public List<Book> selectBook(String key, int cPage, int numPerPage, String genre) {
+		List<Book> list = new SearchDao().selectBook(conn, key, cPage, numPerPage, genre);
 
 		close(conn);
 		
@@ -38,8 +38,8 @@ public class SearchService {
 		return list;
 	}
 
-	public int getBookCount(String key) {
-		int totalBook = new SearchDao().getBookCount(conn, key);
+	public int getBookCount(String key, String genre) {
+		int totalBook = new SearchDao().getBookCount(conn, key, genre);
 		close(conn);
 		return totalBook;
 	}
