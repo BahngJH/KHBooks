@@ -8,7 +8,7 @@
 	<%
 		List<Notice> list=(List)request.getAttribute("list");
 
-%>
+	%>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
@@ -20,7 +20,7 @@
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<section>
 <style>
 
 .col-sm-9 a{
@@ -53,6 +53,7 @@ border-height: 10px;
 
 </style>
 
+
 			<div class="col-sm-1"></div>
 			<div class="col-sm-9">
 				
@@ -81,7 +82,10 @@ border-height: 10px;
 					<%} 
 					}%>					
 				</table>
-
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 			</div>
+</section>
+
+			
 
 <%@include file="/views/common/footer.jsp"%>

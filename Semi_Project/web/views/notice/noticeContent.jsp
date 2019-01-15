@@ -65,7 +65,15 @@ fieldset a{float:right;}
 				location.href="<%=request.getContextPath()%>/notice/noticemain";
 			}
 			function deleteNotice(){
+				if(!confirm('정말로 삭제하시겠습니까?'))
+				{
+					return;	
+				}
 				location.href="<%=request.getContextPath()%>/notice/noticedelete?no=<%=n.getNoticeNo()%>";
+			}
+			function updateNotice(){
+				location.href="<%=request.getContextPath()%>/notice/noticeupdate?no<%=n.getNoticeNo()%>";
+				
 			}
 		</script>
 				

@@ -5,12 +5,16 @@
 
 
 <style>
+.col-sm-2 a {
+	color: black;
+	cursor: pointer;
+	text-decoration: none;
+}
 a {
 	color: black;
 	cursor: pointer;
 	text-decoration: none;
 }
-
 .col-sm-2 {
 	margin: 120px 0 0 0;
 }
