@@ -44,7 +44,8 @@
 <body>
 
 <div class="container">
-		<div class="col-sm-2">
+	<div class="row">
+		<div class="col-sm-3">
 
 			<h4>
 				<span class="glyphicon glyphicon-phone-alt" aria-hidden="true">
