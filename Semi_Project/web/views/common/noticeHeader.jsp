@@ -44,13 +44,6 @@
 <body>
 <<<<<<< HEAD
 <div class="container">
-=======
-	<div class="container">
-		
->>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
-
-
-
 		<div class="col-sm-2">
 
 			<h4>
