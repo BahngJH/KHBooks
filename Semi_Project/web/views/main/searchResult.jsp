@@ -6,6 +6,8 @@
 	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
 	List<Author> authors = (List<Author>)request.getAttribute("authorList");
 	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+	String pageBar = (String)request.getAttribute("pageBar");
+	int cPage = (int)request.getAttribute("cPage"); 
 %>
 <script>
         $(function () {
@@ -84,13 +86,13 @@
                    	%>
                     	<div class='result row'>
                     		<!-- 책 이미지 -->
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+                            <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
                                 <a href="#" class="thumbnail">
                                     <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
                             </div>
-                            <div class='result-image col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+                            <div class='result-image col-xs-8 col-sm-9 col-md-9 col-lg-9'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
                                     <a href="#">
@@ -109,8 +111,8 @@
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 265){
-                            				content = content.substring(0, 265)+"...";
+                            			if(content.length() > 190){
+                            				content = content.substring(0, 190)+"...";
                             			}
                             		%>
                             		
@@ -131,13 +133,7 @@
                 <!--페이지네이션-->
                 <div class="paging col-xs-12" style="text-align: center">
                     <ul class="pagination pagination-lg">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <%=pageBar %>
                     </ul>
 
                 </div>

@@ -18,8 +18,8 @@ public class SearchService {
 		conn = getConnection();
 	}
 	
-	public List<Book> selectBook(String key) {
-		List<Book> list = new SearchDao().selectBook(conn, key);
+	public List<Book> selectBook(String key, int cPage, int numPerPage) {
+		List<Book> list = new SearchDao().selectBook(conn, key, cPage, numPerPage);
 
 		close(conn);
 		
