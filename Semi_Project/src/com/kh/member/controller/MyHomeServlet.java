@@ -32,13 +32,13 @@ public class MyHomeServlet extends HttpServlet {
 		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 		if(logined==null) {
-			System.out.println("로그인 정보가 없기 때문에 로그인으로 이동");
+			
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
 			return;
 		}
 		
 		
-		System.out.println("로그인 확인이 되었기에 마이 페이지 보여줌");
+		
 		request.setAttribute("flag", "pass");
 		request.getRequestDispatcher("/views/login_myPage/myHome.jsp").forward(request, response);
 		

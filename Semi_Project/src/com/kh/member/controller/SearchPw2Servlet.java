@@ -54,8 +54,8 @@ public class SearchPw2Servlet extends HttpServlet {
 		
 				//mail server 설정
 				String host = "smtp.naver.com";
-				String user = "wpxm2003"; //자신의 네이버 계정
-				String password = "5898wlgns";//자신의 네이버 패스워드
+				String user = ""; //자신의 네이버 계정
+				String password = "";//자신의 네이버 패스워드
 				
 				//메일 받을 주소
 				String to_email = m.getEmail();
@@ -89,7 +89,6 @@ public class SearchPw2Servlet extends HttpServlet {
 				    }
 				}
 				String AuthenticationKey = temp.toString();
-				System.out.println(AuthenticationKey);
 				
 				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
