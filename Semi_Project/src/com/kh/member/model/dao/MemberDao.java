@@ -23,6 +23,7 @@ public class MemberDao {
 			e.printStackTrace();
 		} 
 	}
+	//회원가입
 	public int memberEnroll(Connection conn, Member m)
 	{
 		PreparedStatement pstmt =null;
@@ -49,7 +50,7 @@ public class MemberDao {
 		}
 		return rs;
 	}
-	
+	//로그인
 	public Member memberLogin(Connection conn, String id) 
 	{
 		PreparedStatement pstmt =null;
@@ -86,7 +87,7 @@ public class MemberDao {
 		}
 		return m;
 	}
-	
+	//내 정보 변경, 패스워드 포함
 	public int updateInfoPw(Connection conn, Member m)
 	{
 		PreparedStatement pstmt = null;
@@ -112,6 +113,7 @@ public class MemberDao {
 		}
 		return rs;
 	}
+	//내 정보 변경, 패스워드 제외
 	public int updateInfo(Connection conn, Member m)
 	{
 		PreparedStatement pstmt = null;
@@ -137,6 +139,7 @@ public class MemberDao {
 		return rs;
 	}
 	
+	//아이디 중복 체크
 	public String overlapCheck(Connection conn, String id)
 	{
 		PreparedStatement pstmt =null;
@@ -183,4 +186,28 @@ public class MemberDao {
 		System.out.println("dao끝");
 		return result;
 	}
+	//비밀번호 찾기 할때의 패스워드 변경 로직
+	public int onlyPwUpdate(Connection conn, Member m) 
+	{
+		PreparedStatement pstmt = null;
+		int rs=0;
+		String sql = prop.getProperty("onlyPwUpdate");
+		
+		try {
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberPw());
+			pstmt.setString(2, m.getMemberId());
+			
+			rs = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
+	
 }
