@@ -116,6 +116,19 @@
 			</section>
 		</div>
 		
+		
+		<style>
+			.star{
+				background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+				background-size: auto 100%;
+				width:30px;
+				height: 30px;
+				display: inline-block;
+  				text-indent: -9999px;
+  				cursor: pointer;
+			}		
+			.star.on{background-position: 0 0;}
+		</style>		
 		<!-- 리뷰 수정 모달창 -->
 		<div class="modal" id="testModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
@@ -128,7 +141,22 @@
 							<table>
 								<tr>
 									<th><label>평점</label></th>
-									<td><span class="glyphicon glyphicon-star-empty"></span></td>
+									<td>
+										<div class="starRev">
+											<span class="star on"></span>
+											<span class="star"></span>
+											<span class="star"></span>
+											<span class="star"></span>
+											<span class="star"></span>
+										</div>
+									</td>
+									<script>
+									$('.starRev span').click(function(){
+										  $(this).parent().children('span').removeClass('on');
+										  $(this).addClass('on').prevAll('span').addClass('on');
+										  return false;
+										});
+									</script>
 								</tr>
 								<th><label for="updateContext">내용</label></th>
 								<td><textarea name="updateContext" id="updateContext" class="form-control"></textarea></td>
