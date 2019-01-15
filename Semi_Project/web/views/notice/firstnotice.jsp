@@ -101,10 +101,7 @@ width:180px; height:200px; border:0px;
 vertical-align: top;
 
 }
- marquee{
 
-height:20px; 
-}
 .QAtitle{
 border-bottom:2px solid darkgray;
 
@@ -166,28 +163,25 @@ $(document).ready(function(){
 					
 					<h2><strong>자주묻는질문</strong></h2>
 					 <hr/>
-                    <a href=""  style="text-decoration:none">도서 주문후 얼마나 걸리나요?</a>
+                    <a href="">도서 주문후 얼마나 걸리나요?</a>
                     <hr/>
-                    <a href=""  style="text-decoration:none">방문해서 수령 해야하나요?</a>
+                    <a href="">방문해서 수령 해야하나요?</a>
                     <hr/>
-                    <a href=""  style="text-decoration:none">배송도 가능 한가요?</a>
+                    <a href="">배송도 가능 한가요?</a>
 					<hr/>
-					<a href=""  style="text-decoration:none">부재도서 신청은 어떻게 하나요?</a>
+					<a href="">부재도서 신청은 어떻게 하나요?</a>
                     <hr/>
-                    <a href=""  style="text-decoration:none">방문결제도 가능한가요?</a>
+                    <a href="">방문결제도 가능한가요?</a>
                     
-                    
-				
 
 				</div>
 				<br> <br> <br>
 				<div id="QAtitle2">
 					<h2><strong>고객센터 안내사항</strong></h2>
 					<hr>
-					<a href="" style="text-decoration: none">고객센터 단축운영 공지사항</a>
+					<a href="" >고객센터 단축운영 공지사항</a>
 					<hr>
-					<a href="" style="text-decoration: none">고객센터 운영시간 평일 10:00
-						~18:00</a>
+					<a href="" >고객센터 운영시간 평일 10:00~18:00</a>
 
 				</div>
 				<br> <br> <br> <br>
