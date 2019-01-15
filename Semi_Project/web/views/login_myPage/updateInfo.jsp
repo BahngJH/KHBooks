@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/myHeader.jsp"%>
+<%
+	Member member = (Member)request.getAttribute("member");
+%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 	article.checkAccount{margin-top: 50px;}
@@ -61,7 +64,7 @@
 									<td>
 										<input type="hidden" name="memberName" value="<%=logined.getMemberName()%>">
 										<span><%=logined.getMemberName() %></span>
-										<a class="btn btn-primary" style="float : right;">회원탈퇴</a>
+										<button onclick="fn_deleteMember();" type="button" class="btn btn-primary" style="float : right;">회원탈퇴</button>
 									</td>
 								</tr>
 								<tr>
@@ -117,6 +120,17 @@
 							<button class="btn-update" type="button" onclick="fn_updateInfo();">변경 완료</button>
 						</form>
 						<script>
+						
+						// 회원 탈퇴 메소드
+						function fn_deleteMember() {
+							if(!confirm('정말로 탈퇴하시겠습니까?'))
+							{
+								return;	
+							}
+							location.href = "<%=request.getContextPath()%>/member/deleteMember?no=<%=member.getMemberNum()%>";
+						}
+						
+						
 						//데이터 발송전 데이터 체크 함수
 							function fn_updateInfo(){
 								//휴대폰 체크
