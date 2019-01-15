@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class UpdateInfoServlet
+ * Servlet implementation class SearchPasswordServlet
  */
-@WebServlet("/member/updateInfo")
-public class UpdateInfoServlet extends HttpServlet {
+@WebServlet("/member/searchPw")
+public class SearchPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateInfoServlet() {
+    public SearchPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,8 @@ public class UpdateInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Member m = (Member) request.getSession().getAttribute("logined");
-		if(m ==null) {
-			System.out.println("로그인이 안되었기에 로그인페이지로 이동");
-			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
-			return;
-		}
-		request.setAttribute("member", m);
-		request.getRequestDispatcher("/views/login_myPage/updateInfo.jsp").forward(request, response);
 		
+		response.sendRedirect(request.getContextPath()+"/views/login_myPage/searchPassword.jsp");
 		
 		
 	}

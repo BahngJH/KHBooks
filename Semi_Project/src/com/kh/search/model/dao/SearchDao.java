@@ -33,25 +33,20 @@ public class SearchDao {
 		
 	}
 	
-	public List<Book> selectBook(Connection conn, String key) {
+	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre) {
 		List<Book> list=new ArrayList<>();
 		
-		/*책 이름, 작가 이름, 출판사 이름으로 
-		함께 검색되도록 3개의 쿼리문을 돌림*/
-		
-		list = getBookInfo(conn, key, "searchBookTitle", list);
-		list = getBookInfo(conn, key, "searchBookAuthor", list);
-		list = getBookInfo(conn, key, "searchBookPub", list);
-		
-		return list;
-	}
-
-	private List<Book> getBookInfo(Connection conn, String key, String query, List<Book> list) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty(query));
+			pstmt = conn.prepareStatement(prop.getProperty("searchBook"));
 			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+key+"%");
+			pstmt.setString(3, "%"+key+"%");
+			pstmt.setString(4, "%"+genre+"%");
+			pstmt.setInt(5, (cPage-1) * numPerPage+1);
+			pstmt.setInt(6, cPage * numPerPage);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -80,15 +75,16 @@ public class SearchDao {
 				
 				list.add(b);
 			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();		
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
+		
 		return list;
 	}
+
 	
 	public List<Author> selectAuthor(Connection conn, String key) {
 		PreparedStatement pstmt = null;
@@ -147,7 +143,7 @@ public class SearchDao {
 		return list;
 	}
 
-	public int getBookCount(Connection conn, String key) {
+	public int getBookCount(Connection conn, String key, String genre) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
@@ -157,6 +153,7 @@ public class SearchDao {
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");
+			pstmt.setString(4, "%"+genre+"%");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

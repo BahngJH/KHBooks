@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link
 	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="UTF-8 " />
+<title>Insert title here</title>
 <style>
 a {
 	color: black;
@@ -69,6 +73,7 @@ a {
 <script>
 	$(document).ready(function() {
 
+<<<<<<< HEAD
 		$("#side").click(function() {
 
 			$(this).next("ol").toggleClass("hide");
@@ -97,6 +102,13 @@ a {
 		<hr>
 		<a href="" id="a1"><strong>도서신청</strong></a>
 		<hr>
+=======
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+>>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 
 		<a href="<%=request.getContextPath()%>/notice/noticemain" id="a2"><strong>공지사항</strong></a>
 		<hr />

@@ -1,12 +1,14 @@
 package com.kh.member.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-import static common.JDBCTemplate.*;
+
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -160,5 +162,25 @@ public class MemberDao {
 		}
 		return checkedId;
 	}
-
+	
+	
+	// 회원 탈퇴 DAO
+	public int deleteMember(Connection conn, int no) 
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("dao끝");
+		return result;
+	}
 }
