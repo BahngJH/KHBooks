@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.kh.notice.model.vo.Notice;
 
 public class NoticeDao {
@@ -26,6 +28,89 @@ public class NoticeDao {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Notice selectOne(Connection conn,int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectOne");
+		Notice n=null;
+		try {
+		
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				n=new Notice();
+				n.setNoticeNo(rs.getInt("noticenum"));
+				n.setNoticeTitle(rs.getString("noticetitle"));
+				n.setNoticeContent(rs.getString("noticecontent"));
+				n.setNoticeDate(rs.getDate("noticedate"));
+				n.setStatus(rs.getString("status"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+			close(rs);
+		}
+		return n;
+		
+		
+		
+	}
+	
+	
+	public int deleteNotice(Connection conn,int no){
+		PreparedStatement pstmt =null;
+		int result=0;
+		
+		String sql=prop.getProperty("deleteNotice");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+	}
+	
+	public Notice selectNo(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		Notice n =null;
+		String sql=prop.getProperty("selectNo");
+		try{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				n=new Notice();
+				n.setNoticeNo(rs.getInt("noticenum"));
+				n.setNoticeTitle(rs.getString("noticetitle"));
+				n.setNoticeContent(rs.getString("noticecontent"));
+				n.setNoticeDate(rs.getDate("noticedate"));
+				n.setStatus(rs.getString("status"));
+				
+			}
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+			close(rs);
+		}
+		return n;
+		
+		
 	}
 	
 	

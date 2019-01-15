@@ -1,139 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="/views/common/header.jsp"%>
 <%@ include file="/views/common/noticeHeader.jsp"%>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>고객센터 메인.</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<section>
 
 <style>
-
-.col-sm-2 ol,.col-sm-2 ol a {
-	color: black;
-}
-	
-.menu a{color:black;}
-
-
-a{color:black; cursor:pointer;}
-
-ol{
-	list-style-type: disc;
-	color: black;
-}
-
-
-#a1 {
-	list-style-type: disc;
-	color: black;
-}
-
-#a2 {
-	list-style-type: disc;
-	color: black;
-}
+ a{color:black; cursor:pointer;text-decoration:none;}
 
 .QAtitle, .QAtitle a {
 	color: black;
 }
 
-#QAtitle2 a {
-	color: black;
-	height: 200px;
-}
+#QAtitle2 a {height: 200px;}
 
-.notice a {
-	color: black;
-}
-
-
-.text {
-	text-align: center;
-	width: 300px;
-	padding-left: 100px;
-}
-
-#n-surve {
-	background-color: antiquewhite;
-}
-
-.surve-tag {
-	background-color: azure;
-	border: 1px solid azure
-}
- .menu a{cursor:pointer;}
- .menu .hide{display:none;}
-.Notice_List{color:black;}
-
-.surve-tag{
-text-align:center;
-}
-
-.dropdown-toggle{
-data-toggle:dropdown;
- role:button;
-aria-expanded:false;
-}
-.row a{text-decoration:none;}
-#map table{
-cellpadding:0;
- cellspacing:0; width:150px;
-}
-#map table td{border: 1px solid #cecece;}
-#map table td img{
-width:180px; height:200px; border:0px;
-vertical-align: top;
-
-}
 
 .QAtitle{
 border-bottom:2px solid darkgray;
 
 }
-.col-sm-2{
-margin:120px 0 0 0 ;
-}
+
 .notice1{
 margin:50px 0 0 0 ;
 border-bottom:2px solid darkgray;
 
 }
 
-
-.col-sm-2 h4{color:blue;}
-
 </style>
-</head>
-
-<script>
 
 
-$(document).ready(function(){
-   
-    $("a").click(function(){
-      
-        $(this).next("ol").toggleClass("hide");
-    });
-});
-</script>
-
-<body>
 		<div class="col-sm-1"></div>
 			<div class="col-sm-9">
 
@@ -187,19 +83,10 @@ $(document).ready(function(){
 				<br> <br> <br> <br>
 			</div>
 
-			<div class="row">
-
-				<div class="col-sm-12">
-				<br/> <br /> <br>
-				<div class="surve-tag">
-				
-				</div>
-				</div>
-			</div>
+			
 		
-</body>
 
-</html>
+</section>
 
 
 
