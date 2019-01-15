@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
 <style>
 marquee {
 	height: 20px;
 }
 
-a {
+.title a { 
 	color: black;
 	text-decoration: none;
 }
@@ -25,36 +27,22 @@ text-align:center;}
 <footer>
 	<section>
 		<div class="title">
-			<P>
+			<a href="<%=request.getContextPath()%>/notice/firstNotice">
 				<strong>공지사항 :</strong>
-			</P>
+			</a>
 
 		</div>
 		<div class="notice">
 			<marquee onmouseover='this.stop()' onmouseout='this.start()'
 				direction='up' scrolldelay=1500>
 				<ul class="Notice_List">
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/711">[안내]
-							고객센터 단축운영 공지사항</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/779">[업데이트]
-							iOS 앱 v8.11.0</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/773">[리디셀렉트]
-							안드로이드 앱 내에서 셀렉트 사용 가능</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/772">[업데이트]
-							안드로이드 앱 v9.0.0</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/768">[리디셀렉트]
-							마이 셀렉트 도서 수 제한 해제</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/767">[업데이트]
-							PC/Mac 뷰어 v2.5.5</a></li>
-					<li class="Notice_Item jsNoticeItem"><a
-						class="Notice_Item_DetailLink" href="/support/notice/754">[안내]
-							도서구입비 소득공제 적용일정 안내</a></li>
+					<li ><a href="/support/notice/711">kh문고 시스템 점검 안내</a></li>
+					<li ><a href="/support/notice/711">개인정보처리방침 개정 안내</a></li>
+					<li ><a href="/support/notice/711">설 연휴기간 주문 안내</a></li>
+					<li ><a href="/support/notice/711">도서 신청 안내</a></li>
+					<li ><a href="/support/notice/711">2019년 휴무일 안내</a></li>
+					
+					
 
 				</ul>
 			</marquee>
