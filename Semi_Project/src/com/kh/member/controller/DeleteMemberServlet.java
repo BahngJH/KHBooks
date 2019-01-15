@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 
@@ -30,6 +31,7 @@ public class DeleteMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("탈퇴 서블릿 들어옴");
+		HttpSession session=request.getSession(false);
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		System.out.println(no);
@@ -46,6 +48,7 @@ public class DeleteMemberServlet extends HttpServlet {
 		{
 			msg="회원 탈퇴 성공";
 			loc="/views/main/main.jsp";
+			session.invalidate();		// 로그인 되어있던 세션을 끊음
 		}
 		else 
 		{
