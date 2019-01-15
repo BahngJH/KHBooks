@@ -37,9 +37,22 @@
 		</form>
 		</div>
 	</div>
-	
 	<script>
-		
+		function fn_Frm(){
+			var id = $('#name').val().trim().length;
+			var email = $('#email').val().trim().length;
+			if(id<1)
+				{
+					alert("이름을 입력하세요");
+					return false;
+				}
+			if(email<10)
+				{
+					alert("이메일을 입력하세요");
+					return false;
+				}
+			return true;
+		}
 	
 	</script>
 </body>
