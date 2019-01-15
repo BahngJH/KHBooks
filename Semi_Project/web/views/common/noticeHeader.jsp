@@ -24,9 +24,6 @@ border: solid 1px darkgray;
 
 <body>
 <div class="container">
-		<div class="row header">
-			<div class="col-sm-12"></div>
-		</div>
 
 		<div class="row">
 			<div class="col-sm-2">
