@@ -41,7 +41,7 @@ public class SearchDao {
 		try {
 			String orderby = "";
 			switch(order) {
-			case "":
+			case "default":
 				orderby = "NULL";
 				break;
 			case "popularity":
@@ -71,7 +71,7 @@ public class SearchDao {
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");
-			pstmt.setString(4, "%"+genre+"%");
+			pstmt.setString(4, "%"+(genre.equals("all")?"":genre)+"%");
 			pstmt.setInt(5, (cPage-1) * numPerPage+1);
 			pstmt.setInt(6, cPage * numPerPage);
 			
@@ -181,7 +181,7 @@ public class SearchDao {
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");
-			pstmt.setString(4, "%"+genre+"%");
+			pstmt.setString(4, "%"+(genre.equals("all")?"":genre)+"%");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

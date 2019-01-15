@@ -11,7 +11,6 @@
 	String keyword = (String)request.getAttribute("keyword");
 	String order = (String)request.getAttribute("order");
 	String category =(String)request.getAttribute("category");
-	System.out.println(category);
 %>
 <script>
         $(function () {
@@ -47,7 +46,7 @@
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
               <%//전체 카테고리
-                if(category.equals("")){%>
+                if(category.equals("all")){%>
             		<li class="list-group-item disabled">전체<span class="badge">(<%=allGenre %>)</span></li>    		
             	<% }else{ %>
                 	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%><%=order==null?"":"&order="+order%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
@@ -57,7 +56,7 @@
                     <li class="list-group-item disabled"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></li>
 				  <%}else{
 				  	//선택 안 된 카테고리%>
-				  	<li class="list-group-item <%=category==c.getGenre()?"disabled":""%>"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>&category=<%=c.getGenre()%><%=order==null?"":"&order="+order%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
+				  	<li class="list-group-item <%=category==c.getGenre()?"disabled":""%>"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=1&category=<%=c.getGenre()%><%=order==null?"":"&order="+order%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
 				<%}
 				}%>            	
                 </ul>
@@ -93,7 +92,7 @@
                             String [] orderValue ={"popularity", "recent", "grade", "review", "price"};  
                             for(int i=0;i<orderTitle.length;i++){
                             %>
-                            <li><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&category=<%=category %>&cPage=<%=cPage%><%=i==0?"":orderValue[i]%>"><%=orderTitle[i] %></a></li>
+                            <li><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&category=<%=category %>&cPage=1<%=i==0?"":"&order="+orderValue[i-1]%>"><%=orderTitle[i] %></a></li>
                             <%} %>
                         </ul>
                     </div>
