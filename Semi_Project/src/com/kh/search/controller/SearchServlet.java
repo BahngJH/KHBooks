@@ -37,9 +37,14 @@ public class SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("keyword");
 		String genre = request.getParameter("category");
+		String order = request.getParameter("order");
 		
 		if(genre == null) {
 			genre = "";
+		}
+		
+		if(order == null) {
+			order = "";
 		}
 		
 		/*페이지 처리*/
@@ -55,7 +60,7 @@ public class SearchServlet extends HttpServlet {
 		 * 도서 정보가 부족해서 페이지 테스트를 위해 1로 놓음
 		 * 추후에 10으로 늘릴 예정
 		 * */
-		int numPerPage = 2;
+		int numPerPage = 4;
 		
 		int totalBook = new SearchService().getBookCount(key, genre);
 		int totalPage = (int)Math.ceil((double)totalBook/numPerPage);
@@ -72,7 +77,7 @@ public class SearchServlet extends HttpServlet {
 		if(pageNo == 1) {
 			pageBar += "<li class='disabled'><span><span aria-hidden='true'> << </span></span></li>";
 		}else { 
-			pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+(pageNo-1)+"&category="+genre+"' aria-label='Previous'> << </a></li>";
+			pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+(pageNo-1)+"&category="+genre+"&order="+order+"' aria-label='Previous'> << </a></li>";
 		}
 		
 		/*숫자 버튼*/
@@ -80,7 +85,7 @@ public class SearchServlet extends HttpServlet {
 			if(cPage == pageNo) {
 				pageBar += "<li class='active'><span>"+pageNo+"<span class='sr-only'>(current)</span></span>";
 			}else {
-				pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+(pageNo)+"&category="+genre+"'>"+pageNo+"</a></li>";
+				pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+(pageNo)+"&category="+genre+"&order="+order+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -89,11 +94,11 @@ public class SearchServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar += "<li class='disabled'><span><span aria-hidden='true'> >> </span></span></li>";
 		}else {
-			pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+pageNo+"&category="+genre+"' aria-label='Next'> >> </a></li>";
+			pageBar += "<li><a href='"+request.getContextPath()+"/search/search?keyword="+key+"&cPage="+pageNo+"&category="+genre+"&order="+order+"' aria-label='Next'> >> </a></li>";
 		}
 		
 		/*책 정보 가져오기*/
-		List<Book> bList = new SearchService().selectBook(key, cPage, numPerPage, genre);
+		List<Book> bList = new SearchService().selectBook(key, cPage, numPerPage, genre, order);
 		
 		
 		/*같은 책이 들어있을 수 있기 때문에 중복을 제거함*/
@@ -113,7 +118,7 @@ public class SearchServlet extends HttpServlet {
 		
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
-		
+		request.setAttribute("category", genre);
 		request.setAttribute("keyword", key);
 		request.setAttribute("bookList", deduplicationList);
 		request.setAttribute("authorList", aList);

@@ -33,13 +33,41 @@ public class SearchDao {
 		
 	}
 	
-	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre) {
+	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre, String order) {
 		List<Book> list=new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("searchBook"));
+			String orderby = "";
+			switch(order) {
+			case "":
+				orderby = "NULL";
+				break;
+			case "popularity":
+				/*인기순*/
+				orderby += "SALES DESC";
+				break;
+			case "recent":
+				/*최근순*/
+				orderby += "BOOKDATE DESC";
+				break;
+			case "grade":
+				/*평점순*/
+				
+				break;
+			case "review":
+				/*리뷰 많은 순*/
+				
+				break;
+			case "price":
+				/*가격 낮은 순*/
+				orderby += "PRICE ASC";
+				break;
+			}
+			String sql = prop.getProperty("searchBookS") + orderby + prop.getProperty("searchBookE");
+			
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setString(2, "%"+key+"%");
 			pstmt.setString(3, "%"+key+"%");

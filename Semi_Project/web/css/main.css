@@ -141,6 +141,16 @@ p#book_price{
             font-weight: 400; */
 }
 
+div#category ul.list-group li.list-group-item.disabled{
+	background-color: #ebf6ff;
+	color: #005499;
+}
+
+div#category ul.list-group li.list-group-item a{
+	display: block;
+	text-decoration: none;
+}
+
 .result {
 	border-bottom: 1px solid gray;
 	margin-top: 15px;

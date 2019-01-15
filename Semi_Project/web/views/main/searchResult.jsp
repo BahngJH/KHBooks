@@ -9,6 +9,9 @@
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (int)request.getAttribute("cPage"); 
 	String keyword = (String)request.getAttribute("keyword");
+	String order = (String)request.getAttribute("order");
+	String category =(String)request.getAttribute("category");
+	System.out.println(category);
 %>
 <script>
         $(function () {
@@ -43,12 +46,22 @@
             %>
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
-                	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
-            <%	for(GenreCount c : genres){%>
-                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>&category=<%=c.getGenre()%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
-				<%}%>            	
+              <%//전체 카테고리
+                if(category.equals("")){%>
+            		<li class="list-group-item disabled">전체<span class="badge">(<%=allGenre %>)</span></li>    		
+            	<% }else{ %>
+                	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%><%=order==null?"":"&order="+order%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
+            <%	}for(GenreCount c : genres){
+            		//선택된 카테고리
+            		if(category.equals(c.getGenre())){%>
+                    <li class="list-group-item disabled"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></li>
+				  <%}else{
+				  	//선택 안 된 카테고리%>
+				  	<li class="list-group-item <%=category==c.getGenre()?"disabled":""%>"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>&category=<%=c.getGenre()%><%=order==null?"":"&order="+order%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
+				<%}
+				}%>            	
                 </ul>
-            <%}%> 
+          <%}%> 
                     
             </div>
             <!-- 중앙 검색 결과 -->
@@ -63,12 +76,7 @@
                     				<p><a href="#"><%=a.getAuthorName() %></a></p>
                     			</div>
                     		</div>
-                    	
-                    		
-                    <%
-                    	}
-                    %>
-                    	
+                    	<%}%>
                     <%}else{%>
                     <h4><strong>검색 결과 없음</strong></h4>
                     <%} %>
@@ -80,11 +88,13 @@
                     <div id='order' class="row">
                         <ul class="order-buttons list-inline col-xs-12 col-md-12">
                             <!--첫번째는 padding-left 속성 빼주기-->
-                            <li><a href="#">인기순</a></li>
-                            <li><a href="#">최신순</a></li>
-                            <li><a href="#">평점순</a></li>
-                            <li><a href="#">리뷰 많은순</a></li>
-                            <li><a href="#">낮은 가격순</a></li>
+                            <%
+                            String [] orderTitle ={"검색 결과순", "인기순", "최신순", "평점순", "리뷰 많은순", "낮은 가격 순"}; 
+                            String [] orderValue ={"popularity", "recent", "grade", "review", "price"};  
+                            for(int i=0;i<orderTitle.length;i++){
+                            %>
+                            <li><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&category=<%=category %>&cPage=<%=cPage%><%=i==0?"":orderValue[i]%>"><%=orderTitle[i] %></a></li>
+                            <%} %>
                         </ul>
                     </div>
                     <div>
@@ -109,7 +119,6 @@
                                 </h4>
                                 <p class="book_info">
                                 	<span class="book_info"><a href="#">5.0</a>|</span>
-                                	<!-- 작가 정보는 서버에서 아직 주지 않았음 -->
                                 	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
