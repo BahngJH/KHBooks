@@ -16,6 +16,13 @@ body, header nav{
 	}
 }
 
+@media (max-width: 600px){
+	p.book_content{
+		visibility: hidden;
+		height: 0px;
+	}
+}
+
 @media (min-width: 768px){
 	header{
 		margin-bottom: 120px;

@@ -6,6 +6,9 @@
 	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
 	List<Author> authors = (List<Author>)request.getAttribute("authorList");
 	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+	String pageBar = (String)request.getAttribute("pageBar");
+	int cPage = (int)request.getAttribute("cPage"); 
+	String keyword = (String)request.getAttribute("keyword");
 %>
 <script>
         $(function () {
@@ -31,11 +34,18 @@
         
         	<!-- 좌측 카테고리 -->
             <div id='category' class="col-xs-12 col-md-3">
-            <%if(!genres.isEmpty()){%>
+            <%if(!genres.isEmpty()){
+            	int allGenre = 0;
+            	for(GenreCount g : genres){
+            		allGenre += g.getCnt();
+            	}
+            
+            %>
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
+                	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
             <%	for(GenreCount c : genres){%>
-                    <li class="list-group-item"><a href="#"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
+                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%>&category=<%=c.getGenre()%>"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></a></li>
 				<%}%>            	
                 </ul>
             <%}%> 
@@ -84,13 +94,13 @@
                    	%>
                     	<div class='result row'>
                     		<!-- 책 이미지 -->
-                            <div class='result-image col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+                            <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
                                 <a href="#" class="thumbnail">
                                     <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
                             </div>
-                            <div class='result-image col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+                            <div class='result-image col-xs-8 col-sm-9 col-md-9 col-lg-9'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
                                     <a href="#">
@@ -109,8 +119,8 @@
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 265){
-                            				content = content.substring(0, 265)+"...";
+                            			if(content.length() > 190){
+                            				content = content.substring(0, 190)+"...";
                             			}
                             		%>
                             		
@@ -131,13 +141,7 @@
                 <!--페이지네이션-->
                 <div class="paging col-xs-12" style="text-align: center">
                     <ul class="pagination pagination-lg">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <%=pageBar %>
                     </ul>
 
                 </div>

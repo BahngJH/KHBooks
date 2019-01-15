@@ -61,4 +61,19 @@ public class MemberService {
 		return checkedId;
 	}
 	
+	// 회원 탈퇴 메소드
+	public int deleteMember(int no) 
+	{
+		Connection conn = getConnection();
+		int result =  new MemberDao().deleteMember(conn, no);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		System.out.println("서비스");
+		return result;
+	}
+	
 }
