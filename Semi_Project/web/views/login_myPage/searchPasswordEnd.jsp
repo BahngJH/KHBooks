@@ -34,7 +34,7 @@
 <body>
 		<div id="container">
 		<div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS</b></a></div>
-		<h2>비밀번호 변경</h2>
+		<h3>비밀번호 변경</h3>
 		<div id="inputData">
 		<form method="post" action="<%=request.getContextPath()%>/member/searchPwEnd" onsubmit="return fn_Frm();">
 			<input type="text" id="key" name="AuthenticationUser" placeholder="인증번호 입력"><br>

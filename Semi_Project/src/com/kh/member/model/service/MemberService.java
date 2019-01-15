@@ -89,5 +89,13 @@ public class MemberService {
 		close(conn);
 		return rs;
 	}
+	//아이디찾기 메소드
+	public String searchId(String name, String email) {
+		Connection conn = getConnection();
+		String id = new MemberDao().searchId(conn,name,email);
+		
+		close(conn);
+		return id;
+	}
 	
 }
