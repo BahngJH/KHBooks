@@ -1,27 +1,28 @@
-package com.kh.member.controller;
+package com.kh.review.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.review.model.service.ReviewService;
 
 /**
- * Servlet implementation class DeleteMemberServlet
+ * Servlet implementation class DeleteSelectReviewServlet
  */
-@WebServlet("/member/deleteMember")
-public class DeleteMemberServlet extends HttpServlet {
+@WebServlet("/review/deleteSelectReview")
+public class DeleteSelectReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberServlet() {
+    public DeleteSelectReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +31,26 @@ public class DeleteMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession(false);
-		int no = Integer.parseInt(request.getParameter("no"));		
-		int result = new MemberService().deleteMember(no);
+		String nums = request.getParameter("nums");		/*체크된 리뷰의 번호 (1,2,3 식으로 넘어옴)*/
+		String[] snums = nums.split(",");				/*분리하여 배열에 담음*/
+		List<Integer> inums = new ArrayList();			
+		for(int i = 0; i < snums.length; i++) {
+			inums.add(Integer.parseInt(snums[i]));		/*String 배열의 값을 하나씩 파싱하여 리스트에 담음*/
+		}
+		
+		int result = new ReviewService().deleteSelectReview(inums);
 		
 		String msg="";
-		String loc="";
+		String loc="/member/review";
 		String view="/views/common/msg.jsp";
-		
-		
-		if(result > 0) 
-		{
-			msg="회원 탈퇴 성공";
-			loc="/views/main/main.jsp";
-			session.invalidate();		// 로그인 되어있던 세션을 끊음
+			
+		if(result > inums.size() - 1) {				/*선택 값이 여러개일 수 있기 때문에 조건을  0이 아닌 size로 함*/
+			msg="리뷰 삭제 성공";
+		} 
+		else {
+			msg="리뷰 삭제 실패";
 		}
-		else 
-		{
-			msg="회원 탈퇴 실패";
-			loc="/member/updateInfo";
-		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
