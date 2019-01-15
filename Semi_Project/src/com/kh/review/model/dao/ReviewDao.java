@@ -60,4 +60,43 @@ public class ReviewDao {
 		
 		return list;
 	}
+	
+	// 리뷰 삭제
+	public int deleteReview(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	// 리뷰 선택 삭제
+	public int deleteSelectReview(Connection conn, List<Integer> nums) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReview");				/* 삭제 쿼리를 그대로 사용함 (반복해서 쓰기 때문) */
+		int[] arr = nums.stream().mapToInt(i -> i).toArray();		/* 리스트 값을 배열로 변환함 (preparedstatement객체에 setting 안되기 때문) */
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for (int i = 0; i < nums.size(); i++) {					
+				pstmt.setInt(1, arr[i]);
+				result += pstmt.executeUpdate();					/* 배열의 값을 하나씩 setting하여 쿼리를 실행, 성공할 때 마다 result에 값을 더함*/
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
