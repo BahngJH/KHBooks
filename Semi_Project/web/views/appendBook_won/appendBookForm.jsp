@@ -31,7 +31,7 @@
 }
 
  h3{
-	text-align: center;
+	text-font: 1em;
 }
 
 #map{
@@ -52,6 +52,7 @@ function fn_enroll_validate(){
 		return false;
 	}return true;
 };
+
 <%-- 
 $(function(){
 	$("#password_2").blur(function(){

@@ -3,7 +3,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta charset=UTF-8 " />
+<meta charset="UTF-8 " />
 <title>Insert title here</title>
 <style>
 .col-sm-2 {
@@ -42,7 +42,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 <div class="container">
 		<div class="col-sm-2">
 
