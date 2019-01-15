@@ -11,6 +11,7 @@ import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
 public class MemberService {
+	//로그인 메소드
 	public Member memberLogin(String id) 
 	{
 		Connection conn = getConnection();
@@ -19,7 +20,7 @@ public class MemberService {
 		
 		return m;
 	}
-	
+	//회원가입 메소드
 	public int memberEnroll(Member m) 
 	{
 		Connection conn= getConnection();
@@ -32,7 +33,7 @@ public class MemberService {
 		close(conn);
 		return rs;
 	}
-	
+	//내 정보 변경 메소드, 패스워드 포함
 	public int updateInfoPw(Member m)
 	{
 		Connection conn = getConnection();
@@ -43,6 +44,7 @@ public class MemberService {
 		close(conn);
 		return rs;	
 	}
+	//내 정보 변경 메소드, 패스워드빼고 업데이트
 	public int updateInfo(Member m)
 	{
 		Connection conn = getConnection();
@@ -53,6 +55,7 @@ public class MemberService {
 		close(conn);
 		return rs;	
 	}
+	//중복체크 메소드
 	public String overlapCheck(String id)
 	{
 		Connection conn=getConnection();
@@ -74,6 +77,17 @@ public class MemberService {
 		close(conn);
 		System.out.println("서비스");
 		return result;
+	}
+	//비밀번호 찾을 때 사용되는 패스워드 업데이트
+	public int onlyPwUpdate(Member m)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().onlyPwUpdate(conn,m);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return rs;
 	}
 	
 }

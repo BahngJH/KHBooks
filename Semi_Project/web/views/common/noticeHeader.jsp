@@ -1,29 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ include file="/views/common/header.jsp"%>
-<link
-	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!DOCTYPE>
-<html>
-<head>
-<meta charset="UTF-8 " />
-<title>Insert title here</title>
+
+
+
 <style>
 a {
 	color: black;
 	cursor: pointer;
 	text-decoration: none;
-}
-
-#a1, #a2 {
-	text-decoration: none;
-	color: black;
-}
-
-.notice a {
-	color: black;
 }
 
 .col-sm-2 {
@@ -69,11 +54,11 @@ a {
 	color: black;
 }
 </style>
-</head>
+
 <script>
 	$(document).ready(function() {
 
-<<<<<<< HEAD
+
 		$("#side").click(function() {
 
 			$(this).next("ol").toggleClass("hide");
@@ -91,26 +76,21 @@ a {
 			</span>
 		</h4>
 		<hr>
-		<a class="dropdown-toggle" id="side"><strong>게시판</strong><span
-			class="caret"></span></a>
-		<ol class="hide">
+			<a class="dropdown-toggle" id="side"><strong>게시판</strong><span class="caret"></span></a>
+			
+	<ol class="hide">
 			<br />
 			<li><a href="http://www.naver.com">1:1문의</a></li>
 			<br />
 			<li><a href="http://www.naver.com">희망도서 신청</a></li>
 		</ol>
 		<hr>
-		<a href="" id="a1"><strong>도서신청</strong></a>
+		<a href="" ><strong>도서신청</strong></a>
 		<hr>
-=======
-<body>
+		
 
-<div class="container">
-	<div class="row">
-		<div class="col-sm-3">
->>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 
-		<a href="<%=request.getContextPath()%>/notice/noticemain" id="a2"><strong>공지사항</strong></a>
+		<a href="<%=request.getContextPath()%>/notice/noticemain" ><strong>공지사항</strong></a>
 		<hr />
 
 		<br /> <br /> <br /> <br />
@@ -126,5 +106,5 @@ a {
 
 			</table>
 		</div>
+		</div>
 
-	</div>

@@ -42,20 +42,20 @@ public class SearchPw2Servlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String email = request.getParameter("email");
 		
+		//먼저 아이디로 회원정보를 받아오고 가져온 데이터에서 email값을 비교하여 존재하지 않으면 인증메일 보내지 못함
 		Member m = new MemberService().memberLogin(memberId);
-		if(!m.getEmail().equals(email))
+		if(m==null || !m.getEmail().equals(email))
 		{
-			request.setAttribute("msg", "아이디나 이메일정보가 맞지 않습니다");
-			request.setAttribute("loc", "/views/login_myPage/searchPw.jsp");
+			request.setAttribute("msg", "아이디나 이메일 정보가 맞지 않습니다");
+			request.setAttribute("loc", "/member/searchPw");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
 		}
 		
-		
 				//mail server 설정
 				String host = "smtp.naver.com";
-				String user = ""; //자신의 네이버 계정
-				String password = "";//자신의 네이버 패스워드
+				String user = "wpxm2003"; //자신의 네이버 계정
+				String password = "5898wlgns";//자신의 네이버 패스워드
 				
 				//메일 받을 주소
 				String to_email = m.getEmail();
@@ -116,9 +116,9 @@ public class SearchPw2Servlet extends HttpServlet {
 				}
 				HttpSession saveKey = request.getSession();
 				saveKey.setAttribute("AuthenticationKey", AuthenticationKey);
-				
-				
-					
+				//패스워드 바꿀때 뭘 바꿀지 조건에 들어가는 id
+				request.setAttribute("id", memberId);
+				request.getRequestDispatcher("/views/login_myPage/searchPasswordEnd.jsp").forward(request, response);
 	}
 
 	/**
