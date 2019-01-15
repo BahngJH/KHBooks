@@ -56,13 +56,6 @@ ol {
 }
 
 
-
-
-.surve-tag {
-	background-color: azure;
-	border: 1px solid azure
-}
-
 .menu a {
 	cursor: pointer;
 }
@@ -71,11 +64,6 @@ ol {
 	display: none;
 }
 
-
-
-.surve-tag {
-	text-align: center;
-}
 
 .dropdown-toggle {
 	data-toggle: dropdown;
@@ -178,8 +166,7 @@ margin:100px 0 0 0 ;
 					<tr>
 						<td><%=n.getNoticeNo() %></td>
 						<td><a><%=n.getNoticeTitle()%></a></td>
-						<td><%=n.getNoticeDate()%></td>
-					
+						<td><%=n.getNoticeDate()%></td>					
 					</tr> 
 					<%} 
 					}%>					
@@ -191,11 +178,7 @@ margin:100px 0 0 0 ;
 					<div class="col-sm-12">
 						<br /> <br /> <br>
 						<div class="surve-tag">
-							<address>
-								㈜ **문고 서울시 종로구 종로 1 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
-								222222222(발신자 부담전화)<br> 팩스 : 222222-222 (지역번호공통)<br />
-
-							</address>
+						
 						</div>
 					</div>
 				</div>

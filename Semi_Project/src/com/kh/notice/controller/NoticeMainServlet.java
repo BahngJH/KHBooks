@@ -37,6 +37,7 @@ public class NoticeMainServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("/views/notice/mainnotice.jsp").forward(request, response);
+		
 			
 		
 	}
