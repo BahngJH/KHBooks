@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,31 @@ public class InfoViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
+		
+		/*최근 본 목록 쿠키*/
+		Cookie[] cookies = request.getCookies();
+		String cookieValue = "";
+		
+		if(cookies != null) {
+			for(Cookie c : cookies) {
+				if(c.getName().equals("recent")) {
+					cookieValue = c.getValue();
+				}
+			}
+		}
+		
+		if(cookies.length == 5) {
+			//쿠키 값이 5개만 유지되도록 함 
+			for(int i=0;i<cookies.length-1;i++) {
+				cookies[i] = cookies[i+1];
+			}
+		}
+		
+		
+		
+		Cookie c = new Cookie("recent", String.valueOf(b.getBookId()));
+		
+		
 		System.out.println(b);
 		request.setAttribute("bookId", bookId);
 		request.setAttribute("book", b);

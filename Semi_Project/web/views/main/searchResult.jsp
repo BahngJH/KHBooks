@@ -127,8 +127,8 @@
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 190){
-                            				content = content.substring(0, 190)+"...";
+                            			if(content.length() > 188){
+                            				content = content.substring(0, 188)+"...";
                             			}
                             		%>
                             		
