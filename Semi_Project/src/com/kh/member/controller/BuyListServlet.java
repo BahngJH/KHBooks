@@ -30,12 +30,12 @@ public class BuyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 		if(logined==null) {
-			System.out.println("로그인 정보가 없기 때문에 로그인으로 이동");
+			//로그인 정보가 없어서 로그인페이지로
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
 			return;
 		}
 		
-		System.out.println("로그인 확인이 되었기에 마이 페이지 보여줌");
+		//로그인 성공
 		response.sendRedirect(request.getContextPath()+"/views/login_myPage/buyList.jsp");
 	}
 

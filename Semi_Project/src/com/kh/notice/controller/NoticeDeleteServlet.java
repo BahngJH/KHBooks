@@ -32,6 +32,7 @@ public class NoticeDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Notice n=new Notice();
 		int no=Integer.parseInt(request.getParameter("no"));	
 		
 		int result = new NoticeService().deleteNotice(no);
@@ -41,11 +42,12 @@ public class NoticeDeleteServlet extends HttpServlet {
 		String loc="";
 		if(result>0) {
 			msg="공지사항 삭제완료!";
-			loc="/views/notrice/mainnotice";
+			loc="/notice/noticemain?no="+n.getNoticeNo();
 				
 				
 			}else{
-				request.setAttribute("msg","삭제 실패");
+				msg="삭제실패";
+				loc="/";
 			}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

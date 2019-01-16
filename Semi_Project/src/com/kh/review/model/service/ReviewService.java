@@ -2,8 +2,8 @@ package com.kh.review.model.service;
 
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -46,4 +46,18 @@ public class ReviewService {
 		close(conn);
 		return result;
 	}
+	
+	// 리뷰 수정
+	public int updateReview(Review r) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().updateReview(conn, r);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 }

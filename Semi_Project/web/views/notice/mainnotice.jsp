@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/views/common/noticeHeader.jsp"%>
 
 	
 	<%@ page import="java.util.*,com.kh.notice.model.vo.Notice" %>
 	
+	<%@ include file="/views/common/noticeHeader.jsp"%>
 	<%
 		List<Notice> list=(List)request.getAttribute("list");
 
-%>
+	%>
 
 
 
@@ -38,17 +38,41 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
+ input[value='새등록']{
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none;
 
-
-
+  float:right;
+  cursor: pointer;}
 
 </style>
 
+<section>
+<script>
+
+function insertNotice(){
+	location.href="<%=request.getContextPath()%>/notice/insertNotice";
+}
+</script>
+
 			<div class="col-sm-1"></div>
 			<div class="col-sm-9">
-				
+				<div class="notcecontent">
 				<h2>공지사항</h2>
 				<br/>
+				<article id="edit">
+				<%if(logined!=null&&logined.getMemberId().equals("1212")) {%>
+					<input type="button" value="새등록" onclick="insertNotice();"/>
+				<%} %>
+				
+				</article>
+				
+				
+				
+				
 				<table class="table table-striped">
 					<colgroup>
 						<col width="86px" />
@@ -72,7 +96,12 @@ border-height: 10px;
 					<%} 
 					}%>	 				
 				</table>
+				</div>
+			
 
+</section>
 			</div>
+
+			
 
 <%@include file="/views/common/footer.jsp"%>

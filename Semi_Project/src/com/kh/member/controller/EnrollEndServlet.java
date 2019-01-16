@@ -61,13 +61,13 @@ public class EnrollEndServlet extends HttpServlet {
 			//회원가입 성공!
 			request.setAttribute("msg", "회원가입을 축하합니다!!");
 			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else
 		{
 			//회원가입 실패!!
 			request.setAttribute("msg", "회원가입에 실패했습니다.");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/login_myPage/enroll.jsp").forward(request, response);
+			request.setAttribute("loc", "/views/login_myPage/enroll.jsp");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		
 	}

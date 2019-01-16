@@ -1,3 +1,4 @@
+<%@page import="java.net.CookieStore"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.kh.book.model.vo.Book, com.kh.author.model.vo.Author, com.kh.search.model.vo.GenreCount, java.util.*" %>
@@ -6,6 +7,7 @@
 	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
 	List<Author> authors = (List<Author>)request.getAttribute("authorList");
 	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+	List<Book> recents = (List<Book>)request.getAttribute("recentList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (int)request.getAttribute("cPage"); 
 	String keyword = (String)request.getAttribute("keyword");
@@ -68,17 +70,25 @@
      			<!-- 저자 검색 결과 -->
                 <div id="author" class="col-xs-12 col-md-12">
                     <h3>저자 검색</h3>
+                    <div class="row author-result">
+                    	<div class="col-xs-12 col-md-12 author-info">
+                    
                     <%if(!authors.isEmpty()){ 
-                    	for(Author a : authors){%>
-                    		<div class="row result">
-                    			<div class="col-xs-12 col-md-12 author_info">
-                    				<p><a href="#"><%=a.getAuthorName() %></a></p>
-                    			</div>
-                    		</div>
+                    	int i=0;%>
+                    	<ul>
+                    	<%for(Author a : authors){%>
+                    		<li <%=i++>2?"class='hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    			
                     	<%}%>
-                    <%}else{%>
+                    	</ul>
+                    	<%if(authors.size() > 3){%>
+                    	<button><span><%=authors.size()-3%>명 더 보기 </span></button>
+                    	<%}
+                    }else{%>
                     <h4><strong>검색 결과 없음</strong></h4>
                     <%} %>
+                    	</div>
+               		</div>
                 </div>
                 
                 <!-- 책 검색 결과 -->
@@ -101,10 +111,10 @@
                     <%if(!books.isEmpty()) {
                     	for(Book b : books){
                    	%>
-                    	<div class='result row'>
+                    	<div class='book-result row'>
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
-                                <a href="#" class="thumbnail">
+                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
                                     <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
@@ -112,23 +122,23 @@
                             <div class='result-image col-xs-8 col-sm-9 col-md-9 col-lg-9'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
                                         <span><strong><%=b.getBookName() %></strong></span>
                                     </a>
                                 </h4>
                                 <p class="book_info">
-                                	<span class="book_info"><a href="#">5.0</a>|</span>
+                                	<span class="book_info"><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">5.0</a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
                             	<!-- 책 줄거리 -->
                             	<p class="book_info book_content">
-                            		<a href="#">
+                            		<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 190){
-                            				content = content.substring(0, 190)+"...";
+                            			if(content.length() > 188){
+                            				content = content.substring(0, 188)+"...";
                             			}
                             		%>
                             		
@@ -155,52 +165,29 @@
                 </div>
             </div>
 
+			
+			<!-- 최근 본 목록 -->
             <div id='cart' class="col-xs-12 col-md-1">
+
+			<%if(!recents.isEmpty()){ %>
 
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
                         <p class="text-center">최근 본 목록</p>
                     </div>
                 </div>
-
-                <div class='row'>
-                    <div class="cartContent col-xs-2 col-xs-offset-1 col-md-12 col-md-offset-0">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-
-                    </div>
+                <div class='row cart-row'>
+                	<div class="col-xs-1 col-md-0"></div>
+				<%for(Book b: recents){ %>
                     <div class="cartContent col-xs-2 col-md-12">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
+                        <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
+                            <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>" alt="도서 이미지">
                         </a>
-
                     </div>
-                    <div class="cartContent col-xs-2 col-md-12">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-
-                    </div>
-                    <div class="cartContent col-xs-2 col-md-12">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-
-                    </div>
-                    <div class="cartContent col-xs-2 col-md-12">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-
-                    </div>
-
+				<%}%>
                 </div>
+				<%}%>
+                
             </div>
 
         </div>
