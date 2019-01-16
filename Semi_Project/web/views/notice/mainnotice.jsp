@@ -10,16 +10,7 @@
 
 	%>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -47,6 +38,15 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
+ input[value='새등록']{
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none;
+
+  float:right;
+  cursor: pointer;}
 
 </style>
 

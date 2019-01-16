@@ -32,17 +32,28 @@ public class UpdateReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int renum = Integer.parseInt(request.getParameter("renum"));			// 수정 리뷰
 		int grade = Integer.parseInt(request.getParameter("star_grade"));		// 수정 별점
-		String title = request.getParameter("updateTitle");						// 수정 제목
 		String context = request.getParameter("updateContext");					// 수정한 내용
 		
 		Review r = new Review();
 		r.setReviewNum(renum);
 		r.setGrade(grade);
-		r.setReviewTitle(title);
 		r.setReviewContext(context);
 		
 		int result = new ReviewService().updateReview(r);
 		
+		String view = "/views/common/msg.jsp";
+		String msg = "";
+		String loc = "/member/review";
+				
+		if(result > 0) {
+			msg = "리뷰 수정 성공!";
+		} 
+		else {
+			msg = "리슈 수정 실패..";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

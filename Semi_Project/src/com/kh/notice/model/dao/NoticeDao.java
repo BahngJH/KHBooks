@@ -39,6 +39,7 @@ public class NoticeDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, n.getNoticeTitle());
 			pstmt.setString(2, n.getNoticeContent());
+			
 			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
