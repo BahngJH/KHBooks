@@ -5,23 +5,24 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.csCenter.model.service.QnaService;
+import com.kh.csCenter.model.vo.Qna;
 
 /**
- * Servlet implementation class qnaInputServlet
+ * Servlet implementation class QnaListServlet
  */
-@WebServlet("/qna/qnaInput")
-public class qnaInputServlet extends HttpServlet {
+@WebServlet("/qna/qnaList")
+public class QnaListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public qnaInputServlet() {
+    public QnaListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +31,9 @@ public class qnaInputServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String ask=request.getParameter("ask");
-		request.getRequestDispatcher("/views/csCenter/oneOnOneInput.jsp").forward(request, response);
-
-		
-		
-		
-		
+		List<Qna> list=new QnaService().selectList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/csCenter/qnaList.jsp").forward(request, response);
 		
 	}
 

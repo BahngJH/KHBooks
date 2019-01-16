@@ -6,11 +6,21 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.csCenter.model.dao.QnaDao;
 import com.kh.csCenter.model.vo.Qna;
 
 public class QnaService {
+	public List<Qna> selectList(){
+		Connection conn=getConnection();
+		List<Qna> list=new QnaDao().selectList(conn);
+		close(conn);
+		return list;
+	}
+	
+	
+	
 
 	public int qnaEnroll(Qna q) {
 		Connection conn = getConnection();
