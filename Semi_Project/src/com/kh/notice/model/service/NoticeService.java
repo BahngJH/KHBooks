@@ -44,9 +44,17 @@ public class NoticeService {
 		return result;
 	}
 	
-	public int updateNotice(int no) {
+	public int updateNotice(Notice n) {
 		Connection conn=getConnection();
-		int result=new NoticeDao().updateNotice(conn,no);
+		int result=new NoticeDao().updateNotice(conn,n);
+		System.out.println("서비스"+n);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 		
 	}
 	

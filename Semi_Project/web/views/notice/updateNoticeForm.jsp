@@ -12,23 +12,14 @@
 </style>
 
 
-<script> 
-	var content=$("['name=content']").val().trim();
-	function update(){
-		if(content.length<0){
-			alret("수정할 내용을 입력하세요");
-			return false;
-		}
-		return true;
-	}
-</script>
 
 
 <section>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-9">
+	<form action="<%=request.getContextPath()%>/notice/update">
 		<h2>공지사항 수정</h2>
-		<div id="update">
+		
 			<table id="update">
 
 				<tr>
@@ -56,14 +47,16 @@
 
 				</tr>
 
-			<button onclick="return update();">등록</button>
 			</table>
+			
+			<input type="submit" value="등록" onclick="update();"/>
+			</form>
 
 
 
-
-		</div>
+	
 </section>
 </div>
+
 
 <%@include file="/views/common/footer.jsp"%>

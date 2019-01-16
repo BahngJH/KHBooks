@@ -30,7 +30,7 @@ public class NoticeDao {
 		}
 	}
 	
-	public int updateNotice(Connection conn,Notice n,int no) {
+	public int updateNotice(Connection conn,Notice n) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("updateNotice");
@@ -38,8 +38,10 @@ public class NoticeDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,n.getNoticeTitle() );
 			pstmt.setString(2,n.getNoticeContent());
-			pstmt.setInt(3,no);
+			pstmt.setInt(3,n.getNoticeNo());
+		
 			result=pstmt.executeUpdate();
+			System.out.println(n);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
