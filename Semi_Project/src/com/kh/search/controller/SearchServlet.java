@@ -7,12 +7,14 @@ import java.util.List;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
+import com.kh.info.model.service.InfoService;
 import com.kh.search.model.service.SearchService;
 import com.kh.search.model.vo.GenreCount;
 
@@ -116,6 +118,31 @@ public class SearchServlet extends HttpServlet {
 		/*카테고리 정보 가져오기*/
 		List<GenreCount> gList = new SearchService().getGenreCount(key); 
 		
+		/*쿠키 정보 가져오기*/
+		Cookie [] cookies = request.getCookies();
+		String cookieValue = "";
+		
+		
+		List<Book> rList = new ArrayList<>();
+		
+		if(cookies != null){
+			for(Cookie c : cookies){
+				if(c.getName().equals("recent")){
+					cookieValue = c.getValue();
+					String [] values = cookieValue.split("\\|");
+					
+//					//처음과 끝 값의 | 제거
+//					values[0] = values[0].split("\\|")[1];
+//					values[values.length-1] = values[values.length-1].split("\\|")[0];
+										
+					for(String id : values) {
+						System.out.println(id);
+						rList.add(new InfoService().selectInfoBook(Integer.parseInt(id)));
+					}
+				}
+			}
+		}		
+		
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("category", genre);
@@ -123,6 +150,7 @@ public class SearchServlet extends HttpServlet {
 		request.setAttribute("bookList", deduplicationList);
 		request.setAttribute("authorList", aList);
 		request.setAttribute("genreList", gList);
+		request.setAttribute("recentList", rList);
 		request.getRequestDispatcher("/views/main/searchResult.jsp").forward(request, response);
 		
 	}
