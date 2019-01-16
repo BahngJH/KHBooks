@@ -72,15 +72,17 @@
                     <h3>저자 검색</h3>
                     <div class="row author-result">
                     	<div class="col-xs-12 col-md-12 author-info">
-                    <%if(!authors.isEmpty()){ %>
+                    
+                    <%if(!authors.isEmpty()){ 
+                    	int i=0;%>
                     	<ul>
                     	<%for(Author a : authors){%>
-                    		<li><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    		<li <%=i++>2?"class='hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
                     			
                     	<%}%>
                     	</ul>
                     	<%if(authors.size() > 3){%>
-                    	<button><span><%=authors.size()-1%>명 더 보기 </span></button>
+                    	<button><span><%=authors.size()-3%>명 더 보기 </span></button>
                     	<%}
                     }else{%>
                     <h4><strong>검색 결과 없음</strong></h4>

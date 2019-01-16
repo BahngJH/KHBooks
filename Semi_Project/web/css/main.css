@@ -166,6 +166,10 @@ div.author-info ul li{
 	font-size: 14px;
 }
 
+div.author-info ul li.hidden{
+	display: none;
+}
+
 div.author-info ul li a{
 	display: block;
 	text-decoration: none;
