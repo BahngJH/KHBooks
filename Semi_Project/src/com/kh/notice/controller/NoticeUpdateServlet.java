@@ -1,7 +1,7 @@
 package com.kh.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +15,7 @@ import com.kh.notice.model.vo.Notice;
 /**
  * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/notice/noticeupdate")
+@WebServlet("/notice/update")
 public class NoticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,14 +32,34 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+	
+		String title=request.getParameter("title");
+		String content =request.getParameter("content");
 		int no=Integer.parseInt(request.getParameter("no1"));
+		Notice n=new Notice();
+		n.setNoticeNo(no);
+		n.setNoticeContent(content);
+		n.setNoticeTitle(title);
 		
-		Notice n = new NoticeService().selectNo(no);
 		
+		int result=new NoticeService().updateNotice(n);
 		
-		request.setAttribute("n",n);
-		request.getRequestDispatcher("/views/notice/updateNoticeForm.jsp").forward(request, response);
+		System.out.println("수정후 : "+n);
+		String msg="";
+		String view="/views/common/msg.jsp";
+		String loc="";
 		
+		if(result>0) {
+			msg="수정 성공";
+			loc="/notice/noticemain?no="+n.getNoticeNo();
+		}else {
+			msg="수정실패";
+			loc="/";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
+		request.getRequestDispatcher(view).forward(request, response);
 		
 	}
 
