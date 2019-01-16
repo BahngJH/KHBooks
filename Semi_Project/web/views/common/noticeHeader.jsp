@@ -80,21 +80,22 @@ a {
 			</span>
 		</h4>
 		<hr>
-			<a class="dropdown-toggle" id="side"><strong>게시판</strong><span class="caret"></span></a>
-			
-	<ol class="hide">
+		<a class="dropdown-toggle" id="side"><strong>게시판</strong><span
+			class="caret"></span></a>
+
+		<ol class="hide">
 			<br />
 			<li><a href="http://www.naver.com">1:1문의</a></li>
 			<br />
 			<li><a href="http://www.naver.com">희망도서 신청</a></li>
 		</ol>
 		<hr>
-		<a href="" ><strong>도서신청</strong></a>
+		<a href=""><strong>도서신청</strong></a>
 		<hr>
-		
 
 
-		<a href="<%=request.getContextPath()%>/notice/noticemain" ><strong>공지사항</strong></a>
+
+		<a href="<%=request.getContextPath()%>/notice/noticemain"><strong>공지사항</strong></a>
 		<hr />
 
 		<br /> <br /> <br /> <br />
@@ -110,5 +111,4 @@ a {
 
 			</table>
 		</div>
-		</div>
-
+	</div>

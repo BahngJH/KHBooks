@@ -22,12 +22,12 @@ color:white;
 border: none;
  padding: 8px 20px;
    margin-top:100px;
-   margin-left:300px;
+   margin-left:370px;
    text-align:center;
 }
 
 fieldset a{float:right;}
-#content{margin:100px 0 0 0;}
+#content{margin:100px 0 0 0; text-align:center;}
 
 </style>
 <section>
@@ -35,26 +35,27 @@ fieldset a{float:right;}
 	<div class="col-sm-1"></div>
 			<div class="col-sm-9">
 				
-				<h2>공지사항</h2>
 				
-			
 				
+			<br/><br/><br/>
+				<fieldset>
+				<article id="edit">
 				<%if(logined!=null&&logined.getMemberId().equals("1212")){ %>
 			
 					<input type="button" value="삭제" onclick="deleteNotice();"/>
 					<input type="button" value="수정" onclick="updateNotice();"/>
 				<%}%> 
-				<br/><br/><br/><br/>
+			
+				</article>
 				
-				
-				<fieldset>
-						<h4><%=n.getNoticeTitle()%></h4>
+						<h2><%=n.getNoticeTitle()%></h2>
 						<hr/>
 					<a><%=n.getNoticeDate()%></a>
 										
 						
 						
 						<h4 id="content"><%=n.getNoticeContent()%></h4>
+						
 				</fieldset>
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -72,7 +73,7 @@ fieldset a{float:right;}
 				location.href="<%=request.getContextPath()%>/notice/noticedelete?no=<%=n.getNoticeNo()%>";
 			}
 			function updateNotice(){
-				location.href="<%=request.getContextPath()%>/notice/noticeupdate?no<%=n.getNoticeNo()%>";
+				location.href="<%=request.getContextPath()%>/notice/noticeupdate?no1=<%=n.getNoticeNo()%>";
 				
 			}
 		</script>

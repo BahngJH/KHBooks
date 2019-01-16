@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/views/common/noticeHeader.jsp"%>
 
 	
 	<%@ page import="java.util.*,com.kh.notice.model.vo.Notice" %>
 	
+	<%@ include file="/views/common/noticeHeader.jsp"%>
 	<%
 		List<Notice> list=(List)request.getAttribute("list");
 
@@ -20,7 +20,7 @@
 
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<section>
+
 <style>
 
 .col-sm-9 a{
@@ -48,15 +48,13 @@ border-height: 10px;
  text-align:center;
  }
 
-
-
-
 </style>
 
+<section>
 
 			<div class="col-sm-1"></div>
 			<div class="col-sm-9">
-				
+				<div class="notcecontent">
 				<h2>공지사항</h2>
 				<br/>
 				<table class="table table-striped">
@@ -82,9 +80,11 @@ border-height: 10px;
 					<%} 
 					}%>					
 				</table>
-			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-			</div>
+				</div>
+			
+
 </section>
+			</div>
 
 			
 
