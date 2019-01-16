@@ -151,7 +151,38 @@ div#category ul.list-group li.list-group-item a{
 	text-decoration: none;
 }
 
-.result {
+div.book-result {
 	border-bottom: 1px solid gray;
 	margin-top: 15px;
+}
+
+div.author-info ul{
+	padding-top: 10px;
+	padding-left: 0px;
+}
+
+div.author-info ul li{
+	list-style: none;
+	font-size: 14px;
+}
+
+div.author-info ul li a{
+	display: block;
+	text-decoration: none;
+	padding: 12px 10px;
+	color: #666;
+}
+
+div.author-info ul li a:hover{
+	color: #1f8ce6;
+}
+
+
+div.author-info ul li a:hover span.user-icon{
+	color: #1f8ce6;
+}
+
+div.author-info ul li span.user-icon{
+	color: #c4d1de;
+	padding-right: 3px;
 }

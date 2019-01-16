@@ -70,17 +70,23 @@
      			<!-- 저자 검색 결과 -->
                 <div id="author" class="col-xs-12 col-md-12">
                     <h3>저자 검색</h3>
-                    <%if(!authors.isEmpty()){ 
-                    	for(Author a : authors){%>
-                    		<div class="row result">
-                    			<div class="col-xs-12 col-md-12 author_info">
-                    				<p><a href="#"><%=a.getAuthorName() %></a></p>
-                    			</div>
-                    		</div>
+                    <div class="row author-result">
+                    	<div class="col-xs-12 col-md-12 author-info">
+                    <%if(!authors.isEmpty()){ %>
+                    	<ul>
+                    	<%for(Author a : authors){%>
+                    		<li><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    			
                     	<%}%>
-                    <%}else{%>
+                    	</ul>
+                    	<%if(authors.size() > 3){%>
+                    	<button><span><%=authors.size()-1%>명 더 보기 </span></button>
+                    	<%}
+                    }else{%>
                     <h4><strong>검색 결과 없음</strong></h4>
                     <%} %>
+                    	</div>
+               		</div>
                 </div>
                 
                 <!-- 책 검색 결과 -->
@@ -103,7 +109,7 @@
                     <%if(!books.isEmpty()) {
                     	for(Book b : books){
                    	%>
-                    	<div class='result row'>
+                    	<div class='book-result row'>
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
                                 <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
