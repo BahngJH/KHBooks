@@ -47,6 +47,15 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
+ input[value='새등록']{
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none;
+
+  float:right;
+  cursor: pointer;}
 
 </style>
 
