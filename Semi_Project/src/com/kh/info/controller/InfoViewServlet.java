@@ -34,7 +34,6 @@ public class InfoViewServlet extends HttpServlet {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
 		System.out.println(b);
-		request.setAttribute("bookId", bookId);
 		request.setAttribute("book", b);
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
