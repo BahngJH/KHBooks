@@ -104,13 +104,16 @@ public class ReviewDao {
 	public int updateReview(Connection conn, Review r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		ResultSet rs = null;
 		Review review = null;
 		String sql = prop.getProperty("updateReview");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, r.getReviewTitle());
+			pstmt.setString(2, r.getReviewContext());
+			pstmt.setInt(3, r.getGrade());
+			pstmt.setInt(4, r.getReviewNum());
+			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

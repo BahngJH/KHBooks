@@ -43,6 +43,19 @@ public class UpdateReviewServlet extends HttpServlet {
 		
 		int result = new ReviewService().updateReview(r);
 		
+		String view = "/views/common/msg.jsp";
+		String msg = "";
+		String loc = "/member/review";
+				
+		if(result > 0) {
+			msg = "리뷰 수정 성공!";
+		} 
+		else {
+			msg = "리슈 수정 실패..";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**
