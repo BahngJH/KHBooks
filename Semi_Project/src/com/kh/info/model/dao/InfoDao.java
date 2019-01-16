@@ -58,7 +58,6 @@ public class InfoDao {
 				b.setPageNum(rs.getInt("pageNum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
-				System.out.println(b);
 			}
 		}catch(SQLException e)
 		{
