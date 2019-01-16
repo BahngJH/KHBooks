@@ -64,6 +64,7 @@
 									</p>
 									<div class="review-options">
 										<button class="btn btn-primary" onclick="updateReview<%=r.getReviewNum()%>();">수정</button>
+										<input type="hidden" id="renum1" name="renum1" value=""/>
 										<button class="btn btn-primary" onclick="deleteReview<%=r.getReviewNum()%>();">삭제</button>
 									</div>
 								</div>
@@ -98,6 +99,8 @@
 								        $("input[type=checkbox]").prop("checked", false);
 									}
 								}
+								
+								
 								/* 리뷰 수정 메소드 */
 								function updateReview<%=r.getReviewNum()%>() {
 									$('.modal').modal();
@@ -110,7 +113,7 @@
 									location.href="<%=request.getContextPath()%>/review/deleteReview?no=<%=r.getReviewNum()%>";
 								}
 							</script>
-						<%} %>
+						<%} %>						
 					</ul>
 				</article>
 			</section>
@@ -118,17 +121,19 @@
 		
 		
 		<style>
-			.star{
-				background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-				background-size: auto 100%;
-				width:30px;
-				height: 30px;
-				display: inline-block;
-  				text-indent: -9999px;
-  				cursor: pointer;
-			}		
-			.star.on{background-position: 0 0;}
+			.star_rating {font-size:0; letter-spacing:-4px;}
+			.star_rating a {
+			    font-size:22px;
+			    letter-spacing:0;
+			    display:inline-block;
+			    margin-left:5px;
+			    color:#ccc;
+			    text-decoration:none;
+			}
+			.star_rating a:first-child {margin-left:0;}
+			.star_rating a.on {color:#777;}
 		</style>		
+		
 		<!-- 리뷰 수정 모달창 -->
 		<div class="modal" id="testModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
@@ -137,39 +142,71 @@
 						리뷰 수정
 					</div>
 					<div class="modal-body">
-						<form action="" method="post">
-							<table>
-								<tr>
-									<th><label>평점</label></th>
-									<td>
-										<div class="starRev">
-											<span class="star on"></span>
-											<span class="star"></span>
-											<span class="star"></span>
-											<span class="star"></span>
-											<span class="star"></span>
-										</div>
-									</td>
-									<script>
-									$('.starRev span').click(function(){
-										  $(this).parent().children('span').removeClass('on');
-										  $(this).addClass('on').prevAll('span').addClass('on');
-										  return false;
-										});
-									</script>
-								</tr>
+						<table>
+							<tr>
+								<th><label>평점</label></th>
+								<td>
+									<p class="star_rating">
+									    <a href="#" class="on">★</a>
+									    <a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+									</p>								
+								</td>
+							</tr>
+							<tr>
 								<th><label for="updateContext">내용</label></th>
-								<td><textarea name="updateContext" id="updateContext" class="form-control"></textarea></td>
-							</table>
-						</form>
+								<td>
+									<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
+										<textarea name="updateContext" id="updateContext" class="form-control" style="resize: none;" required>
+										</textarea>
+										<input type="hidden" id="star_grade" name="star_grade" value="">
+										<input type="hidden" id="renum" name="renum" value="">										
+									</form>
+								</td>
+							</tr>
+						</table>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">수정</button>
+						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
 						<button type="button" class="btn" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		<!-- 여기 까지 리뷰 수정 모달 -->
+		
+		
+		<script>
+			// 별점 스크립트
+			$( ".star_rating a" ).click(function() {
+				$(this).parent().children("a").removeClass("on");
+				$(this).addClass("on").prevAll("a").addClass("on");
+				return false;
+			});
+			
+			/* // 모달창을 중앙으로 띄우는 스크립트
+			$('.modal').modal('show').css({
+				'margin-top': function(){
+					return -($(this).height() / 2);
+				},
+				'margin-left': function(){
+				return -($(this).width() / 2);
+				}
+			}); */
+			
+			// 수정 버튼 메소드
+			function updateRe() {
+				var grade = $('.on').length;
+				$('#star_grade').val(grade);
+				$('#updateReviewFrm').submit();
+			}
+			
+				
+		</script>
+		
+		
+		
 	</div>
 </div>
