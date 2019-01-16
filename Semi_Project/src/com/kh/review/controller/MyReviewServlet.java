@@ -39,6 +39,7 @@ public class MyReviewServlet extends HttpServlet {
 			int memberNum = logined.getMemberNum();	
 			List<Review> list=new ReviewService().selectList(memberNum);
 			request.setAttribute("list", list);
+			request.setAttribute("cnt", list.size());
 			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
 		}
 		else {
