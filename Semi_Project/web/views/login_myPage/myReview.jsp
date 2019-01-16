@@ -4,6 +4,7 @@
 <%@ page import="java.util.*, com.kh.review.model.vo.Review" %>
 <% 
 	List<Review> list = (List)request.getAttribute("list");
+	int cnt = (int)request.getAttribute("cnt");
 %>
 
 <style>
@@ -28,6 +29,10 @@
 		margin-right: 30px;
 		margin-bottom: 20px;
 	}
+	article.review-container div#selectList p{
+		display: inline;
+		text-align: left;
+	}
 	div.modal-body{
 		width: 400px;
 	}
@@ -42,6 +47,7 @@
 					</div>
 					<hr/>
 					<div id="selectList">
+						<p>총 <%=cnt %>개의 리뷰가 있습니다.</p>
 						<input type="checkbox" id="checkAll" onclick="checkAll();"/> <label for="checkAll">전체선택</label>
 						&nbsp;
 						<button type="button" class="btn btn-primary" onclick="deleteSelectReview();">선택 삭제</button>
@@ -104,8 +110,7 @@
 								function updateReview<%=r.getReviewNum()%>() {
 									$('.modal').modal();						
 									$('#renum').val(<%=r.getReviewNum()%>);
-									$('#updateTitle').val(<%=r.getReviewTitle()%>);
-									$('#updateContext').val(<%=r.getReviewContext()%>);
+									$('#updateContext').val("<%=r.getReviewContext()%>");
 								}							
 								/* 리뷰 삭제 메소드 */
 								function deleteReview<%=r.getReviewNum()%>() {
@@ -158,13 +163,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th><label for="updateTitle">제목</label></th>
 								<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
-								<td>
-									<input type="text" size="40" id="updateTitle" name="updateTitle" class="form-control">
-								</td>
-							</tr>
-							<tr>
 								<th><label for="updateContext">내용</label></th>
 								<td>									
 									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
