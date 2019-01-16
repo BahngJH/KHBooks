@@ -56,18 +56,16 @@
 		            <div class="dropdown" style="display: inline">
 		                <button class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" role="button" aria-expanded="false" id="category">카테고리<span class="caret"></span></button>
 		                <ul class="dropdown-menu" role="menu" aria-labelledby="category">
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
-		                    <li><a href="#">카테고리</a></li>
+		                    <li><a href="#">소설</a></li>
+		                    <li><a href="#">경제</a></li>
+		                    <li><a href="#">인문</a></li>
+		                    <li><a href="#">역사</a></li>
+		                    <li><a href="#">여행</a></li>
+		                    <li><a href="#">컴퓨터/IT</a></li>
+		                    <li><a href="#">외국어</a></li>
+		                    <li><a href="#">과학</a></li>
+		                    <li><a href="#">건강</a></li>
+		                    <li><a href="#">어린이</a></li>
 		                </ul>
 	            	</div>
 	        	</div>
