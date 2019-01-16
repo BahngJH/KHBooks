@@ -48,7 +48,6 @@ public class ReviewDao {
 				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
 				r.setCheckOption(rs.getInt("checkOption"));
-				r.setReviewTitle(rs.getString("reviewTitle"));
 				list.add(r);
 			}
 		} catch(SQLException e) {
@@ -104,15 +103,13 @@ public class ReviewDao {
 	public int updateReview(Connection conn, Review r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		Review review = null;
 		String sql = prop.getProperty("updateReview");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, r.getReviewTitle());
-			pstmt.setString(2, r.getReviewContext());
-			pstmt.setInt(3, r.getGrade());
-			pstmt.setInt(4, r.getReviewNum());
+			pstmt.setString(1, r.getReviewContext());
+			pstmt.setInt(2, r.getGrade());
+			pstmt.setInt(3, r.getReviewNum());
 			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
