@@ -94,7 +94,7 @@ li {
 		  <!--상담 구분 라디오 버튼 div -->
 	        <div class="row">
 			 	 <div class="select_area col-md-12">
-            		<div class="row"> 
+            		<div class="row" id="ra"> 
 						<ul class="num01 col-sm-4">
 							<li><input type="radio" name="qanPart"  id="radio1" value="회원정보.서비스"  onclick="setAdcDvsnCodeRdo(this.value)" /> <label for="radio1">회원정보.서비스</label></li>						
 							<li><input type="radio" name="qanPart"  id="radio2" value="배송.수령일 안내"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio2">배송.수령일 안내</label></li>
@@ -156,8 +156,8 @@ li {
 		               <label for="telopt_2"><input id="telopt_2" type="radio"  name="telopt"  value="2" checked onclick="selMenu2(this.value)"/> 휴대폰번호</label>&nbsp;&nbsp;&nbsp;	                 
 		               <select id="pho1" title="휴대폰 사업자 식별번호" name="tel1" class="select_style01 form-control"  >					
 						</select>	-                 			
-						<input title="일반전화 국 번호" type="text" name="tel2" value="" class="tel form-control" style="width:80px;" maxlength="4" required_msg="연락처 정보가 없습니다. 연락처를 입력하세요." > -
-						<input title="일반전화 가입자 번호" type="text" name="tel3" value="" class="tel form-control" style="width:80px; "  maxlength="4" required_msg="연락처 정보가 없습니다. 연락처를 입력하세요." >
+						<input title="일반전화 국 번호" type="text" name="tel2" value="" class="tel form-control" style="width:80px;" maxlength="4" required > -
+						<input title="일반전화 가입자 번호" type="text" name="tel3" value="" class="tel form-control" style="width:80px; "  maxlength="4" required >
 		 			</div>
 		 			<hr/>
 		 			<div class="form-group">
@@ -195,7 +195,6 @@ li {
 
 	function setAdcDvsnCodeRdo(value) {
 		var val = value;
-
 		document.getElementById("askPart").innerText = val;
 	}
 
@@ -286,23 +285,18 @@ li {
 		}
 	});
 
-	function validate() {
+	 function validate() {
 		var content = $('textArea[name=qnaContent]').val();
-		var qnaPart = $('input[name=qnaPart]').val();
-
-		if (content.trim().length == 0) {
-			alert("내용을 입력하세요.")
-			document.getElementById("askContent").focus();
-			return false;
-		}
+		var qnaPart = $("#ra input[type='radio']:checked").val();
 
 		if (qnaPart == null) {
 			alert("상담 구분을 선택해주세요")
 			document.getElementById("askPartRadio").scrollIntoView();
 			return false;
 		}
+		
 		return true;
-	}
+	} 
 </script>
 
 

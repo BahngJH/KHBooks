@@ -10,16 +10,7 @@
 
 %>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Black+And+White+Picture"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -70,7 +61,7 @@ border-height: 10px;
 						<th>날짜</th>
 					</tr>
 					
-				
+			
 					<%for(Notice n : list){ %>
 					<% if(n.getStatus().equals("Y")){ %>
 					<tr>
@@ -79,7 +70,7 @@ border-height: 10px;
 						<td><%=n.getNoticeDate()%></td>					
 					</tr> 
 					<%} 
-					}%>					
+					}%>	 				
 				</table>
 
 			</div>

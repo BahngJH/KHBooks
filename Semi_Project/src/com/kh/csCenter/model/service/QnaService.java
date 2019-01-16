@@ -12,9 +12,27 @@ import com.kh.csCenter.model.dao.QnaDao;
 import com.kh.csCenter.model.vo.Qna;
 
 public class QnaService {
-	public List<Qna> selectList(){
+	
+	public int selectCount() {
+		Connection conn = getConnection();
+		int result = new QnaDao().selectCount(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<Qna> selectAllQna(){
 		Connection conn=getConnection();
-		List<Qna> list=new QnaDao().selectList(conn);
+		List<Qna> list=new QnaDao().selectAllQna(conn);
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
+	public List<Qna> selectList(int cPage, int numPerPage){
+		Connection conn=getConnection();
+		List<Qna> list=new QnaDao().selectList(conn, cPage, numPerPage);
 		close(conn);
 		return list;
 	}

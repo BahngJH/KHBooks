@@ -3,6 +3,7 @@ package com.kh.csCenter.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +37,9 @@ public class QnaInputEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(!ServletFileUpload.isMultipartContent(request)) {
+		if(!ServletFileUpload.isMultipartContent(request)) {			
 			request.setAttribute("msg", "문의 등록 오류");
-			request.setAttribute("loc", "/qna/qnaInput");
+			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
 		}
@@ -93,17 +94,15 @@ public class QnaInputEndServlet extends HttpServlet {
 		
 		if(rs>0) {
 			//문의 정상 등록
-			request.setAttribute("msg", "문의글이 정상적으로 등록되었습니다.");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/main/main.jsp").forward(request,response);			
+			msg="문의글이 정상적으로 등록되었습니다.";
+			loc="/csCenter/oneOnOneList";							
 		}else {
-			
-			request.setAttribute("msg", "문의글 등록에 실패하였습니다. 다시 작성해주세요.");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher(view).forward(request, response);
+			msg="문의글 등록에 실패하였습니다.";
+			loc="/csCenter/oneOnOneInput";						
 		}
-		
-		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request, response);		
 	}
 
 	/**

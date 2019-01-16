@@ -132,8 +132,7 @@ public class NoticeDao {
 				notice.setNoticeDate(rs.getDate("noticedate"));
 				notice.setStatus(rs.getString("status"));
 				list.add(notice);
-				
-				
+								
 			}
 
 		}catch(SQLException e) {
