@@ -136,7 +136,6 @@ public class SearchServlet extends HttpServlet {
 //					values[values.length-1] = values[values.length-1].split("\\|")[0];
 										
 					for(String id : values) {
-						System.out.println(id);
 						rList.add(new InfoService().selectInfoBook(Integer.parseInt(id)));
 					}
 				}
