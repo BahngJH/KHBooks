@@ -104,8 +104,7 @@
 								function updateReview<%=r.getReviewNum()%>() {
 									$('.modal').modal();						
 									$('#renum').val(<%=r.getReviewNum()%>);
-									$('#updateTitle').val(<%=r.getReviewTitle()%>);
-									$('#updateContext').val(<%=r.getReviewContext()%>);
+									$('#updateContext').val("<%=r.getReviewContext()%>");
 								}							
 								/* 리뷰 삭제 메소드 */
 								function deleteReview<%=r.getReviewNum()%>() {
@@ -158,13 +157,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th><label for="updateTitle">제목</label></th>
 								<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
-								<td>
-									<input type="text" size="40" id="updateTitle" name="updateTitle" class="form-control">
-								</td>
-							</tr>
-							<tr>
 								<th><label for="updateContext">내용</label></th>
 								<td>									
 									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>

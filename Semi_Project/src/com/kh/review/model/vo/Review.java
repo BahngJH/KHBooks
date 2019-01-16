@@ -16,13 +16,12 @@ public class Review {
 	private int bookId;				// 도서 번호
 	private String status;			// 상태
 	private int reviewNum;			// 댓글 번호
-	private String reviewTitle;		// 리뷰 제목
 	
 	
 	public Review() {}
 	
 	public Review(int memberNum, Date writeDate, int grade, int checkOption, String reviewContext, int bookId,
-			String status, String reviewTitle, int reviewNum) {
+			String status, int reviewNum) {
 		super();
 		this.memberNum = memberNum;
 		this.writeDate = writeDate;
@@ -31,7 +30,6 @@ public class Review {
 		this.reviewContext = reviewContext;
 		this.bookId = bookId;
 		this.status = status;
-		this.reviewTitle = reviewTitle;
 		this.reviewNum = reviewNum;
 	}
 	public int getMemberNum() {
@@ -83,19 +81,11 @@ public class Review {
 		this.reviewNum = reviewNum;
 	}
 
-	public String getReviewTitle() {
-		return reviewTitle;
-	}
-
-	public void setReviewTitle(String reviewTitle) {
-		this.reviewTitle = reviewTitle;
-	}
-
 	@Override
 	public String toString() {
 		return "Review [memberNum=" + memberNum + ", writeDate=" + writeDate + ", grade=" + grade + ", checkOption="
 				+ checkOption + ", reviewContext=" + reviewContext + ", bookId=" + bookId + ", status=" + status
-				+ ", reviewNum=" + reviewNum + ", reviewTitle=" + reviewTitle + "]";
+				+ ", reviewNum=" + reviewNum + "]";
 	}
 	
 	
