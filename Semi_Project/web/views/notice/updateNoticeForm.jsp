@@ -49,7 +49,7 @@
 
 			</table>
 			
-			<input type="submit" value="등록" onclick="update();"/>
+			<input type="submit" value="등록" />
 			</form>
 
 
