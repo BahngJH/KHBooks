@@ -63,8 +63,7 @@
 										<%=r.getReviewContext()%>
 									</p>
 									<div class="review-options">
-										<button class="btn btn-primary" onclick="updateReview<%=r.getReviewNum()%>();">수정</button>
-										<input type="hidden" id="renum1" name="renum1" value=""/>
+										<button class="btn btn-primary" onclick="updateReview<%=r.getReviewNum()%>();">수정</button>									
 										<button class="btn btn-primary" onclick="deleteReview<%=r.getReviewNum()%>();">삭제</button>
 									</div>
 								</div>
@@ -103,7 +102,10 @@
 								
 								/* 리뷰 수정 메소드 */
 								function updateReview<%=r.getReviewNum()%>() {
-									$('.modal').modal();
+									$('.modal').modal();						
+									$('#renum').val(<%=r.getReviewNum()%>);
+									$('#updateTitle').val(<%=r.getReviewTitle()%>);
+									$('#updateContext').val(<%=r.getReviewContext()%>);
 								}							
 								/* 리뷰 삭제 메소드 */
 								function deleteReview<%=r.getReviewNum()%>() {
@@ -135,14 +137,14 @@
 		</style>		
 		
 		<!-- 리뷰 수정 모달창 -->
-		<div class="modal" id="testModal" tabindex="-1" role="dialog">
+		<div class="modal" id="updateModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header">
 						리뷰 수정
 					</div>
 					<div class="modal-body">
-						<table>
+						<table class="tbl-modal">
 							<tr>
 								<th><label>평점</label></th>
 								<td>
@@ -156,14 +158,19 @@
 								</td>
 							</tr>
 							<tr>
-								<th><label for="updateContext">내용</label></th>
+								<th><label for="updateTitle">제목</label></th>
+								<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
 								<td>
-									<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
-										<textarea name="updateContext" id="updateContext" class="form-control" style="resize: none;" required>
-										</textarea>
-										<input type="hidden" id="star_grade" name="star_grade" value="">
-										<input type="hidden" id="renum" name="renum" value="">										
-									</form>
+									<input type="text" size="40" id="updateTitle" name="updateTitle" class="form-control">
+								</td>
+							</tr>
+							<tr>
+								<th><label for="updateContext">내용</label></th>
+								<td>									
+									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
+									<input type="hidden" id="star_grade" name="star_grade" value="">
+									<input type="hidden" id="renum" name="renum" value="">										
+								</form>
 								</td>
 							</tr>
 						</table>
@@ -177,24 +184,52 @@
 		</div>
 		<!-- 여기 까지 리뷰 수정 모달 -->
 		
+		<style>
+			.tbl-modal{
+				border-collapse: separate;
+				border-spacing: 5px 10px;
+				padding: 8px;			
+			}
+
+			.tbl-modal th{
+				width: 30px;
+			}
+
+			.modal {
+		        text-align: center;
+			}
+ 
+			@media screen and (min-width: 768px) { 
+       			.modal:before {
+	                display: inline-block;
+	                vertical-align: middle;
+	                content: " ";
+	                height: 100%;
+	    	    }
+			}	
+ 
+			.modal-dialog {
+		        display: inline-block;
+		        text-align: left;
+		        vertical-align: middle;
+			}
+		
+			div.modal-content{
+				width: 400px;
+			}
+			textarea#updateContext{
+				resize: none;
+			}
+		</style>
+		
 		
 		<script>
 			// 별점 스크립트
-			$( ".star_rating a" ).click(function() {
+			$(".star_rating a").click(function() {
 				$(this).parent().children("a").removeClass("on");
 				$(this).addClass("on").prevAll("a").addClass("on");
 				return false;
 			});
-			
-			/* // 모달창을 중앙으로 띄우는 스크립트
-			$('.modal').modal('show').css({
-				'margin-top': function(){
-					return -($(this).height() / 2);
-				},
-				'margin-left': function(){
-				return -($(this).width() / 2);
-				}
-			}); */
 			
 			// 수정 버튼 메소드
 			function updateRe() {
