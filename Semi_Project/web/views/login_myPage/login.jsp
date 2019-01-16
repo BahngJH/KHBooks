@@ -78,7 +78,7 @@
 			<div id="inputData"><input type="text"  id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디"><br>
 			<input type="password" id="password" name="memberPw" placeholder="비밀번호"></div>
         	<label class="keepLogin">아이디 저장 <input type="checkbox" id="checkbox" class="keepLogin" name="saveId" <%=cookieVal!=""?"checked" : ""%> ></label> 
-        	<a href="searchId.html" class="search">아이디 찾기 </a><a class="search" href="<%=request.getContextPath()%>/member/searchPw">비밀번호 찾기</a>
+        	<a href="<%=request.getContextPath()%>/member/searchId" class="search">아이디 찾기 </a><a class="search" href="<%=request.getContextPath()%>/member/searchPw">비밀번호 찾기</a>
          	<br> <%-- <span>
             		<%if(msg!=null){ %>
             <%=msg %>

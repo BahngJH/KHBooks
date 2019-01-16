@@ -1,7 +1,7 @@
 package com.kh.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +13,16 @@ import com.kh.notice.model.service.NoticeService;
 import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDeleteServlet
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/notice/noticedelete")
-public class NoticeDeleteServlet extends HttpServlet {
+@WebServlet("/notice/update")
+public class NoticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDeleteServlet() {
+    public NoticeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,32 +32,34 @@ public class NoticeDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+	
+		String title=request.getParameter("title");
+		String content =request.getParameter("content");
+		int no=Integer.parseInt(request.getParameter("no1"));
 		Notice n=new Notice();
-		int no=Integer.parseInt(request.getParameter("no"));	
+		n.setNoticeNo(no);
+		n.setNoticeContent(content);
+		n.setNoticeTitle(title);
 		
-		int result = new NoticeService().deleteNotice(no);
-			System.out.println(no);
+		
+		int result=new NoticeService().updateNotice(n);
+		
+		System.out.println("수정후 : "+n);
 		String msg="";
-		String view ="/views/common/msg.jsp";
+		String view="/views/common/msg.jsp";
 		String loc="";
+		
 		if(result>0) {
-			msg="공지사항 삭제완료!";
-			loc="/notice/noticemain?no="+n.getNoticeNo();
-				
-				
-			}else{
-				msg="삭제실패";
-				loc="/";
-			}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
+			msg="수정 성공";
+			loc="/notice/noticemain";
+		}else {
+			msg="수정실패";
+			loc="/notice/noticeupdate";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
 		request.getRequestDispatcher(view).forward(request, response);
-			
-			
-			
-		
-		
 		
 	}
 

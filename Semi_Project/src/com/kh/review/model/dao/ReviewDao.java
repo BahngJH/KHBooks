@@ -48,7 +48,7 @@ public class ReviewDao {
 				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
 				r.setCheckOption(rs.getInt("checkOption"));
-
+				r.setReviewTitle(rs.getString("reviewTitle"));
 				list.add(r);
 			}
 		} catch(SQLException e) {
@@ -92,6 +92,25 @@ public class ReviewDao {
 				pstmt.setInt(1, arr[i]);
 				result += pstmt.executeUpdate();					/* 배열의 값을 하나씩 setting하여 쿼리를 실행, 성공할 때 마다 result에 값을 더함*/
 			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	// 리뷰 수정
+	public int updateReview(Connection conn, Review r) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		Review review = null;
+		String sql = prop.getProperty("updateReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

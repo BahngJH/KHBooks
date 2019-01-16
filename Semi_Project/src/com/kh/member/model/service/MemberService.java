@@ -6,7 +6,9 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.kh.book.model.vo.Book;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
@@ -88,6 +90,23 @@ public class MemberService {
 		
 		close(conn);
 		return rs;
+	}
+	//아이디찾기 메소드
+	public String searchId(String name, String email) {
+		Connection conn = getConnection();
+		String id = new MemberDao().searchId(conn,name,email);
+		
+		close(conn);
+		return id;
+	}
+	//찜목록 불러오기
+	public List<Book> markList(int memberNum)
+	{
+		Connection conn = getConnection();
+		List<Book> list = new MemberDao().markList(conn,memberNum);
+		close(conn);
+		
+		return list;
 	}
 	
 }
