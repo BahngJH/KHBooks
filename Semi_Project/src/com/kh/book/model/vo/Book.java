@@ -16,6 +16,7 @@ public class Book {
 	private String bookImage;
 	private Date bookDate;
 	private String bookInfo;
+	private String bookContent;
 	private String editor;
 	private String translator;
 	private int pageNum;
@@ -28,7 +29,7 @@ public class Book {
 		super();
 	}
 	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
-			String bookImage, Date bookDate, String bookInfo, String editor, String translator, int pageNum, int stock,
+			String bookImage, Date bookDate, String bookInfo, String bookContent, String editor, String translator, int pageNum, int stock,
 			int sales) {
 		super();
 		this.bookName = bookName;
@@ -46,6 +47,7 @@ public class Book {
 		this.pageNum = pageNum;
 		this.stock = stock;
 		this.sales = sales;
+		this.bookContent = bookContent;
 	}
 	
 	
@@ -60,6 +62,7 @@ public class Book {
 		result = prime * result + bookId;
 		result = prime * result + ((bookImage == null) ? 0 : bookImage.hashCode());
 		result = prime * result + ((bookInfo == null) ? 0 : bookInfo.hashCode());
+		result = prime * result + ((bookContent == null) ? 0 : bookContent.hashCode());
 		result = prime * result + ((bookName == null) ? 0 : bookName.hashCode());
 		result = prime * result + ((editor == null) ? 0 : editor.hashCode());
 		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
@@ -105,6 +108,11 @@ public class Book {
 				return false;
 		} else if (!bookInfo.equals(other.bookInfo))
 			return false;
+		if (bookContent == null) {
+			if (other.bookContent != null)
+				return false;
+		} else if (!bookContent.equals(other.bookContent))
+			return false;
 		if (bookName == null) {
 			if (other.bookName != null)
 				return false;
@@ -148,9 +156,10 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookName=" + bookName + ", price=" + price + ", publisher=" + publisher + ", authorNum="
-				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", inbn=" + isbn + ", bookImage=" + bookImage
+				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", isbn=" + isbn + ", bookImage=" + bookImage
 				+ ", bookDate=" + bookDate + ", bookInfo=" + bookInfo + ", editor=" + editor + ", translator="
-				+ translator + ", pageNum=" + pageNum + ", stock=" + stock + ", sales=" + sales + "]";
+				+ translator + ", pageNum=" + pageNum + ", stock=" + stock + ", sales=" + sales + ", author=" + author
+				+ ", bookContent=" + bookContent + "]";
 	}
 	public String getBookName() {
 		return bookName;
@@ -212,6 +221,12 @@ public class Book {
 	public void setBookInfo(String bookInfo) {
 		this.bookInfo = bookInfo;
 	}
+	public String getBookContent() {
+		return bookContent;
+	}
+	public void setBookContent(String bookContent) {
+		this.bookContent = bookContent;
+	}
 	public String getEditor() {
 		return editor;
 	}
@@ -248,6 +263,7 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+	
 	
 	
 }

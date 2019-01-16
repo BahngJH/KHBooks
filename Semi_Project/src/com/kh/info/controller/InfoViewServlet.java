@@ -60,7 +60,6 @@ public class InfoViewServlet extends HttpServlet {
 		
 		
 		System.out.println(b);
-		request.setAttribute("bookId", bookId);
 		request.setAttribute("book", b);
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
