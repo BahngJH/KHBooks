@@ -30,6 +30,26 @@ public class NoticeDao {
 		}
 	}
 	
+	public int updateNotice(Connection conn,Notice n,int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateNotice");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,n.getNoticeTitle() );
+			pstmt.setString(2,n.getNoticeContent());
+			pstmt.setInt(3,no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	
 	public Notice selectOne(Connection conn,int no) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
