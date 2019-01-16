@@ -117,7 +117,7 @@
 									</td>
 								</tr>
 							</table><br>
-							<button class="btn-update" type="button" onclick="fn_updateInfo();">변경 완료</button>
+							<button class="btn-update btn btn-primary" type="button" onclick="fn_updateInfo();">변경 완료</button>
 						</form>
 						<script>
 						

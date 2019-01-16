@@ -1,7 +1,11 @@
-<%@ page language='java' contentType='text/html; charset=UTF-8'
+<%@ page language='java' contentType='text/html; charset=UTF-8' import='java.util.*, com.kh.book.model.vo.Book'
 	pageEncoding='UTF-8'%>
 	
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+<%
+	
+	Book b=(Book)request.getAttribute("book");
+%>
 <%@ include file='/views/common/header.jsp'%>
 
 
@@ -234,7 +238,7 @@ input:checked ~ label:after {
 }
 
 input:checked+.inner1 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner2 {
@@ -245,7 +249,7 @@ input:checked+.inner1 {
 }
 
 input:checked+.inner2 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner3 {
@@ -256,7 +260,7 @@ input:checked+.inner2 {
 }
 
 input:checked+.inner3 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner4 {
@@ -267,7 +271,7 @@ input:checked+.inner3 {
 }
 
 input:checked+.inner4 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .writereview {
@@ -319,10 +323,9 @@ function change2(obj) {
 					<!-- 대표이미지 -->
 					<div class='cover'>
 						<div class='bookcover'>
-							<a href='#' onclick=''> <img src='photo/bookpic/어린왕자.jpg'
+							<img src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="어린왕자'>
-							</a>
 						</div>
 						<div class='pluslate'>
 							<button class='plus btn-link' onclick="location.href='#'">크게보기</button>
@@ -336,7 +339,7 @@ function change2(obj) {
 						<!--책제목,작가이름,관심작가등록,지음,옮김,출판사,출간일 -->
 						<h1 class='booktitle'>
 							<!-- 책 제목 -->
-							<strong> 어린왕자<small>(a little prince)</small>
+							<strong><%=b.getBookName() %>
 							</strong>
 						</h1>
 						<div class='writer'>
@@ -351,13 +354,13 @@ function change2(obj) {
 							</span>
 							</span> 지음 <span class='line'>|</span>
 							<!-- 라인 -->
-							<span class='name'>이정서</span>
+							<span class='name'><%=b.getEditor() %></span>
 							<!-- 옮긴이 -->
 							옮김 <span class='line'>|</span>
 							<!-- 라인 -->
 							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'>새움</a>
 							</span> <br> <span class='date' title='출간일'> <!-- 출간일 -->
-								2017년 09월 22일 출간
+								<%=b.getBookDate() %>
 							</span> <span class='lating'>
 								<p>
 									<button class='starlating btn-link' onclick="location.href='#'">
@@ -380,16 +383,19 @@ function change2(obj) {
 					<div class='priceinfor'>
 						<!-- 가격정보 -->
 						<ul class='listprice'>
-							<li>정가 : <span class='org_price'> 6,000 원 </span> <br>
+						<%int oriPrice=b.getPrice()+2000; %>
+							<li>정가 : <span class='org_price'><%=oriPrice %> 원 </span> <br>
 								판매가 : <span class='sell_price' title='판매가'> <strong>
-										5,400 </strong> 원
+										<%=b.getPrice() %> </strong> 원
 							</span>
 							</li>
 							<li>
 								<!-- 포인트 -->
+								<%double point1 = b.getPrice()*0.05;
+								int point = (int)point1;%>
 								<div class='inkpoint'>
 									<span class='all_inkpoint'>통합포인트 : </span> <span
-										class='nom_point'> [포인트적립] <strong>300</strong>원 적립 [<strong>5</strong>%
+										class='nom_point'> [포인트적립] <strong><%=point %></strong>원 적립 [<strong>5</strong>%
 										적립]
 									</span> <br> <span class='earn_point'>[추가적립] 5만원 이상 구매 시
 										2천원 추가적립</span> <br> <span class='earn_point'>[회원혜택] 우수회원
@@ -402,8 +408,6 @@ function change2(obj) {
 			</div>
 		</div>
 		<div class='choiceTab'>
-			<!-- <input type='button' value='^_^' onmouseout='change2(this)' onmouseover='change1(this)' style='background-color:white;'><br>
-                마우스 올라오면 바뀌는 버튼<br><br> -->
 			<button class='jangba btn-lg' onmouseout='change2(this)'
 				onmouseover='change1(this)' onclick="location.href='#'">
 				<strong>장바구니 담기</strong>
@@ -455,12 +459,7 @@ function change2(obj) {
 					<ul>
 						<pre class='biline' style='width:96%;'>
 							<small>
-		                    	『어린 왕자』는 하나하나의 문장이 시(詩)만큼 간결하고 정교하게 구축된 작품이다. 
-		                    	작품 전체가 주는 감동과 여운은 생텍쥐페리의 그 같은 시적 정서에 크게 의존한다.
-		                    	이정서는 불어·영어·한국어 번역 비교를 통해 [어린 왕자]의 세계를 정밀하고 섬세하게 파고들었다. 
-		                    	기존 역자들이 tu와 vous의 구분을 무시한 채 임의로 번역했던 것을 바로잡아 불어의 뉘앙스를 그대로 살렸으며, 
-		                    	아침의 ‘Bonjour’도 ‘안녕’ 저녁의 ‘Bonsoir’도 ‘안녕’ 하는 식으로 번역함으로써 작품의 시간적 배경을 배제시켜온 기존 번역의 오류도 바로잡았다. 
-		                   		 이제 바르고 정확한 문장들로 쓰인 번역을 통해 생텍쥐페리가 [어린 왕자]를 통해 지구인들에게 선사하려던 메시지와 감동을 온전하게 파악하고 깊게 느낄 수 있다.
+								<%=b.getBookInfo() %>
                 			</small>
 						</pre>
 					</ul>
@@ -478,32 +477,7 @@ function change2(obj) {
 				<ul>
 					<pre class='bsline' style='width:96%;'>
 						<small>
-			                    비행기 고장으로 사막에 불시착한 조종사는 한 소년을 만난다. 소년은 자신이 사는 작은 별에 사랑하는 장미를 남겨 두고 세상을 보기위해 여행을 온 어린 왕자였다.
-			
-			                    어린 왕자는 몇 군데의 별을 돌아다닌 후 지구로 와 뱀, 여우, 조종사와 친구가 된다. 어느덧 여우와 어린 왕자는 서로를 길들여 ‘세상에서 하나밖에 없는 꼭 필요한 존재’로 남는다. 그리고 어린 왕자는 자신만의 특별한 존재인 장미를 떠올리며 떠나온 별로 다시 돌아가기로 결심한다.
-			                    
-			                    엔진 고장으로 사막에 불시착한 ‘나’는 어린 왕자를 만나게 된다. 
-			                    화가라는 직업을 포기하고 비행기 조종사가 된 ‘나’는 엔진 고장으로 사하라 사막에 불시착한다. 이때 어린 왕자가 나타나 양 한 마리를 그려달라고 조른다. ‘나’는 그 부탁을 들어주면서 어린 왕자의 별엔 화산이 셋 있고, 바오밥나무, 그가 사랑하는 꽃, 그 별에서의 생활들을 듣는다.
-			                    
-			                    그리고 같이 살고 있던 장미의 거짓말과 오만함 때문에 어린 왕자가 자신의 별을 떠나 여행을 하게 된 이유 등을 알게 된다.
-			                    
-			                    어린 왕자는 자신의 별과 이웃해 있던 별들을 방문하면서 다양한 어른들을 만난다. 
-			                    어린 왕자는 이웃한 여러 별을 여행한다. 권위만 내세우는 왕과 젠체하는 사람, 자책만 일삼는 술꾼과 소유하는 것만이 중요하다고 생각하는 부자, 책상을 떠나지 않으면서 세상의 지도를 그리는 지리학자와 일에 중독되어 있는 가로등 켜는 사람 등 다양한 사람들과 만나게 되고 그들의 잘못된 가치관에서 석연치 않음을 느낀다.
-			                    
-			                    마지막 별로 어린 왕자는 지구로 가게 되고, 뱀과 장미꽃을 만나고 사람을 찾으며 외로워한다. 
-			                    어린 왕자는 일곱 번째 별인 지구로 간다. 지구에 발을 들여놓았을 때 어린 왕자는 뱀과 꽃을 차례로 만나고, 사람들을 찾아 높은 산에 올라가 내 친구가 되어달라며 외롭다고 외친다. 그러나 들려오는 것은 메아리 뿐이다.
-			                    
-			                    그러다 한 정원에 5천 송이도 넘게 피어있는 장미꽃을 보고 놀란다. 자기가 가지고 있는 장미꽃이 세상에서 하나뿐이 아니라는 사실에 어린 왕자는 슬퍼하며 운다.
-			                    
-			                    어린 왕자는 여우를 만나서 길들인다는 것에 대한 의미를 알게 된다. 
-			                    풀숲에 엎드려 울고 있을 때 여우가 나타난다. 어린 왕자는 이리 와서 나와 같이 놀자고 한다. 그러나 여우는 길들여져 있지 않아서 너와 놀 수 없다고 한다. 여우는 길들인다는 것은 관계를 만든다는 것이고, 네가 나를 길들인다면 나는 너에게 이 세상에 오직 하나밖에 없는 존재가 된다는 이야기를 해 준다.
-			                    
-			                    그리고 여우는 중요한 것은 눈에 보이지 않으며, 너의 장미꽃을 소중하게 만든 건 그 꽃을 위해 네가 소비한 시간이고, 너는 네 장미에 대해 책임이 있다고 알려준다.
-			                    
-			                    뱀의 도움으로 어린 왕자는 자기 별로 돌아간다. 
-			                    어린 왕자는 뱀에게 도움을 청해 그의 별로 돌아가고자 한다. 때마침 비행기 엔진 수리를 마친 나는 어린 왕자와의 이별을 몹시 서글퍼하며 그가 모래언덕에서 사라지는 것을 지켜본다. 시간이 지나 ‘나’는 밤하늘을 바라보면서 어린 왕자의 별과 그의 장미꽃에 대해 생각한다.
-			                    
-			                    그리고 어떤 마음으로 바라보느냐에 따라 세상이 달라질 수 있다는 것을 깨달으며 어린 왕자를 그리워한다.
+			                   <%=b.getBookContent() %>
 	                	</small>
 					</pre>
 				</ul>
@@ -556,7 +530,7 @@ function change2(obj) {
                         <span class='line'>|</span>
                         <span class='reviewchoice'>추천 : 0</span>
                         <span class='line'>|</span>
-                        <img src='photo/rating/star05.gif'>
+                        <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
                         </small>
                     </div>
                     <div class='content'>
@@ -605,7 +579,7 @@ function change2(obj) {
                             <span class='line'>|</span>
                             <span class='reviewchoice'>추천 : 0</span>
                             <span class='line'>|</span>
-                            <img src='photo/rating/star05.gif'>
+                            <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
                         </small>
                     </div>
                     <div class='content'>
@@ -672,7 +646,7 @@ function change2(obj) {
                             <span class='line'>|</span>
                             <span class='reviewchoice'>추천 : 0</span>
                             <span class='line'>|</span>
-                            <img src='photo/rating/star04.gif'>
+                            <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
                         </small>
                     </div>
                     <div class='content'>
@@ -718,7 +692,7 @@ function change2(obj) {
                             <span class='line'>|</span>
                             <span class='reviewchoice'>추천 : 0</span>
                             <span class='line'>|</span>
-                            <img src='photo/rating/star03.gif'>
+                            <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
                         </small>
                     </div>
                     <div class='content'>

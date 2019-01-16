@@ -4,7 +4,6 @@
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
 
-<section>
 
 <style>
  a{color:black; cursor:pointer;text-decoration:none;}
@@ -28,6 +27,7 @@ border-bottom:2px solid darkgray;
 }
 
 </style>
+<section>
 
 
 		<div class="col-sm-1"></div>

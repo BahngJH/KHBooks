@@ -104,7 +104,7 @@
                     	<div class='result row'>
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
-                                <a href="#" class="thumbnail">
+                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
                                     <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
@@ -112,18 +112,18 @@
                             <div class='result-image col-xs-8 col-sm-9 col-md-9 col-lg-9'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
                                         <span><strong><%=b.getBookName() %></strong></span>
                                     </a>
                                 </h4>
                                 <p class="book_info">
-                                	<span class="book_info"><a href="#">5.0</a>|</span>
+                                	<span class="book_info"><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">5.0</a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
                             	<!-- 책 줄거리 -->
                             	<p class="book_info book_content">
-                            		<a href="#">
+                            		<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
