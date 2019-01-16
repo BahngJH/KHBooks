@@ -1,7 +1,6 @@
-package com.kh.notice.controller;
+package com.kh.info.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
+import com.kh.book.model.vo.Book;
+import com.kh.info.model.service.InfoService;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class InfoViewServlet
  */
-@WebServlet("/notice/noticeupdate")
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet("/inforconpare_hwang/infoView")
+public class InfoViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public InfoViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +30,13 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int no=Integer.parseInt(request.getParameter("no1"));
-		
-		Notice n = new NoticeService().selectNo(no);
-		
-		
-		request.setAttribute("n",n);
-		request.getRequestDispatcher("/views/notice/updateNoticeForm.jsp").forward(request, response);
-		
-		
+		// TODO Auto-generated method stub
+		int bookId=Integer.parseInt(request.getParameter("bookId"));
+		Book b=new InfoService().selectInfoBook(bookId);
+		System.out.println(b);
+		request.setAttribute("bookId", bookId);
+		request.setAttribute("book", b);
+		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
 
 	/**

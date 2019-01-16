@@ -44,13 +44,13 @@ public class NoticeService {
 		return result;
 	}
 	
-	
-	public Notice selectOne(int no) {
-		Connection conn=null;
-		Notice n =new NoticeDao().selectOne(conn,no);
-		close(conn);
-		return n;
+	public int updateNotice(int no) {
+		Connection conn=getConnection();
+		int result=new NoticeDao().updateNotice(conn,no);
+		
 	}
+	
+	
 	
 
 }

@@ -234,7 +234,7 @@ input:checked ~ label:after {
 }
 
 input:checked+.inner1 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner2 {
@@ -245,7 +245,7 @@ input:checked+.inner1 {
 }
 
 input:checked+.inner2 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner3 {
@@ -256,7 +256,7 @@ input:checked+.inner2 {
 }
 
 input:checked+.inner3 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .inner4 {
@@ -267,7 +267,7 @@ input:checked+.inner3 {
 }
 
 input:checked+.inner4 {
-	max-height: 1000px;
+	max-height: 2000px;
 }
 
 .writereview {
