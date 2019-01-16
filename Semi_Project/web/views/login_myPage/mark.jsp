@@ -7,16 +7,35 @@
 <%@ include file="/views/common/myHeader.jsp" %>
 
 <style>
-	div#buyList-options div.input-group{width: 30%; float: left;}
-	div.btn-group{float: right;}
+	.end{
+		font-size:150%;
+		margin-top:55px;
+		
+	}
+	input[type=checkbox]{
+	/* 체크박스 크기키움 */
+		-webkit-transform: scale(1.3);
+	}
+	.end input{
+		float:right;
+	}
+	#btnCheck{float:left;}
+	.middle{margin-top:40px;}
+	#allCheck{float:right; margin-right:15px;}
+	#allText{margin-right:10px;}
 </style>
-
-
-		<div class="col-sm-10">
+	<div class="col-sm-10">
 			<section>
 				<article class="buyList-container">
 					<div id="buyList-title">
 						<h3>찜 목록</h3>
+					</div>
+					<div id="btnCheck">
+					<button class="btn btn-default">선택 담기</button>
+					<button class="btn btn-danger">선택 삭제</button>
+					</div>
+					<div id="allCheck">
+					<span id="allText"><strong>전체선택</strong></span><input id="checkAll" onclick="cAll();" type="checkbox">
 					</div>
 					<hr style='margin-top: 60px; border: 1px solid lightgray;'/>
 					<div id="buyList-actions">
@@ -35,41 +54,45 @@
                                         alt="책 이미지">
                                 </a>
                             </div>
-                            <div class='result-image col-xs-9 col-sm-10 col-md-10 col-lg-10'>
+                            <div class='middle result-image col-xs-6 col-sm-7 col-md-7 col-lg-7'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
                                     <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
                                         <span><strong><%=b.getBookName() %></strong></span>
                                     </a>
                                 </h4>
+                                <!-- 저자, 출판사 정보 -->
+                                <p>방지훈</p>
+                                <button class="btn btn-default">담기</button>
+                                <button class="btn btn-default">삭제</button>
                                 
-                            	<!-- 책 줄거리 -->
-                            	<p class="book_info book_content">
-                            		<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
-                            		<%
-                            			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
-                            			String content = b.getBookInfo();
-                            			if(content.length() > 190){
-                            				content = content.substring(0, 190)+"...";
-                            			}
-                            		%>
-                            		
-                            		<%=content %></a>
-                            	</p>
-                            	<!-- 책 가격 -->
-	                            <p class="book_info book_price" >가격</p> <p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
+                            <!-- 책 가격과 체크박스 -->
                             </div>
-                        </div>
-                    
-                    		
+                            <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
+                            <input type="checkbox">
+                            </div>
+                        </div>		
                    	<%	
                     	}
-                    }
+                    }else{
                     %>
+                    <h2><b>현재 찜하신 상품이 없습니다.</b></h2>
+                    <%} %>
                     </div>
                 </div>
 					</div>
 				</article>
 			</section>
 		</div>
+		<script>
+			function cAll(){
+				if($('#checkAll').is(':checked')){
+					$('input[type=checkbox]').prop("checked",true);
+				}else{
+					$('input[type=checkbox]').prop("checked",false);
+				}
+			}
+		
+		</script>
 <%@ include file="/views/common/footer.jsp" %>

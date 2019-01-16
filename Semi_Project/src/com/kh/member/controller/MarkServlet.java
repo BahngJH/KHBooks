@@ -34,7 +34,6 @@ public class MarkServlet extends HttpServlet {
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
 		List<Book> list= new MemberService().markList(memberNum);
 		request.setAttribute("bookList", list);	
-		System.out.println(list);
 		request.getRequestDispatcher("/views/login_myPage/mark.jsp").forward(request, response);
 		
 		
