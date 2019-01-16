@@ -32,10 +32,11 @@ public class UpdateInfoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member m = (Member) request.getSession().getAttribute("logined");
 		if(m ==null) {
-			System.out.println("로그인이 안되었기에 로그인페이지로 이동");
+			//로그인 안되있어서 로그인페이지로 이동
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+			return;
 		}
-		
+		request.setAttribute("member", m);
 		request.getRequestDispatcher("/views/login_myPage/updateInfo.jsp").forward(request, response);
 		
 		

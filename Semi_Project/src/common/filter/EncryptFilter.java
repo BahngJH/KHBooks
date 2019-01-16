@@ -20,6 +20,8 @@ import common.encrypt.EncryptWrapper;
 @WebFilter(servletNames = {
 		"LoginEndServlet",
 		"EnrollEndServlet",
+		"SearchPwEndServlet",
+		"UpdateInfoEndServlet"
 		//업데이트 서블릿 추가해야함
 })
 public class EncryptFilter implements Filter {

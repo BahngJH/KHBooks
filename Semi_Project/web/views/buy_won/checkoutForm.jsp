@@ -2,18 +2,29 @@
     pageEncoding="UTF-8"%>
     
     
-<%@ include file="/views/common/header.jsp"%>
 
+<%@ include file="/views/common/noticeHeader.jsp"%>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/checkout.css">
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+<style>
+
+
+#buy_info_table{
+    border: 2px solid #9999ff;
+}
+
+
+
+
+</style>
 
 <title>주문/결제 -KH북스</title>
 </head>
+
+
+
 <body>
-
-
 
  <div class='container'>
         <!-- <div class='container-fluid'> -->

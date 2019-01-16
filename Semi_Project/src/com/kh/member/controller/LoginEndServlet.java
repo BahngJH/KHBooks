@@ -36,9 +36,8 @@ public class LoginEndServlet extends HttpServlet {
 		String pw = request.getParameter("memberPw");
 		String saveId = request.getParameter("saveId");
 		
-		Member m = new MemberService().memberLogin(id,pw);
-		
-		if(m==null) {
+		Member m = new MemberService().memberLogin(id);
+		if(m==null || !m.getMemberPw().equals(pw)) {
 			//로그인 실패 or 없는 회원
 			System.out.println("로그인 실패");
 			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);

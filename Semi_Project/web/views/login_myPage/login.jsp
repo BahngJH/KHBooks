@@ -24,16 +24,16 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
- div{
+ 		div{
             text-align: center;
         }
         #login{
-            position: relative;
+            position: relative; 
             top: 50px;
         }
         a{
             text-decoration: none;
-            color: pink;
+           	color:pink;
         }
         #checkdiv{
             width:305px; height:40px;
@@ -47,34 +47,46 @@
             position: relative;
            right: 10px;
         }
-        #logo{
+        #logo {
+        
             font-size: 200%;
         }
         span{
         	color:red;
         }
+        #inputData{
+        	text-align:center;
+        }
+        input[type=password],input[type=text]{
+        width:305px; height:40px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        }
+        input[type=submit],input[type=button] {
+        width:305px; height:51px;
+        }
+        
 </style>
 </head>
 
 <body>
 <div class="container">
-
-
-        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
+        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS<b></b></a></div>
         <hr>
         <form method="POST" name="memberInfo" onsubmit="return fn_log();" action="<%=request.getContextPath() %>/member/loginEnd" target="_self">
-			<input type="text" id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디" style="width:305px; height:40px;"><br>
-			<input type="password" id="password" name="memberPw" placeholder="비밀번호" style="width:305px; height:40px;"><br>
+			<div id="inputData"><input type="text"  id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디"><br>
+			<input type="password" id="password" name="memberPw" placeholder="비밀번호"></div>
         	<label class="keepLogin">아이디 저장 <input type="checkbox" id="checkbox" class="keepLogin" name="saveId" <%=cookieVal!=""?"checked" : ""%> ></label> 
-        	<a href="searchId.html" class="search">아이디 찾기 </a><a class="search" href="#">비밀번호 찾기</a>
+        	<a href="<%=request.getContextPath()%>/member/searchId" class="search">아이디 찾기 </a><a class="search" href="<%=request.getContextPath()%>/member/searchPw">비밀번호 찾기</a>
          	<br> <%-- <span>
             		<%if(msg!=null){ %>
             <%=msg %>
             <%msg=null;} %>
              </span --%> <br>
-          	<input type="submit" value="로그인" class="btn btn-primary" style="width:305px; height:50px;"><br><br>
+          	<input type="submit" value="로그인" class="btn btn-primary"><br><br>
         </form>
-            <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default" style="width:305px; height:50px;">
+            <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default">
  	   </div>
     <script>
     	function goEnroll(){

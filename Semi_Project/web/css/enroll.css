@@ -3,7 +3,7 @@ div {
         } 
         a{
             text-decoration: none;
-            color: pink;
+            
         }
         input[type=text],input[type=email],input[type=password],input[type=number]{
             width:305px; height:40px;
