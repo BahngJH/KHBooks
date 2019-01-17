@@ -64,7 +64,7 @@ function insertNotice(){
 				<h2>공지사항</h2>
 				<br/>
 				<article id="edit">
-				<%if(logined!=null&&logined.getMemberId().equals("1212")) {%>
+				<%if(logined!=null&&logined.getMemberId().equals("admin")) {%>
 					<input type="button" value="새등록" onclick="insertNotice();"/>
 				<%} %>
 				

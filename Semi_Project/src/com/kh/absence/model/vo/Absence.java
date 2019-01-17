@@ -3,13 +3,13 @@ package com.kh.absence.model.vo;
 import java.util.Date;
 
 public class Absence {
-	private int memberNum;//신청자 회원번호
-	private String bookName;//책제목
+	private int memberNum;//신청자 회원번호 
+	private String bookName;//책제목 O
 	private Date appDate;//신청날짜
-	private String author;//저자
-	private Date bookDate;//발행연도
-	private String ISBN;//isbn
-	private String publisher;//출판사
+	private String author;//저자 O
+	private Date bookDate;//발행연도O
+	private String ISBN;//isbnO
+	private String publisher;//출판사 O
 	private boolean appCancel;//취소여부 false/true
 	private String status;//상태 Y,F
 	private int appNum; //신청번호

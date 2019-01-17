@@ -85,9 +85,14 @@ a {
 
 		<ol class="hide">
 			<br />
-			<li><a href="http://www.naver.com">1:1문의</a></li>
+			<li><%if(logined!=null){%>
+				<a href="<%=request.getContextPath()%>/csCenter/oneOnOneList">1:1문의</a>
+				</li>
 			<br />
-			<li><a href="http://www.naver.com">희망도서 신청</a></li>
+
+
+			<li><a href="<%=request.getContextPath()%>/csCenter/appendBookForm">희망도서 신청</a></li>
+			<%}%>
 		</ol>
 		<hr>
 		<a href=""><strong>도서신청</strong></a>
