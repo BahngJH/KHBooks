@@ -147,6 +147,7 @@ public class SearchServlet extends HttpServlet {
 		request.setAttribute("category", genre);
 		request.setAttribute("keyword", key);
 		request.setAttribute("bookList", deduplicationList);
+		request.setAttribute("order", order);
 		request.setAttribute("authorList", aList);
 		request.setAttribute("genreList", gList);
 		request.setAttribute("recentList", rList);

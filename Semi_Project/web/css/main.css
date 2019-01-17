@@ -112,6 +112,13 @@ p#book_price{
 	border-left: 1px solid gray;
 }
 
+.order-buttons li span {
+	text-decoration: none;
+	color: black;
+	padding-left: 8px;
+	border-left: 1px solid gray;
+}
+
 .category_title {
 	border-bottom: 1px solid black;
 	color: black;

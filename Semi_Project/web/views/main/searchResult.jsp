@@ -63,7 +63,6 @@
             	for(GenreCount g : genres){
             		allGenre += g.getCnt();
             	}
-            
             %>
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
@@ -116,14 +115,21 @@
                     <h3>책 검색</h3>
                     <div id='order' class="row">
                         <ul class="order-buttons list-inline col-xs-12 col-md-12">
-                            <!--첫번째는 padding-left 속성 빼주기-->
+                            <!-- 정렬 버튼 -->
                             <%
                             String [] orderTitle ={"검색 결과순", "인기순", "최신순", "평점순", "리뷰 많은순", "낮은 가격 순"}; 
                             String [] orderValue ={"popularity", "recent", "grade", "review", "price"};  
                             for(int i=0;i<orderTitle.length;i++){
+                            	if(order != null && i!=0 && order.equals(orderValue[i-1])){%>
+                            		<li><span><strong><%=orderTitle[i] %></strong></span></li>	
+                            <%	}else if(order.equals("default") && i==0){
+                            %>	
+                            	<li><span><strong><%=orderTitle[0] %></strong></span></li>	
+                            <%	}else{
                             %>
                             <li><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&category=<%=category %>&cPage=1<%=i==0?"":"&order="+orderValue[i-1]%>"><%=orderTitle[i] %></a></li>
-                            <%} %>
+                            <%}
+                            } %>
                         </ul>
                     </div>
                     <div>
