@@ -7,47 +7,113 @@
 <style>
 body
 {
-    margin-top:40px;
+	width:100%;
     background-color:silver;
 }
-
+html, body
+{
+	width:100%;
+    height:100%;
+}
 .container
 {
+	height:auto;
     border:1px solid darkgray;
     background-color:white;
 }
-
 .comparebook
 {
+	right:12%;
+	max-width:100%;
+	width:100%;
+	height:auto;
     text-align: center;
     margin-top:35px;
     margin-bottom:35px;
-    display:flex;
-    justify-content:center;
 }
-
-.compare
+table
 {
-    align-self:flex-end;
+	width:100%;
+	border:2px solid grey;
+	border-collapse: collapse;
 }
-
-.book-1
-{
-	left:40px;
+th, td {
+    border: 2px solid grey;
+    padding: 20px;
+    text-align: center;
 }
-.book-2
-{
-	right:40px;
+th {
+    background-color: #bbdefb;
 }
-
-html, body
-{
-    height:100%;
+td {
+	background-color: #e3f2fd;
 }
-
-.book-line col-md-2
-{
-    height:100%;
+.book-1{
+	position: relative;
+	width: 100%;
+	height: 0;
+	right: 15px;
+	overflow: hidden;
+	padding-top:20px;
+	padding-bottom: 220px;
+}
+.book-1 .wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.book-2{
+	position: relative;
+	width: 100%;
+	height: 0;
+	right: 5px;
+	overflow: hidden;
+	padding-top:20px;
+	padding-bottom: 220px;
+}
+.book-2 .wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.book-3{
+	position: relative;
+	width: 100%;
+	height: 0;
+	right: -5px;
+	overflow: hidden;
+	padding-top:20px;
+	padding-bottom: 220px;
+}
+.book-3 .wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.book-4{
+	position: relative;
+	width: 100%;
+	height: 0;
+	right: -15px;
+	overflow: hidden;
+	padding-top:20px;
+	padding-bottom: 220px;
+}
+.book-4 .wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.lists {
+	margin-top:50px;
 }
 </style>
 
@@ -57,149 +123,149 @@ html, body
  
 
     <div class='row section'>
-        <div class='comparebook col-md-12'>
-            <div class='book-1 col-md-6'>
-                <img src='photo/bookpic/어린왕자.jpg' height=300px; />
-                <div class="compare">
-                    <h1 class="booktitle" style='font-size:20px; font-weight:bold;'><strong>어린왕자</strong></h1>
-                    <span class="writerName"><small>작가 : <a href="#">앙투안 드 생텍쥐페리</a></small></span>
-                    <span class="list_price">
-                        <li style="list-style:none;">
-                            <small>
-                                정가 :
-                            </small>
-                            <span class="org_price" style="font-weight:bold">
-                                6,000
-                            </span>
-                            <small>
-                                원
-                            </small>
-                            <br>
-                            <small>
-                                판매가 :
-                            </small>
-                            <span class="sell_price" title="판매가">
-                                <strong style="font-size:large; color:red; font-weight:bold;">
-                                    5,400
-                                </strong>
-                                <small>
-                                    원
-                                </small>
-                            </span>
-                        </li>
-                    </span>
-                    <span class="publishDate" title="출간일">
-                        <li style="list-style:none;">
-                            <small>
-                                출간일 :
-                            </small>
-                            <span class="date">
-                                <small>
-                                    2017년 09월 22일 출간
-                                </small>
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                    <span class="publisher" title="출판사">
-                        <li style="list-style:none;">
-                            <small>
-                                출판사 :
-                            </small>
-                            <span class="publisherName">
-                                <small>
-                                    <a href="#">새움</a>
-                                </small>
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                    <span class="reviewRating" title="평점">
-                        <li style="list-style:none;">
-                            <small>
-                                평점 :
-                            </small>
-                            <span class="date">
-                                <img src="http://image.kyobobook.co.kr/newimages/apps/b2c/search/2009/star05.gif">
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                </div>
+		<div class='comparebook col-sm-12'>
+			<div class='bookasd col-sm-2' style='width:40%;'>
+ 		 	</div>
+		
+			<div class='book-1 col-sm-2' style='width:15%;'>
+		        <img src='<%=request.getContextPath() %>/images/book/어린왕자.jpg' height=200px; />
+ 		 	</div>
+		
+		
+		
+			<div class='book-2 col-sm-2' style='width:15%;'>
+			    <img src='<%=request.getContextPath() %>/images/book/해리포터2.jpg' height=200px; />
+			</div>
+			
+			
+			
+			
+			<div class='book-3 col-sm-2' style='width:15%;'>
+			    <img src='<%=request.getContextPath() %>/images/book/해리포터2.jpg' height=200px; />
+			</div>
+			
+			
+			
+			
+			<div class='book-4 col-sm-2' style='width:15%;'>
+			    <img src='<%=request.getContextPath() %>/images/book/해리포터2.jpg' height=200px; />
+			</div>
+		</div>
+            
+            
+            
+            
+            <div class='lists col-sm-12' style='margin-bottom:30px; width:80%; left:10%;'>
+            <table class='compare_list' summary>
+                	<caption></caption>
+                	<colgroup>
+                		<col width="189px">
+                		<col width="189px">
+                		<col width="189px">
+                		<col width="189px">
+                		<col width="189px">
+                	</colgroup>
+                	<tbody>
+                		<tr class='border_colr' id='bookNm'>
+                			<th scope='row'>
+                				<strong class='rank_title' style='text-weight:bold;'>도서이름</strong>
+                			</th>
+                			<td id='buycheck01'>
+                				<span>소설 도쿄(누벨 바그 2)</span>
+                			</td>
+                			<td id='buycheck02'>
+                				<span>운수 좋은 날(한국문학전집 34)</span>
+                			</td>
+                			<td id='buycheck03'>
+                				<span>해리포터: 마법사의 돌</span>
+                			</td>
+                			<td id='buycheck04'>
+                				<span>어린왕자</span>
+                			</td>
+                		</tr>
+                		<tr class='tr_color' id='price'>
+                		<th scope="row">
+                      		<strong class="rank_title" style='text-weight:bold;'>가격</strong>
+	                    </th>
+	                    <td id="buycheck01">
+		                    <div class="spec_price">
+			                    <span class="cost">12,000원</span>
+			                    <span class="price">10,800원</span>ㅣ<span class="discount">600P</span>
+		                    </div>
+                    	</td>
+                    	<td id="buycheck02">
+                      		<div class="spec_price">
+		                        <span class="cost">10,000원</span>
+		                        <span class="price">9,000원</span>ㅣ<span class="discount">500P</span>
+                        	</div>
+                    	</td>
+                    	<td id="buycheck03">
+                      		<div class="spec_price">
+                          		<span class="cost">9,000원</span>
+                          		<span class="price">8,100원</span>ㅣ<span class="discount">450P</span>
+                        	</div>
+                    	</td>
+                    	<td id="buycheck04">
+                      		<div class="spec_price">
+			                    <span class="cost">6,000원</span>
+			                    <span class="price">5,400원</span>ㅣ<span class="discount">300P</span>
+                        	</div>
+                    	</td>
+                		</tr>
+                		<tr id="pubNm">
+							<th scope="row">
+							  <strong class="rank_title" style='text-weight:bold;'>출판사</strong>
+							</th>
+							<td id="buycheck01">
+							  <span>아르띠잔</span>
+							</td>
+							<td id="buycheck02">
+							  <span>문학과지성사</span>
+							</td>
+							<td id="buycheck03">
+							  <span>문학수첩</span>
+							</td>
+							<td id="buycheck04">
+							  <span>새움</span>
+							</td>
+						</tr>
+						<tr id="author">
+							<th scope="row">
+							  <strong class="rank_title" style='text-weight:bold;'>저자</strong>
+							</th>
+							<td id="buycheck01">
+							  <span>김학찬</span>
+							</td>
+							<td id="buycheck02">
+							  <span>현진건</span>
+							</td>
+							<td id="buycheck03">
+							  <span>J. K. 롤링</span>
+							</td>
+							<td id="buycheck04">
+							  <span>앙투안 드 생텍쥐페리</span>
+							</td>
+						</tr>
+						<tr id="pubYmd">
+							<th scope="row">
+								<strong class="rank_title" style='text-weight:bold;'>출간일자</strong>
+							</th>
+							<td id="buycheck01">
+								<span>2019년 1월 24일</span>
+			               	</td>
+			               	<td id="buycheck02">
+								<span>2008년 3월 6일</span>
+		               		</td>
+			               	<td id="buycheck03">
+								<span>2014년 12월 18일</span>
+			               	</td>
+		               		<td id="buycheck04">
+								<span>2017년 9월 22일</span>
+						  	</td>
+						</tr>
+                	</tbody>
+                </table>
             </div>
-    
-            <div class='book-2 col-md-6'>
-                <img src='photo/bookpic/해리포터2.jpg' height=300px; />
-                <div class="compare">
-                    <h1 class="booktitle" style='font-size:20px; font-weight:bold;'><strong>해리포터</strong></h1>
-                    <span class="writerName"><small>작가 : <a href="#">조앤.K.롤링</a></small></span>
-                    <span class="list_price">
-                        <li style="list-style:none;">
-                            <small>
-                                정가 :
-                            </small>
-                            <span class="org_price" style="font-weight:bold">
-                                9,000
-                            </span>
-                            <small>
-                                원
-                            </small>
-                            <br>
-                            <small>
-                                판매가 :
-                            </small>
-                            <span class="sell_price" title="판매가">
-                                <strong style="font-size:large; color:red; font-weight:bold;">
-                                    8,100
-                                </strong>
-                                <small>
-                                    원
-                                </small>
-                            </span>
-                        </li>
-                    </span>
-                    <span class="publishDate" title="출간일">
-                        <li style="list-style:none;">
-                            <small>
-                                출간일 :
-                            </small>
-                            <span class="date">
-                                <small>
-                                    2014년 12월 18일 출간
-                                </small>
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                    <span class="publisher" title="출판사">
-                        <li style="list-style:none;">
-                            <small>
-                                출판사 :
-                            </small>
-                            <span class="publisherName">
-                                <small>
-                                    <a href="#">문학수첩</a>
-                                </small>
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                    <span class="reviewRating" title="평점">
-                        <li style="list-style:none;">
-                            <small>
-                                평점 :
-                            </small>
-                            <span class="date">
-                                <img src="http://image.kyobobook.co.kr/newimages/apps/b2c/search/2009/star05.gif">
-                            </span>
-                            <br>
-                        </li>
-                    </span>
-                    </li>
-                    </span>
-                </div>
-            </div>
-        </div>
     </div>
   </div>
         

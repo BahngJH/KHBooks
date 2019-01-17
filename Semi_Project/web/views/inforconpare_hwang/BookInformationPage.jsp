@@ -6,7 +6,6 @@ com.kh.author.model.vo.Author'
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%
 	Book b=(Book)request.getAttribute("book");
-	Author a=(Author)request.getAttribute("author");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	int reviewsize=(int)request.getAttribute("reviewsize");
 	
@@ -23,11 +22,10 @@ html, body
 }
 
 body {
-/* 	margin-top:40px; */
 	background-color: silver;
 }
-
 .container {
+	height:auto;
 	border: 1px solid darkgray;
 	background-color: white;
 }
@@ -218,9 +216,6 @@ li {
 	white-space: inherit;
 }
 
-.writereview {
-	float: right;
-}
 
 .allreview {
 	border-left-color: black;
@@ -231,8 +226,6 @@ li {
 }
 
 .reviewWrite {
-	margin-right:50px;
-	float:right;
 	-moz-box-shadow:inset 0px 0px 10px 1px #dcecfb;
 	-webkit-box-shadow:inset 0px 0px 10px 1px #dcecfb;
 	box-shadow:inset 0px 0px 10px 1px #dcecfb;
@@ -260,8 +253,8 @@ li {
 	font-size:11px;
 	font-weight:bold;
 	font-style:normal;
-	height:23px;
-	line-height:23px;
+	height:70px;
+	line-height:70px;
 	width:51px;
 	text-decoration:none;
 	text-align:center;
@@ -279,10 +272,106 @@ li {
 .reviewtable {
 	margin-bottom: 35px;
 }
-
 .sections {
 	position: relative;
 	margin-left: 10px;
+}
+.alt {
+	float:right;
+	-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
+	background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
+	background-color:#7396ff;
+	-webkit-border-top-left-radius:9px;
+	-moz-border-radius-topleft:9px;
+	border-top-left-radius:9px;
+	-webkit-border-top-right-radius:9px;
+	-moz-border-radius-topright:9px;
+	border-top-right-radius:9px;
+	-webkit-border-bottom-right-radius:9px;
+	-moz-border-radius-bottomright:9px;
+	border-bottom-right-radius:9px;
+	-webkit-border-bottom-left-radius:9px;
+	-moz-border-radius-bottomleft:9px;
+	border-bottom-left-radius:9px;
+	text-indent:0px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	font-weight:bold;
+	font-style:normal;
+	height:23px;
+	line-height:23px;
+	width:40px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 0px 0px #3522c7;
+}
+.alt:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
+	background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
+	background-color:#5784ff;
+}.alt:active {
+	position:relative;
+	top:1px;
+}
+.del {
+	float:right;
+	-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	box-shadow:inset 0px 0px 7px 1px #9fbcf5;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
+	background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
+	background-color:#7396ff;
+	-webkit-border-top-left-radius:9px;
+	-moz-border-radius-topleft:9px;
+	border-top-left-radius:9px;
+	-webkit-border-top-right-radius:9px;
+	-moz-border-radius-topright:9px;
+	border-top-right-radius:9px;
+	-webkit-border-bottom-right-radius:9px;
+	-moz-border-radius-bottomright:9px;
+	border-bottom-right-radius:9px;
+	-webkit-border-bottom-left-radius:9px;
+	-moz-border-radius-bottomleft:9px;
+	border-bottom-left-radius:9px;
+	text-indent:0px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	font-weight:bold;
+	font-style:normal;
+	height:23px;
+	line-height:23px;
+	width:40px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 0px 0px #3522c7;
+}
+.del:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
+	background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
+	background-color:#5784ff;
+}.del:active {
+	position:relative;
+	top:1px;
+}
+
+#counter {
+  background:rgba(255,0,0,0.5);
+  border-radius: 0.5em;
+  padding: 0 .5em 0 .5em;
+  font-size: 0.75em;
 }
 </style>
 
@@ -492,23 +581,83 @@ function showBigPic()
 					<br>
 				</table>
 			</div>
-
+			
+			
+			
+			<style>
+			.wrap11 {
+			    width: 100%;
+			    height: auto;
+			    position: relative;
+			    display: inline-block;
+			    margin-bottom:20px;
+			}
+			.wrap11 textarea {
+			    width: 100%;
+			    resize: none;
+			    min-height: 7.5em;
+			    line-height:1.6em;
+			    max-height: 50em;
+			    word-break:break-all;
+			}
+			.wrap11 span {
+			    position: absolute;
+			    bottom: 5px;
+			    right: 5px;
+			}
+			#counter {
+			  background:rgba(255,0,0,0.5);
+			  border-radius: 0.5em;
+			  padding: 0 .5em 0 .5em;
+			  font-size: 0.75em;
+			}
+			.reviewWrite{
+				margin-right:0px;
+			}
+			div.button
+			{
+			   margin: auto;
+			   width: 50%;
+			}
+			</style>
+			
+			<!-- 리뷰쓰기 카운트 -->
+			<script>
+			$(function() {
+			      $('#content').keyup(function (e){
+			          var content = $(this).val();
+			          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+			          $('#counter').html(content.length + '/100');
+			      });
+			      $('#content').keyup();
+			});
+			</script>
+			
+			<style>
+			</style>
 			<div class='reviewtable'>
-                 <div class='writereview'>
-                     <button class='reviewWrite' onclick='#'>
-				<strong>리뷰쓰기</strong>
-					</button>
-                 </div>
 				<thead class='reviewth'>
 					<strong>회원리뷰</strong>
 				</thead>
+				</script>
 				<br>
 				<br>
 				<ul>
+				<div>
+					<form action="#" name="reviewText" method="post">
 					<pre class='reviewpre' style='width:96%'>
-                    <br>
+					<div class='wrappluswritereview' style='width:100%'>
+	                    <div class="wrap11">
+	                    	<textarea id="content" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
+	                    	<span id="counter"></span>
+	                    </div>
+	                    <div class='writereview' style='margin-top:-10px;'>
+                    		<input type='submit' class='reviewWrite' value='리뷰쓰기'>
+	                    </div>
+					</div>
+					</form>
+					<hr>
                     <%for(Review r : list) {%>
-	                    
 	                    <style>
 	                    input[type='checkbox'] {
 							display: none;
@@ -528,6 +677,7 @@ function showBigPic()
 						input:checked ~ label:after {
 							content: '닫기';
 						}
+						
 	                    .inner<%=r.getReviewNum()%> {
 							max-height: 26px;
 							overflow: hidden;
@@ -536,97 +686,6 @@ function showBigPic()
 						
 						input:checked+.inner<%=r.getReviewNum()%> {
 							max-height: 1000px;
-						}
-						
-						.alt {
-							float:right;
-							-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
-							background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
-							filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
-							background-color:#7396ff;
-							-webkit-border-top-left-radius:9px;
-							-moz-border-radius-topleft:9px;
-							border-top-left-radius:9px;
-							-webkit-border-top-right-radius:9px;
-							-moz-border-radius-topright:9px;
-							border-top-right-radius:9px;
-							-webkit-border-bottom-right-radius:9px;
-							-moz-border-radius-bottomright:9px;
-							border-bottom-right-radius:9px;
-							-webkit-border-bottom-left-radius:9px;
-							-moz-border-radius-bottomleft:9px;
-							border-bottom-left-radius:9px;
-							text-indent:0px;
-							border:1px solid #ffffff;
-							display:inline-block;
-							color:#ffffff;
-							font-family:Arial;
-							font-size:11px;
-							font-weight:bold;
-							font-style:normal;
-							height:23px;
-							line-height:23px;
-							width:40px;
-							text-decoration:none;
-							text-align:center;
-							text-shadow:0px 0px 0px #3522c7;
-						}
-						.alt:hover {
-							background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
-							background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
-							filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
-							background-color:#5784ff;
-						}.alt:active {
-							position:relative;
-							top:1px;
-						}
-						.del {
-							float:right;
-							-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-							background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
-							background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
-							filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
-							background-color:#7396ff;
-							-webkit-border-top-left-radius:9px;
-							-moz-border-radius-topleft:9px;
-							border-top-left-radius:9px;
-							-webkit-border-top-right-radius:9px;
-							-moz-border-radius-topright:9px;
-							border-top-right-radius:9px;
-							-webkit-border-bottom-right-radius:9px;
-							-moz-border-radius-bottomright:9px;
-							border-bottom-right-radius:9px;
-							-webkit-border-bottom-left-radius:9px;
-							-moz-border-radius-bottomleft:9px;
-							border-bottom-left-radius:9px;
-							text-indent:0px;
-							border:1px solid #ffffff;
-							display:inline-block;
-							color:#ffffff;
-							font-family:Arial;
-							font-size:11px;
-							font-weight:bold;
-							font-style:normal;
-							height:23px;
-							line-height:23px;
-							width:40px;
-							text-decoration:none;
-							text-align:center;
-							text-shadow:0px 0px 0px #3522c7;
-						}
-						.del:hover {
-							background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
-							background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
-							filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
-							background-color:#5784ff;
-						}.del:active {
-							position:relative;
-							top:1px;
 						}
 	                    </style>
 	                    <div class='reviews'>
