@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.book.model.vo.Book;
 import com.kh.review.model.vo.Review;
 
 public class ReviewDao {
@@ -31,7 +32,6 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Review> list = new ArrayList();
-		Review r = null;
 		String sql = prop.getProperty("selectList");
 
 		try {
@@ -39,15 +39,16 @@ public class ReviewDao {
 			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				r = new Review();
-				r.setMemberNum(rs.getInt("memberNum"));
+				Review r = new Review();
+				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setWriteDate(rs.getDate("writeDate"));
 				r.setGrade(rs.getInt("grade"));
 				r.setReviewContext(rs.getString("reviewContext"));
-				r.setBookId(rs.getInt("bookId"));
-				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
-				r.setCheckOption(rs.getInt("checkOption"));
+				
+				Book b = new Book();
+				b.setBookName(rs.getString("bookName"));
+				r.setBook(b);
 				list.add(r);
 			}
 		} catch(SQLException e) {
