@@ -19,17 +19,24 @@ public class QnaService {
 		close(conn);
 		return result;
 	}
+	//내가 쓴 문의글 List Service
+	public List<Qna> selecMyQnaList(){
+		Connection conn=getConnection();
+		List<Qna> list=new QnaDao().selecMyQnaList(conn);
+		close(conn);
+		return list;
 	
+	}
+	//전체 문의글 (사용자 사용)Service
 	public List<Qna> selectAllQna(){
 		Connection conn=getConnection();
 		List<Qna> list=new QnaDao().selectAllQna(conn);
 		close(conn);
 		return list;
 	}
+		
 	
-	
-	
-	
+	//페이징 Service
 	public List<Qna> selectList(int cPage, int numPerPage){
 		Connection conn=getConnection();
 		List<Qna> list=new QnaDao().selectList(conn, cPage, numPerPage);
@@ -38,8 +45,7 @@ public class QnaService {
 	}
 	
 	
-	
-
+	// 문의글 등록 Service
 	public int qnaEnroll(Qna q) {
 		Connection conn = getConnection();
 		int rs = new QnaDao().qnaEnroll(conn, q);

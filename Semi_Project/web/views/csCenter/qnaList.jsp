@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
 
-<%--  <%	
-	Qna q=(Qna)request.getAttribute("Qna");
-	%> --%>
+<%
+	Qna q = (Qna) request.getAttribute("Qna");
+	Member m = (Member) request.getSession().getAttribute("logined");
+%>
 
-
+ 
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
 <style>
@@ -152,13 +153,13 @@ hr {
 </script>
 
 
-<div class="container">
+<section class="board-container">
  <!-- 타이틀 -->
 	<div class="csCenter">	
 		<h3 class="cs_title">1:1 문의내역</h3>				
 		<p><%if(logined!=null){%> 
 			<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
-		<% } %></p>	 	
+		</p><% } %> 	
 		<hr>
 	</div>
 
@@ -178,53 +179,54 @@ hr {
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
 			      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>     
 				</span>
-				
-		
-			 </div>
-				                    
-			                 
-	</div>
-	
+			 </div>				                   		                 
+	</div>	
     <!-- 문의리스트 -->
 	<div class="csCenter col-sm-offset-2 col-sm-8">  
 			<div id="askList">	
-				<ul class="askList">										   		   					   
-                    <li>
+				<ul class="askList">								   		   					   
+                     <li>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
-						     <a href="http://www.google.com"> 문의 상품</a>
-						    <em class="txt">책주문은 어디서 하나요? </em> 
-							<span class="csInfo"> 
+				       		 <a value="<%= q.getQnaNum()%>"></a>
+				       		 <a value="<%=q.getQnaPart()%>"></a>
+				       		 <a href="http://www.google.com"> 문의 상품</a>
+						     <em class="txt">책주문은 어디서 하나요? </em> 
+							 <span class="csInfo"> 
 								<span class=""> 읽음</span> 
+								<span class=""> 읽지않음</span> 
 								<span class="divi">|</span> 
 								<span class="info_date">2018.03.31</span>
 							</span> 
 							<em class="">&nbsp;</em>
 						</button>					
 					</li>
-					
+										
 					<div class="collapse" id="collapseExample1">
-                        <div class="well"> 내용입력 </div>
+                        <div class="well" value=""> <input type="text" value="안녕안녕"> </div>                       
                     </div>
-					
-					
+                    
+              <!--       <script>
+                    
+                    $()
+                    
+                    
+                    </script>
+                     --%> -->
 					 <li>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
 						     <a href="http://www.google.com"> 문의 상품</a>
-						    <em class="txt">버튼으로 감싸기 </em> 
-							<span class="csInfo"> 
+						     <em class="txt">버튼으로 감싸기 </em> 
+							 <span class="csInfo"> 
 								<span class=""> 읽음</span> 
 								<span class="divi">|</span> 
 								<span class="info_date">2018.03.31</span>
 							</span> 
 							<em class="">&nbsp;</em>
 						</button>					
-					</li>
-					
+					</li>					
 					<div class="collapse" id="collapseExample2">
                         <div class="well"> 내용입력 </div>
-                    </div>
-					
-					
+                    </div>				
 					 <li>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
 						     <a href="http://www.google.com"> 문의 상품 </a>
@@ -236,22 +238,14 @@ hr {
 							</span> 
 							<em class="">&nbsp;</em>
 						</button>					
-					</li>
-					
+					</li>				
 					<div class="collapse" id="collapseExample3">
                         <div class="well"> 여기서 내용을 입력 하면 전부 다 적용되나?</div>
-                    </div>
-						
-
-					
-			</ul>
-					
+                    </div>										
+			</ul>				
    </div>
 	
-			
-		
-		
-					                
+				                
    <div class="qna-paging" >
 
        <div class="paging" id="">
@@ -265,36 +259,11 @@ hr {
          <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_first" ><img src="images/right.png" alt="바로가기" class="vm"></a>
          <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_prev"><img src="images/page_last.png" alt="바로가기" class="vm"></a>
 	     <input type="hidden" value="0" class="txt" id="htxtPageIndex" name="htxtPageIndex" />
-	   </div>
-	   
-	  	   
-	   
+	   </div>	   	   
    </div> 
     
     
-  
 
-
-<script type="text/javascript" language ="javascript">
-	$.extend({
-		onClickSelectedPageNo: function() {
-		var selectedNo = $("#htxtSelectedPageNo").val();
-		if (parseInt(selectedNo) > 0 && parseInt(selectedNo) <= 1)
-			$.onClickPageNo(selectedNo);
-		else
-			alert("올바른 페이지번호가 아닙니다.");
-		return;
-		},
-		onClickPageNo: function(pageNo) {
-		$("#htxtPageIndex").val(pageNo - 1)
-		//alert($("#htxtPageIndex").parents("form").length);
-		$("#htxtPageIndex").parents("form").submit();
-			return;
-		}
-	});
-
-</script>
-    
     
 <script>
 	var g_Page = 1;
@@ -306,19 +275,6 @@ hr {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-		
 		
 	</div>
 
@@ -439,7 +395,7 @@ hr {
       <div id="sellerovermenu" onmouseover="javascript:this.style.display='block';" onmouseout="javascript:this.style.display='none';">
 	
       </div> 
-	
+</section>	
 <script type ="text/javascript" language ="javascript">
 	function onDelete(seqNo, questionNo) {
 		if (confirm("문의내용을 삭제하시겠습니까?") == false)

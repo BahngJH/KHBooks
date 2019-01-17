@@ -16,7 +16,7 @@ public class QnaDao {
 	Properties prop = new Properties();
 
 	public QnaDao() {
-		String file = QnaDao.class.getResource("./qna_sql.properties").getPath();
+		String file = QnaDao.class.getResource("./qna-query.properties").getPath();
 		try {
 			prop.load(new FileReader(file));
 		} catch (Exception e) {
@@ -42,6 +42,36 @@ public class QnaDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	// 내가 쓴 문의글 Dao
+	public List<Qna> selecMyQnaList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Qna> list = new ArrayList();
+		String sql = prop.getProperty("selectMyQnaList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Qna q = new Qna();
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setQnaReadCount(rs.getInt("qnaReadCount"));
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				list.add(q);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+
 	}
 
 	// 문의글 리스트
@@ -110,10 +140,11 @@ public class QnaDao {
 	public int qnaEnroll(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;
 		int rs = 0;
+		System.out.println(q);
 		String sql = prop.getProperty("qnaEnroll");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, q.getQnaWriter());
+			pstmt.setInt(1, q.getQnaWriter());
 			pstmt.setString(2, q.getQnaTitle());
 			pstmt.setString(3, q.getQnaContent());
 			pstmt.setString(4, q.getQnaPart());

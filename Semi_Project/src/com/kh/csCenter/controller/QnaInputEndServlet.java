@@ -55,35 +55,37 @@ public class QnaInputEndServlet extends HttpServlet {
 		
 		//파일 업로드 객체 생성
 		MultipartRequest mr=new MultipartRequest(request, saveDir, maxSize, "UTF-8", new MyFileRenamePolicy());
-		String qnaPart=request.getParameter("qnaPart");
-		String qnaWriter=request.getParameter("qnaWriter");
-		String qnaAnswer=request.getParameter("qnaAnswer");
-		String mail1=request.getParameter("mail1");
-		String mail2=request.getParameter("mail2");
+		String qnaPart=mr.getParameter("qnaPart");
+		System.out.println(qnaPart);
+		int qnaWriter=Integer.parseInt(mr.getParameter("memberNum"));
+		String qnaAnswer=mr.getParameter("qnaAnswer");
+		String mail1=mr.getParameter("mail1");
+		String mail2=mr.getParameter("mail2");
 		//email ID + 도메인
 		String qnaMail=mail1+"@"+mail2;	
-		String tel1=request.getParameter("tel1");
-		String tel2=request.getParameter("tel2");
-		String tel3=request.getParameter("tel3");
+		String tel1=mr.getParameter("tel1");
+		String tel2=mr.getParameter("tel2");
+		String tel3=mr.getParameter("tel3");
 		//전화번호 처음/중간/끝  나눠 받아온것을 합친것.
 		String qnaTel=tel1+tel2+tel3;
-		String qnaTitle=request.getParameter("qnaTitle");
-		String qnaContent=request.getParameter("qnaContent");
-		String upfile=request.getParameter("upfile");
+		String qnaTitle=mr.getParameter("qnaTitle");
+		String qnaContent=mr.getParameter("qnaContent");
+		String upfile=mr.getParameter("upfile");
+		
 		
 		Qna q= new Qna();
 		q.setQnaNum(0);
 		q.setQnaDate(null);
-		q.setQnaStatus(null);
-		q.setQnaPart(mr.getParameter("qnaPart"));
-		q.setQnaTitle(mr.getParameter("qnaTitle"));
-		q.setQnaWriter(mr.getParameter("qnaWriter"));
-		q.setQnaAnswer(mr.getParameter("qnaAnswer"));
-		q.setQnaMail(mr.getParameter("qnaMail"));
-		q.setQnaTel(mr.getParameter("qnaTel"));	
-		q.setQnaContent(mr.getParameter("qnaContent"));
-		q.setQnaOriFile(mr.getParameter("upfile"));
-		q.setQnaReFile(mr.getParameter("upfile"));
+		q.setQnaStatus(null);	
+		q.setQnaPart(qnaPart);
+		q.setQnaTitle(qnaTitle);
+		q.setQnaWriter(qnaWriter);
+		q.setQnaAnswer(qnaAnswer);
+		q.setQnaMail(qnaMail);
+		q.setQnaTel(qnaTel);	
+		q.setQnaContent(qnaContent);
+		q.setQnaOriFile(upfile);
+		q.setQnaReFile(upfile);
 						
 		System.out.println(q);
 		
@@ -96,15 +98,15 @@ public class QnaInputEndServlet extends HttpServlet {
 		
 		if(rs>0) {
 			//문의 정상 등록
-			msg="문의글이 정상적으로 등록되었습니다.";
-			loc="/csCenter/qnaList";							
+			msg="문의글이 정상적으로 등록되었습니다.";			
+			loc="/";
 		}else {
 			msg="문의글 등록에 실패하였습니다.";
 			loc="/csCenter/qnaAskForm";						
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
-		request.getRequestDispatcher(view).forward(request, response);		
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

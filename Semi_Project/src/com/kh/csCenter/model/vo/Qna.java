@@ -5,7 +5,7 @@ import java.util.Date;
 public class Qna {
 	private int qnaNum;
 	private String qnaPart;
-	private String qnaWriter;
+	private int qnaWriter;
 	private String qnaAnswer;
 	private String qnaMail;
 	private String qnaTel;
@@ -21,7 +21,7 @@ public class Qna {
 		super();
 	}
 
-	public Qna(int qnaNum, String qnaPart, String qnaWriter, String qnaAnswer, String qnaMail, String qnaTel,
+	public Qna(int qnaNum, String qnaPart, int qnaWriter, String qnaAnswer, String qnaMail, String qnaTel,
 			String qnaTitle, String qnaContent, String qnaOriFile, String qnaReFile, Date qnaDate, int qnaReadCount,
 			String qnaStatus) {
 		super();
@@ -56,11 +56,11 @@ public class Qna {
 		this.qnaPart = qnaPart;
 	}
 
-	public String getQnaWriter() {
+	public int getQnaWriter() {
 		return qnaWriter;
 	}
 
-	public void setQnaWriter(String qnaWriter) {
+	public void setQnaWriter(int qnaWriter) {
 		this.qnaWriter = qnaWriter;
 	}
 
@@ -151,7 +151,5 @@ public class Qna {
 				+ qnaContent + ", qnaOriFile=" + qnaOriFile + ", qnaReFile=" + qnaReFile + ", qnaDate=" + qnaDate
 				+ ", qnaReadCount=" + qnaReadCount + ", qnaStatus=" + qnaStatus + "]";
 	}
-
-	
 
 }
