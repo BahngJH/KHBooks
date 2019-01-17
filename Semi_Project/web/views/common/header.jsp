@@ -11,9 +11,13 @@
 <meta charset="UTF-8">
 <title>KH Books</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css" type="text/css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/main.css">
+    
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
     <script>
     	function fn_search(){
     		var keyword = $("#keyword").val().trim().length;
@@ -75,7 +79,7 @@
 			            <form class="form-controll navbar-right" id="navSearchFrm" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
 			                <div class="form-group">
 			                    <div class="input-group">
-			                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색">
+			                        <input type="text" class="form-control" name="keyword" id="keyword" onkeyup="searchPreview();" autocomplete="off" placeholder="검색">
 			                        <span class="input-group-btn">
 			                            <button type="submit" class="btn btn-default" id="searchBar">검색</button>
 			                        </span>
@@ -106,3 +110,39 @@
 	    	</div>
 		</nav>
 	</header>
+<script>
+	function searchPreview(){
+		let keyword = $("#keyword").val();
+				
+		$("#keyword").autocomplete({
+			source: function(request, response){
+		   		$.ajax({
+		   			type : "get",
+		   			url: "<%=request.getContextPath()%>/search/preview",
+		   			dataType: "json",
+		   			data:{
+		   				keyword : keyword
+		   			},
+		   			success : function(result){
+		   				//json 안에 객체들이 저장 되어 있고
+		   				//객체 내에서 책 이름만 반복문으로 가져옴 
+		   				var datas = [];
+		   				
+		   				for(var data in result){
+		   					datas[datas.length] = result[data].bookName;
+		   				}
+		   				
+		   				response(datas);
+		   			},
+		   			focus: function(event, ui){
+		   				return false;
+		   			},
+		   		});
+			},
+  		minLength : 1,
+		select: function(event, ui){
+			location.href="<%=request.getContextPath()%>/search/search?keyword=" + ui.item.value;
+		}
+		});
+	}
+</script>

@@ -208,3 +208,8 @@ div.author-result button#more-btn{
 div.author-result button#more-btn:hover{
 	color: #1f8ce6;
 }
+
+/* 검색창 */
+ul.ui-menu{
+	z-index : 1500;
+}
