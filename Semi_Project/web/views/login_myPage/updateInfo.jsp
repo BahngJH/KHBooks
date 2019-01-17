@@ -42,6 +42,7 @@
 	#sample6_address{
 		width: 350px;
 	}
+	
 </style>
 
 		<div class="col-sm-10">
@@ -64,7 +65,7 @@
 									<td>
 										<input type="hidden" name="memberName" value="<%=logined.getMemberName()%>">
 										<span><%=logined.getMemberName() %></span>
-										<button onclick="fn_deleteMember();" type="button" class="btn btn-primary" style="float : right;">회원탈퇴</button>
+										<button onclick="fn_deleteMember();" type="button" class="btn btn-danger" style="float : right;">회원탈퇴</button>
 									</td>
 								</tr>
 								<tr>
@@ -104,9 +105,9 @@
 										<br/><br/>
 										<input type="password" id="pw_ck" class="form-control" placeholder="새 비밀번호 확인"/><div id="pwckMsg" class="msg"></div>
 										<br>
-										<h4><b>비밀변호 변경시 주의사항</b></h4>
+										<h4><b>비밀번호 변경시 주의사항</b></h4>
 										<p>1.비밀번호는 6글자 이상</p>
-										<p>2.비밀번호는 영문자 숫자 특수기호를 조합하여 구성</p>
+										<p>2.비밀번호는 영문자, 숫자, 특수기호를 조합하여 구성</p>
 									</td>
 								</tr>
 								<tr>
