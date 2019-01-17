@@ -46,7 +46,7 @@
                                 	</a>
                             	</div>
                             	
-                            	<div class='middle result-image col-xs-6 col-sm-7 col-md-7 col-lg-7'>
+                            	<div class='middle result-image col-xs-3 col-sm-4 col-md-4 col-lg-4'>
                             		<!-- 책 정보 -->
 	                                <h4 class='book_info'>
     	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>">
@@ -57,8 +57,14 @@
                                 	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
                                 	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>                              
                             	</div>
+                            	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            		<p>구매날짜</p>
+                            	</div>
+                            	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            		<p>수량</p>
+                            	</div>
                            		<!-- 책 가격과 체크박스 -->
-                            	<div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            	<div class="end col-xs-2 col-sm-2 col-md-2 col-lg-2">
                           			<p class="book_info book_price" id="book_price"><strong><%=o.getBook().getPrice() %>원</strong></p>
                             	</div>
 							</div>

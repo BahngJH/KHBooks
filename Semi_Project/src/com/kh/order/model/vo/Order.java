@@ -10,12 +10,12 @@ public class Order {
 	private int bookId;
 	private int bookCount;
 	private Date orderDate;
-	private char status;
+	private String status;
 	private Book book;
 	
 	public Order() {}
 
-	public Order(int memberNum, int orderNum, int bookId, int bookCount, Date orderDate, char status) {
+	public Order(int memberNum, int orderNum, int bookId, int bookCount, Date orderDate, String status) {
 		super();
 		this.memberNum = memberNum;
 		this.orderNum = orderNum;
@@ -73,11 +73,11 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

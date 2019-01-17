@@ -45,6 +45,7 @@ public class ReviewDao {
 				r.setGrade(rs.getInt("grade"));
 				r.setReviewContext(rs.getString("reviewContext"));
 				r.setStatus(rs.getString("status"));
+				r.setBookId(rs.getInt("bookId"));
 				
 				Book b = new Book();
 				b.setBookName(rs.getString("bookName"));
