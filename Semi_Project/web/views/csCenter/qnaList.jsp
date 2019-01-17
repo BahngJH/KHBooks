@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
-	
-	<%
-	
+
+<%--  <%	
 	Qna q=(Qna)request.getAttribute("Qna");
-	
-	
-	%>
+	%> --%>
 
 
 <%@ include file="/views/common/noticeHeader.jsp"%>
@@ -160,7 +157,7 @@ hr {
 	<div class="csCenter">	
 		<h3 class="cs_title">1:1 문의내역</h3>				
 		<p><%if(logined!=null){%> 
-		<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
+			<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
 		<% } %></p>	 	
 		<hr>
 	</div>

@@ -21,7 +21,7 @@ import common.MyFileRenamePolicy;
 /**
  * Servlet implementation class qnaInputEndServlet
  */
-@WebServlet("/qna/qnaInputFormEnd")
+@WebServlet("/qna/qnaInputEnd")
 public class QnaInputEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -72,6 +72,9 @@ public class QnaInputEndServlet extends HttpServlet {
 		String upfile=request.getParameter("upfile");
 		
 		Qna q= new Qna();
+		q.setQnaNum(0);
+		q.setQnaDate(null);
+		q.setQnaStatus(null);
 		q.setQnaPart(mr.getParameter("qnaPart"));
 		q.setQnaTitle(mr.getParameter("qnaTitle"));
 		q.setQnaWriter(mr.getParameter("qnaWriter"));
@@ -81,8 +84,7 @@ public class QnaInputEndServlet extends HttpServlet {
 		q.setQnaContent(mr.getParameter("qnaContent"));
 		q.setQnaOriFile(mr.getParameter("upfile"));
 		q.setQnaReFile(mr.getParameter("upfile"));
-		
-				
+						
 		System.out.println(q);
 		
 		int rs=new QnaService().qnaEnroll(q);
@@ -90,15 +92,15 @@ public class QnaInputEndServlet extends HttpServlet {
 		//응답처리
 		String msg="";
 		String loc="";
-		String view="/views/csCenter/oneOnOneInput.jsp";
+		String view="/views/common/msg.jsp";
 		
 		if(rs>0) {
 			//문의 정상 등록
 			msg="문의글이 정상적으로 등록되었습니다.";
-			loc="/csCenter/oneOnOneList";							
+			loc="/csCenter/qnaList";							
 		}else {
 			msg="문의글 등록에 실패하였습니다.";
-			loc="/csCenter/oneOnOneInput";						
+			loc="/csCenter/qnaAskForm";						
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
