@@ -65,7 +65,7 @@ a {
 
       $("#side").click(function() {
 
-         $(this).next("ol").toggleClass("hide");
+         $(this).next("ul").toggleClass("hide");
       });
    });
 </script>
@@ -83,7 +83,7 @@ a {
       <a class="dropdown-toggle" id="side"><strong>게시판</strong><span
          class="caret"></span></a>
 
-      <ol class="hide">
+      <ul class="hide">
          <br />
          <li><%if(logined!=null){%>
             <a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
@@ -93,7 +93,7 @@ a {
          <a href="<%=request.getContextPath()%>/notice/absenceView">희망도서 신청</a>
          </li><%} %>
          
-      </ol>
+      </ul>
       <hr>
       <a href=""><strong>도서신청</strong></a>
       <hr>
