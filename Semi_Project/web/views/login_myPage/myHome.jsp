@@ -64,7 +64,6 @@
 	article.buy-container h4{display: inline; float: left; width: 40%;}
 	article.buy-container a#btn-buyListAll{display: inline; float: right;}
 </style>
-
 		<div class="col-sm-10">
 			<section>
 				<article class="myInfo-container">

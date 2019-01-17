@@ -33,6 +33,53 @@ public class SearchDao {
 		
 	}
 	
+	public List<Book> selectBook(Connection conn, String key){
+		List<Book> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectBookPreview"));
+			pstmt.setString(1, key + "%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Book b = new Book();
+				/* 작가 정보 */
+				Author t = new Author();
+				t.setAuthorName(rs.getString("authorname"));
+				t.setAuthorInfo(rs.getString("authorinfo"));
+				t.setauthorNum(rs.getInt("authornum"));
+				/*책 정보*/
+				b.setAuthor(t);
+				b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				
+				list.add(b);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre, String order) {
 		List<Book> list=new ArrayList<>();
 		

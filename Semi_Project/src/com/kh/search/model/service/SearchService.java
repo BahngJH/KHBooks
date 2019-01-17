@@ -44,4 +44,10 @@ public class SearchService {
 		return totalBook;
 	}
 
+	public List<Book> selectBookPreview(String keyword) {
+		List<Book> list = new SearchDao().selectBook(conn, keyword);
+		close(conn);
+		return list;
+	}
+
 }
