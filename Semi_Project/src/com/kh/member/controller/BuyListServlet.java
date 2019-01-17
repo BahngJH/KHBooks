@@ -1,6 +1,8 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
+import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 
 /**
  * Servlet implementation class BuyListServlet
@@ -36,7 +40,10 @@ public class BuyListServlet extends HttpServlet {
 		}
 		
 		//로그인 성공
-		response.sendRedirect(request.getContextPath()+"/views/login_myPage/buyList.jsp");
+		int no = logined.getMemberNum();
+		List<Order> list = new OrderService().selectList(no);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/login_myPage/buyList.jsp").forward(request, response);
 	}
 
 	/**
