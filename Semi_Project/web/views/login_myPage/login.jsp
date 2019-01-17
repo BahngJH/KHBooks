@@ -79,11 +79,8 @@
 			<input type="password" id="password" name="memberPw" placeholder="비밀번호"></div>
         	<label class="keepLogin">아이디 저장 <input type="checkbox" id="checkbox" class="keepLogin" name="saveId" <%=cookieVal!=""?"checked" : ""%> ></label> 
         	<a href="<%=request.getContextPath()%>/member/searchId" class="search">아이디 찾기 </a><a class="search" href="<%=request.getContextPath()%>/member/searchPw">비밀번호 찾기</a>
-         	<br> <%-- <span>
-            		<%if(msg!=null){ %>
-            <%=msg %>
-            <%msg=null;} %>
-             </span --%> <br>
+         	<br> 
+              <br>
           	<input type="submit" value="로그인" class="btn btn-primary"><br><br>
         </form>
             <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default">

@@ -183,7 +183,10 @@ $(function(){
 		});
 		
 function cancel(){
-	confirm("고객센터화면으로 돌아가시겠습니까?");
+	if(!confirm('정말로 삭제하시겠습니까?'))
+	{
+		return;	
+	}
 	location.href="<%=request.getContextPath()%>/"
 	
 }
