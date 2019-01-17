@@ -8,7 +8,6 @@
 body
 {
 	width:100%;
-    background-color:silver;
 }
 html, body
 {
@@ -18,14 +17,12 @@ html, body
 .container
 {
 	height:auto;
-    border:1px solid darkgray;
     background-color:white;
 }
 .comparebook
 {
-	right:12%;
 	max-width:100%;
-	width:100%;
+	width:750px;
 	height:auto;
     text-align: center;
     margin-top:35px;
@@ -53,67 +50,133 @@ td {
 	width: 100%;
 	height: 0;
 	right: 15px;
-	overflow: hidden;
 	padding-top:20px;
 	padding-bottom: 220px;
 }
-.book-1 .wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
 }
 .book-2{
 	position: relative;
 	width: 100%;
 	height: 0;
 	right: 5px;
-	overflow: hidden;
 	padding-top:20px;
 	padding-bottom: 220px;
 }
-.book-2 .wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
+
 .book-3{
 	position: relative;
 	width: 100%;
 	height: 0;
 	right: -5px;
-	overflow: hidden;
 	padding-top:20px;
 	padding-bottom: 220px;
 }
-.book-3 .wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
+
 .book-4{
 	position: relative;
-	width: 100%;
+	width: 100px;
 	height: 0;
 	right: -15px;
 	overflow: hidden;
 	padding-top:20px;
 	padding-bottom: 220px;
 }
-.book-4 .wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
+
 .lists {
 	margin-top:50px;
+}
+.bigyo {
+	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+	background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+	background-color:#79bbff;
+	margin-top:40px;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:63px;
+	line-height:63px;
+	width:117px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 0px 0px #528ecc;
+}
+.bigyo:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+	background-color:#378de5;
+
+}.bigyo:active {
+
+	position:relative;
+	top:1px;
+}
+.resets {
+	margin-top:40px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
+	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
+	background-color:#f24537;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0;
+	border:1px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:63px;
+	line-height:63px;
+	width:117px;
+	text-decoration:none;
+	text-align:center;
+	margin-left:6px;
+	text-shadow:1px 0px 0px #810e05;
+}
+.resets:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
+	background-color:#c62d1f;
+}.resets:active {
+	position:relative;
+	top:1px;
 }
 </style>
 
@@ -124,7 +187,10 @@ td {
 
     <div class='row section'>
 		<div class='comparebook col-sm-12'>
-			<div class='bookasd col-sm-2' style='width:40%;'>
+			<div class='bookasd col-sm-2' style='width:40%; left:10%;'>
+				<a href="#" class="resets">초기화</a>
+				<br>
+				<a href="#" class="bigyo">비교해보기</a>
  		 	</div>
 		
 			<div class='book-1 col-sm-2' style='width:15%;'>
@@ -155,7 +221,7 @@ td {
             
             
             
-            <div class='lists col-sm-12' style='margin-bottom:30px; width:80%; left:10%;'>
+            <div class='lists col-sm-12' style='margin-bottom:60px; width:80%; left:10%;'>
             <table class='compare_list' summary>
                 	<caption></caption>
                 	<colgroup>

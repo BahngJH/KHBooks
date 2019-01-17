@@ -22,11 +22,9 @@ html, body
 }
 
 body {
-	background-color: silver;
 }
 .container {
 	height:auto;
-	border: 1px solid darkgray;
 	background-color: white;
 }
 
@@ -233,18 +231,18 @@ li {
 	background:-moz-linear-gradient( center top, #458dd6 5%, #3b84cc 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#458dd6', endColorstr='#3b84cc');
 	background-color:#458dd6;
-	-webkit-border-top-left-radius:0px;
-	-moz-border-radius-topleft:0px;
-	border-top-left-radius:0px;
-	-webkit-border-top-right-radius:0px;
-	-moz-border-radius-topright:0px;
-	border-top-right-radius:0px;
-	-webkit-border-bottom-right-radius:0px;
-	-moz-border-radius-bottomright:0px;
-	border-bottom-right-radius:0px;
-	-webkit-border-bottom-left-radius:0px;
-	-moz-border-radius-bottomleft:0px;
-	border-bottom-left-radius:0px;
+	-webkit-border-top-left-radius:42px;
+	-moz-border-radius-topleft:42px;
+	border-top-left-radius:42px;
+	-webkit-border-top-right-radius:42px;
+	-moz-border-radius-topright:42px;
+	border-top-right-radius:42px;
+	-webkit-border-bottom-right-radius:42px;
+	-moz-border-radius-bottomright:42px;
+	border-bottom-right-radius:42px;
+	-webkit-border-bottom-left-radius:42px;
+	-moz-border-radius-bottomleft:42px;
+	border-bottom-left-radius:42px;
 	text-indent:0px;
 	border:1px solid #ffffff;
 	display:inline-block;
@@ -253,9 +251,9 @@ li {
 	font-size:11px;
 	font-weight:bold;
 	font-style:normal;
-	height:70px;
-	line-height:70px;
-	width:51px;
+	height:25px;
+	line-height:25px;
+	width:60px;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:0px 0px 0px #528ecc;
@@ -611,9 +609,6 @@ function showBigPic()
 			  padding: 0 .5em 0 .5em;
 			  font-size: 0.75em;
 			}
-			.reviewWrite{
-				margin-right:0px;
-			}
 			div.button
 			{
 			   margin: auto;
@@ -646,12 +641,12 @@ function showBigPic()
 				<div>
 					<form action="#" name="reviewText" method="post">
 					<pre class='reviewpre' style='width:96%'>
-					<div class='wrappluswritereview' style='width:100%'>
+					<div class="wrappluswritereview" style='padding-top:5px;padding-left: 7px;padding-right:7px;padding-bottom:5px;border: 1px solid gray;'>
 	                    <div class="wrap11">
 	                    	<textarea id="content" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
 	                    </div>
-	                    <div class='writereview' style='margin-top:-10px;'>
+	                    <div class='writereview' style='margin-top:-15px;'>
                     		<input type='submit' class='reviewWrite' value='리뷰쓰기'>
 	                    </div>
 					</div>
