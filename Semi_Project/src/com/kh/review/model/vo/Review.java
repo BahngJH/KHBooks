@@ -2,6 +2,8 @@ package com.kh.review.model.vo;
 
 import java.util.Date;
 
+import com.kh.book.model.vo.Book;
+
 /*
  * 리뷰에 대한 vo
  */
@@ -16,7 +18,7 @@ public class Review {
 	private int bookId;				// 도서 번호
 	private String status;			// 상태
 	private int reviewNum;			// 댓글 번호
-	
+	private Book book;				// 북 객체
 	
 	public Review() {}
 	
@@ -79,6 +81,14 @@ public class Review {
 	}
 	public void setReviewNum(int reviewNum) {
 		this.reviewNum = reviewNum;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	@Override

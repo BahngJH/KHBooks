@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/myHeader.jsp"%>
-<%@ page import="java.util.*, com.kh.review.model.vo.Review" %>
+<%@ page import="java.util.*, com.kh.review.model.vo.Review, com.kh.book.model.vo.Book" %>
 <% 
 	List<Review> list = (List)request.getAttribute("list");
 	int cnt = (int)request.getAttribute("cnt");
@@ -26,7 +26,7 @@
 	}
 	article.review-container div#selectList {
 		float: right;
-		margin-right: 30px;
+		margin-right: 58px;
 		margin-bottom: 20px;
 	}
 	article.review-container div#selectList p {
@@ -62,6 +62,7 @@
 						<p id="count">총 <%=cnt %>개의 리뷰가 있습니다.</p>
 						<div id="selectList">
 							<label for="checkAll">전체선택</label>
+							&nbsp;
 							<input type="checkbox" id="checkAll" onclick="checkAll();"/> 
 						</div>
 						<div id="selectDelete">
@@ -69,9 +70,10 @@
 						</div>					
 						<ul>
 							<%for(Review r : list) { %>
+								<%if (r.getStatus().equals("y")) {%>
 								<li>
 									<div class="reviewList">
-										<h5 style="display: inline"><b><%=r.getBookId() %></b></h5>
+										<h4 style="display: inline"><b><%=r.getBook().getBookName()%></b></h4>
 										<input type="checkbox" name="check" id="c<%=r.getReviewNum()%>" value="<%=r.getReviewNum()%>" style="float: right;" required>
 										<h6>
 											<%for(int i = 0; i <r.getGrade(); i++) { %>
@@ -135,7 +137,8 @@
 										location.href="<%=request.getContextPath()%>/review/deleteReview?no=<%=r.getReviewNum()%>";
 									}
 								</script>
-							<%} %>						
+							<%} 
+							}%>						
 						</ul>
 					<%} else { %>
 						<h2>남긴 리뷰가 없습니다..</h2>

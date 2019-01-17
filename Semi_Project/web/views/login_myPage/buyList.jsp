@@ -9,6 +9,9 @@
 <style>
 	div#buyList-options div.input-group{width: 30%; float: left;}
 	div.btn-group{float: right;}
+	div.middle #bookPrice {
+		margin-top: 90px;
+	}
 </style>
 
 
@@ -47,11 +50,12 @@
                             		<!-- 책 정보 -->
 	                                <h4 class='book_info'>
     	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>">
-	                                        <span><strong><%=o.getBook().getBookName()%></strong></span>
+	                                        <h3><strong><%=o.getBook().getBookName()%></strong></h3>
                                     	</a>
                                 	</h4>
                                 	<!-- 저자, 출판사 정보 -->
-                                	<p><%=o.getBook().getAuthor().getAuthorName() %></p>                                
+                                	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
+                                	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>                              
                             	</div>
                            		<!-- 책 가격과 체크박스 -->
                             	<div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
