@@ -3,6 +3,7 @@
 <%@ page import ="com.kh.book.model.vo.Book, java.util.*" %>
 <%
 	List<Book> books = (List<Book>)request.getAttribute("bookList");
+	int markCount = (int)request.getAttribute("markCount");
 %>    
 <%@ include file="/views/common/myHeader.jsp" %>
 
@@ -33,6 +34,7 @@
 					<div id="btnCheck">
 					<button class="btn btn-default">선택 담기</button>
 					<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
+					<p><%=markCount %>개의 찜 상품이 있습니다</p>
 					</div>
 					<div id="allCheck">
 					<span id="allText"><strong>전체선택</strong></span><input id="checkAll" onclick="cAll();" type="checkbox">
@@ -65,7 +67,8 @@
                                 <!-- 저자, 출판사 정보 -->
                                 <p>방지훈</p>
                                 <button class="btn btn-default">담기</button>
-                                <button class="btn btn-default">삭제</button>
+                                <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
+                                <input type="hidden" value="<%=b.getBookId()%>">
                                 
                             <!-- 책 가격과 체크박스 -->
                             </div>
@@ -98,6 +101,12 @@
 			function multiDelete(){
 				var deleteList = $('#deleteList');
 				deleteList.submit();
+			}
+			function deleteOne(){
+				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
+				var bookId = $(event.target).next('input').val();
+				location.href="<%=request.getContextPath()%>/member/markMutiDelete?BookId="+bookId;
+				
 			}
 		
 		</script>
