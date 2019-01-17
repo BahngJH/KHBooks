@@ -36,26 +36,30 @@ fieldset a{float:right;}
 				<table>
 					<tr>
 						<th><h4>책제목:</h4></th>
-						<th><h4>저자:</h4></th>
-						<th><h4>발행연도:</h4></th>
-						<th><h4>출판사:</h4></th>
-						<th><h4>신청번호:</h4></th>
-						<th><h4>신청날짜:</h4></th>
+						<td><%=ab.getBookName() %></td>
 					</tr>
 					<tr>
-						<td><%=ab.getBookName() %></td>
+						<th><h4>저자:</h4></th>
 						<td><%=ab.getAuthor() %></td>
+					</tr>
+					<tr>
+							<th><h4>발행연도:</h4></th>
 						<td><%=ab.getBookDate() %></td>
+					</tr>
+					<tr>
+					<th><h4>출판사:</h4></th>
 						<td><%=ab.getPublisher() %></td>
+					</tr>
+					<tr>
+						<th><h4>신청번호:</h4></th>
 						<td><%=ab.getAppNum() %></td>
+					</tr>
+					<tr>
 						<td><%=ab.getAppDate() %></td>
+						
 						
 					</tr>				
 					
-
-
-
-
 
 				<%}%> 
 				</table>		
@@ -65,10 +69,14 @@ fieldset a{float:right;}
 				
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-				<button id="return" onclick="main_Notice();">목록으로</button>
+				<button id="return" onclick="main_absence();">목록으로</button>
 				<br/><br/><br/><br/>
-	<%-- 	<script>
-			function main_Notice(){
+		<script>
+		function main_absence(){
+			location.href="<%=request.getContextPath()%>/notice/absenceView";
+		}
+		
+			<%-- function main_Notice(){
 				location.href="<%=request.getContextPath()%>/notice/noticemain";
 			}
 			function deleteNotice(){
@@ -81,9 +89,9 @@ fieldset a{float:right;}
 			function updateNotice(){
 				location.href="<%=request.getContextPath()%>/notice/noticeupdate?no1=<%=n.getNoticeNo()%>";
 				
-			}
+			} --%>
 		</script>
-				 --%>
+				
 				
 				
 </section>
