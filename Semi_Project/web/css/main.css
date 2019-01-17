@@ -178,7 +178,6 @@ div.author-info ul li a:hover{
 	color: #1f8ce6;
 }
 
-
 div.author-info ul li a:hover span.user-icon{
 	color: #1f8ce6;
 }
@@ -186,4 +185,19 @@ div.author-info ul li a:hover span.user-icon{
 div.author-info ul li span.user-icon{
 	color: #c4d1de;
 	padding-right: 3px;
+}
+
+div.author-result button#more-btn{
+	border: none;
+	background: none;
+	color: #7d8e9e;
+	margin-left: 20px;
+	display: block;
+	width: 100%;
+	text-align: left;
+	outline: none;
+}
+
+div.author-result button#more-btn:hover{
+	color: #1f8ce6;
 }

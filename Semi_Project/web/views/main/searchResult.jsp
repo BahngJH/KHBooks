@@ -31,13 +31,21 @@
         });
  
         function show_author(){
+        	//작가 더 보여주기
         	if($("li.over").hasClass("hidden")){
         		$("li.over").removeClass("hidden");
         		$("li.over").addClass("show");
+        		$("span.icon").removeClass("glyphicon-chevron-down");
+        		$("span.icon").addClass("glyphicon-chevron-up");
+        		$("#more").text("접기");
         	}else{
+        		//작가 접기
 		        if($("li.over").hasClass("show")){
 		        	$("li.over").addClass("hidden");
 		        	$("li.over").removeClass("show");
+		        	$("span.icon").removeClass("glyphicon-chevron-up");
+	        		$("span.icon").addClass("glyphicon-chevron-down");
+		        	$("#more").text("<%=authors.size()-3%> 더보기");
 		        }
         	}
         }
@@ -89,12 +97,12 @@
                     	int i=0;%>
                     	<ul>
                     	<%for(Author a : authors){%>
-                    		<li <%=i++>1?"class='over hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    		<li <%=i++>2?"class='over hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
                     			
                     	<%}%>
                     	</ul>
                     	<%if(authors.size() > 3){%>
-                    	<button onclick="show_author()"><span><%=authors.size()-3%>명 더 보기 </span></button>
+                    	<button id="more-btn" onclick="show_author()"><span id="more"><%=authors.size()-3%>명 더보기 </span><span class="icon glyphicon glyphicon-chevron-down"></span></button>
                     	<%}
                     }else{%>
                     <h4><strong>검색 결과 없음</strong></h4>
