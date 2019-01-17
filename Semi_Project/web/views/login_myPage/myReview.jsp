@@ -73,7 +73,9 @@
 								<%if (r.getStatus().equals("y")) {%>
 								<li>
 									<div class="reviewList">
-										<h4 style="display: inline"><b><%=r.getBook().getBookName()%></b></h4>
+										<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=r.getBookId()%>">
+											<h4 style="display: inline"><b><%=r.getBook().getBookName()%></b></h4>
+										</a>
 										<input type="checkbox" name="check" id="c<%=r.getReviewNum()%>" value="<%=r.getReviewNum()%>" style="float: right;" required>
 										<h6>
 											<%for(int i = 0; i <r.getGrade(); i++) { %>
