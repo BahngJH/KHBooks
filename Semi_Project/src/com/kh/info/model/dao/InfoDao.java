@@ -1,18 +1,20 @@
 package com.kh.info.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.getConnection;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
+import com.kh.review.model.vo.Review;
 
 public class InfoDao {
 
@@ -33,7 +35,7 @@ public class InfoDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Book b=null;
-		String sql=prop.getProperty("selectInfo");
+		String sql=prop.getProperty("selectInfoBook");
 		try
 		{
 			pstmt=conn.prepareStatement(sql);
@@ -44,6 +46,7 @@ public class InfoDao {
 				b=new Book();
 				b.setBookName(rs.getString("bookName"));
 				b.setPrice(rs.getInt("price"));
+				b.setToc(rs.getString("toc"));
 				b.setPublisher(rs.getString("publisher"));
 				b.setAuthorNum(rs.getInt("authorNum"));
 				b.setGenre(rs.getString("genre"));
@@ -58,6 +61,10 @@ public class InfoDao {
 				b.setPageNum(rs.getInt("pageNum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				Author a = new Author();
+				a.setAuthorName(rs.getString("authorName"));
+				a.setAuthorInfo(rs.getString("authorInfo"));
+				b.setAuthor(a);				
 			}
 		}catch(SQLException e)
 		{
@@ -69,5 +76,41 @@ public class InfoDao {
 			close(pstmt);
 		}
 		return b;
+	}
+	public List<Review> selectInfoReview(Connection conn, int bookId)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Review> list=new ArrayList();
+		String sql=prop.getProperty("selectInfoReview");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				Review r=new Review();
+				r.setBookId(rs.getInt("bookId"));
+				r.setGrade(rs.getInt("grade"));
+				r.setCheckOption(rs.getInt("checkOption"));
+				r.setMemberNum(rs.getInt("memberNum"));
+				r.setReviewContext(rs.getString("reviewContext"));
+				r.setReviewNum(rs.getInt("reviewNum"));
+				r.setStatus(rs.getString("status"));
+				r.setWriteDate(rs.getDate("writeDate"));
+				
+				list.add(r);
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return list;
 	}
 }

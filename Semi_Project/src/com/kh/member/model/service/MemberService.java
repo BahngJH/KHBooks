@@ -108,5 +108,22 @@ public class MemberService {
 		
 		return list;
 	}
+	//찜목록 삭제하기
+	public int markMutiDelete(List<Integer> booksId,int memberNum, int deleteCount)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().markMutiDelete(conn,booksId, memberNum);
+		if(rs==deleteCount && rs>0) {
+			//모두 삭제
+			commit(conn);
+		}else if(rs>0 && rs<deleteCount) {
+			//일부만 삭제됨
+			rollback(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return rs;
+	}
 	
 }
