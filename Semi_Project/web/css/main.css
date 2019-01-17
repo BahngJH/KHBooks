@@ -166,12 +166,9 @@ div.author-info ul li{
 	font-size: 14px;
 }
 
-div.author-info ul li.hidden{
-	display: none;
-}
-
 div.author-info ul li a{
 	display: block;
+	font-size: 14px;
 	text-decoration: none;
 	padding: 12px 10px;
 	color: #666;
