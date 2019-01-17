@@ -1,28 +1,26 @@
-package com.kh.member.controller;
+package com.kh.absence.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.book.model.vo.Book;
-import com.kh.member.model.service.MemberService;
+import com.kh.absence.model.service.AbsenceService;
+import com.kh.absence.model.vo.Absence;
 
 /**
- * Servlet implementation class MarkServlet
+ * Servlet implementation class AbsenceContentServlet
  */
-@WebServlet("/member/mark")
-public class MarkServlet extends HttpServlet {
+@WebServlet("/notice/absencecontent")
+public class AbsenceContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MarkServlet() {
+    public AbsenceContentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +30,16 @@ public class MarkServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
-		List<Book> list= new MemberService().markList(memberNum);
-		int count = list.size();
-		request.setAttribute("markCount", count);
-		request.setAttribute("bookList", list);	
-		request.getRequestDispatcher("/views/login_myPage/mark.jsp").forward(request, response);
+		int no =Integer.parseInt(request.getParameter("no"));
+		System.out.println(no);
+		Absence ab=new AbsenceService().selectNo(no);
+		
+		request.setAttribute("ab", ab);
+		request.getRequestDispatcher("/views/notice/absenceboardContent.jsp").forward(request, response);
+		
+		
+		
+		
 		
 		
 	}

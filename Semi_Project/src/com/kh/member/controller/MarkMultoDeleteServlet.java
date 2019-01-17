@@ -33,12 +33,12 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		List<Integer> booksId = new ArrayList();
 		String[] bookId = request.getParameterValues("BookId");
+		String bookIdOne = request.getParameter("bookIdOne");
 		Member m = (Member) request.getSession().getAttribute("logined");
 		
-		List<Integer> booksId = new ArrayList();
 		for(String i:bookId) {
-			System.out.println(i);
 			booksId.add(Integer.parseInt(i));
 		}
 		int deleteCount = booksId.size();
@@ -46,14 +46,14 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 		int rs = new MemberService().markMutiDelete(booksId, m.getMemberNum(),deleteCount);
 		if(rs==deleteCount && rs>0) {
 			//모두 삭제
-			request.setAttribute("msg", "리뷰가 삭제되었습니다.");
+			request.setAttribute("msg", "찜 상품이 삭제되었습니다.");
 			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
 		}else if(rs>0 && rs<deleteCount) {
 			//일부만 삭제됨
-			request.setAttribute("msg", "일부만 삭제되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
+			request.setAttribute("msg", "찜 상품이 일부만 삭제되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
 			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
 		}else {
-			request.setAttribute("msg", "삭제가 안되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
+			request.setAttribute("msg", "찜 상품이 삭제가 안되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
 			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
 		}
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
