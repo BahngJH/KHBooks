@@ -211,6 +211,7 @@ public class MemberDao {
 		}
 		return rs;
 	}
+	//아이디 찾기 로직
 	public String searchId(Connection conn, String name, String email)
 	{
 		PreparedStatement pstmt = null;
@@ -236,6 +237,7 @@ public class MemberDao {
 		}
 		return id;
 	}
+	//찜목록 불러오는 로직
 	public List<Book> markList(Connection conn, int memberNum)
 	{
 		PreparedStatement pstmt = null;
@@ -278,6 +280,27 @@ public class MemberDao {
 		}
 		return list;
 	}
-	
+	//찜 목록 다중 삭제
+	public int markMutiDelete(Connection conn, List<Integer> booksId, int memberNum)
+	{
+		PreparedStatement pstmt = null;
+		int rs = 0;
+		String sql = prop.getProperty("markMutiDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<booksId.size();i++) {
+				pstmt.setInt(1, booksId.get(i));
+				pstmt.setInt(2, memberNum);
+				rs += pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;	
+	}
 	
 }
