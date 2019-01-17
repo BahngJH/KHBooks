@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@page import="com.kh.absence.model.vo.*" %>
+<%
+	Absence ab = (Absence)request.getAttribute("ab");
+%>
 
 <%@ include file="/views/common/noticeHeader.jsp"%> 
 
@@ -54,60 +58,9 @@ function fn_enroll_validate(){
 	}return true;
 };
 
-<%-- 
-$(function(){
-	$("#password_2").blur(function(){
-		var p1=$("#password_").val(), p2=$("#password_2").val();
-		
-		if(p1!=p2){
-			alert("패스워드가 일치하지 않습니다.");
-			$('#password_2').val('');
-			$('#password_').val('');
-			$("password_").focus();
-		}
-	});
-});
 
 
-
-
-//아이디 중복겁사하기: 팝업창을 띄워서!
-
-
-	function fn_checkeduplicate(){
-		var userId=$("#is").val().trim();
-		console.log(userId);
-		
-		if(!userId || userId.length<4)
-		{
-			alert("아이디를 4글자 이상 입력하세요~!");
-			return;	
-		}
-		//팝업창에 대한 설정해주기!@
-		var url="<%=request.getContextPath()%>/checkIdDuplicate";
-		var title="checkIdDuplicate";
-		var shape="left=200px, top=100px, width=300px, height=200px";
-		
-		var popup=open("",title,shape);
-		
-		//현재페이지에 있는값을 새창으로 옮기는 작업~!
-		checkIdDuplicateFrm.userId.value=userId;
-		//target은 내가 원하는 창을 뜻한다. pop 페이지에서 이 폼을 작동시키게 하는 구문. 
-		//popup창에서 이 폼을 작동시키게 하는 구문!
-		checkIdDuplicateFrm.target=title;
-		checkIdDuplicateFrm.action=url;
-		checkIdDuplicateFrm.method="post";
-		checkIdDuplicateFrm.submit();		
-		
-		
-		//window.open(url,"명칭/여는방식",shape)
-}
- --%>
 </script>
-
-
-
-
 
 
 		<title>희망도서신청 -KH북스</title>
@@ -152,7 +105,7 @@ $(function(){
 								<div class="form-group">
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="isbn" placeholder="* ISBN 13자리 숫자만 입력하세요." name="isbn" maxlength="13" required="required">
-									    <button type="submit" class="btn btn-default" onclick="return validate();">검색</button>
+									   <!--  <button type="submit" class="btn btn-default" onclick="return validate();">검색</button> -->
 									</div>
 								</div>
 								
@@ -179,6 +132,7 @@ $(function(){
 		    if (/\D/.test(this.value)) { 
 		        this.value = this.value.replace(/\D/g, '') 
 		        alert('숫자만 입력가능합니다.'); 
+		        
 		    } 
 		});
 		
@@ -187,9 +141,11 @@ function cancel(){
 	{
 		return;	
 	}
+	ab.setAppCancel(true);
 	location.href="<%=request.getContextPath()%>/"
 	
 }
+
 		
 
  function validate() {
@@ -198,7 +154,8 @@ function cancel(){
 		if (content.trim().length == 0) {
 			alert("내용을 입력하세요!");
 		}else{
-			location.href="<%=request.getContextPath()%>/notice/noticeabsence";
+			
+			location.href="<%=request.getContextPath()%>/notice/noticeabsence?no=<%=logined.getMemberNum()%>";
 		}
 		
 	} 

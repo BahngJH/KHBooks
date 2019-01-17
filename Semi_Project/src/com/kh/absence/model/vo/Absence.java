@@ -2,23 +2,26 @@ package com.kh.absence.model.vo;
 
 import java.util.Date;
 
+import com.kh.member.model.vo.Member;
+
 public class Absence {
 	private int memberNum;//신청자 회원번호 
 	private String bookName;//책제목 O
 	private Date appDate;//신청날짜
 	private String author;//저자 O
-	private Date bookDate;//발행연도O
+	private String bookDate;//발행연도O
 	private String ISBN;//isbnO
 	private String publisher;//출판사 O
 	private boolean appCancel;//취소여부 false/true
 	private String status;//상태 Y,F
 	private int appNum; //신청번호
+	private Member member;
 	
 	public Absence() {
 		
 	}
 
-	public Absence(int memberNum, String bookName, Date appDate, String author, Date bookDate, String iSBN,
+	public Absence(int memberNum, String bookName, Date appDate, String author, String bookDate, String iSBN,
 			String publisher, boolean appCancel, String status, int appNum) {
 		
 		this.memberNum = memberNum;
@@ -34,6 +37,14 @@ public class Absence {
 	}
 
 	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public int getMemberNum() {
 		return memberNum;
 	}
@@ -66,11 +77,11 @@ public class Absence {
 		this.author = author;
 	}
 
-	public Date getBookDate() {
+	public String getBookDate() {
 		return bookDate;
 	}
 
-	public void setBookDate(Date bookDate) {
+	public void setBookDate(String bookDate) {
 		this.bookDate = bookDate;
 	}
 
