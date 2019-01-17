@@ -22,17 +22,24 @@
 	}
 	
 	article.review-container div.review-options{
-		float: right;
+		float: left;
 	}
 	article.review-container div#selectList {
 		float: right;
 		margin-right: 30px;
 		margin-bottom: 20px;
 	}
-	article.review-container div#selectList p{
+	article.review-container div#selectList p {
 		display: inline;
 		text-align: left;
 	}
+	article.review-container div#selectDelete {
+		margin-left: 60px;
+	}
+	
+	article.review-container p#count{
+		margin-left: 60px;
+	}		
 	div.modal-body{
 		width: 400px;
 	}
@@ -46,10 +53,12 @@
 						<h3>내 리뷰 관리</h3>
 					</div>
 					<hr/>
+					<p id="count">총 <%=cnt %>개의 리뷰가 있습니다.</p>
 					<div id="selectList">
-						<p>총 <%=cnt %>개의 리뷰가 있습니다.</p>
-						<input type="checkbox" id="checkAll" onclick="checkAll();"/> <label for="checkAll">전체선택</label>
-						&nbsp;
+						<input type="checkbox" id="checkAll" onclick="checkAll();"/> 
+						<label for="checkAll">전체선택</label>
+					</div>
+					<div id="selectDelete">
 						<button type="button" class="btn btn-primary" onclick="deleteSelectReview();">선택 삭제</button>
 					</div>
 					<ul>
