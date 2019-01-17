@@ -48,7 +48,7 @@ width: 50px;
 
 
 <script>
-function fn_enroll_validate(){
+/* function fn_enroll_validate(){
 	
 	var isbn=$("#isbn");
 	if(isbn.val().length!=13){
@@ -56,7 +56,7 @@ function fn_enroll_validate(){
 		isbn.focus();
 		return false;
 	}return true;
-};
+}; */
 
 
 
@@ -150,10 +150,10 @@ function cancel(){
 
  function validate() {
 
-		var content = $('[name=content]').val();
-		if (content.trim().length == 0) {
+		
+		/* if (content.trim().length == 0) {
 			alert("내용을 입력하세요!");
-		}else{
+		}else{ */
 			
 			location.href="<%=request.getContextPath()%>/notice/noticeabsence?no=<%=logined.getMemberNum()%>";
 		}

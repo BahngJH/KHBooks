@@ -36,9 +36,9 @@ public class NoticeAbsenceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DateFormat df = new SimpleDateFormat("yyyy");
+	
 		
-		int loginNum=Integer.parseInt((String) request.getAttribute("no"));
+		int loginNum=Integer.parseInt( request.getParameter("no"));
 		
 		String bookName=request.getParameter("bookName");
 		String author=request.getParameter("authorName");
