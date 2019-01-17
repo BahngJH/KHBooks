@@ -31,8 +31,11 @@ public class MarkServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
 		List<Book> list= new MemberService().markList(memberNum);
+		int count = list.size();
+		request.setAttribute("markCount", count);
 		request.setAttribute("bookList", list);	
 		request.getRequestDispatcher("/views/login_myPage/mark.jsp").forward(request, response);
 		

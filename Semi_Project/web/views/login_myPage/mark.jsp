@@ -3,6 +3,7 @@
 <%@ page import ="com.kh.book.model.vo.Book, java.util.*" %>
 <%
 	List<Book> books = (List<Book>)request.getAttribute("bookList");
+	int markCount = (int)request.getAttribute("markCount");
 %>    
 <%@ include file="/views/common/myHeader.jsp" %>
 
@@ -32,7 +33,8 @@
 					</div>
 					<div id="btnCheck">
 					<button class="btn btn-default">선택 담기</button>
-					<button class="btn btn-danger">선택 삭제</button>
+					<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
+					<p><%=markCount %>개의 찜 상품이 있습니다</p>
 					</div>
 					<div id="allCheck">
 					<span id="allText"><strong>전체선택</strong></span><input id="checkAll" onclick="cAll();" type="checkbox">
@@ -42,6 +44,7 @@
           				<div id="book" class="col-xs-12 col-md-12">
                     
                     <div>
+                    <form method="get" name="deleteList" id="deleteList" action="<%=request.getContextPath()%>/member/markMutiDelete">
                     <!-- 검색 결과가 있을 경우 -->
                     <%if(!books.isEmpty()) {
                     	for(Book b : books){
@@ -64,13 +67,14 @@
                                 <!-- 저자, 출판사 정보 -->
                                 <p>방지훈</p>
                                 <button class="btn btn-default">담기</button>
-                                <button class="btn btn-default">삭제</button>
+                                <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
+                                <input type="hidden" value="<%=b.getBookId()%>">
                                 
                             <!-- 책 가격과 체크박스 -->
                             </div>
                             <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
                           	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
-                            <input type="checkbox">
+                            <input type="checkbox" name="BookId" value="<%=b.getBookId()%>">
                             </div>
                         </div>		
                    	<%	
@@ -79,6 +83,7 @@
                     %>
                     <h2><b>현재 찜하신 상품이 없습니다.</b></h2>
                     <%} %>
+                   </form>
                     </div>
                 </div>
 					</div>
@@ -92,6 +97,16 @@
 				}else{
 					$('input[type=checkbox]').prop("checked",false);
 				}
+			}
+			function multiDelete(){
+				var deleteList = $('#deleteList');
+				deleteList.submit();
+			}
+			function deleteOne(){
+				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
+				var bookId = $(event.target).next('input').val();
+				location.href="<%=request.getContextPath()%>/member/markMutiDelete?BookId="+bookId;
+				
 			}
 		
 		</script>

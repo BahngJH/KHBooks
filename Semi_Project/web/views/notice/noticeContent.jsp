@@ -40,7 +40,7 @@ fieldset a{float:right;}
 			<br/><br/><br/>
 				<fieldset>
 				<article id="edit">
-				<%if(logined!=null&&logined.getMemberId().equals("1212")){ %>
+				<%if(logined!=null&&logined.getMemberId().equals("admin")){ %>
 			
 					<input type="button" value="삭제" onclick="deleteNotice();"/>
 					<input type="button" value="수정" onclick="updateNotice();"/>

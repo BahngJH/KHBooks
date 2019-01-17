@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/myHeader.jsp"%>
-<%@ page import="java.util.*, com.kh.review.model.vo.Review" %>
+<%@ page import="java.util.*, com.kh.review.model.vo.Review, com.kh.book.model.vo.Book" %>
 <% 
 	List<Review> list = (List)request.getAttribute("list");
 	int cnt = (int)request.getAttribute("cnt");
@@ -22,19 +22,31 @@
 	}
 	
 	article.review-container div.review-options{
-		float: right;
+		float: left;
 	}
 	article.review-container div#selectList {
 		float: right;
-		margin-right: 30px;
+		margin-right: 58px;
 		margin-bottom: 20px;
 	}
-	article.review-container div#selectList p{
+	article.review-container div#selectList p {
 		display: inline;
 		text-align: left;
 	}
+	article.review-container div#selectDelete {
+		margin-left: 60px;
+	}
+	
+	article.review-container p#count{
+		margin-left: 60px;
+	}		
 	div.modal-body{
 		width: 400px;
+	}
+	
+	input[type=checkbox]{
+	/* 체크박스 크기키움 */
+		-webkit-transform: scale(1.3);
 	}
 </style>
 
@@ -46,82 +58,91 @@
 						<h3>내 리뷰 관리</h3>
 					</div>
 					<hr/>
-					<div id="selectList">
-						<p>총 <%=cnt %>개의 리뷰가 있습니다.</p>
-						<input type="checkbox" id="checkAll" onclick="checkAll();"/> <label for="checkAll">전체선택</label>
-						&nbsp;
-						<button type="button" class="btn btn-primary" onclick="deleteSelectReview();">선택 삭제</button>
-					</div>
-					<ul>
-						<%for(Review r : list) { %>
-							<li>
-								<div class="reviewList">
-									<h5 style="display: inline"><b><%=r.getBookId() %></b></h5>
-									<input type="checkbox" name="check" id="c<%=r.getReviewNum()%>" value="<%=r.getReviewNum()%>" style="float: right;" required>
-									<h6>
-										<%for(int i = 0; i <r.getGrade(); i++) { %>
-										<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 
-										<%} %>
-										<%=r.getWriteDate() %>
-									</h6>
-									<br/>
-									<p id="reviewContext">
-										<%=r.getReviewContext()%>
-									</p>
-									<div class="review-options">
-										<button class="btn btn-primary" onclick="updateReview<%=r.getReviewNum()%>();">수정</button>									
-										<button class="btn btn-primary" onclick="deleteReview<%=r.getReviewNum()%>();">삭제</button>
+					<%if(cnt > 0) {%>
+						<p id="count">총 <%=cnt %>개의 리뷰가 있습니다.</p>
+						<div id="selectList">
+							<label for="checkAll">전체선택</label>
+							&nbsp;
+							<input type="checkbox" id="checkAll" onclick="checkAll();"/> 
+						</div>
+						<div id="selectDelete">
+							<button type="button" class="btn btn-primary" onclick="deleteSelectReview();">선택 삭제</button>
+						</div>					
+						<ul>
+							<%for(Review r : list) { %>
+								<%if (r.getStatus().equals("y")) {%>
+								<li>
+									<div class="reviewList">
+										<h4 style="display: inline"><b><%=r.getBook().getBookName()%></b></h4>
+										<input type="checkbox" name="check" id="c<%=r.getReviewNum()%>" value="<%=r.getReviewNum()%>" style="float: right;" required>
+										<h6>
+											<%for(int i = 0; i <r.getGrade(); i++) { %>
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+											<%} %>
+											<%=r.getWriteDate() %>
+										</h6>
+										<br/>
+										<p id="reviewContext">
+											<%=r.getReviewContext()%>
+										</p>
+										<div class="review-options">
+											<button class="btn" onclick="updateReview<%=r.getReviewNum()%>();">수정</button>									
+											<button class="btn" onclick="deleteReview<%=r.getReviewNum()%>();">삭제</button>
+										</div>
 									</div>
-								</div>
-							</li>
-							<script>
-								/* 선택 삭제 메소드 */
-								function deleteSelectReview() {
-									if(!confirm("정말 삭제하시겠습니까?")){
-										return;
-									}	
-									var chkbox = document.getElementsByName("check");
-									var checked = [];
-									for(var i=0; i<chkbox.length; i++) {
-										if(chkbox[i].checked){
-											checked.push(chkbox[i].value);		/* 체크된 리뷰들의 값을 배열에 담는다 */											
+								</li>
+								<script>
+									/* 선택 삭제 메소드 */
+									function deleteSelectReview() {
+										if(!confirm("정말 삭제하시겠습니까?")){
+											return;
+										}	
+										var chkbox = document.getElementsByName("check");
+										var checked = [];
+										for(var i=0; i<chkbox.length; i++) {
+											if(chkbox[i].checked){
+												checked.push(chkbox[i].value);		/* 체크된 리뷰들의 값을 배열에 담는다 */											
+											}
+										}
+										
+										if(checked.length < 1) {
+											alert("선택한 리뷰가 없습니다.");
+											return;
+										}
+										/* 체크된 리뷰 값을 배열에 담아 서블릿으로 전송 */
+										location.href="<%=request.getContextPath()%>/review/deleteSelectReview?nums="+checked;									
+									}
+									
+									/* 전체선택 메소드 */
+									function checkAll() {
+									    if ($("#checkAll").is(':checked')) {
+									        $("input[type=checkbox]").prop("checked", true);
+									    } else {
+									        $("input[type=checkbox]").prop("checked", false);
 										}
 									}
 									
-									if(checked.length < 1) {
-										alert("선택한 리뷰가 없습니다.");
-										return;
+									
+									/* 리뷰 수정 메소드 */
+									function updateReview<%=r.getReviewNum()%>() {
+										$('.modal').modal();						
+										$('#renum').val(<%=r.getReviewNum()%>);
+										$('#updateContext').val("<%=r.getReviewContext()%>");
+									}							
+									/* 리뷰 삭제 메소드 */
+									function deleteReview<%=r.getReviewNum()%>() {
+										if(!confirm("정말 삭제하시겠습니까?")){
+											return;
+										}
+										location.href="<%=request.getContextPath()%>/review/deleteReview?no=<%=r.getReviewNum()%>";
 									}
-									/* 체크된 리뷰 값을 배열에 담아 서블릿으로 전송 */
-									location.href="<%=request.getContextPath()%>/review/deleteSelectReview?nums="+checked;									
-								}
-								
-								/* 전체선택 메소드 */
-								function checkAll() {
-								    if ($("#checkAll").is(':checked')) {
-								        $("input[type=checkbox]").prop("checked", true);
-								    } else {
-								        $("input[type=checkbox]").prop("checked", false);
-									}
-								}
-								
-								
-								/* 리뷰 수정 메소드 */
-								function updateReview<%=r.getReviewNum()%>() {
-									$('.modal').modal();						
-									$('#renum').val(<%=r.getReviewNum()%>);
-									$('#updateContext').val("<%=r.getReviewContext()%>");
-								}							
-								/* 리뷰 삭제 메소드 */
-								function deleteReview<%=r.getReviewNum()%>() {
-									if(!confirm("정말 삭제하시겠습니까?")){
-										return;
-									}
-									location.href="<%=request.getContextPath()%>/review/deleteReview?no=<%=r.getReviewNum()%>";
-								}
-							</script>
-						<%} %>						
-					</ul>
+								</script>
+							<%} 
+							}%>						
+						</ul>
+					<%} else { %>
+						<h2>남긴 리뷰가 없습니다..</h2>
+					<%} %>
 				</article>
 			</section>
 		</div>
