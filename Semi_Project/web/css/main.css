@@ -112,6 +112,13 @@ p#book_price{
 	border-left: 1px solid gray;
 }
 
+.order-buttons li span {
+	text-decoration: none;
+	color: black;
+	padding-left: 8px;
+	border-left: 1px solid gray;
+}
+
 .category_title {
 	border-bottom: 1px solid black;
 	color: black;
@@ -166,12 +173,9 @@ div.author-info ul li{
 	font-size: 14px;
 }
 
-div.author-info ul li.hidden{
-	display: none;
-}
-
 div.author-info ul li a{
 	display: block;
+	font-size: 14px;
 	text-decoration: none;
 	padding: 12px 10px;
 	color: #666;
@@ -181,7 +185,6 @@ div.author-info ul li a:hover{
 	color: #1f8ce6;
 }
 
-
 div.author-info ul li a:hover span.user-icon{
 	color: #1f8ce6;
 }
@@ -189,4 +192,24 @@ div.author-info ul li a:hover span.user-icon{
 div.author-info ul li span.user-icon{
 	color: #c4d1de;
 	padding-right: 3px;
+}
+
+div.author-result button#more-btn{
+	border: none;
+	background: none;
+	color: #7d8e9e;
+	margin-left: 20px;
+	display: block;
+	width: 100%;
+	text-align: left;
+	outline: none;
+}
+
+div.author-result button#more-btn:hover{
+	color: #1f8ce6;
+}
+
+/* 검색창 */
+ul.ui-menu{
+	z-index : 1500;
 }
