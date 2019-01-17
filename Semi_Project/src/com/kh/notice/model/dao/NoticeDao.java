@@ -39,6 +39,7 @@ public class NoticeDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, n.getNoticeTitle());
 			pstmt.setString(2, n.getNoticeContent());
+			
 			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -175,8 +176,7 @@ public class NoticeDao {
 				notice.setNoticeDate(rs.getDate("noticedate"));
 				notice.setStatus(rs.getString("status"));
 				list.add(notice);
-				
-				
+								
 			}
 
 		}catch(SQLException e) {

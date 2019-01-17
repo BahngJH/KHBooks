@@ -57,7 +57,7 @@ public class NoticeService {
 	public int updateNotice(Notice n) {
 		Connection conn=getConnection();
 		int result=new NoticeDao().updateNotice(conn,n);
-		System.out.println("서비스"+n);
+
 		
 		if(result>0) {
 			commit(conn);

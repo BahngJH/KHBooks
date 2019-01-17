@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
+	
+	<%
+	
+	Qna q=(Qna)request.getAttribute("Qna");
+	
+	
+	%>
 
 
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
 <style>
-
-
 li {
 	list-style: none;
 }
@@ -16,37 +21,7 @@ li {
 	padding: 0 0 25px 0;
 }
 
-.dWrap{
-
-    border: solid 1px #ebebeb;
-	border-top-color: rgb(235, 235, 235);
-	border-top-style: solid;
-	border-top-width: 1px;
-	border-right-color: #d8d8d8;
-	border-right-style: solid;
-	border-right-width: 1px;
-	border-bottom-color: #d8d8d8;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-left-color: rgb(235, 235, 235);
-	border-left-style: solid;
-	border-left-width: 1px;
-	border-image-source: initial;
-	border-image-slice: initial;
-	border-image-width: initial;
-	border-image-outset: initial;
-	border-image-repeat: initial;
-	border-bottom-color: #d8d8d8;
-	border-right-color: #d8d8d8;
-	background-color: #fff;
-	padding: 15px 20px; 0 23px;
-	height: 50px;
-	display: block;
-	text-align: left;
-    margin-bottom: 15px;
-}
-
-.bWrap  {
+.dWrap {
 	border: solid 1px #ebebeb;
 	border-top-color: rgb(235, 235, 235);
 	border-top-style: solid;
@@ -68,7 +43,36 @@ li {
 	border-bottom-color: #d8d8d8;
 	border-right-color: #d8d8d8;
 	background-color: #fff;
-	padding: 15px 20px; 0 23px;
+	padding: 15px 20px; 0 23 px;
+	height: 50px;
+	display: block;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+.bWrap {
+	border: solid 1px #ebebeb;
+	border-top-color: rgb(235, 235, 235);
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #d8d8d8;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-bottom-color: #d8d8d8;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-color: rgb(235, 235, 235);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	border-bottom-color: #d8d8d8;
+	border-right-color: #d8d8d8;
+	background-color: #fff;
+	padding: 15px 20px; 0 23 px;
 	height: 50px;
 	display: block;
 	text-align: left;
@@ -92,7 +96,6 @@ ul {
 
 .csCenter {
 	float: right;
-	
 	padding: 25px 0;
 	width: 660px;
 	text-align: left;
@@ -109,77 +112,68 @@ em {
 
 .searchDate {
 	float: right;
-	width: 800px;	
+	width: 800px;
 }
 
-.cs_title{
- font-size:2em;
- margin-top: 50px;
-margin-right: 500px;
-margin-bottom:20px;
- 
-
+.cs_title {
+	font-size: 2em;
+	margin-top: 50px;
+	margin-right: 500px;
+	margin-bottom: 20px;
 }
 
-#askBtn{
-
-width: 120px;
-height: 30px;
-font-size: 15px;
-padding: 0 0 1px 0;
-margin-left: 480px; 
-margin-top: -75px;
-text-align: center;
+#askBtn {
+	width: 120px;
+	height: 30px;
+	font-size: 15px;
+	padding: 0 0 1px 0;
+	margin-left: 480px;
+	margin-top: -75px;
+	text-align: center;
 }
 
+hr {
+	border: 0;
+	height: 2px;
+	background: #ccc;
+}
 
- hr {
-    border: 0;
-    height: 2px;
-    background: #ccc;
-  }
-  
-  .cbtn{
-  
-  margin-left: 120px;
-  }
-  
-  #testa{
-  
-width: 100%;
-text-align:center;
- 
-  }
-  
+.cbtn {
+	margin-left: 120px;
+}
 
-
+#testa {
+	width: 100%;
+	text-align: center;
+}
 </style>
 
 
-
-
-
+<script>
+	function fn_addQna() {
+		location.href = "<%=request.getContextPath()%>/qna/qnaInput";}
+</script>
 
 
 <div class="container">
  <!-- 타이틀 -->
 	<div class="csCenter">	
-		<h3 class="cs_title">1:1 문의내역</h3>
-		<p><button type="button" id="askBtn" class="btn btn-primary btn-lg btn-block">1:1 문의하기</button></p>	
-		<hr>	
+		<h3 class="cs_title">1:1 문의내역</h3>				
+		<p><%if(logined!=null){%> 
+		<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
+		<% } %></p>	 	
+		<hr>
 	</div>
 
-<!-- 날짜 조회 -->
-		
-	<div class="searchDate">
-	 
+	
+	<!-- 날짜 조회 -->		
+	<div class="searchDate">	 
 			 <div class="sch-lcont">
 				<strong>기간별 조회</strong>
 				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
 				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'> ~
 				<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'>
-				
+				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'>				
 				<span class="cbtn">			
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
@@ -197,52 +191,11 @@ text-align:center;
     <!-- 문의리스트 -->
 	<div class="csCenter col-sm-offset-2 col-sm-8">  
 			<div id="askList">	
-				<ul class="askList">										   		   
-					   <li><a href="" class=""> 
-						<span class="bWrap"> 
-						    <em class="txt">사은품 문의드립니다. </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</span>
-					</a></li>
-					
-					
-					 <li><a href="" class=""> 
-						<span class="bWrap"> 
-						    <em class="txt">사은품 문의드립니다. </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</span>
-					</a></li>
-					
-					
-					
-					
-					 <li><a href="" class=""> 
-						<span class="bWrap"> 
-						    <em class="txt">사은품 문의드립니다. </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</span>
-					</a></li>
-
-
+				<ul class="askList">										   		   					   
                     <li>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
 						     <a href="http://www.google.com"> 문의 상품</a>
-						    <em class="txt">버튼으로 감싸기 </em> 
+						    <em class="txt">책주문은 어디서 하나요? </em> 
 							<span class="csInfo"> 
 								<span class=""> 읽음</span> 
 								<span class="divi">|</span> 
@@ -289,21 +242,10 @@ text-align:center;
 					</li>
 					
 					<div class="collapse" id="collapseExample3">
-                        <div class="well"> 내용입력 </div>
+                        <div class="well"> 여기서 내용을 입력 하면 전부 다 적용되나?</div>
                     </div>
 						
-	
-				
-			<!-- 	<tr name="trOrderText">
-					<td class="order-prd" colspan="2">
-						<div class="s-view" id="hdivDetail0" style="display:none;">
-							<ul>
-							</ul>
-						</div> 
-					</td>
-				</tr>
-					 -->
-					
+
 					
 			</ul>
 					

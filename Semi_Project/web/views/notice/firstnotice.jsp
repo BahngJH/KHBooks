@@ -25,6 +25,7 @@ margin:50px 0 0 0 ;
 border-bottom:2px solid darkgray;
 
 }
+.Notice_Title a{text-decoration:none;}
 
 </style>
 <section>
@@ -38,7 +39,7 @@ border-bottom:2px solid darkgray;
 					
 						
 							<h2 class="Notice_Title">
-								<a class="Notice_PageLink"><strong>공지사항</strong></a>
+								<strong>공지사항</strong>
 							</h2>
 							<hr/>
 							

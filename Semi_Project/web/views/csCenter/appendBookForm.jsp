@@ -151,7 +151,8 @@ $(function(){
 								</div>
 								<div class="form-group">
 									<div class="col-sm-10">
-										<input type="number" class="form-control" id="isbn" placeholder="* ISBN 13자리 숫자만 입력하세요." name="isbn" maxlength="13" required="required">
+										<input type="text" class="form-control" id="isbn" placeholder="* ISBN 13자리 숫자만 입력하세요." name="isbn" maxlength="13" required="required">
+									    <button type="submit" class="btn btn-default" onclick="return validate();">검색</button>
 									</div>
 								</div>
 								
@@ -169,7 +170,24 @@ $(function(){
 				</div>
 			</section>
 		</div>
+
+<script>
+		/* 숫자만 입력받게 하는 함수 */
+
+		$('.tel').on('keyup', function() { 
+		    if (/\D/.test(this.value)) { 
+		        this.value = this.value.replace(/\D/g, '') 
+		        alert('숫자만 입력가능합니다.'); 
+		    } 
+		});
 		
+		
+		
+		
+		
+		
+		</script>
+
 <%-- <script>
 
 function validate() {
