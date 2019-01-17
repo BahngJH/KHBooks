@@ -1,6 +1,7 @@
 package com.kh.info.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.service.InfoService;
+import com.kh.review.model.vo.Review;
 
 /**
  * Servlet implementation class InfoViewServlet
@@ -33,13 +36,23 @@ public class InfoViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
+
 		Book b=new InfoService().selectInfoBook(bookId);
+		List<Review> list=new InfoService().selectInfoReview(bookId);
+		System.out.println(bookId);		
+		
+		
 		
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
+		
+		
 		System.out.println(b);
+		System.out.println(list.size());
 		request.setAttribute("book", b);
+		request.setAttribute("reviewList", list);
+		request.setAttribute("reviewsize", list.size());
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
 
@@ -52,7 +65,6 @@ public class InfoViewServlet extends HttpServlet {
 	}
 
 	private HttpServletResponse setCookie(int bookId, HttpServletRequest request ,HttpServletResponse response) {
-		
 		/*최근 본 목록 쿠키*/
 		Cookie[] cookies = request.getCookies();
 		String cookieValue = "";

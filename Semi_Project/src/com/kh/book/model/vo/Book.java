@@ -21,6 +21,7 @@ public class Book {
 	private String translator;
 	private int pageNum;
 	private int stock;
+	private String toc;
 	private int sales;
 	private Author author;
 	
@@ -30,7 +31,7 @@ public class Book {
 	}
 	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
 			String bookImage, Date bookDate, String bookInfo, String bookContent, String editor, String translator, int pageNum, int stock,
-			int sales) {
+			int sales, String toc) {
 		super();
 		this.bookName = bookName;
 		this.price = price;
@@ -48,6 +49,7 @@ public class Book {
 		this.stock = stock;
 		this.sales = sales;
 		this.bookContent = bookContent;
+		this.toc = toc;
 	}
 	
 	
@@ -73,6 +75,7 @@ public class Book {
 		result = prime * result + sales;
 		result = prime * result + stock;
 		result = prime * result + ((translator == null) ? 0 : translator.hashCode());
+		result = prime * result + ((toc == null) ? 0 : toc.hashCode());
 		return result;
 	}
 	@Override
@@ -118,6 +121,11 @@ public class Book {
 				return false;
 		} else if (!bookName.equals(other.bookName))
 			return false;
+		if (toc == null) {
+			if (other.toc != null)
+				return false;
+		} else if (!toc.equals(other.toc))
+			return false;
 		if (editor == null) {
 			if (other.editor != null)
 				return false;
@@ -159,7 +167,7 @@ public class Book {
 				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", isbn=" + isbn + ", bookImage=" + bookImage
 				+ ", bookDate=" + bookDate + ", bookInfo=" + bookInfo + ", editor=" + editor + ", translator="
 				+ translator + ", pageNum=" + pageNum + ", stock=" + stock + ", sales=" + sales + ", author=" + author
-				+ ", bookContent=" + bookContent + "]";
+				+ ", bookContent=" + bookContent +", toc=" + toc + "]";
 	}
 	public String getBookName() {
 		return bookName;
@@ -238,6 +246,12 @@ public class Book {
 	}
 	public void setTranslator(String translator) {
 		this.translator = translator;
+	}
+	public String getToc() {
+		return toc;
+	}
+	public void setToc(String toc) {
+		this.toc = toc;
 	}
 	public int getPageNum() {
 		return pageNum;
