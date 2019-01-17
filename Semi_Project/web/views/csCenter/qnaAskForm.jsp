@@ -90,7 +90,7 @@ li {
 		 <div class="row">
 		   <p>상담 하시고자 하는 구분을 선택해주세요.</p>
 		 </div>
-	     <form class="form-inline" name="enrollAsk" action="<%=request.getContextPath()%>/qna/qnaInputFormEnd" onsubmit="return validate();" method="post" enctype="multipart/form-data">
+	     <form class="form-inline" name="enrollAsk" action="<%=request.getContextPath()%>/qna/qnaInputEnd" onsubmit="return validate();" method="post" enctype="multipart/form-data">
 		  <!--상담 구분 라디오 버튼 div -->
 	        <div class="row">
 			 	 <div class="select_area col-md-12">
@@ -113,8 +113,7 @@ li {
 				  	</div>
 				</div>
 			</div>
-		
-	
+			
 <!-- 상담 개인정보 입력 div -->
 			<div class="row">	
 			 	<div class="select_area col-md-12">									
