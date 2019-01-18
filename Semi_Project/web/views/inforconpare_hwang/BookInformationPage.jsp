@@ -9,10 +9,8 @@ com.kh.author.model.vo.Author'
 	Author a=(Author)request.getAttribute("author");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	int reviewsize=(int)request.getAttribute("reviewsize");
-	
 %>
 <%@ include file='/views/common/header.jsp'%>
-
 
 <style>
 div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
