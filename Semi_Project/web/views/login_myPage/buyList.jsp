@@ -9,8 +9,11 @@
 <style>
 	div#buyList-options div.input-group{width: 30%; float: left;}
 	div.btn-group{float: right;}
-	div.middle #bookPrice {
-		margin-top: 90px;
+	div.bookInfo #bookPrice {
+		margin-top: 55px;
+	}
+	div.orderDate, div.orderCount, div.finalPrice {
+		margin: 60px 0px;
 	}
 </style>
 
@@ -40,31 +43,32 @@
 					<%if(!list.isEmpty()) {%>					
 						<%for(Order o : list) {%>
 							<div class="buyList row">
+				          		<!-- 책 이미지 -->
           						<div class='result-image col-xs-3 col-sm-2 col-md-2 col-lg-2'>
                                 	<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>" class="thumbnail">
                                     	<img src="<%=request.getContextPath() %>/images/book/<%=o.getBook().getBookImage() %>"alt="책 이미지">
                                 	</a>
                             	</div>
-                            	
-                            	<div class='middle result-image col-xs-3 col-sm-4 col-md-4 col-lg-4'>
-                            		<!-- 책 정보 -->
+    							<!-- 제목, 저자, 가격 -->                        	
+                            	<div class='bookInfo result-image col-xs-3 col-sm-4 col-md-4 col-lg-4'>
 	                                <h4 class='book_info'>
     	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>">
 	                                        <h3><strong><%=o.getBook().getBookName()%></strong></h3>
                                     	</a>
                                 	</h4>
-                                	<!-- 저자, 출판사 정보 -->
                                 	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
                                 	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>                              
                             	</div>
-                            	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            		<p>구매날짜</p>
+                            	<!-- 구매일 -->
+                            	<div class="orderDate col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            		<p><%=o.getOrderDate() %></p>
                             	</div>
-                            	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            		<p>수량</p>
+                            	<!-- 수량 -->
+                            	<div class="orderCount col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            		<p><%=o.getBookCount()%></p>
                             	</div>
-                           		<!-- 책 가격과 체크박스 -->
-                            	<div class="end col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                           		<!-- 총 가격 -->
+                            	<div class="finalPrice end col-xs-2 col-sm-2 col-md-2 col-lg-2">
                           			<p class="book_info book_price" id="book_price"><strong><%=o.getBook().getPrice() %>원</strong></p>
                             	</div>
 							</div>
