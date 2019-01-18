@@ -39,7 +39,7 @@ public class OrderSearchServlet extends HttpServlet {
 		List<Order> list = new OrderService().searchOrder(keyword, no);
 		
 		request.setAttribute("searchList", list);
-		request.getRequestDispatcher("/views/login_myPage/orderList.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/login_myPage/searchOrderList.jsp").forward(request, response);
 	}
 
 	/**
