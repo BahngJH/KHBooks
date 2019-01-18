@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.service.InfoService;
 import com.kh.review.model.vo.Review;
+import com.kh.wish.model.vo.Wish;
 
 /**
  * Servlet implementation class InfoViewServlet
@@ -36,10 +36,9 @@ public class InfoViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
-
 		Book b=new InfoService().selectInfoBook(bookId);
 		List<Review> list=new InfoService().selectInfoReview(bookId);
-		System.out.println(bookId);
+//		System.out.println(bookId);
 		int cPage;
 		try {
 		
@@ -48,7 +47,7 @@ public class InfoViewServlet extends HttpServlet {
 		}catch(NumberFormatException e)
 		{
 			cPage=1;
-			System.out.println(cPage);
+//			System.out.println(cPage);
 		}
 		
 		int numPerPage;
@@ -57,7 +56,7 @@ public class InfoViewServlet extends HttpServlet {
 		}
 		catch(NumberFormatException e){
 			numPerPage=5;
-			System.out.println(numPerPage);
+//			System.out.println(numPerPage);
 		}
 		
 		int totalBoard=new InfoService().selectReviewCount();
@@ -65,7 +64,7 @@ public class InfoViewServlet extends HttpServlet {
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
 //		System.out.println(totalPage);
 		List<Review> reviewCountList=new InfoService().selectReviewList(cPage,numPerPage);
-		System.out.println(reviewCountList.size());
+//		System.out.println(reviewCountList.size());
 		String pageBar="";
 		int pageSize=5;
 		int pageNo=((cPage-1)/pageSize)*pageSize+1;
@@ -108,21 +107,20 @@ public class InfoViewServlet extends HttpServlet {
 					+"/inforconpare_hwang/infoView?cPage="+pageNo
 					+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
-				
-		
-		
-		//쿠키 설정
-		response = setCookie(bookId, request, response);
-		
-		
-		
-//		System.out.println(pageBar);
-//		System.out.println(b);
-//		System.out.println(list.size());
 		request.setAttribute("cPage",cPage);
 		request.setAttribute("pageBar",pageBar);
 		request.setAttribute("reviewCountList", reviewCountList);
+
+		//쿠키 설정
+		response = setCookie(bookId, request, response);
+		
+		Wish w=new InfoService().selectWish(bookId);
+//		System.out.println(w);
+//		System.out.println(pageBar);
+//		System.out.println(b);
+//		System.out.println(list.size());
 		request.setAttribute("book", b);
+		request.setAttribute("wish", w);
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewsize", list.size());
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
@@ -173,7 +171,6 @@ public class InfoViewServlet extends HttpServlet {
 				}
 			}
 		}
-		
 		Cookie cookie = new Cookie("recent", newValue);
 		cookie.setMaxAge(30 * 60 * 60 * 24);
 		cookie.setPath("/");

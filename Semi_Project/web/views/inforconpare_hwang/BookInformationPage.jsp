@@ -3,12 +3,14 @@ import='java.util.*,
 com.kh.book.model.vo.Book, 
 com.kh.review.model.vo.Review, 
 com.kh.member.model.vo.Member,
-com.kh.author.model.vo.Author'
+com.kh.author.model.vo.Author,
+com.kh.wish.model.vo.Wish'
 	pageEncoding='UTF-8'%>
 	
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%
 	Book b=(Book)request.getAttribute("book");
+	Wish w=(Wish)request.getAttribute("wish");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	List<Review> reviewCountList=(List<Review>)request.getAttribute("reviewCountList");
 	String pageBar=(String)request.getAttribute("pageBar");
@@ -464,8 +466,7 @@ function fnMove2(){
 										리뷰 <span class='counting'><%=reviewsize %></span>개
 									</button>
 									<span class='line'>|</span>
-									<button class='reviewgogo btn-link'
-										onclick="fnMove1()">리뷰쓰러가기</button>
+									<button class='reviewgogo btn-link'	onclick="fnMove1()">리뷰쓰러가기</button>
 								</p>
 							</span>
 						</div>
@@ -502,11 +503,13 @@ function fnMove2(){
 		</div>
 		<div class='choiceTab'>
 			<div class='jangbaTab' style='float:left;'>
+			<%int wishNo=1; %>
 			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsert' method='post'>
-			<button type='submit' class='jangba btn-lg' onmouseout='change2(this)'
-				onmouseover='change1(this)'>
-				<strong>장바구니 담기</strong>
-			</button>
+			<input type='hidden' name='wishNo' value="<%=wishNo%>"/>
+			<input type='hidden' name='memberNum' value="<%=w.getMemberNum()%>"/>
+			<input type='hidden' name='bookId' value="<%=w.getMemberNum()%>"/>
+			<input type='hidden' name='bookCount' value="<%=w.getBookCount() %>"/>
+			<input type='submit' class='jangba btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='장바구니 담기' style='font-weight:bold;'>
 			</form>
 			</div>
 			<div class='buyTab' style='float:left; margin-left:5px;'>
@@ -671,7 +674,7 @@ function fnMove2(){
 				<div id='reviewview'>
 					<form action="#" name="reviewText" method="post">
 					<pre class='reviewpre' style='width:96%'>
-					<div class="wrappluswritereview" style='padding-top:5px;padding-left: 7px;padding-right:7px;padding-bottom:5px;border: 1px solid gray;'>
+					<div class="wrappluswritereview" style='padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:5px;border: 1px solid silver;'>
 	                    <div class="wrap11">
 	                    	<textarea id="content" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
@@ -681,7 +684,7 @@ function fnMove2(){
 	                    </div>
 					</div>
 					</form>
-					<hr>
+					<hr style='border:0.5px solid lightgray;'>
                     <%for(Review r : list) {%>
 	                    <style>
 	                    input[type='checkbox'] {
@@ -730,8 +733,8 @@ function fnMove2(){
 	                            </div>
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
 	                            <div type=hidden class='delal'>
-		                    		<button onclick="#" class='del'>삭제</button>
-		                            <button onclick="#" class='alt'>수정</button>
+		                    		<button onclick="" class='del'>삭제</button>
+		                            <button onclick="" class='alt'>수정</button>
 		                    	</div>
 		                    	<%}%>
 	                            <label for='readmore<%=r.getReviewNum()%>'>
@@ -748,39 +751,6 @@ function fnMove2(){
 			</div>
 		</div>
 	</div>
-	<style>
-	a#MOVE_TOP_BTN {
-	   position: fixed;
-	   right: 2%;
-	   bottom: 30px;
-	   display: none;
-	   z-index: 999;
-	}
-	#MOVE_TOP_BTN{
-		height:33px;width:33px;
-		background-image:url('<%=request.getContextPath()%>/images/icons/top.png');
-	}
-	</style>
-	<!-- top버튼 -->
-	<script>
-	$(function() {
-	    $(window).scroll(function() {
-	        if ($(this).scrollTop() > 500) {
-	            $('#MOVE_TOP_BTN').fadeIn();
-	        } else {
-	            $('#MOVE_TOP_BTN').fadeOut();
-	        }
-	    });
-	    
-	    $("#MOVE_TOP_BTN").click(function() {
-	        $('html, body').animate({
-	            scrollTop : 0
-	        }, 400);
-	        return false;
-	    });
-	});
-	</script>
-	<a id="MOVE_TOP_BTN" href="#"></a>
 </section>
 
 <%@include file='/views/common/footer.jsp'%>

@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.review.model.vo.Review;
+import com.kh.wish.model.vo.Wish;
 
 public class InfoDao {
 
@@ -172,5 +173,57 @@ public class InfoDao {
 			close(pstmt);
 		}
 		return reviewCountList;
+	}
+	public Wish selectWish(Connection conn, int bookId)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Wish w=null;
+		String sql=prop.getProperty("selectWish");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				w=new Wish();
+				w.setWishNo(rs.getInt("wishNo"));
+				w.setMemberNum(rs.getInt("memberNum"));
+				w.setBookId(rs.getInt("bookId"));
+				w.setBookCount(rs.getInt("bookCount"));
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return w;
+	}
+	
+	public int insertWish(Connection conn, Wish w)
+	{
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertWish");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, w.getWishNo());
+			pstmt.setInt(2, w.getMemberNum());
+			pstmt.setInt(3, w.getBookId());
+			pstmt.setInt(4, w.getBookCount());
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
 	}
 }
