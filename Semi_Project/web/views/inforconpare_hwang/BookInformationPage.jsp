@@ -1,5 +1,8 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
-import='java.util.*, com.kh.book.model.vo.Book, com.kh.review.model.vo.Review, com.kh.member.model.vo.Member,
+import='java.util.*,
+com.kh.book.model.vo.Book, 
+com.kh.review.model.vo.Review, 
+com.kh.member.model.vo.Member,
 com.kh.author.model.vo.Author'
 	pageEncoding='UTF-8'%>
 	
@@ -7,12 +10,11 @@ com.kh.author.model.vo.Author'
 <%
 	Book b=(Book)request.getAttribute("book");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
+	List<Review> reviewCountList=(List<Review>)request.getAttribute("reviewCountList");
+	String pageBar=(String)request.getAttribute("pageBar");
 	int reviewsize=(int)request.getAttribute("reviewsize");
-	
 %>
 <%@ include file='/views/common/header.jsp'%>
-
-
 <style>
 div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
 div#pageBar span.cPage{color: #0066ff;}
@@ -371,9 +373,11 @@ li {
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
 }
+div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
+div#pageBar span.cPage{color: #0066ff;}
 </style>
-
 <script language='javascript'>
+/* 장바구니, 바로구매 버튼 호버 */
 function change1(obj) {
 	obj.style.background = 'rgb(66, 66, 66)';
 	obj.style.color = 'white';
@@ -382,9 +386,19 @@ function change2(obj) {
 	obj.style.background = 'black';
 	obj.style.color = 'white';
 }
+/* 이미지 크게보기 버튼 */
 function showBigPic()
 {
 	window.open("<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>","이미지 크게보기","width=500,height=750,top=30,left=200");
+}
+/* 리뷰쓰기버튼 누르면 해당위치로 이동 */
+function fnMove1(){
+    var offset = $("#moving").offset();
+    $('html, body').animate({scrollTop : offset.top}, 400);
+}
+function fnMove2(){
+    var offset = $("#reviewview").offset();
+    $('html, body').animate({scrollTop : offset.top}, 400);
 }
 </script>
 
@@ -396,6 +410,7 @@ function showBigPic()
 					<!-- 대표이미지 -->
 					<div class='cover'>
 						<div class='bookcover'>
+						<!-- 이미지보여주기 -->
 							<img src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="어린왕자'>
@@ -427,6 +442,7 @@ function showBigPic()
 							</span>
 							</span> 지음 <span class='line'>|</span>
 							<!-- 라인 -->
+							<!-- 에디터가 있을 때 보여주고 없을 때 옮긴이 없음 -->
 							<%if(b.getEditor()!=null) {%>
 							<span class='name'><%=b.getEditor() %></span>
 							<!-- 옮긴이 -->
@@ -444,12 +460,12 @@ function showBigPic()
 										★★★★★</button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
-										onclick="location.href='#'">
+										onclick="fnMove2()">
 										리뷰 <span class='counting'><%=reviewsize %></span>개
 									</button>
 									<span class='line'>|</span>
 									<button class='reviewgogo btn-link'
-										onclick="location.href='#'">리뷰쓰러가기</button>
+										onclick="fnMove1()">리뷰쓰러가기</button>
 								</p>
 							</span>
 						</div>
@@ -485,15 +501,26 @@ function showBigPic()
 			</div>
 		</div>
 		<div class='choiceTab'>
-			<button class='jangba btn-lg' onmouseout='change2(this)'
-				onmouseover='change1(this)' onclick="location.href='#'">
+			<div class='jangbaTab' style='float:left;'>
+			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsert' method='post'>
+			<button type='submit' class='jangba btn-lg' onmouseout='change2(this)'
+				onmouseover='change1(this)'>
 				<strong>장바구니 담기</strong>
 			</button>
-			<button class='buy btn-lg' onmouseout='change2(this)'
-				onmouseover='change1(this)' onclick="location.href='#">
+			</form>
+			</div>
+			<div class='buyTab' style='float:left; margin-left:5px;'>
+			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsert' method='post'>
+			<button type='submit' class='buy btn-lg' onmouseout='change2(this)'
+				onmouseover='change1(this)'>
 				<strong>구매하기</strong>
 			</button>
+			</form>
+			</div>
 		</div>
+		<br>
+		<br>
+		<br>
 		<hr>
 		<div class='col-sm-12'>
 			<div class='inforstorywr'>
@@ -559,6 +586,10 @@ function showBigPic()
 			<div class='inforstorysn'>
 				<table>
 					<thead class='storynum'>
+					
+					<!-- 리뷰쓰기버튼 이동 div -->
+					<div id='moving'></div>
+					
 						<strong>목차</strong>
 					</thead>
 					<br>
@@ -579,7 +610,6 @@ function showBigPic()
 					<br>
 				</table>
 			</div>
-			
 			
 			
 			<style>
@@ -624,7 +654,7 @@ function showBigPic()
 			          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
 			          $('#counter').html(content.length + '/100');
 			      });
-			      $('#content').keyup();
+			$('#content').keyup();
 			});
 			</script>
 			
@@ -638,7 +668,7 @@ function showBigPic()
 				<br>
 				<br>
 				<ul>
-				<div>
+				<div id='reviewview'>
 					<form action="#" name="reviewText" method="post">
 					<pre class='reviewpre' style='width:96%'>
 					<div class="wrappluswritereview" style='padding-top:5px;padding-left: 7px;padding-right:7px;padding-bottom:5px;border: 1px solid gray;'>
@@ -666,11 +696,11 @@ function showBigPic()
 						}
 						
 						label:after {
-							content: '펼쳐보기';
+							contents: '펼쳐보기';
 						}
 						
 						input:checked ~ label:after {
-							content: '닫기';
+							contents: '닫기';
 						}
 						
 	                    .inner<%=r.getReviewNum()%> {
@@ -692,7 +722,7 @@ function showBigPic()
 	                        <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
 	                        </small>
 	                    </div>
-	                    <div class='content'>
+	                    <div class='contents'>
 	                        <small>
 	                            <input type='checkbox' id='readmore<%=r.getReviewNum()%>' /> 
 	                            <div class='inner<%=r.getReviewNum() %>' style='width:100%;'>
@@ -710,11 +740,47 @@ function showBigPic()
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>
                     <%} %>
+                        <div id="pageBar">
+                        	<%=pageBar %>
+                        </div>
                     </pre>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<style>
+	a#MOVE_TOP_BTN {
+	   position: fixed;
+	   right: 2%;
+	   bottom: 30px;
+	   display: none;
+	   z-index: 999;
+	}
+	#MOVE_TOP_BTN{
+		height:33px;width:33px;
+		background-image:url('<%=request.getContextPath()%>/images/icons/top.png');
+	}
+	</style>
+	<!-- top버튼 -->
+	<script>
+	$(function() {
+	    $(window).scroll(function() {
+	        if ($(this).scrollTop() > 500) {
+	            $('#MOVE_TOP_BTN').fadeIn();
+	        } else {
+	            $('#MOVE_TOP_BTN').fadeOut();
+	        }
+	    });
+	    
+	    $("#MOVE_TOP_BTN").click(function() {
+	        $('html, body').animate({
+	            scrollTop : 0
+	        }, 400);
+	        return false;
+	    });
+	});
+	</script>
+	<a id="MOVE_TOP_BTN" href="#"></a>
 </section>
 
 <%@include file='/views/common/footer.jsp'%>
