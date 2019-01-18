@@ -16,14 +16,14 @@ import com.kh.order.model.vo.Order;
 /**
  * Servlet implementation class BuyListServlet
  */
-@WebServlet("/member/buyList")
-public class BuyListServlet extends HttpServlet {
+@WebServlet("/member/orderList")
+public class OrderListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuyListServlet() {
+    public OrderListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class BuyListServlet extends HttpServlet {
 		int no = logined.getMemberNum();
 		List<Order> list = new OrderService().selectList(no);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/login_myPage/buyList.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/login_myPage/orderList.jsp").forward(request, response);
 	}
 
 	/**
