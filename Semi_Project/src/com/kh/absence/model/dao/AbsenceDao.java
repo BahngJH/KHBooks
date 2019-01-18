@@ -103,6 +103,13 @@ public class AbsenceDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, ab.getMemberNum());
+			pstmt.setString(2, ab.getBookName());
+			pstmt.setString(3, ab.getAuthor());
+			pstmt.setString(4, ab.getBookDate());
+			pstmt.setString(5, ab.getISBN());
+			pstmt.setString(6,ab.getPublisher());
+			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

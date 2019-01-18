@@ -58,6 +58,9 @@ input[value='주문하기'] {
 <script>
 
 function absence(){
+	if(logined==null)
+	alert("로그인후 이용해주세요");
+	else
 	location.href="<%=request.getContextPath()%>/notice/absence";
 }
 </script>
