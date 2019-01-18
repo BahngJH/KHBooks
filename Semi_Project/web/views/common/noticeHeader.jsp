@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp"%>
 
@@ -93,47 +93,30 @@ a {
          class="caret"></span></a>
 
 
-      <ol class="hide">
+      <%if(logined!=null){%>
+      <ul class="hide">
          <br />
-         <li><%if(logined!=null){%>
-            <a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
+         <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
          </li>
          <br />
-         <li>
-         <a href="<%=request.getContextPath()%>/notice/absenceView">희망도서 신청</a>
-         </li><%} %>
-         
-      </ol>
+         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
+               신청</a></li>
+
+      </ul>
+      <%}else {%>
+
+      <ul class="hide">
+         <br />
+         <li><a onclick="a_click();">1:1문의</a></li>
+         <br />
+         <li><a onclick="a_click();">희망도서 신청</a></li>
+
+      </ul>
+      <%}%>
+
       <hr>
       <a href=""><strong>도서신청</strong></a>
       <hr>
-
-
-		<%if(logined!=null){%>
-		<ul class="hide">
-			<br />
-			<li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
-			</li>
-			<br />
-			<li><a href="<%=request.getContextPath()%>/absence/page">희망도서
-					신청</a></li>
-
-		</ul>
-		<%}else {%>
-
-		<ul class="hide">
-			<br />
-			<li><a onclick="a_click();">1:1문의</a></li>
-			<br />
-			<li><a onclick="a_click();">희망도서 신청</a></li>
-
-		</ul>
-		<%}%>
-
-		<hr>
-		<a href=""><strong>도서신청</strong></a>
-		<hr>
-
 
 
 

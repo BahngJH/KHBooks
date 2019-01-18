@@ -113,4 +113,64 @@ public class InfoDao {
 		}
 		return list;
 	}
+	public int selectReviewCount(Connection conn)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectReviewCount");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				result=rs.getInt("cnt");
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Review> selectReviewList(Connection conn, int cPage, int numPerPage)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Review> reviewCountList=new ArrayList();
+		String sql=prop.getProperty("selectReviewList");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				Review r=new Review();
+				r.setBookId(rs.getInt("bookId"));
+				r.setMemberNum(rs.getInt("memberNum"));
+				r.setWriteDate(rs.getDate("writeDate"));
+				r.setGrade(rs.getInt("grade"));
+				r.setReviewNum(rs.getInt("reviewNum"));
+				r.setStatus(rs.getString("status"));
+				r.setCheckOption(rs.getInt("checkOption"));
+				r.setReviewContext(rs.getString("reviewContext"));
+				
+				reviewCountList.add(r);
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return reviewCountList;
+	}
 }

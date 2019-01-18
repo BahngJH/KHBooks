@@ -35,14 +35,17 @@ public class AbsencePagingServlet extends HttpServlet {
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 			
+			
 		}catch(NumberFormatException e) {
 			cPage=1;
+			
 		}
 		int numPerPage;
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
 			numPerPage=8;
+			System.out.println(numPerPage);
 		}
 		
 		int totalBoard=new AbsenceService().selectCount(); // 디비 속성갯수
