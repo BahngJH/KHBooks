@@ -133,7 +133,8 @@ text-align: left;
 						<!--문의글 확인 및 재문의 -->			
 						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
 		                     <div class="well" value="">
-		                     	 <h5 ><%=q.getQnaContent() %> </h5>		                     	                    	                       
+		                     	 <h5 ><%=q.getQnaContent() %> </h5>	
+		                     	 <h5 >여기는 답변내용이 올곳입니다. </h5>			                     	                    	                       
 								  <ul class="">							    
 								    <li class=""><button>재문의</button></li>
 								  </ul>												                        						                                              
