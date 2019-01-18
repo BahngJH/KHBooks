@@ -106,7 +106,7 @@
 				<article class="buy-container">
 					<div id="buy-title"  style= 'width: 100%; min-height: 40px;'>
 						<h4>구매 목록</h4>
-						<a href="<%=request.getContextPath()%>/member/buyList" class="btn btn-primary" id="btn-buyListAll">전체 보기</a>
+						<a href="<%=request.getContextPath()%>/member/orderList" class="btn btn-primary" id="btn-buyListAll">전체 보기</a>
 					</div>
 					
 					<div style= 'width: 100%; height: 250px; border: 1px solid black;'>
