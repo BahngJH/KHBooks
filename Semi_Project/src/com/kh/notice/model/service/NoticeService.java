@@ -1,6 +1,8 @@
 package com.kh.notice.model.service;
 
-import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.getConnection
+;
+
 
 
 import java.sql.Connection;

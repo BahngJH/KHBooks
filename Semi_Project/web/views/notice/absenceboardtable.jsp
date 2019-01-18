@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.util.*,com.kh.absence.model.vo.*, com.kh.member.model.vo.*" %>
+	<%
+		List<Absence> list=(List)request.getAttribute("list");
+	%>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
 
@@ -38,14 +42,23 @@ border-height: 10px;
 
   float:right;
   cursor: pointer;}
+input[value='주문하기'] {
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none;
 
+  float:right;
+  cursor: pointer;
+}
 </style>
 
 <section>
 <script>
 
-function insertNotice(){
-	location.href="<%=request.getContextPath()%>/notice/insertNotice";
+function absence(){
+	location.href="<%=request.getContextPath()%>/notice/absence";
 }
 </script>
 
@@ -55,7 +68,7 @@ function insertNotice(){
 				<h2>부재도서 주문</h2>
 				<br/>
 				<article id="edit">
-				<%if(logined!=null||logined.getMemberId().equals("1212")) {%>
+				<%if(logined!=null||logined.getMemberId().equals("admin")) {%>
 					<input type="button" value="주문하기" onclick="absence();"/>
 				<%} %>
 				
@@ -71,18 +84,19 @@ function insertNotice(){
 						<col width="126px" />
 					</colgroup>
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>날짜</th>
+						
+						<th>작성자</th>
+						<th>책 제목</th>
+						<th>신청날짜</th>
 					</tr>
 					
-	<%-- 			
-					<%for(Notice n : list){ %>
-					<% if(n.getStatus().equals("Y")){ %>
+ 			
+					<%for(Absence ab : list){ %>
+					<% if(ab.getStatus().equals("Y")){ %>
 					<tr>
-						<td><%=n.getNoticeNo() %></td>
-						<td><a href="<%=request.getContextPath() %>/notice/noticeContent?no=<%=n.getNoticeNo()%>"><%=n.getNoticeTitle()%></a></td>
-						<td><%=n.getNoticeDate()%></td>					
+						<td><%=ab.getMember().getMemberId()%></td>
+						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
+						<td><%=ab.getAppDate()%></td>					
 					</tr> 
 					<%} 
 					}%>					
@@ -94,7 +108,7 @@ function insertNotice(){
 			</div>
 
 
- --%>
+
 
 
 

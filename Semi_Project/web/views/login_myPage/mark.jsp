@@ -4,6 +4,7 @@
 <%
 	List<Book> books = (List<Book>)request.getAttribute("bookList");
 	int markCount = (int)request.getAttribute("markCount");
+	String pageBar = (String)request.getAttribute("pageBar");
 %>    
 <%@ include file="/views/common/myHeader.jsp" %>
 
@@ -83,6 +84,13 @@
                     %>
                     <h2><b>현재 찜하신 상품이 없습니다.</b></h2>
                     <%} %>
+				<!--페이지네이션-->
+                <div class="paging col-xs-12" style="text-align: center">
+                    <ul class="pagination pagination-lg">
+                        <%=pageBar %>
+                    </ul>
+
+                </div>
                    </form>
                     </div>
                 </div>

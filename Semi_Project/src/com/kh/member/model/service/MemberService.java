@@ -125,5 +125,21 @@ public class MemberService {
 		close(conn);
 		return rs;
 	}
+	//페이징에 사용된 토탈 구해오는 메소드
+	public int selectMarkCount(int memberNum)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().selectMarkCount(conn,memberNum);
+		close(conn);
+		return rs;
+	}
+	//페이징에 사용된 현재 페이지와 numper로 값 가져오기
+	public List<Book> markList(int cPage, int numPerPage,int memberNum)
+	{
+		Connection conn =getConnection();
+		List<Book> bookList = new MemberDao().markList(conn, cPage,numPerPage,memberNum);
+		close(conn);
+		return bookList;
+	}
 	
 }
