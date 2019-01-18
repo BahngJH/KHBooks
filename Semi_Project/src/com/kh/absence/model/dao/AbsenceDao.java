@@ -171,6 +171,9 @@ public class AbsenceDao {
 				ab.setPublisher(rs.getString("publisher"));
 				ab.setAppCancel(rs.getBoolean("appnum"));
 				ab.setStatus(rs.getString("status"));
+				Member m =new Member();
+				m.setMemberId(rs.getString("memberId"));
+				ab.setMember(m);
 				list.add(ab);
 				
 			}
