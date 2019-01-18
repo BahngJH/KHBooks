@@ -38,8 +38,11 @@ public class NoticeAbsenceServlet extends HttpServlet {
 		
 	
 		
-		int loginNum=Integer.parseInt( request.getParameter("no"));
+		Member logined=(Member)request.getSession(false).getAttribute("logined");
 		
+		if(logined!=null) {
+		
+		int loginNum=logined.getMemberNum();
 		String bookName=request.getParameter("bookName");
 		String author=request.getParameter("authorName");
 		String publisher=request.getParameter("publisher");
@@ -59,7 +62,25 @@ public class NoticeAbsenceServlet extends HttpServlet {
 		ab.setStatus(null);
 		ab.setAppNum(0);
 		
-//		int result=new AbsenceService().insertAbsence(ab);
+		int result=new AbsenceService().insertAbsence(ab);
+		
+		String msg="";
+		String view="/views/common/msg.jsp";
+		String loc="";
+		
+		if(result>0) {
+			msg="신청이 완료됐습니다.";
+			loc="/notice/absenceView";
+		}else {
+			msg="다시 신청해주세요.";
+			loc="/notice/absence";
+		}
+		
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher(view).forward(request, response);
+		}
 		
 		
 		
