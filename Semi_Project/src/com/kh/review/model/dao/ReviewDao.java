@@ -48,7 +48,7 @@ public class ReviewDao {
 				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
 				r.setCheckOption(rs.getInt("checkOption"));
-				list.add(r);
+				list.add(r);				
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

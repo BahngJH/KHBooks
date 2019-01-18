@@ -50,14 +50,15 @@ public class QnaDao {
 		ResultSet rs = null;
 		List<Qna> list = new ArrayList();
 		String sql = prop.getProperty("selectMyQnaList");
-		Qna q = new Qna();
+		
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {					
+			while (rs.next()) {	
+				Qna q = new Qna();
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaWriter(rs.getInt("memberNum"));
 				q.setQnaTitle(rs.getString("qnaTitle"));

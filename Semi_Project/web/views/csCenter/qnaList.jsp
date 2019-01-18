@@ -99,9 +99,9 @@ text-align: left;
 			 <div class="sch-lcont">
 				<strong>기간별 조회</strong>
 				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src='images/icons/ico_cal.gif' align='absMiddle'> ~
+				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
 				<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/icons/ico_cal.gif' align='absMiddle'>												
+				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
 				<span class="cbtn">					  		
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
@@ -119,10 +119,9 @@ text-align: left;
 					<ul class="askList">
 				 	<%for(Qna q : list){ %>								   		   					   
 		                <li>
-		                	 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">				       		 			       		
-					     		<h5 style="display: inline"><b><%=q.getQnaNum() %> |</b></h5>
+		                	 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    
 					     		<h5 style="display: inline"><b><%=q.getQnaPart() %></b></h5>				       							    
-							     <em style="display: inline"><b><%=q.getQnaTitle() %> 제목</b></em>
+							     <em style="display: inline"><b><%=q.getQnaTitle() %></b></em>
 								 <span class="csInfo"> 
 									<span class=""><%=q.getQnaDate() %>읽음</span> 
 									<span class="divi">|</span> 	
@@ -130,16 +129,17 @@ text-align: left;
 								 </span> 
 							     <em class="">&nbsp;</em>
 							</button>					
-						</li> 
-						<%} %>	 						
+						</li> 							 						
 						<!--문의글 확인 및 재문의 -->			
-						<div class="collapse" id="collapseExample1">
-		                     <div class="well" value=""> 	                       
+						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
+		                     <div class="well" value="">
+		                     	 <h5 ><%=q.getQnaContent() %> </h5>		                     	                    	                       
 								  <ul class="">							    
-								    <li class=""><button>재문의하기 </button></li>
+								    <li class=""><button>재문의</button></li>
 								  </ul>												                        						                                              
 		                      </div>                       
-		                 </div>                            							
+		                 </div> 
+		                 <%} %>                           							
 					</ul>				
 		 	   </div>
 		</div>
