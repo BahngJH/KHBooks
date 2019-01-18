@@ -20,9 +20,9 @@ public class QnaService {
 		return result;
 	}
 	//내가 쓴 문의글 List Service
-	public List<Qna> selecMyQnaList(){
+	public List<Qna> selecMyQnaList(int memberNum){
 		Connection conn=getConnection();
-		List<Qna> list=new QnaDao().selecMyQnaList(conn);
+		List<Qna> list=new QnaDao().selecMyQnaList(conn, memberNum);
 		close(conn);
 		return list;
 	

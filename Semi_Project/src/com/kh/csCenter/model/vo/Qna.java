@@ -3,27 +3,25 @@ package com.kh.csCenter.model.vo;
 import java.util.Date;
 
 public class Qna {
-	private int qnaNum;
-	private String qnaPart;
-	private int qnaWriter;
-	private String qnaAnswer;
-	private String qnaMail;
-	private String qnaTel;
-	private String qnaTitle;
-	private String qnaContent;
-	private String qnaOriFile;
-	private String qnaReFile;
-	private Date qnaDate;
-	private int qnaReadCount;
-	private String qnaStatus;
+	private int qnaNum;//문의 번호
+	private String qnaPart;//상담분류
+	private int qnaWriter;//회원번호 memberNum
+	private String qnaAnswer;//메일 답변 여부
+	private String qnaMail;//문의자 메일
+	private String qnaTel;//문의자 전화번호
+	private String qnaTitle;//문의 제목
+	private String qnaContent;//문의 내용
+	private String qnaOriFile;//이전파일
+	private String qnaReFile;//새로운 파일
+	private Date qnaDate;//조회수>>읽음여부 판단
+	private String qnaStatus;//삭제여부
 
 	public Qna() {
 		super();
 	}
 
 	public Qna(int qnaNum, String qnaPart, int qnaWriter, String qnaAnswer, String qnaMail, String qnaTel,
-			String qnaTitle, String qnaContent, String qnaOriFile, String qnaReFile, Date qnaDate, int qnaReadCount,
-			String qnaStatus) {
+			String qnaTitle, String qnaContent, String qnaOriFile, String qnaReFile, Date qnaDate, String qnaStatus) {
 		super();
 		this.qnaNum = qnaNum;
 		this.qnaPart = qnaPart;
@@ -36,7 +34,6 @@ public class Qna {
 		this.qnaOriFile = qnaOriFile;
 		this.qnaReFile = qnaReFile;
 		this.qnaDate = qnaDate;
-		this.qnaReadCount = qnaReadCount;
 		this.qnaStatus = qnaStatus;
 	}
 
@@ -128,14 +125,6 @@ public class Qna {
 		this.qnaDate = qnaDate;
 	}
 
-	public int getQnaReadCount() {
-		return qnaReadCount;
-	}
-
-	public void setQnaReadCount(int qnaReadCount) {
-		this.qnaReadCount = qnaReadCount;
-	}
-
 	public String getQnaStatus() {
 		return qnaStatus;
 	}
@@ -149,7 +138,7 @@ public class Qna {
 		return "Qna [qnaNum=" + qnaNum + ", qnaPart=" + qnaPart + ", qnaWriter=" + qnaWriter + ", qnaAnswer="
 				+ qnaAnswer + ", qnaMail=" + qnaMail + ", qnaTel=" + qnaTel + ", qnaTitle=" + qnaTitle + ", qnaContent="
 				+ qnaContent + ", qnaOriFile=" + qnaOriFile + ", qnaReFile=" + qnaReFile + ", qnaDate=" + qnaDate
-				+ ", qnaReadCount=" + qnaReadCount + ", qnaStatus=" + qnaStatus + "]";
+				+ ", qnaStatus=" + qnaStatus + "]";
 	}
 
 }

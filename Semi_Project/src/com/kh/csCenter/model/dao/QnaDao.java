@@ -44,24 +44,33 @@ public class QnaDao {
 		return result;
 	}
 
-	// 내가 쓴 문의글 Dao
-	public List<Qna> selecMyQnaList(Connection conn) {
+	// 내가 쓴 문의글 리스트 Dao
+	public List<Qna> selecMyQnaList(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Qna> list = new ArrayList();
 		String sql = prop.getProperty("selectMyQnaList");
+		Qna q = new Qna();
 
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Qna q = new Qna();
+			
+			while (rs.next()) {					
 				q.setQnaNum(rs.getInt("qnaNum"));
-				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaWriter(rs.getInt("memberNum"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaReadCount(rs.getInt("qnaReadCount"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
 				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
+				
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -70,6 +79,7 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println(list);
 		return list;
 
 	}
@@ -89,8 +99,7 @@ public class QnaDao {
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaPart(rs.getString("qnaPart"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaReadCount(rs.getInt("qnaReadCount"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
 				q.setQnaStatus(rs.getString("qnaStatus"));
 				list.add(q);
 			}
@@ -121,9 +130,8 @@ public class QnaDao {
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaPart(rs.getString("qnaPart"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaReadCount(rs.getInt("qnaReadCount"));
-				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
+				q.setQnaStatus(rs.getString("Status"));
 				list.add(q);
 			}
 		} catch (SQLException e) {
