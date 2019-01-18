@@ -56,7 +56,7 @@
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		            </button>
-		            <a class="navbar-brand" href="<%=request.getContextPath()%>/"><strong>KH BOOKS</strong></a>
+		            <a class="navbar-brand" href="<%=request.getContextPath() %>/main/mainview"><strong>KH BOOKS</strong></a>
 		            <div class="dropdown" style="display: inline">
 		                <button class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" role="button" aria-expanded="false" id="category">카테고리<span class="caret"></span></button>
 		                <ul class="dropdown-menu" role="menu" aria-labelledby="category">

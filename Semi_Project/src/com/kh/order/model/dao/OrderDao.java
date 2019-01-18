@@ -74,8 +74,8 @@ Properties prop=new Properties();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, keyword);
-			pstmt.setString(2, keyword);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
 			pstmt.setInt(3, no);			
 			rs = pstmt.executeQuery();
 			
