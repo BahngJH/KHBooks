@@ -108,5 +108,38 @@ public class MemberService {
 		
 		return list;
 	}
+	//찜목록 삭제하기
+	public int markMutiDelete(List<Integer> booksId,int memberNum, int deleteCount)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().markMutiDelete(conn,booksId, memberNum);
+		if(rs==deleteCount && rs>0) {
+			//모두 삭제
+			commit(conn);
+		}else if(rs>0 && rs<deleteCount) {
+			//일부만 삭제됨
+			rollback(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return rs;
+	}
+	//페이징에 사용된 토탈 구해오는 메소드
+	public int selectMarkCount(int memberNum)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().selectMarkCount(conn,memberNum);
+		close(conn);
+		return rs;
+	}
+	//페이징에 사용된 현재 페이지와 numper로 값 가져오기
+	public List<Book> markList(int cPage, int numPerPage,int memberNum)
+	{
+		Connection conn =getConnection();
+		List<Book> bookList = new MemberDao().markList(conn, cPage,numPerPage,memberNum);
+		close(conn);
+		return bookList;
+	}
 	
 }

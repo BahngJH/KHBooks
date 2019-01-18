@@ -32,14 +32,22 @@ public class MyReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 
 		if (logined != null) {
 			int memberNum = logined.getMemberNum();	
 			List<Review> list=new ReviewService().selectList(memberNum);
 			request.setAttribute("list", list);
-			request.setAttribute("cnt", list.size());
+			
+			int cnt = 0;
+			for(Review r : list) {
+				if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
+					cnt ++;
+			}
+			
+			
+			
+			request.setAttribute("cnt", cnt);
 			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
 		}
 		else {

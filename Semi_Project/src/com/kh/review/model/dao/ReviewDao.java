@@ -45,17 +45,14 @@ public class ReviewDao {
 				r.setGrade(rs.getInt("grade"));
 				r.setReviewContext(rs.getString("reviewContext"));
 				r.setStatus(rs.getString("status"));
-<<<<<<< HEAD
 				r.setCheckOption(rs.getInt("checkOption"));
 				list.add(r);				
-=======
-				r.setBookId(rs.getInt("bookId"));
-				
+				r.setBookId(rs.getInt("bookId"));				
 				Book b = new Book();
 				b.setBookName(rs.getString("bookName"));
 				r.setBook(b);
 				list.add(r);
->>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
+
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

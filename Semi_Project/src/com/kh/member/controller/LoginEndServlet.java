@@ -37,10 +37,13 @@ public class LoginEndServlet extends HttpServlet {
 		String saveId = request.getParameter("saveId");
 		
 		Member m = new MemberService().memberLogin(id);
+		
 		if(m==null || !m.getMemberPw().equals(pw)) {
 			//로그인 실패 or 없는 회원
 			System.out.println("로그인 실패");
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
+			request.setAttribute("msg", "아이디나 비밀번호를 다시 확인해 주세요");
+			request.setAttribute("loc", "/member/login");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			
 		}else{
 			//로그인 성공

@@ -211,6 +211,7 @@ public class MemberDao {
 		}
 		return rs;
 	}
+	//아이디 찾기 로직
 	public String searchId(Connection conn, String name, String email)
 	{
 		PreparedStatement pstmt = null;
@@ -236,6 +237,7 @@ public class MemberDao {
 		}
 		return id;
 	}
+	//찜목록 불러오는 로직
 	public List<Book> markList(Connection conn, int memberNum)
 	{
 		PreparedStatement pstmt = null;
@@ -278,6 +280,98 @@ public class MemberDao {
 		}
 		return list;
 	}
-	
+	//찜 목록 다중 삭제
+	public int markMutiDelete(Connection conn, List<Integer> booksId, int memberNum)
+	{
+		PreparedStatement pstmt = null;
+		int rs = 0;
+		String sql = prop.getProperty("markMutiDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<booksId.size();i++) {
+				pstmt.setInt(1, booksId.get(i));
+				pstmt.setInt(2, memberNum);
+				rs += pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;	
+	}
+	//페이징에 사용될 전체 찜목록 갯수 구함
+	public int selectMarkCount(Connection conn, int memberNum)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		int result =0;
+		String sql = prop.getProperty("selectMarkCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				result = rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	//페이징 자료 가져오기
+	public List<Book> markList(Connection conn, int cPage, int numPerPage, int memberNum)
+	{
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		String sql =prop.getProperty("markList");
+		List<Book> bookList = new ArrayList();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+            pstmt.setInt(3, cPage*numPerPage);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()) 
+            {
+            	Book b = new Book();
+            	
+            	b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				
+            	bookList.add(b);
+            }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return bookList;
+		
+	}
 	
 }

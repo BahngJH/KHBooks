@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp"%>
 
@@ -10,11 +11,13 @@
    cursor: pointer;
    text-decoration: none;
 }
+
 a {
    color: black;
    cursor: pointer;
    text-decoration: none;
 }
+
 .col-sm-2 {
    margin: 120px 0 0 0;
 }
@@ -60,14 +63,20 @@ a {
 </style>
 
 <script>
+   
    $(document).ready(function() {
 
+       $("#side").click(function() {
 
-      $("#side").click(function() {
-
-         $(this).next("ol").toggleClass("hide");
+         $(this).next("ul").toggleClass("hide");
       });
    });
+   
+
+   function a_click() {
+      alert("로그인후 이용해주세요");
+   loaction.href="<%=request.getContextPath()%>/notice/firstNotice";
+   }
 </script>
 
 
@@ -83,6 +92,7 @@ a {
       <a class="dropdown-toggle" id="side"><strong>게시판</strong><span
          class="caret"></span></a>
 
+
       <ol class="hide">
          <br />
          <li><%if(logined!=null){%>
@@ -97,6 +107,33 @@ a {
       <hr>
       <a href=""><strong>도서신청</strong></a>
       <hr>
+
+
+		<%if(logined!=null){%>
+		<ul class="hide">
+			<br />
+			<li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
+			</li>
+			<br />
+			<li><a href="<%=request.getContextPath()%>/absence/page">희망도서
+					신청</a></li>
+
+		</ul>
+		<%}else {%>
+
+		<ul class="hide">
+			<br />
+			<li><a onclick="a_click();">1:1문의</a></li>
+			<br />
+			<li><a onclick="a_click();">희망도서 신청</a></li>
+
+		</ul>
+		<%}%>
+
+		<hr>
+		<a href=""><strong>도서신청</strong></a>
+		<hr>
+
 
 
 

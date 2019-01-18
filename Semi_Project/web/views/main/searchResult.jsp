@@ -29,6 +29,26 @@
                 }
             });
         });
+ 
+        function show_author(){
+        	//작가 더 보여주기
+        	if($("li.over").hasClass("hidden")){
+        		$("li.over").removeClass("hidden");
+        		$("li.over").addClass("show");
+        		$("span.icon").removeClass("glyphicon-chevron-down");
+        		$("span.icon").addClass("glyphicon-chevron-up");
+        		$("#more").text("접기");
+        	}else{
+        		//작가 접기
+		        if($("li.over").hasClass("show")){
+		        	$("li.over").addClass("hidden");
+		        	$("li.over").removeClass("show");
+		        	$("span.icon").removeClass("glyphicon-chevron-up");
+	        		$("span.icon").addClass("glyphicon-chevron-down");
+		        	$("#more").text("<%=authors.size()-3%> 더보기");
+		        }
+        	}
+        }
     </script>
 </head>
 
@@ -43,7 +63,6 @@
             	for(GenreCount g : genres){
             		allGenre += g.getCnt();
             	}
-            
             %>
             	<h3 class="category_title">결과 내 카테고리</h3>
                 <ul class="list-group">
@@ -77,12 +96,12 @@
                     	int i=0;%>
                     	<ul>
                     	<%for(Author a : authors){%>
-                    		<li <%=i++>2?"class='hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    		<li <%=i++>2?"class='over hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
                     			
                     	<%}%>
                     	</ul>
                     	<%if(authors.size() > 3){%>
-                    	<button><span><%=authors.size()-3%>명 더 보기 </span></button>
+                    	<button id="more-btn" onclick="show_author()"><span id="more"><%=authors.size()-3%>명 더보기 </span><span class="icon glyphicon glyphicon-chevron-down"></span></button>
                     	<%}
                     }else{%>
                     <h4><strong>검색 결과 없음</strong></h4>
@@ -96,14 +115,21 @@
                     <h3>책 검색</h3>
                     <div id='order' class="row">
                         <ul class="order-buttons list-inline col-xs-12 col-md-12">
-                            <!--첫번째는 padding-left 속성 빼주기-->
+                            <!-- 정렬 버튼 -->
                             <%
                             String [] orderTitle ={"검색 결과순", "인기순", "최신순", "평점순", "리뷰 많은순", "낮은 가격 순"}; 
                             String [] orderValue ={"popularity", "recent", "grade", "review", "price"};  
                             for(int i=0;i<orderTitle.length;i++){
+                            	if(order != null && i!=0 && order.equals(orderValue[i-1])){%>
+                            		<li><span><strong><%=orderTitle[i] %></strong></span></li>	
+                            <%	}else if(order.equals("default") && i==0){
+                            %>	
+                            	<li><span><strong><%=orderTitle[0] %></strong></span></li>	
+                            <%	}else{
                             %>
                             <li><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&category=<%=category %>&cPage=1<%=i==0?"":"&order="+orderValue[i-1]%>"><%=orderTitle[i] %></a></li>
-                            <%} %>
+                            <%}
+                            } %>
                         </ul>
                     </div>
                     <div>
