@@ -43,5 +43,19 @@ public class AbsenceService {
 		}
 		return result;
 	}
+	
+	public int selectCount() {
+		Connection conn =getConnection();
+		int result=new AbsenceDao().selectCount(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<Absence> selectList(int cPage,int numPerPage) {
+		Connection conn=getConnection();
+		List<Absence> list=new AbsenceDao().selectList(conn,cPage,numPerPage);
+		close(conn);
+		return list;
+	}
 
 }

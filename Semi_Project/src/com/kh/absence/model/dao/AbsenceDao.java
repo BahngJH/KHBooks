@@ -14,6 +14,8 @@ import java.util.Properties;
 import com.kh.absence.model.vo.Absence;
 import com.kh.member.model.vo.Member;
 
+import sun.dc.pr.PRError;
+
 public class AbsenceDao {
 	
 	static Properties prop=new Properties();
@@ -119,5 +121,97 @@ public class AbsenceDao {
 		return result;
 		
 	}
+	
+	public int selectCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+		
+	}
+	
+	
+	public List<Absence> selectList(Connection conn,int cPage,int numPerPage){
+		PreparedStatement pstmt= null;
+		ResultSet rs=null;
+		List<Absence> list=new ArrayList();
+		String sql=prop.getProperty("selectList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				
+			Absence ab=new Absence();
+				ab.setMemberNum(rs.getInt("membernum"));
+				ab.setBookName(rs.getString("bookname"));
+				ab.setAppDate(rs.getDate("appdate"));
+				ab.setAuthor(rs.getString("author"));
+				ab.setBookDate(rs.getString("bookdate"));
+				ab.setISBN(rs.getString("isbn"));
+				ab.setPublisher(rs.getString("publisher"));
+				ab.setAppCancel(rs.getBoolean("appnum"));
+				ab.setStatus(rs.getString("status"));
+				list.add(ab);
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
