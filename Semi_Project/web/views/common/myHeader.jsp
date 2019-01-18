@@ -25,7 +25,7 @@
             <ul class="nav nav-pills nav-stacked">
                <li><h4><span class="glyphicon glyphicon-home" aria-hidden="true"></span><a href="<%=request.getContextPath()%>/member/myHome">마이 홈</h4></a></li>
                   <hr/>
-                   <li><a href="<%=request.getContextPath()%>/member/buyList">구매 목록</a></li>
+                   <li><a href="<%=request.getContextPath()%>/member/orderList">구매 목록</a></li>
                    <li><a href=""> 장바구니</a></li>
                    <li><a href="<%=request.getContextPath()%>/member/mark?memberNum=<%=logined.getMemberNum()%>"> 찜 목록</a></li>
                    <li><a href="<%=request.getContextPath()%>/member/updateInfo"> 정보 변경</a></li>

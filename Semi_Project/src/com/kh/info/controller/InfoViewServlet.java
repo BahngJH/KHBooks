@@ -140,9 +140,10 @@ public class InfoViewServlet extends HttpServlet {
 		/*최근 본 목록 쿠키*/
 		Cookie[] cookies = request.getCookies();
 		String cookieValue = "";
-		String newValue="";
+		String newValue = bookId + "|";;
 		if(cookies != null) {
 			for(Cookie c : cookies) {
+				//이미 recent 쿠키가 있을 경우
 				if(c.getName().equals("recent")) {
 					cookieValue = c.getValue();
 										

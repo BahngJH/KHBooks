@@ -61,7 +61,7 @@ table th {
 					<td><a href="<%=request.getContextPath() %>/qna/qnaContent?no=<%= q.getQnaNum()%>"><%=q.getQnaTitle() %></a></td> 		
 					<td><%=q.getQnaWriter() %></td>				
 					<td><%=q.getQnaDate() %></td>		
-					<td><%=q.getQnaReadCount() %></td>		
+					
 				</tr>
 					<%} 
 				}%>	 

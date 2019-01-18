@@ -16,7 +16,7 @@ public class QnaDao {
 	Properties prop = new Properties();
 
 	public QnaDao() {
-		String file = QnaDao.class.getResource("./qna_sql.properties").getPath();
+		String file = QnaDao.class.getResource("./qna-query.properties").getPath();
 		try {
 			prop.load(new FileReader(file));
 		} catch (Exception e) {
@@ -44,6 +44,47 @@ public class QnaDao {
 		return result;
 	}
 
+	// 내가 쓴 문의글 리스트 Dao
+	public List<Qna> selecMyQnaList(Connection conn, int memberNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Qna> list = new ArrayList();
+		String sql = prop.getProperty("selectMyQnaList");
+		
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {	
+				Qna q = new Qna();
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaWriter(rs.getInt("memberNum"));
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
+				
+				list.add(q);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+
+	}
+
 	// 문의글 리스트
 	public List<Qna> selectAllQna(Connection conn) {
 		PreparedStatement pstmt = null;
@@ -59,8 +100,7 @@ public class QnaDao {
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaPart(rs.getString("qnaPart"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaReadCount(rs.getInt("qnaReadCount"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
 				q.setQnaStatus(rs.getString("qnaStatus"));
 				list.add(q);
 			}
@@ -91,9 +131,8 @@ public class QnaDao {
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaPart(rs.getString("qnaPart"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaReadCount(rs.getInt("qnaReadCount"));
-				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaDate(rs.getDate("qnaDate"));				
+				q.setQnaStatus(rs.getString("Status"));
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -110,10 +149,11 @@ public class QnaDao {
 	public int qnaEnroll(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;
 		int rs = 0;
+		System.out.println(q);
 		String sql = prop.getProperty("qnaEnroll");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, q.getQnaWriter());
+			pstmt.setInt(1, q.getQnaWriter());
 			pstmt.setString(2, q.getQnaTitle());
 			pstmt.setString(3, q.getQnaContent());
 			pstmt.setString(4, q.getQnaPart());

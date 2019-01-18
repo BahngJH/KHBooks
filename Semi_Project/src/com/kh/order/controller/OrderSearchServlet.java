@@ -1,4 +1,4 @@
-package com.kh.review.controller;
+package com.kh.order.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
-import com.kh.review.model.service.ReviewService;
-import com.kh.review.model.vo.Review;
+import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 
 /**
- * Servlet implementation class MyReviewServlet
+ * Servlet implementation class OrderSearchServlet
  */
-@WebServlet("/member/review")
-public class MyReviewServlet extends HttpServlet {
+@WebServlet("/order/orderSearch")
+public class OrderSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewServlet() {
+    public OrderSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +33,13 @@ public class MyReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
-
-		if (logined != null) {
-			int memberNum = logined.getMemberNum();	
-			List<Review> list=new ReviewService().selectList(memberNum);
-			request.setAttribute("list", list);
-			
-			int cnt = 0;
-			for(Review r : list) {
-				if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
-					cnt ++;
-			}
-			
-			
-			
-			request.setAttribute("cnt", cnt);
-			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
-		}
-		else {
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-		}
+		int no = logined.getMemberNum();
+		String keyword = request.getParameter("keyword");
+		
+		List<Order> list = new OrderService().searchOrder(keyword, no);
+		
+		request.setAttribute("searchList", list);
+		request.getRequestDispatcher("/views/login_myPage/searchOrderList.jsp").forward(request, response);
 	}
 
 	/**

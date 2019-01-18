@@ -1,4 +1,4 @@
-package com.kh.review.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
-import com.kh.review.model.service.ReviewService;
-import com.kh.review.model.vo.Review;
+import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 
 /**
- * Servlet implementation class MyReviewServlet
+ * Servlet implementation class BuyListServlet
  */
-@WebServlet("/member/review")
-public class MyReviewServlet extends HttpServlet {
+@WebServlet("/member/orderList")
+public class OrderListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewServlet() {
+    public OrderListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +33,17 @@ public class MyReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
-
-		if (logined != null) {
-			int memberNum = logined.getMemberNum();	
-			List<Review> list=new ReviewService().selectList(memberNum);
-			request.setAttribute("list", list);
-			
-			int cnt = 0;
-			for(Review r : list) {
-				if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
-					cnt ++;
-			}
-			
-			
-			
-			request.setAttribute("cnt", cnt);
-			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
+		if(logined==null) {
+			//로그인 정보가 없어서 로그인페이지로
+			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+			return;
 		}
-		else {
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-		}
+		
+		//로그인 성공
+		int no = logined.getMemberNum();
+		List<Order> list = new OrderService().selectList(no);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/login_myPage/orderList.jsp").forward(request, response);
 	}
 
 	/**
