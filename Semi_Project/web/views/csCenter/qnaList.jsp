@@ -36,27 +36,16 @@ ul {
 }
 
 .csCenter {
-	float: right;
 	padding: 25px 0;
-	width: 660px;
-	text-align: left;
-	margin-bottom: 60px;
 }
 
 em {
 	font-size: 17px;
 }
 
-.searchDate {
-	float: right;
-	width: 800px;
-}
-
 .cs_title {
 	font-size: 2em;
-	margin-top: 50px;
-	margin-right: 500px;
-	margin-bottom: 20px;
+	float: left;
 }
 
 #askBtn {
@@ -64,8 +53,7 @@ em {
 	height: 30px;
 	font-size: 15px;
 	padding: 0 0 1px 0;
-	margin-left: 480px;
-	margin-top: -75px;
+	float: right;
 	text-align: center;
 }
 
@@ -79,8 +67,13 @@ hr {
 	margin-left: 120px;
 }
 
+.qna-paging {
+	text-align: center;
+}
+.searchDate{
+text-align: left;
+}
 </style>
-
 
 <script>
 	function fn_addQna() {
@@ -88,24 +81,27 @@ hr {
 </script>
 
 
-<section class="board-container">
+<section class="board-container col-sm-10">
+	
  <!-- 타이틀 -->
-	<div class="csCenter">	
-		<h3 class="cs_title">1:1 문의내역</h3>		
-		<hr>		
-		 <p><%if(logined!=null){%> 
-			<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
-		</p><% } %>  			
-	</div>
+ 	<div class="row">
+		<div class="csCenter col-md-offset-1 col-md-7">			
+				<h3 class="cs_title">1:1 문의내역</h3>		
+				<hr>		
+				 <span><%if(logined!=null){%> 
+					<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
+				</span><% } %>  						
+		</div>
 
-	<!-- 날짜 조회 -->		
-	<div class="searchDate">	 
+	<!-- 날짜 조회 -->	
+	<div class="row">	
+		<div class="searchDate col-md-offset-1 col-md-7">	 
 			 <div class="sch-lcont">
 				<strong>기간별 조회</strong>
 				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'> ~
+				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src='images/icons/ico_cal.gif' align='absMiddle'> ~
 				<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'>												
+				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/icons/ico_cal.gif' align='absMiddle'>												
 				<span class="cbtn">					  		
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
@@ -114,53 +110,67 @@ hr {
 			      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>     
 				</span>
 			 </div>				                   		                 
+		</div>
 	</div>	
     <!-- 문의리스트 -->
-	<div class="csCenter col-sm-offset-2 col-sm-8">  
-			<div id="askList">	
-				<ul class="askList">
-			 	<%for(Qna q : list){ %>								   		   					   
-                      <li>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">				       		 			       		
-				       		<h5 style="display: inline"><b><%=q.getQnaNum() %> |</b></h5>
-				       		<h5 style="display: inline"><b><%=q.getQnaPart() %></b></h5>
-				       							    
-						     <em style="display: inline"><b><%=q.getQnaTitle() %> 제목</b></em>
-							 <span class="csInfo"> 
-								<span class=""><%=q.getQnaDate() %>읽음</span> 
-								<span class="divi">|</span> 	
-								<span class=""> 읽지않음</span> 														
-							</span> 
-							<em class="">&nbsp;</em>
-						</button>					
-					</li> 
-					<%} %>	 	
-					
-								
-					<div class="collapse" id="collapseExample1">
-                        <div class="well" value=""> 안녕 </div>                       
-                    </div>
-                    
-             							
-			</ul>				
-   </div>
+    <div class="row">
+		<div class="csCenter col-md-offset-1 col-md-7">  
+				<div id="askList">	
+					<ul class="askList">
+				 	<%for(Qna q : list){ %>								   		   					   
+		                <li>
+		                	 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">				       		 			       		
+					     		<h5 style="display: inline"><b><%=q.getQnaNum() %> |</b></h5>
+					     		<h5 style="display: inline"><b><%=q.getQnaPart() %></b></h5>				       							    
+							     <em style="display: inline"><b><%=q.getQnaTitle() %> 제목</b></em>
+								 <span class="csInfo"> 
+									<span class=""><%=q.getQnaDate() %>읽음</span> 
+									<span class="divi">|</span> 	
+									<span class=""> 읽지않음</span> 														
+								 </span> 
+							     <em class="">&nbsp;</em>
+							</button>					
+						</li> 
+						<%} %>	 						
+						<!--문의글 확인 및 재문의 -->			
+						<div class="collapse" id="collapseExample1">
+		                     <div class="well" value=""> 	                       
+								  <ul class="">							    
+								    <li class=""><button>재문의하기 </button></li>
+								  </ul>												                        						                                              
+		                      </div>                       
+		                 </div>                            							
+					</ul>				
+		 	   </div>
+		</div>
+	</div>
 	
-				                
-   <div class="qna-paging" >
-
-       <div class="paging" id="">
-         <a href="javascript:$.onClickSelectedPageNo();" class=""><img src="images/page_first.png" alt="바로가기" class="vm"></a>
-         <a href="javascript:$.onClickSelectedPageNo();" class=""><img src="images/left.png" alt="바로가기" class="vm"></a>
-         
-         <span>
-            <strong class="first">1</strong>
-         </span>
-         
-         <a href="javascript:$.onClickSelectedPageNo();" class="" ><img src="images/right.png" alt="바로가기" class="vm"></a>
-         <a href="javascript:$.onClickSelectedPageNo();" class=""><img src="images/page_last.png" alt="바로가기" class="vm"></a>
-	     <input type="hidden" value="0" class="txt" id="htxtPageIndex" name="htxtPageIndex" />
-	   </div>	   	   
-   </div> 
+			<!--페이징  -->	
+	<div class="row">		                
+   		<div class="qna-paging col-md-offset-1 col-md-7" >
+ 			<nav>
+			  <ul class="pagination">
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+   	  		 </nav>
+   		</div>
+	</div> 
+</section>
+</div>
     
         <input type="text" class="txt" id="htxtSearchText" name="htxtSearchText" value="" onkeydown="if(event.keyCode==13) { $.onClickSearch();}" style="width:107px;" />
 					                <strong>답변상태</strong>
@@ -192,12 +202,6 @@ hr {
     
     
     
-		
-	</div>
-
-
-</div>
-
 
 
 
@@ -241,8 +245,7 @@ hr {
 				                
 	                    
 			                </div>
-
-</section>	
+	
 <script type ="text/javascript" language ="javascript">
 	function onDelete(seqNo, questionNo) {
 		if (confirm("문의내용을 삭제하시겠습니까?") == false)
