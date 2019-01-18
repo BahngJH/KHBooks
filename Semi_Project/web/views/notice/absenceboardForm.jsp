@@ -12,7 +12,7 @@
 
 <style>
 
- hr {
+ .row hr {
     border: 0;
     height: 2px;
     background: #ccc;
@@ -105,7 +105,7 @@ width: 50px;
 								<div class="form-group">
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="isbn" placeholder="* ISBN 13자리 숫자만 입력하세요." name="isbn" maxlength="13" required="required">
-									   <!--  <button type="submit" class="btn btn-default" onclick="return validate();">검색</button> -->
+									   <!-- <button type="submit" class="btn btn-default" onclick="return validate();">검색</button>  -->
 									</div>
 								</div>
 								
@@ -137,26 +137,35 @@ width: 50px;
 		});
 		
 function cancel(){
-	if(!confirm('정말로 삭제하시겠습니까?'))
+	if(!confirm('정말로 취소하시겠습니까?'))
 	{
-		return;	
-	}
-	ab.setAppCancel(true);
-	location.href="<%=request.getContextPath()%>/"
+		return true;
+	 ab.setAppCancel(true); 
 	
+	
+	}
+	location.href="<%=request.getContextPath()%>/notice/absenceView";
 }
 
 		
 
  function validate() {
 
+		var bookname=$('[name=bookname]').val()
+		var authorName=$('[name=authorName]').val()
+		var publisher=$('[name=publisher]').val()
+		var bookDate=$('[name=bookDate]').val()
+		var isbn=$('[name=isbn]').val()
 		
-		/* if (content.trim().length == 0) {
-			alert("내용을 입력하세요!");
-		}else{ */
+		 if (bookname.trim().length==0||authorName.trim().length==0||publisher.trim().length==0||bookDate.trim().length==0||isbn.trim().length==0) {
+			alert("내용을 전부 입력하세요!");
+		
+		 }else{ 
 			
-			location.href="<%=request.getContextPath()%>/notice/noticeabsence?no=<%=logined.getMemberNum()%>";
+			location.href="<%=request.getContextPath()%>/notice/noticeabsence";
+			
 		}
+		
 		
 	} 
 </script> 

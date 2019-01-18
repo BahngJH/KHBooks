@@ -1,5 +1,7 @@
 package com.kh.absence.model.service;
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -30,9 +32,30 @@ public class AbsenceService {
 	}
 	
 	
-	/*public int insertAbsence(Absence ab) {
+	public int insertAbsence(Absence ab) {
 		Connection conn=getConnection();
 		int result=new AbsenceDao().insertAbsence(conn,ab);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
-*/
+	
+	public int selectCount() {
+		Connection conn =getConnection();
+		int result=new AbsenceDao().selectCount(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<Absence> selectList(int cPage,int numPerPage) {
+		Connection conn=getConnection();
+		List<Absence> list=new AbsenceDao().selectList(conn,cPage,numPerPage);
+		close(conn);
+		return list;
+	}
+
 }
