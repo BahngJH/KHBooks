@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.csCenter.model.vo.Qna;
+import com.kh.csCenter.model.vo.QnaRe;
+
 import static common.JDBCTemplate.*;
 
 public class QnaDao {
@@ -117,6 +119,99 @@ public class QnaDao {
 
 	}
 
+	// 문의글 리스트
+	public List<Qna> selectAllQna(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Qna> list = new ArrayList();
+		String sql = prop.getProperty("AllQnaList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Qna q = new Qna();
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaWriter(rs.getInt("memberNum"));
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
+				list.add(q);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println("리스트좀 받아옵시다" + list);
+		return list;
+	}
+
+	// 문의글 선택
+	public Qna selectNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Qna q = null;
+		String sql = prop.getProperty("selectNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				q = new Qna();
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaWriter(rs.getInt("memberNum"));
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rs);
+		}
+		System.out.println(q);
+		return q;
+	}
+
+	// 1:1 답변 등록
+	public int qnaAnswerEnroll(Connection conn, QnaRe qr) {
+		PreparedStatement pstmt = null;
+		int rs = 0;
+		String sql = prop.getProperty("enrollAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qr.getAdminNum());
+			pstmt.setString(2, qr.getReCheck());
+			pstmt.setString(3, qr.getReMail());
+			pstmt.setInt(4, qr.getQnaNum());
+			pstmt.setString(5, qr.getReContent());
+			rs = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rs;
+	}
+	
 	// 1:1 문의글 등록 Dao
 	public int qnaEnroll(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;

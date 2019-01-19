@@ -175,7 +175,7 @@ li {
 			 		 	<input type="file" name="upfile"/>	  
 			  		</div>			  		 			  		
 		 			<hr/>
-		 			<button type="submit" class="btn_sub btn btn-default">Send invitation</button>		 								 		 				 		          
+		 			<button type="submit" class="btn_sub btn btn-default">문의 등록</button>		 								 		 				 		          
 				</div>				
 		 	</div>	 	      
     	 </form>

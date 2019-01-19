@@ -12,6 +12,10 @@ public class QnaRe {
 	private String reStatus;// 글상태
 	private Date reDate;// 답변 날짜>>읽음여부 판단
 
+	public QnaRe() {
+		super();
+	}
+
 	public QnaRe(int reNum, int adminNum, int qnaNum, String reCheck, String reMail, String reContent, String reStatus,
 			Date reDate) {
 		super();

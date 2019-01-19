@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.kh.csCenter.model.dao.QnaDao;
-import com.kh.csCenter.model.dao.QnaReDao;
 import com.kh.csCenter.model.vo.Qna;
+import com.kh.csCenter.model.vo.QnaRe;
+import com.kh.member.model.dao.MemberDao;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
 
@@ -34,7 +36,7 @@ public class QnaService {
 	//전체 문의글 (사용자 사용)Service
 	public List<Qna> selectAllQna(){
 		Connection conn=getConnection();
-		List<Qna> list=new QnaReDao().selectAllQna(conn);
+		List<Qna> list=new QnaDao().selectAllQna(conn);
 		close(conn);
 		return list;
 	}
@@ -63,9 +65,23 @@ public class QnaService {
 //문의글 선택
 	public Qna selectNo(int no) {
 		Connection conn = getConnection();
-		Qna q=new QnaReDao().selectNo(conn,no);
+		Qna q=new QnaDao().selectNo(conn,no);
 		close(conn);
 		return q;
 	}
+	
+	// 답변 등록 Service
+	public int qnaAnswerEnroll(QnaRe qr) {
+		Connection conn = getConnection();
+		int rs = new QnaDao().qnaAnswerEnroll(conn, qr);
+		if (rs > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return rs;
+	}
+	
 
 }

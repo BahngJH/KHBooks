@@ -20,8 +20,6 @@
 				 <hr>
 			 </div>
 		 </div>
-		 
-		 
 			 <!-- 날짜 조회 -->	
 		<div class="row">	
 			<div class="searchDate col-md-offset-1 col-md-7">	 
