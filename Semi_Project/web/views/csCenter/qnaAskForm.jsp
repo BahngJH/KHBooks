@@ -172,7 +172,7 @@ li {
 		 			<hr/>
 		 			<div class="form-group">
 			  		 	<label for="">첨부파일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-			 		 	<input type="file" name="upfile" class="" />	  
+			 		 	<input type="file" name="upfile"/>	  
 			  		</div>			  		 			  		
 		 			<hr/>
 		 			<button type="submit" class="btn_sub btn btn-default">Send invitation</button>		 								 		 				 		          

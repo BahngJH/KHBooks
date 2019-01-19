@@ -77,8 +77,7 @@ fieldset a{float:right;}
 				
 			}
 		</script>
-				
-				
+			
 				
 </section>
 			</div>

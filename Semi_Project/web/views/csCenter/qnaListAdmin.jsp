@@ -64,7 +64,7 @@
 					  		 <% if(q.getQnaStatus().equals("Y")){ %> 
 						  	    <th><input type="checkbox" name="vehicle1" value="Bike"></th>	
 						        <th><b><%=q.getQnaPart()%></b></th>
-						        <th><b><a><%=q.getQnaTitle()%>"</a></b></th>
+						        <th><b><a href="<%=request.getContextPath() %>/qna/qnaContent?no=<%=q.getQnaNum()%>"><%=q.getQnaTitle()%></a></b></th>						   					        
 						        <th><b><%=q.getQnaDate()%></a></b></th>					       
 						        <th><b>답변여부</b></th>					        
 						        <th><b>읽음|안읽음</b></th>				        					         
