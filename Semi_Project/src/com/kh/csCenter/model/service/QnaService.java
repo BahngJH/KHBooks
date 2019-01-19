@@ -11,6 +11,8 @@ import java.util.List;
 import com.kh.csCenter.model.dao.QnaDao;
 import com.kh.csCenter.model.dao.QnaReDao;
 import com.kh.csCenter.model.vo.Qna;
+import com.kh.notice.model.dao.NoticeDao;
+import com.kh.notice.model.vo.Notice;
 
 public class QnaService {
 	
@@ -56,7 +58,14 @@ public class QnaService {
 		}
 		close(conn);
 		return rs;
-
+	}
+	
+//문의글 선택
+	public Qna selectNo(int no) {
+		Connection conn = getConnection();
+		Qna q=new QnaReDao().selectNo(conn,no);
+		close(conn);
+		return q;
 	}
 
 }
