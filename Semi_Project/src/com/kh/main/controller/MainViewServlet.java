@@ -34,8 +34,6 @@ public class MainViewServlet extends HttpServlet {
 
 		List<Book> best = new BookService().selectBestseller();
 		
-		
-		
 		request.setAttribute("best", best);
 		request.getRequestDispatcher("/views/main/main.jsp").forward(request, response);
 	}
