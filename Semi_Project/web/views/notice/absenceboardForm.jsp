@@ -75,7 +75,7 @@ width: 50px;
 						복합명사는 띄어쓰기를 하면 더 많은 검색 결과를 얻으실 수 있습니다.</p>
 		            </div>
 		         	<div class="row" >
-						<form name="appendBookFrm" class="form-horizontal" action="<%=request.getContextPath()%>/notice/noticeabsence" method="post" >
+						<form name="appendBookFrm" class="form-horizontal" action="<%=request.getContextPath()%>/absence/page" method="post" >
 							<table>
 								<div class="form-group">
 									<div class="col-sm-10">
@@ -149,25 +149,8 @@ function cancel(){
 
 		
 
- function validate() {
-
-		var bookname=$('[name=bookname]').val()
-		var authorName=$('[name=authorName]').val()
-		var publisher=$('[name=publisher]').val()
-		var bookDate=$('[name=bookDate]').val()
-		var isbn=$('[name=isbn]').val()
 		
-		 if (bookname.trim().length==0||authorName.trim().length==0||publisher.trim().length==0||bookDate.trim().length==0||isbn.trim().length==0) {
-			alert("내용을 전부 입력하세요!");
-		
-		 }else{ 
-			
-			location.href="<%=request.getContextPath()%>/notice/noticeabsence";
-			
-		}
-		
-		
-	} 
+	
 </script> 
 
 <%@ include file="/views/common/footer.jsp"%>>

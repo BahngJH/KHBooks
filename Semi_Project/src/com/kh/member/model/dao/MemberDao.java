@@ -302,6 +302,31 @@ public class MemberDao {
 		}
 		return rs;	
 	}
+	//찜 목록에서 장바구니로 이동
+	public int moveWishlist(Connection conn, List<Integer> list, int memberNum)
+	{
+		PreparedStatement pstmt =null;
+		int rs = 0;
+		String sql = prop.getProperty("moveWishlist");
+		try {
+			pstmt= conn.prepareStatement(sql);
+			for(int i=0;i<list.size();i++)
+			{
+				pstmt.setInt(1, memberNum);
+				pstmt.setInt(2, list.get(i));
+				rs+=pstmt.executeUpdate();
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
 	//페이징에 사용될 전체 찜목록 갯수 구함
 	public int selectMarkCount(Connection conn, int memberNum)
 	{
@@ -371,7 +396,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return bookList;
-		
 	}
 	
 }

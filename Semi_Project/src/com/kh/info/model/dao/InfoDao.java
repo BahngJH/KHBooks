@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.review.model.vo.Review;
+import com.kh.wish.model.vo.Wish;
 
 public class InfoDao {
 
@@ -112,5 +113,117 @@ public class InfoDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public int selectReviewCount(Connection conn)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectReviewCount");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				result=rs.getInt("cnt");
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Review> selectReviewList(Connection conn, int cPage, int numPerPage)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Review> reviewCountList=new ArrayList();
+		String sql=prop.getProperty("selectReviewList");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				Review r=new Review();
+				r.setBookId(rs.getInt("bookId"));
+				r.setMemberNum(rs.getInt("memberNum"));
+				r.setWriteDate(rs.getDate("writeDate"));
+				r.setGrade(rs.getInt("grade"));
+				r.setReviewNum(rs.getInt("reviewNum"));
+				r.setStatus(rs.getString("status"));
+				r.setCheckOption(rs.getInt("checkOption"));
+				r.setReviewContext(rs.getString("reviewContext"));
+				
+				reviewCountList.add(r);
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return reviewCountList;
+	}
+	public Wish selectWish(Connection conn, int bookId)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Wish w=null;
+		String sql=prop.getProperty("selectWish");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				w=new Wish();
+				w.setWishNo(rs.getInt("wishNo"));
+				w.setMemberNum(rs.getInt("memberNum"));
+				w.setBookId(rs.getInt("bookId"));
+				w.setBookCount(rs.getInt("bookCount"));
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return w;
+	}
+	
+	public int insertWish(Connection conn, Wish w)
+	{
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertWish");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, w.getWishNo());
+			pstmt.setInt(2, w.getMemberNum());
+			pstmt.setInt(3, w.getBookId());
+			pstmt.setInt(4, w.getBookCount());
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
 	}
 }

@@ -22,7 +22,17 @@ address{
 text-align:center;}
 .Notice_List{
 color: black;}
-
+a#MOVE_TOP_BTN {
+   position: fixed;
+   right: 2%;
+   bottom: 30px;
+   display: none;
+   z-index: 999;
+}
+#MOVE_TOP_BTN{
+	height:33px;width:33px;
+	background-image:url('<%=request.getContextPath()%>/images/icons/top.png');
+}
 </style>
 
 <footer>
@@ -42,8 +52,33 @@ color: black;}
 					<li ><a href="/support/notice/711">2019년 휴무일 안내</a></li>
 				</ul>
 			</marquee>
-
 		</div>
+
+
+
+	<!-- top버튼 -->
+	<script>
+	$(function() {
+	    $(window).scroll(function() {
+	        if ($(this).scrollTop() > 500) {
+	            $('#MOVE_TOP_BTN').fadeIn();
+	        } else {
+	            $('#MOVE_TOP_BTN').fadeOut();
+	        }
+	    });
+	    
+	    $("#MOVE_TOP_BTN").click(function() {
+	        $('html, body').animate({
+	            scrollTop : 0
+	        }, 400);
+	        return false;
+	    });
+	});
+	</script>
+	<a id="MOVE_TOP_BTN" href="#"></a>
+	
+	
+	
 	</section>
 	<p>
 		&lt;CopyRight 2018. <strong>KH정보교육원</strong>. All rights reserved.&gt;

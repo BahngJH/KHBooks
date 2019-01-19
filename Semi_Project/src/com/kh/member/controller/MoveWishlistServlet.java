@@ -1,6 +1,7 @@
-package com.kh.main.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.book.model.service.BookService;
-import com.kh.book.model.vo.Book;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MainViewServlet
+ * Servlet implementation class MoveWishlistServlet
  */
-@WebServlet("/main/mainview")
-public class MainViewServlet extends HttpServlet {
+@WebServlet("/member/moveWishlist")
+public class MoveWishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainViewServlet() {
+    public MoveWishlistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +32,23 @@ public class MainViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		List<Book> best = new BookService().selectBestseller();
 		
+		List<Integer> booksId = new ArrayList();
+		String[] bookId = request.getParameterValues("BookId");
+		Member m = (Member) request.getSession().getAttribute("logined");
 		
+		for(String i:bookId) {
+			booksId.add(Integer.parseInt(i));
+		}
 		
-		request.setAttribute("best", best);
-		request.getRequestDispatcher("/views/main/main.jsp").forward(request, response);
+		int rs = new MemberService().moveWishlist(booksId, m.getMemberNum());
+		if(rs>0) {
+			System.out.println("찜목록 이동성공");
+		}else {
+			System.out.println("찜목록 이동 실패");
+		}
+			
+		
 	}
 
 	/**

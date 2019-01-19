@@ -102,7 +102,7 @@ function absence(){
 					<%for(Absence ab : list){ %>
 					<% if(ab.getStatus().equals("Y")){ %>
 					<tr>
-						<%-- <td><%=ab.getMember().getMemberId()%></td> --%>
+						 <td><%=ab.getMember().getMemberId()%></td>
 						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
 						<td><%=ab.getAppDate()%></td>					
 					</tr> 

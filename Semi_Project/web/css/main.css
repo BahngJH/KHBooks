@@ -213,3 +213,27 @@ div.author-result button#more-btn:hover{
 ul.ui-menu{
 	z-index : 1500;
 }
+
+/* 메인화면 */
+a.book-thumbnail{
+	border: none;
+	transition: transform .3s ease-in;
+	padding: 0px;
+}
+
+a.book-thumbnail:hover{
+	transform:translateY(-10px);
+	
+	
+}
+
+span.border{
+	border: 1px solid black;
+	opacity: .1;
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}

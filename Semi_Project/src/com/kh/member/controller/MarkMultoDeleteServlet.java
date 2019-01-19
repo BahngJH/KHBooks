@@ -35,7 +35,6 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 		
 		List<Integer> booksId = new ArrayList();
 		String[] bookId = request.getParameterValues("BookId");
-		String bookIdOne = request.getParameter("bookIdOne");
 		Member m = (Member) request.getSession().getAttribute("logined");
 		
 		for(String i:bookId) {
