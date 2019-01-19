@@ -100,15 +100,6 @@ public class MemberService {
 		close(conn);
 		return id;
 	}
-	//찜목록 불러오기
-	public List<Book> markList(int memberNum)
-	{
-		Connection conn = getConnection();
-		List<Book> list = new MemberDao().markList(conn,memberNum);
-		close(conn);
-		
-		return list;
-	}
 	//찜목록 삭제하기
 	public int markMutiDelete(List<Integer> booksId,int memberNum, int deleteCount)
 	{

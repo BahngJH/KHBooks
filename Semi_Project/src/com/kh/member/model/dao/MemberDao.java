@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.csCenter.model.vo.Qna;
 import com.kh.member.model.vo.Member;
@@ -239,48 +240,34 @@ public class MemberDao {
 		return id;
 	}
 	//찜목록 불러오는 로직
-	public List<Book> markList(Connection conn, int memberNum)
-	{
-		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		String sql = prop.getProperty("markList");
-		List<Book> list =new ArrayList();
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, memberNum);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) 
-			{
-				Book b = new Book();
-				b.setBookName(rs.getString("bookname"));
-				b.setPrice(rs.getInt("price"));
-				b.setPublisher(rs.getString("publisher"));
-				b.setAuthorNum(rs.getInt("authornum"));
-				b.setGenre(rs.getString("genre"));
-				b.setBookId(rs.getInt("bookid"));
-				b.setIsbn(rs.getString("isbn"));
-				b.setBookImage(rs.getString("bookImage"));
-				b.setBookInfo(rs.getString("bookinfo"));
-				b.setEditor(rs.getString("editor"));
-				b.setTranslator(rs.getString("translator"));
-				b.setPageNum(rs.getInt("pagenum"));
-				b.setStock(rs.getInt("stock"));
-				b.setSales(rs.getInt("sales"));
-				
-				list.add(b);
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}
+	/*
+	 * public List<Book> markList(Connection conn, int memberNum) {
+	 * PreparedStatement pstmt = null; ResultSet rs =null; String sql =
+	 * prop.getProperty("markList"); List<Book> list =new ArrayList();
+	 * 
+	 * try { pstmt = conn.prepareStatement(sql); pstmt.setInt(1, memberNum); rs =
+	 * pstmt.executeQuery();
+	 * 
+	 * while(rs.next()) { Book b = new Book(); Author t = new Author();
+	 * t.setauthorNum(rs.getInt("authornum"));
+	 * t.setAuthorName(rs.getString("authorname"));
+	 * t.setAuthorInfo(rs.getString("authorinfo"));
+	 * 
+	 * b.setAuthor(t); b.setBookName(rs.getString("bookname"));
+	 * b.setPrice(rs.getInt("price")); b.setPublisher(rs.getString("publisher"));
+	 * b.setAuthorNum(rs.getInt("authornum")); b.setGenre(rs.getString("genre"));
+	 * b.setBookId(rs.getInt("bookid")); b.setIsbn(rs.getString("isbn"));
+	 * b.setBookImage(rs.getString("bookImage"));
+	 * b.setBookInfo(rs.getString("bookinfo")); b.setEditor(rs.getString("editor"));
+	 * b.setTranslator(rs.getString("translator"));
+	 * b.setPageNum(rs.getInt("pagenum")); b.setStock(rs.getInt("stock"));
+	 * b.setSales(rs.getInt("sales"));
+	 * 
+	 * list.add(b); }
+	 * 
+	 * } catch (Exception e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); }finally { close(rs); close(pstmt); } return list; }
+	 */
 	//찜 목록 다중 삭제
 	public int markMutiDelete(Connection conn, List<Integer> booksId, int memberNum)
 	{
@@ -371,7 +358,12 @@ public class MemberDao {
             while(rs.next()) 
             {
             	Book b = new Book();
-            	
+            	Author t = new Author();
+				t.setauthorNum(rs.getInt("authornum"));
+				t.setAuthorName(rs.getString("authorname"));
+				t.setAuthorInfo(rs.getString("authorinfo"));
+				
+				b.setAuthor(t);
             	b.setBookName(rs.getString("bookname"));
 				b.setPrice(rs.getInt("price"));
 				b.setPublisher(rs.getString("publisher"));

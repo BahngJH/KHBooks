@@ -61,18 +61,21 @@
                     <div>
                         <h4 class='text-center'> 주간 베스트 셀러</h4>
                     </div>
-
+					<div class="row">
                     <%for(Book b : best) {%>
-                    <div class="col-xs-6 col-md-4 col-lg-2">
-                       	<span><%=b.getBookName() %></span>
-                    	<div class="thumbnail-container">
+                    <div class="col-xs-6 col-sm-4 col-lg-2 book-container">
+    	       			<div class="col-xs-12">
+	    	       			<a href="#" class="author-name"><%=b.getBookName() %></a>
+           				</div>
+                    	<div class="thumbnail-container col-xs-12">
 	                        <a href="#" class="thumbnail book-thumbnail">
 	                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
 	                        </a>
-	                        <span class="border"></span>
+	                        <!-- <span class="border"></span> -->
                     	</div>
                     </div>
                     <%} %>
+					</div>
                 </div>
             </div>
             <div class="row">
