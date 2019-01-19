@@ -141,5 +141,15 @@ public class MemberService {
 		close(conn);
 		return bookList;
 	}
+	//찜 목록에서 장바구니로 이동하는 메소드
+	public int moveWishlist(List<Integer> list, int memberNum) {
+		Connection conn =getConnection();
+		int rs = new MemberDao().moveWishlist(conn,list,memberNum);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return rs;
+	}
 	
 }

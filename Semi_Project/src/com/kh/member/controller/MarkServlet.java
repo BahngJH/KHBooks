@@ -42,6 +42,7 @@ public class MarkServlet extends HttpServlet {
 		}
 		
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
+		
 		//회원번호로 조건을 걸어서 찜목록을 불러옴
 		//List<Book> list= new MemberService().markList(memberNum);
 		

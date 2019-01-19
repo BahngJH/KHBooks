@@ -33,7 +33,7 @@
 						<h3>찜 목록</h3>
 					</div>
 					<div id="btnCheck">
-					<button class="btn btn-default">선택 담기</button>
+					<button class="btn btn-default" onclick="multiMove();">선택 담기</button>
 					<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
 					<p><%=markCount %>개의 찜 상품이 있습니다</p>
 					</div>
@@ -45,7 +45,7 @@
           				<div id="book" class="col-xs-12 col-md-12">
                     
                     <div>
-                    <form method="get" name="deleteList" id="deleteList" action="<%=request.getContextPath()%>/member/markMutiDelete">
+                    <form method="get" name="checkedList" id="checkedList">
                     <!-- 검색 결과가 있을 경우 -->
                     <%if(!books.isEmpty()) {
                     	for(Book b : books){
@@ -107,8 +107,16 @@
 				}
 			}
 			function multiDelete(){
-				var deleteList = $('#deleteList');
+				var deleteList = $('#checkedList');
+				var url = "<%=request.getContextPath()%>/member/markMutiDelete";
+				deleteList.attr("action",url);
 				deleteList.submit();
+			}
+			function multiMove(){
+				var moveList = $('#checkedList');
+				var url = "<%=request.getContextPath()%>/member/moveWishlist";
+				moveList.attr("action",url);
+				moveList.submit();
 			}
 			function deleteOne(){
 				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
