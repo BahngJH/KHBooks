@@ -92,32 +92,30 @@ a {
       <a class="dropdown-toggle" id="side"><strong>게시판</strong><span
          class="caret"></span></a>
 
-
-      <%if(logined!=null){%>
+		<%if(logined.getMemberId().equals("admin")){ %>
+     	 <ul class="hide">
+   		 <br />
+         <li><a href="<%=request.getContextPath()%>/qna/qnaListAdmin">등록된 1:1 문의</a></li>
+         <br />
+         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청 리스트</a></li>         
+      <%}else if(logined!=null){%>
       <ul class="hide">
-         <br />
-         <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
-         </li>
-         <br />
-         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
-               신청</a></li>
-
-      </ul>
+      	<br />
+        <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1 문의</a></li>
+        <br />
+        <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청</a></li>    
       <%}else {%>
-
       <ul class="hide">
          <br />
          <li><a onclick="a_click();">1:1문의</a></li>
          <br />
          <li><a onclick="a_click();">희망도서 신청</a></li>
-
       </ul>
       <%}%>
 
       <hr>
       <a href=""><strong>도서신청</strong></a>
       <hr>
-
 
 
       <a href="<%=request.getContextPath()%>/notice/noticemain"><strong>공지사항</strong></a>

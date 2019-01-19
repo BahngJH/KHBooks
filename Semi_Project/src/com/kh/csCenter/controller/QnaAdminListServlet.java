@@ -14,16 +14,16 @@ import com.kh.csCenter.model.vo.Qna;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class QnaListMain
+ * Servlet implementation class QnaCsMain
  */
-@WebServlet("/qna/qnaListMain")
-public class QnaMyListServlet extends HttpServlet {
+@WebServlet("/qna/qnaListAdmin")
+public class QnaAdminListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public QnaMyListServlet() {
+	public QnaAdminListServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,19 +34,11 @@ public class QnaMyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Member m = (Member) request.getSession(false).getAttribute("logined");
-			
-		if (m != null) {
-			int memberNum = m.getMemberNum();
-			List<Qna> list = new QnaService().selecMyQnaList(memberNum);
-			request.setAttribute("list", list);
-			request.setAttribute("cnt", list.size());
-			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
 
-		} else {
-			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-
-		}
+		List<Qna> list = new QnaService().selectAllQna();
+		request.setAttribute("list", list);
+		request.setAttribute("cnt", list.size());
+		request.getRequestDispatcher("/views/csCenter/qnaListAdmin.jsp").forward(request, response);
 
 	}
 

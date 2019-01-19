@@ -22,13 +22,13 @@ import common.MyFileRenamePolicy;
  * Servlet implementation class qnaInputEndServlet
  */
 @WebServlet("/qna/qnaInputEnd")
-public class QnaInputEndServlet extends HttpServlet {
+public class QnaMyInputEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaInputEndServlet() {
+    public QnaMyInputEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

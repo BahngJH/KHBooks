@@ -16,7 +16,7 @@ public class QnaDao {
 	Properties prop = new Properties();
 
 	public QnaDao() {
-		String file = QnaDao.class.getResource("./qna-query.properties").getPath();
+		String file = QnaDao.class.getResource("./qna_query.properties").getPath();
 		try {
 			prop.load(new FileReader(file));
 		} catch (Exception e) {
@@ -85,34 +85,6 @@ public class QnaDao {
 
 	}
 
-	// 문의글 리스트
-	public List<Qna> selectAllQna(Connection conn) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<Qna> list = new ArrayList();
-		String sql = prop.getProperty("selectQna");
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Qna q = new Qna();
-				q.setQnaNum(rs.getInt("qnaNum"));
-				q.setQnaPart(rs.getString("qnaPart"));
-				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));				
-				q.setQnaStatus(rs.getString("qnaStatus"));
-				list.add(q);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-
-	}
 
 	// 문의글 리스트 페이징
 	public List<Qna> selectList(Connection conn, int cPage, int numPerPage) {

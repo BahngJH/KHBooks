@@ -5,24 +5,23 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.csCenter.model.service.QnaService;
-import com.kh.csCenter.model.vo.Qna;
 
 /**
- * Servlet implementation class QnaCsMain
+ * Servlet implementation class qnaInputServlet
  */
-@WebServlet("/qna/qnaMain")
-public class QnaAdmin extends HttpServlet {
+@WebServlet("/qna/qnaInput")
+public class QnaMyInputFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaAdmin() {
+    public QnaMyInputFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +30,14 @@ public class QnaAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Qna> list=new QnaService().selectAllQna();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/csCenter/qnaAdmin.jsp").forward(request, response);
+		//String ask=request.getParameter("ask");
+		request.getRequestDispatcher("/views/csCenter/qnaAskForm.jsp").forward(request, response);
+
+		
+		
+		
+		
+		
 	}
 
 	/**

@@ -175,6 +175,7 @@ public class NoticeDao {
 			close(pstmt);
 
 		}
+		System.out.println(list);
 		return list;
 
 	}
