@@ -36,6 +36,11 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 		List<Integer> booksId = new ArrayList();
 		String[] bookId = request.getParameterValues("BookId");
 		Member m = (Member) request.getSession().getAttribute("logined");
+		if(bookId==null) {
+			request.setAttribute("msg", "삭제할 상품을 선택해주세요");
+			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
 		
 		for(String i:bookId) {
 			booksId.add(Integer.parseInt(i));
@@ -46,15 +51,16 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 		if(rs==deleteCount && rs>0) {
 			//모두 삭제
 			request.setAttribute("msg", "찜 상품이 삭제되었습니다.");
-			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
+			
 		}else if(rs>0 && rs<deleteCount) {
 			//일부만 삭제됨
 			request.setAttribute("msg", "찜 상품이 일부만 삭제되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
-			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
+			
 		}else {
 			request.setAttribute("msg", "찜 상품이 삭제가 안되는 오류가 발생 하였습니다. 관리자에게 문의하세요");
-			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
+			
 		}
+		request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
