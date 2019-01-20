@@ -6,7 +6,7 @@
  <%
 	List<Qna> list = (List) request.getAttribute("list");
    // int cnt = (int)request.getAttribute("cnt");
-	/* String pageBar = (String) request.getAttribute("pageBar"); */
+	 String pageBar = (String) request.getAttribute("pageBar");
 %> 
 
 
@@ -20,8 +20,6 @@
 				 <hr>
 			 </div>
 		 </div>
-		 
-		 
 			 <!-- 날짜 조회 -->	
 		<div class="row">	
 			<div class="searchDate col-md-offset-1 col-md-7">	 
@@ -76,7 +74,27 @@
   					</div>
   				</div>				 				 				                   		                 
 			</div>
+		</div>	
+		<!--페이징처리 -->
+		<div class="row">		                
+	   		<div class="qna-paging col-md-offset-1 col-md-7" >
+	   			<div id='pageBar'>
+		 			<nav>
+		 				<ul class="pagination">			  		
+							<li><%=pageBar %></li>				
+						</ul>
+	   	  		 	</nav>
+   	  		 	</div>		 	
+	   		</div>
 		</div>		
+	
+	 			<!-- <nav>
+				  <ul class="pagination">
+				    <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>			 
+				    <li><a href="#">pageNo</a></li>
+				    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+				  </ul>
+	   	  		 </nav> -->	   			
  </section>
 </div>
 

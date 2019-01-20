@@ -5,6 +5,7 @@
  <%
 	List<Qna> list = (List) request.getAttribute("list");
 	int cnt = (int) request.getAttribute("cnt");
+	String pageBar = (String) request.getAttribute("pageBar");
 	/* 	Qna q = (Qna) request.getAttribute("Qna");
 		Member m = (Member) request.getSession().getAttribute("logined"); */
 %> 
@@ -145,107 +146,22 @@ text-align: left;
 		 	   </div>
 		</div>
 	</div>
-	
-			<!--페이징  -->	
+				<!--페이징처리 -->
 	<div class="row">		                
    		<div class="qna-paging col-md-offset-1 col-md-7" >
- 			<nav>
-			  <ul class="pagination">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-   	  		 </nav>
+   			<div id='pageBar'>
+	 			<nav>
+	 				<ul class="pagination">			  		
+						<li><%=pageBar %></li>				
+					</ul>
+   	  		 	</nav>
+  	  		 	</div>		 	
    		</div>
-	</div> 
+	</div>
+	 
 </section>
 </div>
     
-        <input type="text" class="txt" id="htxtSearchText" name="htxtSearchText" value="" onkeydown="if(event.keyCode==13) { $.onClickSearch();}" style="width:107px;" />
-					                <strong>답변상태</strong>
-					                <div class="selectbox" style="width:110px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivAnswerType',false,'hdlAnswerType');">
-							                <span>전체</span>
-						                </div>
-						                <div id="hdivAnswerType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>
-							                <select id="hdlAnswerType" name="hdlAnswerType">
-								                <option value="0" selected>전체</option>
-								                <option value="1">답변완료</option>
-								                <option value="2">미답변</option>								
-							                </select>
-							                <script type="text/javascript">select_combobox('hdlAnswerType',0);</script>
-						                </div>
-					                </div>
-
-    
-<script>
-	var g_Page = 1;
-	var g_pageIndex = 1;
-	var g_pageSize = 10;
-	var IsShowPager = "True";
-</script>
-    
-    
-    
-    
-
-
-
- <div id="myauctionRight" class="uxa-myauction-content">
-			        <div class="uxc-order-list" id="uxcOrderList">
-			       
-			          
-			            <!-- 문의내역 검색 -->
-			            <div class="uxb-sch-area">
-				                <div class="detail-sch" style="display:none">
-					                <strong class="first">상세검색</strong>
-					                <div class="selectbox" style="width:96px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivSearchType',false,'hdlSearchType');">
-							                <span>제목</span>
-						                </div>
-						                <div id="hdivSearchType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>
-							                <select id="hdlSearchType" name="hdlSearchType">
-								                <option value="1" selected>제목</option>
-								                <option value="2">상품번호</option>
-								                <option value="3">상품명</option>
-							                </select>
-							                <script type="text/javascript">select_combobox('hdlSearchType', 0);</script>
-						                </div>
-					                </div>
-					            
-					                <strong>문의유형</strong>
-					                <div class="selectbox" style="width:110px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivQueryType',false,'hdlQueryType');">
-							                <span>전체</span>
-						                </div>
-						                <div id="hdivQueryType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>						            
-						                </div>
-					                </div>
-				                </div>
-				                
-	                    
-			                </div>
 	
 <script type ="text/javascript" language ="javascript">
 	function onDelete(seqNo, questionNo) {

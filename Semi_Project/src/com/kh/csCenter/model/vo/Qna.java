@@ -3,7 +3,7 @@ package com.kh.csCenter.model.vo;
 import java.util.Date;
 
 public class Qna {
-	private int qnaNum;//문의 번호
+	private int qnaNum;//문의 번호 default
 	private String qnaPart;//상담분류
 	private int qnaWriter;//회원번호 memberNum
 	private String qnaAnswer;//메일 답변 여부
