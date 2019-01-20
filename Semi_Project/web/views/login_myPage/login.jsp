@@ -72,7 +72,7 @@
 
 <body>
 <div class="container">
-        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS<b></b></a></div>
+        <div id="logo"><a href="<%=request.getContextPath() %>/main/mainview"><b>KH BOOKS<b></b></a></div>
         <hr>
         <form method="POST" name="memberInfo" onsubmit="return fn_log();" action="<%=request.getContextPath() %>/member/loginEnd" target="_self">
 			<div id="inputData"><input type="text"  id="id" name="memberId" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="아이디"><br>
