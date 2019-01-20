@@ -14,6 +14,8 @@ import java.util.Properties;
 
 import javax.naming.spi.DirStateFactory.Result;
 
+import com.kh.absence.model.vo.Absence;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.vo.Notice;
 
 public class NoticeDao {
@@ -179,5 +181,68 @@ public class NoticeDao {
 		return list;
 
 	}
+	
+	public int selectCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+		
+	}
+	
+	public List<Notice> selectList(Connection conn,int cPage,int numPerPage){
+		PreparedStatement pstmt= null;
+		ResultSet rs=null;
+		List<Notice> list=new ArrayList();
+		String sql=prop.getProperty("selectList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				
+				Notice notice = new Notice();
+				notice.setNoticeNo(rs.getInt("noticenum"));
+				notice.setNoticeTitle(rs.getString("noticetitle"));
+				notice.setNoticeContent(rs.getString("noticecontent"));
+				notice.setNoticeDate(rs.getDate("noticedate"));
+				notice.setStatus(rs.getString("status"));
+				list.add(notice);
+
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+		
+		
+		
+	}
+	
 
 }

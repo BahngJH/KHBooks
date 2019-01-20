@@ -2,7 +2,7 @@ package com.kh.info.controller;
 
 import java.io.IOException;
 import java.util.List;
-
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -39,88 +39,17 @@ public class InfoViewServlet extends HttpServlet {
 		Book b=new InfoService().selectInfoBook(bookId);
 		List<Review> list=new InfoService().selectInfoReview(bookId);
 //		System.out.println(bookId);
-		int cPage;
-		try {
-		
-			cPage=Integer.parseInt(request.getParameter("cPage"));
-			
-		}catch(NumberFormatException e)
-		{
-			cPage=1;
-//			System.out.println(cPage);
-		}
-		
-		int numPerPage;
-		try {
-			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
-		}
-		catch(NumberFormatException e){
-			numPerPage=5;
-//			System.out.println(numPerPage);
-		}
-		
-		int totalBoard=new InfoService().selectReviewCount();
-//		System.out.println(totalBoard);
-		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);
-//		System.out.println(totalPage);
-		List<Review> reviewCountList=new InfoService().selectReviewList(cPage,numPerPage);
-//		System.out.println(reviewCountList.size());
-		String pageBar="";
-		int pageSize=5;
-		int pageNo=((cPage-1)/pageSize)*pageSize+1;
-		int pageEnd=pageNo+pageSize-1;
-		
-		if(pageNo==1)
-		{
-			pageBar+="<span>[이전]</span>";
-		}
-		else 
-		{
-			pageBar+="<a href='"+request.getContextPath()
-			+"/inforconpare_hwang/infoView?cPage="+(pageNo-1)
-			+"&numPerPage="+numPerPage+"'>[이전]</a>";
-		}
-		//선택페이지 만들기
-		while(!(pageNo>pageEnd||pageNo>totalPage))
-		{
-			if(cPage==pageNo)
-			{
-				pageBar+="<span class='cPage'>"+pageNo+"</span>";
-			}
-			else
-			{
-				pageBar+="<a href='"+request.getContextPath()
-				+"/inforconpare_hwang/infoView?cPage="+(pageNo)
-				+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
-			}
-			pageNo++;
-		}
-		//[다음]구현
-		
-		if(pageNo>totalPage)
-		{
-			pageBar+="<span>[다음]</span>";
-		}
-		else 
-		{
-			pageBar+="<a href='"+request.getContextPath()
-					+"/inforconpare_hwang/infoView?cPage="+pageNo
-					+"&numPerPage="+numPerPage+"'>[다음]</a>";
-		}
-		request.setAttribute("cPage",cPage);
-		request.setAttribute("pageBar",pageBar);
-		request.setAttribute("reviewCountList", reviewCountList);
 
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
-		Wish w=new InfoService().selectWish(bookId);
+//		Wish w=new InfoService().selectWish(bookId);
 //		System.out.println(w);
 //		System.out.println(pageBar);
 //		System.out.println(b);
 //		System.out.println(list.size());
+//		request.setAttribute("wish", w);
 		request.setAttribute("book", b);
-		request.setAttribute("wish", w);
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewsize", list.size());
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
