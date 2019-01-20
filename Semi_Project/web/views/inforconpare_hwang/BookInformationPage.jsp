@@ -594,21 +594,18 @@ function fnMove2(){
                 <form action="<%=request.getContextPath()%>/inforconpare_hwang/infoInsertReviewEnd" name="reviewText" method="post">
 					<div class="wrappluswritereview" style='background-color:white; padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:9px;border: 1px solid silver;'>
 	                    <div class="wrap11">
-	                    	<%if(logined!=null&&logined==null) {%>
-	                    	<input type='hidden' name="memberNum" value=<%=logined.getMemberNum() %>/>
-	                    	<%} %>
 	                    	<input type='hidden' name="bookId" value=<%=b.getBookId() %>/>
-	                    	<input type='hidden' name="checkOption" value=1/>
+	                    	<input type='hidden' name="checkOption" value='1'/>
 	                    	<textarea id="content" name="reviewContext" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
 	                    </div>
 	                    <div class='writereview' style='margin-top:-15px;'>
 	                    	<%if(logined!=null) {%>
-	                    	<label><input type='radio' name="grade" value=1 checked="checked"/><img src='<%=request.getContextPath() %>/images/rating/star01.gif'></label>
-	                    	<label><input type='radio' name="grade" value=2/><img src='<%=request.getContextPath() %>/images/rating/star02.gif'></label>
-	                    	<label><input type='radio' name="grade" value=3/><img src='<%=request.getContextPath() %>/images/rating/star03.gif'></label>
-	                    	<label><input type='radio' name="grade" value=4/><img src='<%=request.getContextPath() %>/images/rating/star04.gif'></label>
-	                    	<label><input type='radio' name="grade" value=5/><img src='<%=request.getContextPath() %>/images/rating/star05.gif'></label>
+	                    	<label><input type='radio' name="grade" value='1' checked="checked"/><img src='<%=request.getContextPath() %>/images/rating/star01.gif'></label>
+	                    	<label><input type='radio' name="grade" value='2'/><img src='<%=request.getContextPath() %>/images/rating/star02.gif'></label>
+	                    	<label><input type='radio' name="grade" value='3'/><img src='<%=request.getContextPath() %>/images/rating/star03.gif'></label>
+	                    	<label><input type='radio' name="grade" value='4'/><img src='<%=request.getContextPath() %>/images/rating/star04.gif'></label>
+	                    	<label><input type='radio' name="grade" value='5'/><img src='<%=request.getContextPath() %>/images/rating/star05.gif'></label>
                     		<input type='submit' class="reviewWrite" value='리뷰쓰기' onclick="return validate();"/>
                     		<%}%>
                     	</div>
