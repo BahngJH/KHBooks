@@ -75,7 +75,7 @@ width: 50px;
 						복합명사는 띄어쓰기를 하면 더 많은 검색 결과를 얻으실 수 있습니다.</p>
 		            </div>
 		         	<div class="row" >
-						<form name="appendBookFrm" class="form-horizontal" action="<%=request.getContextPath()%>/absence/page" method="post" >
+						<form name="appendBookFrm" class="form-horizontal" action="<%=request.getContextPath()%>/notice/noticeabsence" method="post" >
 							<table>
 								<div class="form-group">
 									<div class="col-sm-10">

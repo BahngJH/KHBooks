@@ -3,7 +3,7 @@
 <%@ include file="/views/common/myHeader.jsp"%>
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
-	List<Order> list = (List)request.getAttribute("list");
+	List<Order> list = (List)request.getAttribute("sortList");
 %>
 
 <style>

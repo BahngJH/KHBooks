@@ -30,4 +30,11 @@ public class OrderService {
 		close(conn);
 		return list;
 	}
+	
+	public List<Order> sortList(int sort, int no) {
+		Connection conn = getConnection();
+		List<Order> list = new OrderDao().sortList(conn, sort, no);
+		close(conn);
+		return list;
+	}
 }

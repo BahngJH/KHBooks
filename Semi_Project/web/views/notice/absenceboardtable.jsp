@@ -71,6 +71,7 @@ function absence(){
 			<div class="col-sm-9">
 				<div class="notcecontent">
 				<h2>부재도서 주문</h2>
+				<hr/>
 				<br/>
 				<article id="edit">
 				
