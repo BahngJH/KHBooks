@@ -8,6 +8,8 @@ import static common.JDBCTemplate.getConnection
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.absence.model.dao.AbsenceDao;
+import com.kh.absence.model.vo.Absence;
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
 import static common.JDBCTemplate.close;
@@ -70,7 +72,19 @@ public class NoticeService {
 		
 	}
 	
+	public int selectCount() {
+		Connection conn =getConnection();
+		int result=new NoticeDao().selectCount(conn);
+		close(conn);
+		return result;
+	}
 	
+	public List<Notice> selectList(int cPage,int numPerPage) {
+		Connection conn=getConnection();
+		List<Notice> list=new NoticeDao().selectList(conn,cPage,numPerPage);
+		close(conn);
+		return list;
+	}
 	
 
 }
