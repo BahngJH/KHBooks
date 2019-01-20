@@ -390,5 +390,56 @@ public class MemberDao {
 		}
 		return bookList;
 	}
-	
+	//장바구니 정보 불러오는 메소드
+	public List<Book> getWishlist(Connection conn, int memberNum)
+	{
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("getWishlist");
+		ResultSet rs = null;
+		List bookList = new ArrayList();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				Book b = new Book();
+            	Author t = new Author();
+				t.setauthorNum(rs.getInt("authornum"));
+				t.setAuthorName(rs.getString("authorname"));
+				t.setAuthorInfo(rs.getString("authorinfo"));
+				
+				b.setAuthor(t);
+            	b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				
+            	bookList.add(b);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return bookList;
+		
+		
+		
+	}
 }

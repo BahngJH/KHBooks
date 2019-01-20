@@ -70,7 +70,7 @@ public class NoticeAbsenceServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="신청이 완료됐습니다.";
-			loc="/notice/absenceView";
+			loc="/absence/page";
 		}else {
 			msg="다시 신청해주세요.";
 			loc="/notice/absence";
