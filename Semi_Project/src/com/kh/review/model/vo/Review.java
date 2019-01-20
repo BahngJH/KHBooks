@@ -3,6 +3,7 @@ package com.kh.review.model.vo;
 import java.util.Date;
 
 import com.kh.book.model.vo.Book;
+import com.kh.member.model.vo.Member;
 
 /*
  * 리뷰에 대한 vo
