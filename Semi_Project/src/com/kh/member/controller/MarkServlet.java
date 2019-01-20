@@ -58,8 +58,6 @@ public class MarkServlet extends HttpServlet {
 		//실제 데이터 구해오는 메소드
 		List<Book> bookList = new MemberService().markList(cPage,numPerPage,memberNum);
 		
-		System.out.println(bookList.get(0).getAuthor());
-		
 		//list의 인덱스값으로 현재 몇개의 찜이 있는지 확인
 		int count = bookList.size();
 		String pageBar="";
