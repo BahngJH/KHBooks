@@ -77,12 +77,13 @@
                             </div>
                             <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
                           	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
-                            <input type="checkbox" name="BookId" value="<%=b.getBookId()%>">
+                            <input type="checkbox" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
+                            <input type="hidden" id="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
                             </div>
                         </div>		
                    	<%	
                     	}%>
-                    	<div id="wishlistCheckbox">현재 3권의 책이 선택되었습니다. 총 상품 금액 15000원</div>
+                    	<div id="wishlistCheckbox">현재 <span id="selectBooks"></span>권의 책이 선택되었습니다.<span id="totalSum"></span></div>
                     	<%
                     }else{
                     %>
@@ -96,26 +97,42 @@
 			</section>
 		</div>
 		<script>
-		//수정중
-		/* var select = 0;
-			$(function(){
-			$('input[type=checkbox]').change(function(){
-				if($('input[type=checkbox]').is(":checked")){
-					select++;
-					console.log(select);
-				}else{
-					select--;
-					console.log(select);
+		function bookSum(frm){
+			var sum = 0;
+			var count = frm.BookId.length;
+			var selectBooks=0;
+			for(var i=0;i<count;i++){
+				if(frm.BookId[i].checked==true){
+					selectBooks++;
+					sum += parseInt(frm.bookPrice[i].value);
 				}
-			});
-		}); */
+			}
+			count = selectBooks;
+			$('#selectBooks').html(count);
+		 	$('#totalSum').html(sum);
+		}
 		
 			function cAll(){
 				if($('#checkAll').is(':checked')){
 					$('input[type=checkbox]').prop("checked",true);
+					
 				}else{
 					$('input[type=checkbox]').prop("checked",false);
 				}
+				var sum = 0;
+				var count = $('input[type=checkbox]').length;
+				var selectBooks=0;
+				for(var i=0;i<count;i++){
+					if($('input[type=checkbox]')[i].checked==true){
+						selectBooks++;
+						//여기아래 수정중...
+						sum += parseInt();
+					}
+				}
+					count = selectBooks-1;
+				
+				$('#selectBooks').html(count);
+			 	$('#totalSum').html(sum);
 			}
 			function multiDelete(){
 				var deleteList = $('#checkedList');
