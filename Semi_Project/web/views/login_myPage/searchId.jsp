@@ -27,7 +27,7 @@
 <body>
 
 <div id="container">
-		<div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS</b></a></div>
+		<div id="logo"><a href="<%=request.getContextPath() %>/main/mainview"><b>KH BOOKS</b></a></div>
 		<h3>아이디 찾기</h3>
 		<div id="inputData">
 		<form method="post" action="<%=request.getContextPath()%>/member/searchIdEnd" onsubmit="return fn_Frm();">
