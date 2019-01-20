@@ -7,7 +7,7 @@
 	<%@ include file="/views/common/noticeHeader.jsp"%>
 	<%
 		List<Notice> list=(List)request.getAttribute("list");
-
+	String pageBar=(String)request.getAttribute("pageBar");
 	%>
 
 
@@ -96,6 +96,9 @@ function insertNotice(){
 					<%} 
 					}%>	 				
 				</table>
+				<div class="text-center">
+					<%=pageBar %>
+				</div>
 				</div>
 			
 
