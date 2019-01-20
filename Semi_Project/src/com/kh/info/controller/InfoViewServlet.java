@@ -2,7 +2,7 @@ package com.kh.info.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.sql.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.service.InfoService;
+import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
-import com.kh.wish.model.vo.Wish;
 
 /**
  * Servlet implementation class InfoViewServlet

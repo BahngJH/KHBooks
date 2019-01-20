@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
+import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 import com.kh.wish.model.vo.Wish;
 
@@ -31,6 +32,33 @@ public class InfoDao {
 		}
 	}
 	
+	public Member selectInfoMember(Connection conn, int memberNum)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		String sql=prop.getProperty("selectInfoMember");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				m=new Member();
+				m.setMemberId(rs.getString("memberId"));
+			}
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return m;
+	}
 	public Book selectInfoBook(Connection conn,int bookId)
 	{
 		PreparedStatement pstmt=null;
@@ -62,10 +90,13 @@ public class InfoDao {
 				b.setPageNum(rs.getInt("pageNum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
-				Author a = new Author();
+				Author a=new Author();
 				a.setAuthorName(rs.getString("authorName"));
 				a.setAuthorInfo(rs.getString("authorInfo"));
-				b.setAuthor(a);				
+				b.setAuthor(a);
+				Member m=new Member();
+				m.setMemberId(rs.getString("memberId"));
+				b.setMember(m);
 			}
 		}catch(SQLException e)
 		{

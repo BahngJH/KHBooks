@@ -10,8 +10,8 @@ com.kh.author.model.vo.Author'
 	
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%
+	Member m=(Member)request.getAttribute("member");
 	Book b=(Book)request.getAttribute("book");
-	/* Wish w=(Wish)request.getAttribute("wish"); */
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	List<Review> reviewCountList=(List<Review>)request.getAttribute("reviewCountList");
 	int reviewsize=(int)request.getAttribute("reviewsize");
@@ -648,7 +648,7 @@ function fnMove2(){
 	                    </style>
 	                    <div class='reviews'>
 	                        <small>
-	                        <span class='info'><strong>hw**g3324</strong></span>
+	                        <span class='info'><strong><%=b.getMember().getMemberId() %></strong></span>
 	                        <span class='line'>|</span>
 	                        <span class='reviewdate'><%=r.getWriteDate() %></span>
 	                        <span class='line'>|</span>

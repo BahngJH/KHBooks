@@ -3,6 +3,7 @@ package com.kh.book.model.vo;
 import java.util.Date;
 
 import com.kh.author.model.vo.Author;
+import com.kh.member.model.vo.Member;
 
 //책 정보 객체
 public class Book {
@@ -24,6 +25,7 @@ public class Book {
 	private String toc;
 	private int sales;
 	private Author author;
+	private Member member;
 	
 	
 	public Book() {
@@ -59,6 +61,7 @@ public class Book {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((member == null) ? 0 : member.hashCode());
 		result = prime * result + authorNum;
 		result = prime * result + ((bookDate == null) ? 0 : bookDate.hashCode());
 		result = prime * result + bookId;
@@ -87,6 +90,10 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
+		if (member == null) {
+			if (other.member != null)
+				return false;
+		} else if (!member.equals(other.member))
 		if (author == null) {
 			if (other.author != null)
 				return false;
@@ -167,7 +174,7 @@ public class Book {
 				+ authorNum + ", genre=" + genre + ", bookId=" + bookId + ", isbn=" + isbn + ", bookImage=" + bookImage
 				+ ", bookDate=" + bookDate + ", bookInfo=" + bookInfo + ", editor=" + editor + ", translator="
 				+ translator + ", pageNum=" + pageNum + ", stock=" + stock + ", sales=" + sales + ", author=" + author
-				+ ", bookContent=" + bookContent +", toc=" + toc + "]";
+				+ ", bookContent=" + bookContent +", toc=" + toc + ", member=" + member +"]";
 	}
 	public String getBookName() {
 		return bookName;
@@ -276,6 +283,12 @@ public class Book {
 	}
 	public void setAuthor(Author author) {
 		this.author = author;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	
 	
