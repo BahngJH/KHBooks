@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.csCenter.model.service.QnaService;
 import com.kh.csCenter.model.vo.Qna;
+import com.kh.csCenter.model.vo.QnaRe;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -34,11 +35,19 @@ public class QnaMyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Member m = (Member) request.getSession(false).getAttribute("logined");
-			
+		
+		
+		//int reNum = qr.getReNum();
+	/*	int reNum=Integer.parseInt(request.getParameter("reNum"));
+		System.out.println(reNum);
+		List<QnaRe> qrList = new QnaService().selectMyRe(reNum);	
+		request.setAttribute("qrList", qrList);*/
+		
+		Member m = (Member) request.getSession(false).getAttribute("logined");			
 		if (m != null) {
 			int memberNum = m.getMemberNum();
-			List<Qna> list = new QnaService().selecMyQnaList(memberNum);
+			System.out.println("회원번호: "+memberNum);
+			List<Qna> list = new QnaService().selecMyQnaList(memberNum);	
 			request.setAttribute("list", list);
 			request.setAttribute("cnt", list.size());
 			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
@@ -46,6 +55,15 @@ public class QnaMyListServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
 
+		}
+		
+		QnaRe qr=(QnaRe) request.getAttribute("reNum");
+		if(qr!=null) {
+			int reNum=Integer.parseInt(request.getParameter("reNum"));
+			System.out.println("번호나오나?"+reNum);
+			List<QnaRe> qrList = new QnaService().selectMyRe(reNum);	
+			request.setAttribute("qrList", qrList);
+			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
 		}
 
 	}

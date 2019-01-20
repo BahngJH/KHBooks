@@ -84,7 +84,40 @@ public class QnaDao {
 		}
 		System.out.println(list);
 		return list;
-
+	}
+	
+	//관리자 답변
+	public List<QnaRe> selectMyRe(Connection conn, int reNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<QnaRe> qrList = new ArrayList();
+		String sql = prop.getProperty("selectMyRe");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reNum);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {	
+				QnaRe qr = new QnaRe();
+				qr.setReNum(rs.getInt("reNum"));
+				qr.setAdminNum(rs.getInt("memberNum"));
+				qr.setQnaNum(rs.getInt("qnaNum"));
+				qr.setReCheck(rs.getString("reCheck"));
+				qr.setReMail(rs.getString("reMail"));				
+				qr.setReContent(rs.getString("reContent"));
+				qr.setReStatus(rs.getString("reStatus"));
+				qr.setReDate(rs.getDate("reDate"));			
+				qrList.add(qr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(qrList);
+		return qrList;
 	}
 
 
@@ -103,10 +136,17 @@ public class QnaDao {
 			while (rs.next()) {
 				Qna q = new Qna();
 				q.setQnaNum(rs.getInt("qnaNum"));
-				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaWriter(rs.getInt("memberNum"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaDate(rs.getDate("qnaDate"));				
-				q.setQnaStatus(rs.getString("Status"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -119,7 +159,7 @@ public class QnaDao {
 
 	}
 
-	// 문의글 리스트
+	// 문의글 리스트(관리자)
 	public List<Qna> selectAllQna(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -155,7 +195,7 @@ public class QnaDao {
 		return list;
 	}
 
-	// 문의글 선택
+	// 문의글 선택(관리자)
 	public Qna selectNo(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
