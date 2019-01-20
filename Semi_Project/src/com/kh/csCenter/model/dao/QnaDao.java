@@ -45,27 +45,49 @@ public class QnaDao {
 		}
 		return result;
 	}
-
-	// 내가 쓴 문의글 리스트 Dao
-	public List<Qna> selecMyQnaList(Connection conn, int memberNum) {
+	
+	//내가 쓴 문의글 갯수
+	public int selectMyCount(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Qna> list = new ArrayList();
-		String sql = prop.getProperty("selectMyQnaList");
-		
-
+		int result = 0;
+		String sql = prop.getProperty("selectMyCount");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {	
+			if (rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	// 내가 쓴 글목록 list 페이징
+	public List<Qna> selecMyQnaList(Connection conn, int memberNum, int cPage, int numPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Qna> list = new ArrayList();
+		String sql = prop.getProperty("selectMyList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(3, cPage * numPerPage);					
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				Qna q = new Qna();
 				q.setQnaNum(rs.getInt("qnaNum"));
 				q.setQnaWriter(rs.getInt("memberNum"));
 				q.setQnaTitle(rs.getString("qnaTitle"));
 				q.setQnaContent(rs.getString("qnaContent"));
-				q.setQnaDate(rs.getDate("qnaDate"));				
+				q.setQnaDate(rs.getDate("qnaDate"));
 				q.setQnaStatus(rs.getString("qnaStatus"));
 				q.setQnaPart(rs.getString("qnaPart"));
 				q.setQnaOriFile(rs.getString("qna_original_filename"));
@@ -73,7 +95,6 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
-				
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -82,16 +103,16 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(list);
 		return list;
+
 	}
-	
+		
 	//관리자 답변
 	public List<QnaRe> selectMyRe(Connection conn, int reNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<QnaRe> qrList = new ArrayList();
-		String sql = prop.getProperty("selectMyRe");
+		String sql = prop.getProperty("selectRe");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -120,8 +141,7 @@ public class QnaDao {
 		return qrList;
 	}
 
-
-	// 문의글 리스트 페이징
+	// 전체 문의글 리스트 페이징(관리자)
 	public List<Qna> selectList(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -157,42 +177,6 @@ public class QnaDao {
 		}
 		return list;
 
-	}
-
-	// 문의글 리스트(관리자)
-	public List<Qna> selectAllQna(Connection conn) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<Qna> list = new ArrayList();
-		String sql = prop.getProperty("AllQnaList");
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Qna q = new Qna();
-				q.setQnaNum(rs.getInt("qnaNum"));
-				q.setQnaWriter(rs.getInt("memberNum"));
-				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaContent(rs.getString("qnaContent"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaStatus(rs.getString("qnaStatus"));
-				q.setQnaPart(rs.getString("qnaPart"));
-				q.setQnaOriFile(rs.getString("qna_original_filename"));
-				q.setQnaReFile(rs.getString("qna_renamed_filename"));
-				q.setQnaAnswer(rs.getString("qnaAnswer"));
-				q.setQnaMail(rs.getString("qnaMail"));
-				q.setQnaTel(rs.getString("qnaTel"));
-				list.add(q);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		System.out.println("리스트좀 받아옵시다" + list);
-		return list;
 	}
 
 	// 문의글 선택(관리자)

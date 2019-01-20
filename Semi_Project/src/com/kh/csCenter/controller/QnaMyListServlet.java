@@ -36,35 +36,89 @@ public class QnaMyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		//int reNum = qr.getReNum();
-	/*	int reNum=Integer.parseInt(request.getParameter("reNum"));
-		System.out.println(reNum);
-		List<QnaRe> qrList = new QnaService().selectMyRe(reNum);	
-		request.setAttribute("qrList", qrList);*/
-		
 		Member m = (Member) request.getSession(false).getAttribute("logined");			
 		if (m != null) {
 			int memberNum = m.getMemberNum();
 			System.out.println("회원번호: "+memberNum);
-			List<Qna> list = new QnaService().selecMyQnaList(memberNum);	
-			request.setAttribute("list", list);
+			
+			int cPage;
+			try {
+			
+				cPage=Integer.parseInt(request.getParameter("cPage"));
+				
+			}catch(NumberFormatException e)
+			{
+				cPage=1;
+			}
+			
+			int numPerPage;
+			try {
+				numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
+			}
+			catch(NumberFormatException e){
+				numPerPage=10;
+			}
+		
+			int myTotal=new QnaService().selectMyCount(memberNum);
+			System.out.println(myTotal);
+			int totalPage=(int)Math.ceil((double)myTotal/numPerPage);
+			System.out.println(totalPage);
+			List<Qna> list=new QnaService().selecMyQnaList(memberNum,cPage,numPerPage);
+			
+			String pageBar="";
+			int pageSize=5;
+			int pageNo=((cPage-1)/pageSize)*pageSize+1;
+			int pageEnd=pageNo+pageSize-1;
+			
+			if(pageNo==1)
+			{
+				pageBar+="<a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a>";				
+			}
+			else 
+			{
+				pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListMain?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a>";
+			}
+			//선택페이지 만들기
+			while(!(pageNo>pageEnd||pageNo>totalPage))
+			{
+				if(cPage==pageNo)
+				{
+					pageBar+="<a class='cPage'>"+pageNo+"</a>";
+					
+				}
+				else
+				{
+					pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListMain?cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";				
+				}
+				pageNo++;
+			}
+			//[다음]구현
+			
+			if(pageNo>totalPage)
+			{
+				pageBar+="<a aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
+			}
+			else 
+			{
+				pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListMain?cPage="+pageNo+"&numPerPage="+numPerPage+"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
+			}
+			System.out.println(pageBar);
+					
+			request.setAttribute("cPage",cPage);
+			request.setAttribute("pageBar",pageBar);
+			request.setAttribute("list", list);	
 			request.setAttribute("cnt", list.size());
 			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
+				
 
 		} else {
 			request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
 
 		}
 		
-		QnaRe qr=(QnaRe) request.getAttribute("reNum");
-		if(qr!=null) {
-			int reNum=Integer.parseInt(request.getParameter("reNum"));
-			System.out.println("번호나오나?"+reNum);
-			List<QnaRe> qrList = new QnaService().selectMyRe(reNum);	
-			request.setAttribute("qrList", qrList);
-			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
-		}
+		
+		
+	
 
 	}
 

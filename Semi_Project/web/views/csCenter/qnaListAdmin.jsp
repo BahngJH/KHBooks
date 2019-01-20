@@ -74,7 +74,8 @@
   					</div>
   				</div>				 				 				                   		                 
 			</div>
-		</div>
+		</div>	
+		<!--페이징처리 -->
 		<div class="row">		                
 	   		<div class="qna-paging col-md-offset-1 col-md-7" >
 	   			<div id='pageBar'>

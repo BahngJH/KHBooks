@@ -5,6 +5,7 @@
  <%
 	List<Qna> list = (List) request.getAttribute("list");
 	int cnt = (int) request.getAttribute("cnt");
+	String pageBar = (String) request.getAttribute("pageBar");
 	/* 	Qna q = (Qna) request.getAttribute("Qna");
 		Member m = (Member) request.getSession().getAttribute("logined"); */
 %> 
@@ -145,21 +146,22 @@ text-align: left;
 		 	   </div>
 		</div>
 	</div>
-	
-			<!--페이징  -->	
+				<!--페이징처리 -->
+	<div class="row">		                
+   		<div class="qna-paging col-md-offset-1 col-md-7" >
+   			<div id='pageBar'>
+	 			<nav>
+	 				<ul class="pagination">			  		
+						<li><%=pageBar %></li>				
+					</ul>
+   	  		 	</nav>
+  	  		 	</div>		 	
+   		</div>
+	</div>
 	 
 </section>
 </div>
     
-<script>
-	var g_Page = 1;
-	var g_pageIndex = 1;
-	var g_pageSize = 10;
-	var IsShowPager = "True";
-</script>
-    
-    
-
 	
 <script type ="text/javascript" language ="javascript">
 	function onDelete(seqNo, questionNo) {

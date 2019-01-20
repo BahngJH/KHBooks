@@ -25,10 +25,18 @@ public class QnaService {
 		return result;
 	}
 
-	// 내가 쓴 문의글 List Service
-	public List<Qna> selecMyQnaList(int memberNum) {
+	// 내가 쓴 문의글
+	public int selectMyCount(int memberNum) {
 		Connection conn = getConnection();
-		List<Qna> list = new QnaDao().selecMyQnaList(conn, memberNum);
+		int result = new QnaDao().selectMyCount(conn, memberNum);
+		close(conn);
+		return result;
+	}
+
+	// 내가 쓴 문의글 목록 List
+	public List<Qna> selecMyQnaList(int memberNum, int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Qna> list = new QnaDao().selecMyQnaList(conn, memberNum, cPage, numPerPage);
 		close(conn);
 		return list;
 	}
@@ -41,15 +49,7 @@ public class QnaService {
 		return qrList;
 	}
 
-	// 전체 문의글 (사용자 사용)Service
-	public List<Qna> selectAllQna() {
-		Connection conn = getConnection();
-		List<Qna> list = new QnaDao().selectAllQna(conn);
-		close(conn);
-		return list;
-	}
-
-	// 페이징 Service
+	// 전체 문의글
 	public List<Qna> selectList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<Qna> list = new QnaDao().selectList(conn, cPage, numPerPage);
@@ -70,7 +70,7 @@ public class QnaService {
 		return rs;
 	}
 
-//문의글 선택
+    //문의글 선택
 	public Qna selectNo(int no) {
 		Connection conn = getConnection();
 		Qna q = new QnaDao().selectNo(conn, no);
@@ -78,7 +78,7 @@ public class QnaService {
 		return q;
 	}
 
-	// 답변 등록 Service
+	// 관리자 답변 등록
 	public int qnaAnswerEnroll(QnaRe qr) {
 		Connection conn = getConnection();
 		int rs = new QnaDao().qnaAnswerEnroll(conn, qr);
