@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.info.model.service.InfoService;
+import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class InfoInsertReviewServlet
+ * Servlet implementation class InfoInsertReviewEndServlet
  */
 @WebServlet("/inforconpare_hwang/infoInsertReviewEnd")
 public class InfoInsertReviewEndServlet extends HttpServlet {
@@ -31,7 +32,8 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
+		Member logined=(Member)request.getSession(false).getAttribute("logined");
+		int memberNum=logined.getMemberNum();
 		int grade=Integer.parseInt(request.getParameter("grade"));
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		int checkOption=Integer.parseInt(request.getParameter("checkOption"));
@@ -42,8 +44,11 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		Review r= new Review();
 		
 		r.setMemberNum(memberNum);
+		r.setWriteDate(null);
 		r.setGrade(grade);
 		r.setBookId(bookId);
+		r.setReviewNum(0);
+		r.setStatus(null);
 		r.setCheckOption(checkOption);
 		r.setReviewContext(reviewContext);
 		
