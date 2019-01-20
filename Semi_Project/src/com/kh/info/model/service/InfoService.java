@@ -31,35 +31,27 @@ public class InfoService {
 		return list;
 	}
 	
-	public int selectReviewCount()
-	{
-		Connection conn=getConnection();
-		int result=new InfoDao().selectReviewCount(conn);
-		close(conn);
-		return result;
-	}
-	
-	public List<Review> selectReviewList(int cPage, int numPerPage)
-	{
-		Connection conn=getConnection();
-		List<Review> reviewCountList=new InfoDao().selectReviewList(conn, cPage, numPerPage);
-		close(conn);
-//		System.out.println(reviewCountList.size());
-		return reviewCountList;
-	}
-	
-	public Wish selectWish(int bookId)
-	{
-		Connection conn=getConnection();
-		Wish r=new InfoDao().selectWish(conn, bookId);
-		close(conn);
-		return r;
-	}
-	
 	public int insertWish(Wish w)
 	{
 		Connection conn=getConnection();
 		int result=new InfoDao().insertWish(conn,w);
+		if(result>0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	public int insertReview(Review r)
+	{
+		Connection conn=getConnection();
+		int result=new InfoDao().insertReview(conn,r);
 		if(result>0)
 		{
 			commit(conn);
