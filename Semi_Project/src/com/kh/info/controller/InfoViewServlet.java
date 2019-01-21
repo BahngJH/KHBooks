@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.service.InfoService;
+import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 
 /**
@@ -36,20 +36,19 @@ public class InfoViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
-
 		Book b=new InfoService().selectInfoBook(bookId);
 		List<Review> list=new InfoService().selectInfoReview(bookId);
-		System.out.println(bookId);		
-		
-		
-		
+//		System.out.println(bookId);
+
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
-		
-		
-		System.out.println(b);
-		System.out.println(list.size());
+//		Wish w=new InfoService().selectWish(bookId);
+//		System.out.println(w);
+//		System.out.println(pageBar);
+//		System.out.println(b);
+//		System.out.println(list.size());
+//		request.setAttribute("wish", w);
 		request.setAttribute("book", b);
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewsize", list.size());
@@ -68,9 +67,10 @@ public class InfoViewServlet extends HttpServlet {
 		/*최근 본 목록 쿠키*/
 		Cookie[] cookies = request.getCookies();
 		String cookieValue = "";
-		String newValue="";
+		String newValue = bookId + "|";;
 		if(cookies != null) {
 			for(Cookie c : cookies) {
+				//이미 recent 쿠키가 있을 경우
 				if(c.getName().equals("recent")) {
 					cookieValue = c.getValue();
 										
@@ -100,7 +100,6 @@ public class InfoViewServlet extends HttpServlet {
 				}
 			}
 		}
-		
 		Cookie cookie = new Cookie("recent", newValue);
 		cookie.setMaxAge(30 * 60 * 60 * 24);
 		cookie.setPath("/");

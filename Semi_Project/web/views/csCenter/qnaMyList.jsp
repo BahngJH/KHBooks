@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
+	<%@ include file="/views/common/noticeHeader.jsp"%>
 
-<%--  <%	
-	Qna q=(Qna)request.getAttribute("Qna");
-	%> --%>
-
-
-<%@ include file="/views/common/noticeHeader.jsp"%>
+ <%
+	List<Qna> list = (List) request.getAttribute("list");
+	int cnt = (int) request.getAttribute("cnt");
+	String pageBar = (String) request.getAttribute("pageBar");
+	/* 	Qna q = (Qna) request.getAttribute("Qna");
+		Member m = (Member) request.getSession().getAttribute("logined"); */
+%> 
 
 <style>
 li {
@@ -16,63 +18,6 @@ li {
 .cs_title {
 	text-align: center;
 	padding: 0 0 25px 0;
-}
-
-.dWrap {
-	border: solid 1px #ebebeb;
-	border-top-color: rgb(235, 235, 235);
-	border-top-style: solid;
-	border-top-width: 1px;
-	border-right-color: #d8d8d8;
-	border-right-style: solid;
-	border-right-width: 1px;
-	border-bottom-color: #d8d8d8;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-left-color: rgb(235, 235, 235);
-	border-left-style: solid;
-	border-left-width: 1px;
-	border-image-source: initial;
-	border-image-slice: initial;
-	border-image-width: initial;
-	border-image-outset: initial;
-	border-image-repeat: initial;
-	border-bottom-color: #d8d8d8;
-	border-right-color: #d8d8d8;
-	background-color: #fff;
-	padding: 15px 20px; 0 23 px;
-	height: 50px;
-	display: block;
-	text-align: left;
-	margin-bottom: 15px;
-}
-
-.bWrap {
-	border: solid 1px #ebebeb;
-	border-top-color: rgb(235, 235, 235);
-	border-top-style: solid;
-	border-top-width: 1px;
-	border-right-color: #d8d8d8;
-	border-right-style: solid;
-	border-right-width: 1px;
-	border-bottom-color: #d8d8d8;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-left-color: rgb(235, 235, 235);
-	border-left-style: solid;
-	border-left-width: 1px;
-	border-image-source: initial;
-	border-image-slice: initial;
-	border-image-width: initial;
-	border-image-outset: initial;
-	border-image-repeat: initial;
-	border-bottom-color: #d8d8d8;
-	border-right-color: #d8d8d8;
-	background-color: #fff;
-	padding: 15px 20px; 0 23 px;
-	height: 50px;
-	display: block;
-	text-align: left;
 }
 
 .csInfo {
@@ -92,31 +37,16 @@ ul {
 }
 
 .csCenter {
-	float: right;
 	padding: 25px 0;
-	width: 660px;
-	text-align: left;
-	margin-bottom: 60px;
 }
 
 em {
 	font-size: 17px;
 }
 
-#pager {
-	text-align: center;
-}
-
-.searchDate {
-	float: right;
-	width: 800px;
-}
-
 .cs_title {
 	font-size: 2em;
-	margin-top: 50px;
-	margin-right: 500px;
-	margin-bottom: 20px;
+	float: left;
 }
 
 #askBtn {
@@ -124,8 +54,7 @@ em {
 	height: 30px;
 	font-size: 15px;
 	padding: 0 0 1px 0;
-	margin-left: 480px;
-	margin-top: -75px;
+	float: right;
 	text-align: center;
 }
 
@@ -139,12 +68,13 @@ hr {
 	margin-left: 120px;
 }
 
-#testa {
-	width: 100%;
+.qna-paging {
 	text-align: center;
 }
+.searchDate{
+text-align: left;
+}
 </style>
-
 
 <script>
 	function fn_addQna() {
@@ -152,293 +82,86 @@ hr {
 </script>
 
 
-<div class="container">
- <!-- 타이틀 -->
-	<div class="csCenter">	
-		<h3 class="cs_title">1:1 문의내역</h3>				
-		<p><%if(logined!=null){%> 
-			<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
-		<% } %></p>	 	
-		<hr>
-	</div>
-
+<section class="board-container col-sm-10">
 	
-	<!-- 날짜 조회 -->		
-	<div class="searchDate">	 
+ <!-- 타이틀 -->
+ 	<div class="row">
+		<div class="csCenter col-md-offset-1 col-md-7">			
+				<h3 class="cs_title">1:1 문의내역</h3>		
+				<hr>		
+				 <span><%if(logined!=null){%> 
+					<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
+				</span><% } %>  						
+		</div>
+
+	<!-- 날짜 조회 -->	
+	<div class="row">	
+		<div class="searchDate col-md-offset-1 col-md-7">	 
 			 <div class="sch-lcont">
 				<strong>기간별 조회</strong>
 				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'> ~
+				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
 				<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src='images/ico_cal.gif' align='absMiddle'>				
-				<span class="cbtn">			
+				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
+				<span class="cbtn">					  		
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
 			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
 			      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>     
 				</span>
-				
-		
-			 </div>
-				                    
-			                 
-	</div>
-	
+			 </div>				                   		                 
+		</div>
+	</div>	
     <!-- 문의리스트 -->
-	<div class="csCenter col-sm-offset-2 col-sm-8">  
-			<div id="askList">	
-				<ul class="askList">										   		   					   
-                    <li>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
-						     <a href="http://www.google.com"> 문의 상품</a>
-						    <em class="txt">책주문은 어디서 하나요? </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</button>					
-					</li>
-					
-					<div class="collapse" id="collapseExample1">
-                        <div class="well"> 내용입력 </div>
-                    </div>
-					
-					
-					 <li>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-						     <a href="http://www.google.com"> 문의 상품</a>
-						    <em class="txt">버튼으로 감싸기 </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</button>					
-					</li>
-					
-					<div class="collapse" id="collapseExample2">
-                        <div class="well"> 내용입력 </div>
-                    </div>
-					
-					
-					 <li>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
-						     <a href="http://www.google.com"> 문의 상품 </a>
-						    <em class="txt">버튼으로 감싸기 </em> 
-							<span class="csInfo"> 
-								<span class=""> 읽음</span> 
-								<span class="divi">|</span> 
-								<span class="info_date">2018.03.31</span>
-							</span> 
-							<em class="">&nbsp;</em>
-						</button>					
-					</li>
-					
-					<div class="collapse" id="collapseExample3">
-                        <div class="well"> 여기서 내용을 입력 하면 전부 다 적용되나?</div>
-                    </div>
-						
-
-					
-			</ul>
-					
-   </div>
-	
-			
-		
-		
-					                
-   <div class="qna-paging" >
-
-       <div class="paging" id="">
-         <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_first"><img src="images/page_first.png" alt="바로가기" class="vm"></a>
-         <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_prev"><img src="images/left.png" alt="바로가기" class="vm"></a>
-         
-         <span>
-            <strong class="first">1</strong>
-         </span>
-         
-         <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_first" ><img src="images/right.png" alt="바로가기" class="vm"></a>
-         <a href="javascript:$.onClickSelectedPageNo();" class="btn_p_prev"><img src="images/page_last.png" alt="바로가기" class="vm"></a>
-	     <input type="hidden" value="0" class="txt" id="htxtPageIndex" name="htxtPageIndex" />
-	   </div>
-	   
-	  	   
-	   
-   </div> 
-    
-    
-  
-
-
-<script type="text/javascript" language ="javascript">
-	$.extend({
-		onClickSelectedPageNo: function() {
-		var selectedNo = $("#htxtSelectedPageNo").val();
-		if (parseInt(selectedNo) > 0 && parseInt(selectedNo) <= 1)
-			$.onClickPageNo(selectedNo);
-		else
-			alert("올바른 페이지번호가 아닙니다.");
-		return;
-		},
-		onClickPageNo: function(pageNo) {
-		$("#htxtPageIndex").val(pageNo - 1)
-		//alert($("#htxtPageIndex").parents("form").length);
-		$("#htxtPageIndex").parents("form").submit();
-			return;
-		}
-	});
-
-</script>
-    
-    
-<script>
-	var g_Page = 1;
-	var g_pageIndex = 1;
-	var g_pageSize = 10;
-	var IsShowPager = "True";
-</script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-		
-		
+    <div class="row">
+		<div class="csCenter col-md-offset-1 col-md-7">  
+				<div id="askList">	
+					<ul class="askList">
+				 	<%for(Qna q : list){ %>								   		   					   
+		                <li>
+		                	 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    
+					     		<h5 style="display: inline"><b><%=q.getQnaPart() %></b></h5>				       							    
+							     <em style="display: inline"><b><%=q.getQnaTitle() %></b></em>
+								 <span class="csInfo"> 
+									<span class=""><%=q.getQnaDate() %>읽음</span> 
+									<span class="divi">|</span> 	
+									<span class=""> 읽지않음</span> 														
+								 </span> 
+							     <em class="">&nbsp;</em>
+							</button>					
+						</li> 							 						
+						<!--문의글 확인 및 재문의 -->			
+						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
+		                     <div class="well" value="">
+		                     	 <h5 ><%=q.getQnaContent() %> </h5>	
+		                     	 <h5 >여기는 답변내용이 올곳입니다. </h5>			                     	                    	                       
+								  <ul class="">							    
+								    <li class=""><button>재문의</button></li>
+								  </ul>												                        						                                              
+		                      </div>                       
+		                 </div> 
+		                 <%} %>                           							
+					</ul>				
+		 	   </div>
+		</div>
 	</div>
-
-
+				<!--페이징처리 -->
+	<div class="row">		                
+   		<div class="qna-paging col-md-offset-1 col-md-7" >
+   			<div id='pageBar'>
+	 			<nav>
+	 				<ul class="pagination">			  		
+						<li><%=pageBar %></li>				
+					</ul>
+   	  		 	</nav>
+  	  		 	</div>		 	
+   		</div>
+	</div>
+	 
+</section>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
- <div id="myauctionRight" class="uxa-myauction-content">
-			        <div class="uxc-order-list" id="uxcOrderList">
-			       
-			          
-			            <!-- 문의내역 검색 -->
-			            <div class="uxb-sch-area">
-				                <div class="detail-sch" style="display:none">
-					                <strong class="first">상세검색</strong>
-					                <div class="selectbox" style="width:96px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivSearchType',false,'hdlSearchType');">
-							                <span>제목</span>
-						                </div>
-						                <div id="hdivSearchType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>
-							                <select id="hdlSearchType" name="hdlSearchType">
-								                <option value="1" selected>제목</option>
-								                <option value="2">상품번호</option>
-								                <option value="3">상품명</option>
-							                </select>
-							                <script type="text/javascript">select_combobox('hdlSearchType', 0);</script>
-						                </div>
-					                </div>
-					                <input type="text" class="txt" id="htxtSearchText" name="htxtSearchText" value="" onkeydown="if(event.keyCode==13) { $.onClickSearch();}" style="width:107px;" />
-					                <strong>답변상태</strong>
-					                <div class="selectbox" style="width:110px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivAnswerType',false,'hdlAnswerType');">
-							                <span>전체</span>
-						                </div>
-						                <div id="hdivAnswerType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>
-							                <select id="hdlAnswerType" name="hdlAnswerType">
-								                <option value="0" selected>전체</option>
-								                <option value="1">답변완료</option>
-								                <option value="2">미답변</option>								
-							                </select>
-							                <script type="text/javascript">select_combobox('hdlAnswerType',0);</script>
-						                </div>
-					                </div>
-					                <strong>문의유형</strong>
-					                <div class="selectbox" style="width:110px;">
-						                <div class="combo mgb3" onclick="init_combobox(this,'hdivQueryType',false,'hdlQueryType');">
-							                <span>전체</span>
-						                </div>
-						                <div id="hdivQueryType" class="combo_option">
-							                <ul>
-								                <li>&nbsp;</li>
-							                </ul>						            
-						                </div>
-					                </div>
-				                </div>
-				                
-	                    
-			                </div>
-			                <!-- //문의내역 검색 -->
-			                
-			                <!-- 문의내역 목록 -->
- <div class="content" id="uxcOrderTab6">
-				                
-		<table class="uxb-qna-list v2">
-			<colgroup>
-				<col style="width:12%" />
-				<col style="width:72%" />
-				<col style="width:16%" />
-			</colgroup>
-			<tbody>
-								
-				<tr name="trOrderText">
-					<td class="order-prd" colspan="2">
-						<div class="s-view" id="hdivDetail0" style="display:none;">
-							<ul>
-							</ul>
-						</div> 
-					</td>
-				</tr>
-                <tr>
-                    <div class="layer_popup" id="pop_inquiry" style="display:none">
-			            <div class="bg_dimmed" style="display:block"></div>
-			                <iframe src="./popup_vip_inquiry.aspx" frameborder="0" width="380" height="181" scrolling="no" style="margin:-120px 0 0 -190px"></iframe>
-		                </div>
-                    </div>                    
-				    <input type="hidden" id="hdnDelYN"/>
-				    <input type="hidden" id="hdnSeqNo"/>
-				    <input type="hidden" id="hdnQnaNo"/>
-				    <input type="hidden" id="hdnItemNo"/>
-                </tr>
-                <tr class="qna-reply" id="htrAnswers210609396" style="display:none">
-				    
-			    </tr>
-						
-								
-			</tbody>
-		</table>
-		
-		<input type ="hidden" id="htxtSelectedSeqNo"  name="htxtSelectedSeqNo" />
-	    <input type ="hidden" id="htxtSelectedQestionNo" name="htxtSelectedQestionNo" />
-
-      <div id="sellerovermenu" onmouseover="javascript:this.style.display='block';" onmouseout="javascript:this.style.display='none';">
-	
-      </div> 
+    
 	
 <script type ="text/javascript" language ="javascript">
 	function onDelete(seqNo, questionNo) {
@@ -451,61 +174,6 @@ hr {
 		return false;
 	}
 
-	function onOverSeller(clickObj, sellerID, orderNo, itemNo, nickname) {
-		var obj = $('#sellerovermenu >div >ul a');
-		var index = 0;
-		if($ ("#sellerovermenu >div >ul >li").length > 3)
-			$("#sellerovermenu >div >ul >li:eq(1)").remove();
-
-		$('#sellerovermenu >div >ul a').each(function() {
-			$(this).unbind("click");
-			var innerTitle = "";
-
-			if (index == 0) {
-				$(this).bind("click", function(e) {
-					var win = window.open("http://browse.auction.co.kr/search?nickname=" + nickname, "");
-					win.focus();
-				});
-				//innerTitle = "판매자 상품보기";
-			}
-			else if (index == 1) {
-				$(this).bind("click", function(e) {
-					var layerOffSet = $("#" + clickObj).offset();
-					FavoriteStore.open(this, sellerID, "http://sell3.auction.co.kr");
-					var sellerLayer = $(this).width();
-					layerOffSet.left -= (sellerLayer*2); 
-					$("#_FavoriteStoreLayer").offset(layerOffSet);
-					return false;
-				});
-				
-			}
-			else if (index == 2) {
-				$(this).bind("click", function(e) {
-					var win = window.open("http://buy.auction.co.kr/Buy/QnA/ItemQnAInsert.aspx?ItemNo=" + itemNo + "&orderNo=" + orderNo + "&qnatype=2", "", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no");
-					win.focus();
-					return false;
-				});
-				
-				//innerTitle = "쪽지 보내기";
-			}
-			//$(this).html(innerTitle);
-			++index;
-		})
-
-		if (orderNo > 0) {
-			$("#sellerovermenu >div >ul >li:eq(0)").after("<li><a href=\"javascript:;\">판매자 정보확인</a></li>");
-			$('#sellerovermenu >div >ul li a:eq(1)').bind("click", function(e) {
-				var win = window.open("http://escrow.auction.co.kr/Close/SellerInfo.aspx?seller_id=" + sellerID
-					+ "&order_no=" + orderNo, "", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=295");
-				win.focus();
-			});
-		}
-		var offSet = $("#" + clickObj).offset();
-		offSet.top += 10;
-		$("#sellerovermenu").css("display", "block");
-		$("#sellerovermenu").offset(offSet);
-}
-	
 
 	$.extend({
 		deleteQuestion: function(seqNo, questionNo) {
@@ -873,21 +541,6 @@ hr {
 	}
 
  </script>
-<!-- //판구매자 775.07.06 :: 리스트 탭시 문의리스트 노출 script -->
-</div>
-			                <!-- 문의내역 목록 //-->
-			                <!-- 페이징 -->
-
-			                <!-- 페이징 //-->			
-		                </div>
-		            </div>
-		            <!-- myauction right //-->
-		        </div>
-	        </div>
-	        <!-- CONTENTS //-->
-        </div>
-        <!-- body //-->
-
 	    <input type="hidden" name="htxtDateFrom" id="htxtDateFrom">
 	    <input type="hidden" name="htxtDateTo" id="htxtDateTo">
 	    <input type="hidden" name="htxtSearchType" id="htxtSearchType">
@@ -900,10 +553,6 @@ hr {
 	    <input type="hidden" name="htxtSeqNo" id="htxtSeqNo" value="0">
 	    <input type="hidden" name="htxtQuestionNo" id="htxtQuestionNo">
     
-<script type="text/javascript">
-<!--
-document.domain = 'auction.co.kr';//-->
-</script>
 
 				<script language=JavaScript>
 				var datePickerDivID = 'datepicker';

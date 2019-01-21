@@ -32,7 +32,6 @@ public class MyReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 
 		if (logined != null) {
@@ -45,6 +44,8 @@ public class MyReviewServlet extends HttpServlet {
 				if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
 					cnt ++;
 			}
+			
+			
 			
 			request.setAttribute("cnt", cnt);
 			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);

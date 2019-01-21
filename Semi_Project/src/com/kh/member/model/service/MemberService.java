@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.kh.book.model.vo.Book;
+import com.kh.csCenter.model.vo.Qna;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
@@ -99,15 +100,6 @@ public class MemberService {
 		close(conn);
 		return id;
 	}
-	//찜목록 불러오기
-	public List<Book> markList(int memberNum)
-	{
-		Connection conn = getConnection();
-		List<Book> list = new MemberDao().markList(conn,memberNum);
-		close(conn);
-		
-		return list;
-	}
 	//찜목록 삭제하기
 	public int markMutiDelete(List<Integer> booksId,int memberNum, int deleteCount)
 	{
@@ -141,5 +133,27 @@ public class MemberService {
 		close(conn);
 		return bookList;
 	}
+	//찜 목록에서 장바구니로 이동하는 메소드
+	public int moveWishlist(List<Integer> list, int memberNum) {
+		Connection conn =getConnection();
+		int rs = new MemberDao().moveWishlist(conn,list,memberNum);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return rs;
+	}
+	//장바구니 목록 불러오는 메소드
+	public List<Book> getWishlist(int memberNum)
+	{
+		Connection conn = getConnection();
+		List<Book> booksList  = new MemberDao().getWishlist(conn, memberNum);
+		close(conn);
+		return booksList;
+		
+	}
+
+
+	
 	
 }

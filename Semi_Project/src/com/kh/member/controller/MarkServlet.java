@@ -42,9 +42,6 @@ public class MarkServlet extends HttpServlet {
 		}
 		
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
-		//회원번호로 조건을 걸어서 찜목록을 불러옴
-		//List<Book> list= new MemberService().markList(memberNum);
-		
 		
 		//현재 페이지를 나타낼 변수
 		int cPage;
@@ -60,7 +57,7 @@ public class MarkServlet extends HttpServlet {
 		int totalPage = (int)Math.ceil((double)totalMark/numPerPage);
 		//실제 데이터 구해오는 메소드
 		List<Book> bookList = new MemberService().markList(cPage,numPerPage,memberNum);
-		System.out.println(bookList);
+		
 		//list의 인덱스값으로 현재 몇개의 찜이 있는지 확인
 		int count = bookList.size();
 		String pageBar="";

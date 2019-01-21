@@ -45,12 +45,13 @@ public class ReviewDao {
 				r.setGrade(rs.getInt("grade"));
 				r.setReviewContext(rs.getString("reviewContext"));
 				r.setStatus(rs.getString("status"));
-				r.setBookId(rs.getInt("bookId"));
-				
+				list.add(r);				
+				r.setBookId(rs.getInt("bookId"));				
 				Book b = new Book();
 				b.setBookName(rs.getString("bookName"));
 				r.setBook(b);
 				list.add(r);
+
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS</b></a></div>
+		<div id="logo"><a href="<%=request.getContextPath() %>/main/mainview"><b>KH BOOKS</b></a></div>
 		<h3>비밀번호 찾기</h3>
 		<div id="inputData">
 		<form method="post" action="<%=request.getContextPath()%>/member/searchPw2" onsubmit="return fn_Frm();">

@@ -3,6 +3,7 @@
 	<%@ page import="java.util.*,com.kh.absence.model.vo.*, com.kh.member.model.vo.*" %>
 	<%
 		List<Absence> list=(List)request.getAttribute("list");
+			String pageBar=(String)request.getAttribute("pageBar");
 	%>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
@@ -55,9 +56,13 @@ input[value='주문하기'] {
 </style>
 
 <section>
-<script>
 
+<script>
+function absence1(){
+	location.href="<%=request.getContextPath()%>/notice/absence";
+}
 function absence(){
+	alert("로그인후 이용해주세요");
 	location.href="<%=request.getContextPath()%>/notice/absence";
 }
 </script>
@@ -66,9 +71,13 @@ function absence(){
 			<div class="col-sm-9">
 				<div class="notcecontent">
 				<h2>부재도서 주문</h2>
+				<hr/>
 				<br/>
 				<article id="edit">
-				<%if(logined!=null||logined.getMemberId().equals("admin")) {%>
+				
+				<%if(logined!=null) {%>
+					<input type="button" value="주문하기" onclick="absence1();"/>
+					<%}else{ %>
 					<input type="button" value="주문하기" onclick="absence();"/>
 				<%} %>
 				
@@ -94,14 +103,18 @@ function absence(){
 					<%for(Absence ab : list){ %>
 					<% if(ab.getStatus().equals("Y")){ %>
 					<tr>
-						<td><%=ab.getMember().getMemberId()%></td>
+						 <td><%=ab.getMember().getMemberId()%></td>
 						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
 						<td><%=ab.getAppDate()%></td>					
 					</tr> 
 					<%} 
 					}%>					
 				</table>
+				<div class="text-center">
+					<%=pageBar %>
 				</div>
+			</div>
+				
 			
 
 </section>

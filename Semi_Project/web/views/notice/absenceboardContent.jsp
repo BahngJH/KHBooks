@@ -21,59 +21,114 @@ border: none;
 fieldset a{float:right;}
 #content{margin:100px 0 0 0; text-align:center;}
 
+
+
+    table.type10 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin: 40px 10px 0px 180px;
+}
+table.type10 thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #0100FF;
+	margin: 20px 10px;
+	text-align:center;
+}
+table.type10 tbody th {
+	width: 150px;
+	padding: 10px;
+	text-align: center;
+}
+table.type10 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: center;
+}
+table.type10 .even {
+	background: #E6FFFF;
+}
+table{
+
+}
+
+
 </style>
 <section>
 	
 	<div class="col-sm-1"></div>
 			<div class="col-sm-9">
 				
+				<fieldset>
+				<br/>
+				<h2>도서신청 VIEW</h2>
+						<hr/>
 				
 				
 			<br/><br/><br/>
 			 	<%if(logined!=null||logined.getMemberId().equals("admin")){ %>
 				
-			 	<article id="edit">
-				<table>
+			 	
+				<table class="type10">
+				<thead>
+				
+				<tr>
+					<th scope="cols">타이틀</th>
+					<th scope="cols">내용</th>
+				</tr>					
+				
+				</thead>
+				<tbody>
 					<tr>
-						<th><h4>책제목:</h4></th>
+						<th scope="row"><h4>책제목</h4></th>
 						<td><%=ab.getBookName() %></td>
 					</tr>
 					<tr>
-						<th><h4>저자:</h4></th>
-						<td><%=ab.getAuthor() %></td>
+						<th scope="row" class="even"><h4>저자</h4></th>
+						<td class="even"><%=ab.getAuthor() %></td>
 					</tr>
 					<tr>
-							<th><h4>발행연도:</h4></th>
+							<th scope="row"><h4>발행연도</h4></th>
 						<td><%=ab.getBookDate() %></td>
 					</tr>
 					<tr>
-					<th><h4>출판사:</h4></th>
-						<td><%=ab.getPublisher() %></td>
+					<th scope="row" class="even"><h4>출판사</h4></th>
+						<td class="even"><%=ab.getPublisher() %></td>
 					</tr>
 					<tr>
-						<th><h4>신청번호:</h4></th>
+						<th scope="row"><h4>신청번호</h4></th>
 						<td><%=ab.getAppNum() %></td>
 					</tr>
 					<tr>
-						<td><%=ab.getAppDate() %></td>
+					<th scope="row" class="even"><h4>등록일</h4></th>
+						<td class="even"><%=ab.getAppDate() %></td>
 						
 						
 					</tr>				
-					
+					</tbody>
 
 				<%}%> 
-				</table>		
-				</article>
+					
+			
+				</table>
+				</fieldset>
+					
+				
 				 
 						
-				
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				<br/><br/>
 
 				<button id="return" onclick="main_absence();">목록으로</button>
 				<br/><br/><br/><br/>
 		<script>
 		function main_absence(){
-			location.href="<%=request.getContextPath()%>/notice/absenceView";
+			location.href="<%=request.getContextPath()%>/absence/page";
 		}
 		
 			<%-- function main_Notice(){

@@ -57,7 +57,7 @@
 					<div id="buyList-title">
 						<h3>내 리뷰 관리</h3>
 					</div>
-					<hr/>
+					<hr style='margin-top: 10px; border: 1px solid lightgray;'/>
 					<%if(cnt > 0) {%>
 						<p id="count">총 <%=cnt %>개의 리뷰가 있습니다.</p>
 						<div id="selectList">
@@ -130,6 +130,7 @@
 										$('.modal').modal();						
 										$('#renum').val(<%=r.getReviewNum()%>);
 										$('#updateContext').val("<%=r.getReviewContext()%>");
+										
 									}							
 									/* 리뷰 삭제 메소드 */
 									function deleteReview<%=r.getReviewNum()%>() {
@@ -199,7 +200,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
-						<button type="button" class="btn" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>

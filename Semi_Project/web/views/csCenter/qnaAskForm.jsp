@@ -91,24 +91,25 @@ li {
 		   <p>상담 하시고자 하는 구분을 선택해주세요.</p>
 		 </div>
 	     <form class="form-inline" name="enrollAsk" action="<%=request.getContextPath()%>/qna/qnaInputEnd" onsubmit="return validate();" method="post" enctype="multipart/form-data">
+		  <input type="hidden" name="memberNum" value="<%=logined.getMemberNum()%>"/>
 		  <!--상담 구분 라디오 버튼 div -->
 	        <div class="row">
 			 	 <div class="select_area col-md-12">
             		<div class="row" id="ra"> 
 						<ul class="num01 col-sm-4">
-							<li><input type="radio" name="qanPart"  id="radio1" value="회원정보.서비스"  onclick="setAdcDvsnCodeRdo(this.value)" /> <label for="radio1">회원정보.서비스</label></li>						
-							<li><input type="radio" name="qanPart"  id="radio2" value="배송.수령일 안내"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio2">배송.수령일 안내</label></li>
-						    <li><input type="radio" name="qanPart"  id="radio3" value="매장관련"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio3">매장관련</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio1" value="회원정보.서비스"  onclick="setAdcDvsnCodeRdo(this.value)" /> <label for="radio1">회원정보.서비스</label></li>						
+							<li><input type="radio" name="qnaPart"  id="radio2" value="배송.수령일 안내"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio2">배송.수령일 안내</label></li>
+						    <li><input type="radio" name="qnaPart"  id="radio3" value="매장관련"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio3">매장관련</label></li>
 						</ul>
 						<ul class="num02 col-sm-4">
-							<li><input type="radio" name="qanPart"  id="radio4" value="도서.상품정보"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio4">도서.상품정보</label></li>
-							<li><input type="radio" name="qanPart"  id="radio5" value="웹사이트이용관련"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio5">웹사이트이용관련</label></li>						
-						    <li><input type="radio" name="qanPart"  id="radio6" value="반품.교환.환불"  onclick="setAdcDvsnCodeRdo(this.value)" /> <label for="radio6">반품.교환.환불</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio4" value="도서.상품정보"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio4">도서.상품정보</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio5" value="웹사이트이용관련"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio5">웹사이트이용관련</label></li>						
+						    <li><input type="radio" name="qnaPart"  id="radio6" value="반품.교환.환불"  onclick="setAdcDvsnCodeRdo(this.value)" /> <label for="radio6">반품.교환.환불</label></li>
 						</ul>
 						<ul class="num03 col-sm-4">
-							<li><input type="radio" name="qanPart"  id="radio7" value="주문.결제"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio7">주문.결제</label></li>
-							<li><input type="radio" name="qanPart"  id="radio8" value="파본.상품불량신고"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio8">파본.상품불량신고</label></li>
-							<li><input type="radio" name="qanPart"  id="radio9" value="기타"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio9">기타</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio7" value="주문.결제"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio7">주문.결제</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio8" value="파본.상품불량신고"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio8">파본.상품불량신고</label></li>
+							<li><input type="radio" name="qnaPart"  id="radio9" value="기타"  onclick="setAdcDvsnCodeRdo(this.value)"/> <label for="radio9">기타</label></li>
 						</ul>
 				  	</div>
 				</div>
@@ -171,10 +172,10 @@ li {
 		 			<hr/>
 		 			<div class="form-group">
 			  		 	<label for="">첨부파일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-			 		 	<input type="file" name="upfile" class="" />	  
+			 		 	<input type="file" name="upfile"/>	  
 			  		</div>			  		 			  		
 		 			<hr/>
-		 			<button type="submit" class="btn_sub btn btn-default">Send invitation</button>		 								 		 				 		          
+		 			<button type="submit" class="btn_sub btn btn-default">문의 등록</button>		 								 		 				 		          
 				</div>				
 		 	</div>	 	      
     	 </form>
@@ -276,15 +277,20 @@ li {
 		$('#pho1').html(phone);
 	}
 
-	/* 숫자만 입력받게 하는 함수 */
+	/* 숫자만 입력받게 하는 함수 */	
 	$('.tel').on('keyup', function() {
 		if (/\D/.test(this.value)) {
 			this.value = this.value.replace(/\D/g, '')
 			alert('숫자만 입력가능합니다.');
 		}
+
+	/* 	if (this.value > 100 && this.value < 10000) {
+
+			alert('정확히 입력해주세요.');
+		} */
 	});
 
-	 function validate() {
+	function validate() {
 		var content = $('textArea[name=qnaContent]').val();
 		var qnaPart = $("#ra input[type='radio']:checked").val();
 
@@ -293,9 +299,9 @@ li {
 			document.getElementById("askPartRadio").scrollIntoView();
 			return false;
 		}
-		
+
 		return true;
-	} 
+	}
 </script>
 
 

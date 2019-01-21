@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.book.model.vo.Book;
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.kh.order.model.service.OrderService;
-import com.kh.order.model.vo.Order;
 
 /**
- * Servlet implementation class BuyListServlet
+ * Servlet implementation class WishlistServlet
  */
-@WebServlet("/member/buyList")
-public class BuyListServlet extends HttpServlet {
+@WebServlet("/member/wishlist")
+public class WishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuyListServlet() {
+    public WishlistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +32,22 @@ public class BuyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 		if(logined==null) {
-			//로그인 정보가 없어서 로그인페이지로
+			
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
 			return;
 		}
 		
-		//로그인 성공
-		int no = logined.getMemberNum();
-		List<Order> list = new OrderService().selectList(no);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/login_myPage/buyList.jsp").forward(request, response);
+		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
+		List<Book> booksList = new MemberService().getWishlist(memberNum);
+		int wishlistCount = booksList.size();
+		
+		request.setAttribute("booksList", booksList);
+		request.setAttribute("wishlistCount", wishlistCount);
+		request.getRequestDispatcher("/views/login_myPage/wishlist.jsp").forward(request, response);
+		
 	}
 
 	/**

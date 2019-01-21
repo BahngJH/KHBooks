@@ -20,7 +20,7 @@
 </head>
 <body>
  <div id="container">
-        <div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp">KH BOOKS</a></div>
+        <div id="logo"><a href="<%=request.getContextPath() %>/main/mainview">KH BOOKS</a></div>
         <hr>
         <form method="POST" action="<%=request.getContextPath() %>/member/enrollEnd" name="enrollMember" onsubmit="return fn_enroll_validate();">
             <div id="inputId">

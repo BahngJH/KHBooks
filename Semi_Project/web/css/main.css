@@ -14,12 +14,20 @@ body, header nav{
 	ul.nav-button>li>a{
 		display: inline;
 	}
+	div.thumbnail-container{
+	padding: 0px;
+	height: 450px;
+	}
 }
 
 @media (max-width: 600px){
 	p.book_content{
 		visibility: hidden;
 		height: 0px;
+	}
+	div.thumbnail-container{
+	padding: 0px;
+	height: 450px;
 	}
 }
 
@@ -33,6 +41,11 @@ body, header nav{
 	.navbar>.container-fluid .navbar-brand{
 		margin-left: 15px;
 	}
+	
+	div.thumbnail-container{
+	padding: 0px;
+	height: 370px;
+}
 	
 }
 ul.nav-button>li{
@@ -212,4 +225,51 @@ div.author-result button#more-btn:hover{
 /* 검색창 */
 ul.ui-menu{
 	z-index : 1500;
+}
+
+/* 메인화면 */
+div.book-container{
+	margin-bottom: 10px;
+}
+
+div.book-container>div:first-child{
+	padding: 0px;
+}
+
+div.book-container>div>a.author-name{
+	text-decoration: none;
+	font-size: 14px;
+	text-align: center;
+	display: block;
+	height: 35px;
+}
+
+
+div.thumbnail-container{
+	padding: 0px;
+	height: 370px;
+}
+
+a.book-thumbnail{
+	border: none;
+	transition: transform .3s ease-in;
+	padding: 0px;
+	margin: 0px;
+}
+
+div.bookcontainer:hover{
+	transform:translateY(-10px);
+	
+	
+}
+
+span.border{
+	border: 1px solid black;
+	opacity: .1;
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 }

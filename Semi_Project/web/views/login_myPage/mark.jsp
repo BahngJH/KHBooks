@@ -32,8 +32,9 @@
 					<div id="buyList-title">
 						<h3>찜 목록</h3>
 					</div>
+					<!-- 찜목록 상단 메뉴 -->
 					<div id="btnCheck">
-					<button class="btn btn-default">선택 담기</button>
+					<button class="btn btn-default" onclick="multiMove();">선택 담기</button>
 					<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
 					<p><%=markCount %>개의 찜 상품이 있습니다</p>
 					</div>
@@ -41,11 +42,12 @@
 					<span id="allText"><strong>전체선택</strong></span><input id="checkAll" onclick="cAll();" type="checkbox">
 					</div>
 					<hr style='margin-top: 60px; border: 1px solid lightgray;'/>
+					
+					<!-- 찜목록 중단, 데이터 불러오기 시작 -->
 					<div id="buyList-actions">
-          				<div id="book" class="col-xs-12 col-md-12">
-                    
+          			<div id="book" class="col-xs-12 col-md-12">
                     <div>
-                    <form method="get" name="deleteList" id="deleteList" action="<%=request.getContextPath()%>/member/markMutiDelete">
+                    <form method="get" name="checkedList" id="checkedList">
                     <!-- 검색 결과가 있을 경우 -->
                     <%if(!books.isEmpty()) {
                     	for(Book b : books){
@@ -66,7 +68,7 @@
                                     </a>
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
-                                <p>방지훈</p>
+                                <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
                                 <button class="btn btn-default">담기</button>
                                 <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
@@ -107,8 +109,16 @@
 				}
 			}
 			function multiDelete(){
-				var deleteList = $('#deleteList');
+				var deleteList = $('#checkedList');
+				var url = "<%=request.getContextPath()%>/member/markMutiDelete";
+				deleteList.attr("action",url);
 				deleteList.submit();
+			}
+			function multiMove(){
+				var moveList = $('#checkedList');
+				var url = "<%=request.getContextPath()%>/member/moveWishlist";
+				moveList.attr("action",url);
+				moveList.submit();
 			}
 			function deleteOne(){
 				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.

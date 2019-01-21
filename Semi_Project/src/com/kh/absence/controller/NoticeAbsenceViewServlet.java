@@ -34,6 +34,8 @@ public class NoticeAbsenceViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		List<Absence> list=new AbsenceService().selectAll();
 		
 		request.setAttribute("list", list);

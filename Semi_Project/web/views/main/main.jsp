@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.book.model.vo.Book, java.util.*" %>
+<%
+	List<Book> best = (List)request.getAttribute("best");
+%>
 <%@ include file="/views/common/header.jsp"%>
 <section>
         <div class="container">
@@ -55,45 +59,23 @@
             <div class="row">
                 <div id="bestSeller" class="col-xs-12 col-lg-12">
                     <div>
-                        <h2 class='text-center'>베스트 셀러</h2>
+                        <h4 class='text-center'> 주간 베스트 셀러</h4>
                     </div>
-
-                    <div class="col-xs-6 col-md-4 col-lg-2">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
+					<div class="row">
+                    <%for(Book b : best) {%>
+                    <div class="col-xs-6 col-sm-4 col-lg-2 book-container">
+    	       			<div class="col-xs-12">
+	    	       			<a href="#" class="author-name"><%=b.getBookName() %></a>
+           				</div>
+                    	<div class="thumbnail-container col-xs-12">
+	                        <a href="#" class="thumbnail book-thumbnail">
+	                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
+	                        </a>
+	                        <!-- <span class="border"></span> -->
+                    	</div>
                     </div>
-                    <div class="col-xs-6 col-md-4  col-lg-2 ">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-4  col-lg-2 ">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-4  col-lg-2 ">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-4  col-lg-2 ">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-                    </div>
-                     <div class="col-xs-6 col-md-4  col-lg-2 ">
-                        <a href="#" class="thumbnail">
-                            <img src="https://bookthumb-phinf.pstatic.net/cover/140/369/14036994.jpg?udate=20181114"
-                                alt="">
-                        </a>
-                    </div>
+                    <%} %>
+					</div>
                 </div>
             </div>
             <div class="row">
