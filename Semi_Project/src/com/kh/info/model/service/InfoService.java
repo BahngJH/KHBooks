@@ -10,19 +10,11 @@ import java.util.List;
 
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.dao.InfoDao;
-import com.kh.member.model.vo.Member;
+import com.kh.mark.model.vo.Mark;
 import com.kh.review.model.vo.Review;
 import com.kh.wish.model.vo.Wish;
 
 public class InfoService {
-	
-	public Member selectInfoMember(int memberNum)
-	{
-		Connection conn=getConnection();
-		Member m=new InfoDao().selectInfoMember(conn, memberNum);
-		close(conn);
-		return m;
-	}
 	
 	public Book selectInfoBook(int bookId)
 	{
@@ -53,6 +45,7 @@ public class InfoService {
 			rollback(conn);
 		}
 		close(conn);
+		System.out.println("장바구니 서비스에선 넘어오나?"+w);
 		
 		return result;
 	}
@@ -70,6 +63,25 @@ public class InfoService {
 			rollback(conn);
 		}
 		close(conn);
+		System.out.println("리뷰 서비스에선 넘어오나?"+r);
+		
+		return result;
+	}
+	
+	public int insertMark(Mark j)
+	{
+		Connection conn=getConnection();
+		int result=new InfoDao().insertMark(conn,j);
+		if(result>0)
+		{
+			commit(conn);
+		}
+		else
+		{
+			rollback(conn);
+		}
+		close(conn);
+		System.out.println("찜 서비스에선 넘어오나?"+j);
 		
 		return result;
 	}
