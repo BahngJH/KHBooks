@@ -96,8 +96,9 @@ a {
       <%if(logined!=null){%>
       <ul class="hide">
          <br />
-         <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
-         </li>
+         <li><%if(logined.getMemberId().equals("admin")){%>
+         <a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
+        <%} %></li>
          <br />
          <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
                신청</a></li>

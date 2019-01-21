@@ -34,12 +34,12 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member logined=(Member)request.getSession(false).getAttribute("logined");
 		int memberNum=logined.getMemberNum();
-		int grade=Integer.parseInt(request.getParameter("grade"));
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		int checkOption=Integer.parseInt(request.getParameter("checkOption"));
 		String reviewContext=request.getParameter("reviewContext");
+		int grade=Integer.parseInt(request.getParameter("star_grade"));
 		
-		System.out.println(memberNum+grade+bookId+checkOption+reviewContext);
+		System.out.println("넘어오나?"+memberNum+" "+grade+" "+bookId+" "+checkOption+" "+reviewContext);
 		
 		Review r= new Review();
 		

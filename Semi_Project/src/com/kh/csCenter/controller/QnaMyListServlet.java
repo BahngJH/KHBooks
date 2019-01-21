@@ -41,6 +41,9 @@ public class QnaMyListServlet extends HttpServlet {
 			int memberNum = m.getMemberNum();
 			System.out.println("회원번호: "+memberNum);
 			
+			List<QnaRe> qrList=new QnaService().selectMyRe(memberNum);
+			//List<QnaSub>qsList=new QnaService().selctMySub(memberNum);
+			
 			int cPage;
 			try {
 			
@@ -56,7 +59,7 @@ public class QnaMyListServlet extends HttpServlet {
 				numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 			}
 			catch(NumberFormatException e){
-				numPerPage=10;
+				numPerPage=5;
 			}
 		
 			int myTotal=new QnaService().selectMyCount(memberNum);
@@ -107,6 +110,8 @@ public class QnaMyListServlet extends HttpServlet {
 			request.setAttribute("cPage",cPage);
 			request.setAttribute("pageBar",pageBar);
 			request.setAttribute("list", list);	
+			request.setAttribute("qrList", qrList);	
+			//request.setAttribute("qsList", qsList);	
 			request.setAttribute("cnt", list.size());
 			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
 				
@@ -116,10 +121,6 @@ public class QnaMyListServlet extends HttpServlet {
 
 		}
 		
-		
-		
-	
-
 	}
 
 	/**
