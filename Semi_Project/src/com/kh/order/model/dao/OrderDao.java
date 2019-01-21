@@ -128,7 +128,7 @@ Properties prop=new Properties();
 		return list;
 	}
 	
-	public List<Order> sortList(Connection conn, int sort, int no) {
+	public List<Order> sortList(Connection conn, int sort, int no, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Order> list = new ArrayList();
@@ -145,6 +145,8 @@ Properties prop=new Properties();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Order o = new Order();

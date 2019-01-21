@@ -4,7 +4,6 @@
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
 	List<Order> list = (List)request.getAttribute("list");
-	int numPerpage=(int)request.getAttribute("numPerPage");
 	String pageBar=(String)request.getAttribute("pageBar");
 %>
 
@@ -107,7 +106,7 @@
 										</td>
 										<!-- 총 가격 -->
 										<td>
-											<h3><%=o.getBook().getPrice() * o.getBookCount()%></h3>
+											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
 										</td>
 									</tr>
 								<%} else {%>	

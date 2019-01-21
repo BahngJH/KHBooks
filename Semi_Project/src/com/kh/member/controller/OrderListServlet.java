@@ -51,14 +51,7 @@ public class OrderListServlet extends HttpServlet {
 		{
 			cPage=1;
 		}
-		int numPerPage;//페이지당 자료수
-		try {
-			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
-		}
-		catch(NumberFormatException e)
-		{
-			numPerPage=5;
-		}
+		int numPerPage = 5;//페이지당 자료수
 		
 		//페이지 수만큼의 데이터를 불러옴
 		List<Order> list = new OrderService().selectList(no, cPage, numPerPage);
@@ -111,8 +104,7 @@ public class OrderListServlet extends HttpServlet {
 		{
 			pageBar+="<li><a href='"+request.getContextPath()+"/member/orderList?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}		
-				
-		request.setAttribute("numPerPage", numPerPage);
+
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/login_myPage/orderList.jsp").forward(request, response);

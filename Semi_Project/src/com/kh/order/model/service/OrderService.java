@@ -38,9 +38,9 @@ public class OrderService {
 		return list;
 	}
 	
-	public List<Order> sortList(int sort, int no) {
+	public List<Order> sortList(int sort, int no, int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Order> list = new OrderDao().sortList(conn, sort, no);
+		List<Order> list = new OrderDao().sortList(conn, sort, no, cPage, numPerPage);
 		close(conn);
 		return list;
 	}

@@ -36,8 +36,61 @@ public class OrderListSortServlet extends HttpServlet {
 		int no = logined.getMemberNum();
 		int sort = Integer.parseInt(request.getParameter("sort"));
 		
-		List<Order> list = new OrderService().sortList(sort, no);
+		int cPage;//현재페이지를 의미
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}
+		catch(NumberFormatException e)
+		{
+			cPage=1;
+		}
+		int numPerPage = 5;//페이지당 자료수
 		
+		List<Order> list = new OrderService().sortList(sort, no, cPage, numPerPage);
+		
+		// 페이지구성해보자~!
+		// 전체자료수를 확인
+		int totalOrder = new OrderService().selectOrderCount();
+		// 전체페이지수
+		int totalPage = (int) Math.ceil((double) totalOrder / numPerPage);
+		// 페이지바 html코드 누적변수
+		String pageBar = "<nav>";
+		pageBar += "<ul class='pagination'>";
+		// 페이지바길이
+		int pageBarSize = 5;
+		int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
+		int pageEnd = pageNo + pageBarSize - 1;
+
+		// 페이지바를 구성
+		if (pageNo == 1) {
+			pageBar += "<li><span aria-hidden='true'>&laquo;</span></li>";
+		} else {
+			pageBar += "<li><a href='" + request.getContextPath() + "/order/orderSort?sort=" + sort + "&cPage=" + (pageNo - 1)
+					+ "&numPerPage=" + numPerPage
+					+ "' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+		}
+
+		// 선택페이지 만들기
+		while (!(pageNo > pageEnd || pageNo > totalPage)) {
+			if (cPage == pageNo) {
+				pageBar += "<li><span class='cPage'>" + pageNo + "</span></li>";
+			} else {
+				pageBar += "<li><a href='" + request.getContextPath() + "/order/orderSort?sort=" + sort + "&cPage=" + (pageNo)
+						+ "&numPerPage=" + numPerPage + "'>" + pageNo + "</a></li>";
+			}
+			pageNo++;
+		}
+
+		// [다음]구현
+
+		if (pageNo > totalPage) {
+			pageBar += "<li><span aria-hidden='true'>&raquo;</span></li>";
+		} else {
+			pageBar += "<li><a href='" + request.getContextPath() + "/order/orderSort?sort=" + sort + "&cPage=" + pageNo + "&numPerPage="
+					+ numPerPage + "'><span aria-hidden='true'>&raquo;</span></a></li>";
+		}
+
+		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("sortList", list);
 		request.getRequestDispatcher("/views/login_myPage/orderListSort.jsp").forward(request, response);
 		
