@@ -33,7 +33,6 @@ public class ReviewDao {
 		ResultSet rs = null;
 		List<Review> list = new ArrayList();
 		String sql = prop.getProperty("selectList");
-
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
@@ -44,14 +43,12 @@ public class ReviewDao {
 				r.setWriteDate(rs.getDate("writeDate"));
 				r.setGrade(rs.getInt("grade"));
 				r.setReviewContext(rs.getString("reviewContext"));
-				r.setStatus(rs.getString("status"));
-				list.add(r);				
+				r.setStatus(rs.getString("status"));				
 				r.setBookId(rs.getInt("bookId"));				
 				Book b = new Book();
 				b.setBookName(rs.getString("bookName"));
 				r.setBook(b);
 				list.add(r);
-
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -59,7 +56,6 @@ public class ReviewDao {
 			close(rs);
 			close(pstmt);
 		}
-		
 		return list;
 	}
 	

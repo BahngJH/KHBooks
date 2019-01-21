@@ -95,6 +95,8 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReContent(rs.getString("reContent"));
+				
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -175,6 +177,7 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("list : "+list);
 		return list;
 
 	}
@@ -203,6 +206,7 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReContent(rs.getString("reContent"));
 			}
 
 		} catch (SQLException e) {

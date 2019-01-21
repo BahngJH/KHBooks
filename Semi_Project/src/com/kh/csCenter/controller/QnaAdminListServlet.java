@@ -55,7 +55,7 @@ public class QnaAdminListServlet extends HttpServlet {
 		int totalPage=(int)Math.ceil((double)totalQna/numPerPage);
 		System.out.println(totalPage);
 		List<Qna> list=new QnaService().selectList(cPage,numPerPage);
-		
+		System.out.println("list"+list);
 		String pageBar="";
 		int pageSize=5;
 		int pageNo=((cPage-1)/pageSize)*pageSize+1;

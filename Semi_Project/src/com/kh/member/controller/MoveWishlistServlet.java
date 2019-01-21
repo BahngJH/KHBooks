@@ -36,6 +36,7 @@ public class MoveWishlistServlet extends HttpServlet {
 		List<Integer> booksId = new ArrayList();
 		String[] bookId = request.getParameterValues("BookId");
 		Member m = (Member) request.getSession().getAttribute("logined");
+		
 		if(bookId==null) {
 			request.setAttribute("msg", "이동할 상품을 선택해주세요");
 			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
@@ -58,7 +59,7 @@ public class MoveWishlistServlet extends HttpServlet {
 			request.setAttribute("msg", "장바구니로 이동 실패!");
 
 		}
-		request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
+		request.setAttribute("loc", "/member/wishlist?memberNum="+m.getMemberNum());
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
