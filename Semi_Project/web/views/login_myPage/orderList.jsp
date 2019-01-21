@@ -4,6 +4,8 @@
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
 	List<Order> list = (List)request.getAttribute("list");
+	int numPerpage=(int)request.getAttribute("numPerPage");
+	String pageBar=(String)request.getAttribute("pageBar");
 %>
 
 <style>
@@ -21,6 +23,13 @@
 		width: 120px;
 		min-height: 150px;
 		margin-top: 10px;
+	}
+	div#pager nav{
+		width: 140px;
+	}
+	div#pager{
+		display: inline-block;
+		margin-left: 500px;
 	}
 </style>
 
@@ -109,7 +118,10 @@
 							<% break;}
 							}%>
 						</tbody>
-					</table>							
+					</table>
+					<div id="pageer">
+						<%=pageBar %>
+					</div>							
 				</article>
 			</section>
 		</div>
