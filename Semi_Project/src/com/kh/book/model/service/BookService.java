@@ -19,4 +19,10 @@ public class BookService {
 		close(conn);
 		return list;
 	}
+
+	public List<Book> selectRecently() {
+		List<Book> list = new BookDao().selectRecently(conn);
+		close(conn);
+		return list;
+	}
 }

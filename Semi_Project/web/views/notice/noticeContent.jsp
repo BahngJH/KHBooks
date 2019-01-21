@@ -26,8 +26,9 @@ border: none;
    text-align:center;
 }
 
-fieldset a{float:right;}
-#content{margin:100px 0 0 0; text-align:center;}
+
+fieldset a{float:left;}
+#content{margin:100px 0 0 0; white-space: pre-line; }
 
 </style>
 <section>
@@ -54,9 +55,9 @@ fieldset a{float:right;}
 										
 						
 						
-						<h4 id="content"><%=n.getNoticeContent()%></h4>
-						
+						<p id="content"><%=n.getNoticeContent()%><br/></p>
 				</fieldset>
+						
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 				<button id="return" onclick="main_Notice();">목록으로</button>

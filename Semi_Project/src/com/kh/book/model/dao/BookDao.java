@@ -39,6 +39,33 @@ public class BookDao {
 			while(rs.next()) {
 				Book b = new Book();
 				b.setBookName(rs.getString("bookname"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setBookImage(rs.getString("bookImage"));
+				list.add(b);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public List<Book> selectRecently(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Book> list = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectRecently"));
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Book>();
+			while(rs.next()) {
+				Book b = new Book();
+				b.setBookName(rs.getString("bookname"));
+				b.setBookId(rs.getInt("bookid"));
 				b.setBookImage(rs.getString("bookImage"));
 				list.add(b);
 			}

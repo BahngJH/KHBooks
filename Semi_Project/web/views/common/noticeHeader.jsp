@@ -96,13 +96,26 @@ a {
       <%if(logined!=null){%>
       <ul class="hide">
          <br />
+<<<<<<< HEAD
          <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
          </li>
+=======
+         <li><%if(logined.getMemberId().equals("admin")){%>
+         <a href="<%=request.getContextPath()%>/qna/qnaListAdmin">1:1 문의 목록(관리자)</a>
+        <%} else if(logined!=null){%></li>
+       
+         <a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1 문의 목록(사용자)</a>
+      <%} %>
+>>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
          <br />
+<<<<<<< HEAD
          <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
           <br />
          <li><a href="<%=request.getContextPath()%>/qna/qnaListAdmin">1:1 (관리자)</a>
          </li>
+=======
+         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청 목록</a></li>
+>>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 
       </ul>
       <%}else {%>
@@ -140,4 +153,3 @@ a {
 
          </table>
       </div>
-   </div>

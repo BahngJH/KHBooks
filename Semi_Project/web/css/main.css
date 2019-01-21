@@ -219,8 +219,13 @@ ul.ui-menu{
 /* 메인화면 */
 div.book-container{
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
+div.book-container:hover{
+	transform:translateY(-10px);
+	
+}
 div.book-container>div:first-child{
 	padding: 0px;
 }
@@ -255,10 +260,12 @@ a.book-thumbnail{
 	margin: 0px;
 }
 
-div.bookcontainer:hover{
-	transform:translateY(-10px);
-	
-	
+
+div.book-title{
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+	float: none;
+	margin-bottom: 15px;
 }
 
 span.border{
