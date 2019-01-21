@@ -589,28 +589,55 @@ function fnMove2(){
 					return true;
 				}
 				</script>
+				<style>
+				.star_rating {font-size:0; letter-spacing:-4px;}
+				.star_rating a {
+				    font-size:22px;
+				    letter-spacing:0;
+				    display:inline-block;
+				    margin-left:5px;
+				    color:#ccc;
+				    text-decoration:none;
+				}
+				.star_rating a:first-child {margin-left:0;}
+				.star_rating a.on {color:red;}
+				</style>		
 				<pre class='reviewpre' style='width:96%'>
 				<div id='reviewview'>
                 <form action="<%=request.getContextPath()%>/inforconpare_hwang/infoInsertReviewEnd" name="reviewText" method="post">
 					<div class="wrappluswritereview" style='background-color:white; padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:9px;border: 1px solid silver;'>
 	                    <div class="wrap11">
-	                    	<input type='hidden' name="bookId" value=<%=b.getBookId() %>/>
-	                    	<input type='hidden' name="checkOption" value='1'/>
-	                    	<textarea id="content" name="reviewContext" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
+	                    	<input type='hidden' id="bookId" name="bookId" value='<%=b.getBookId() %>'/>
+	                    	<input type='hidden' id="checkOption" name="checkOption" value='1'/>
+	                    	<textarea id="content" id="reviewContext" name="reviewContext" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
 	                    </div>
 	                    <div class='writereview' style='margin-top:-15px;'>
 	                    	<%if(logined!=null) {%>
-	                    	<label><input type='radio' name="grade" value='1' checked="checked"/><img src='<%=request.getContextPath() %>/images/rating/star01.gif'></label>
-	                    	<label><input type='radio' name="grade" value='2'/><img src='<%=request.getContextPath() %>/images/rating/star02.gif'></label>
-	                    	<label><input type='radio' name="grade" value='3'/><img src='<%=request.getContextPath() %>/images/rating/star03.gif'></label>
-	                    	<label><input type='radio' name="grade" value='4'/><img src='<%=request.getContextPath() %>/images/rating/star04.gif'></label>
-	                    	<label><input type='radio' name="grade" value='5'/><img src='<%=request.getContextPath() %>/images/rating/star05.gif'></label>
+	                    	<tr>
+								<th><label></label></th>
+								<td>
+									<span class="star_rating">
+									    <a href="#" class="on">★</a>
+									    <a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+									</span>
+								</td>
+							</tr>
                     		<input type='submit' class="reviewWrite" value='리뷰쓰기' onclick="return validate();"/>
                     		<%}%>
                     	</div>
                     </div>
 				</div>
+				<script>
+				$(".star_rating a").click(function() {
+					$(this).parent().children("a").removeClass("on");
+					$(this).addClass("on").prevAll("a").addClass("on");
+					return false;
+				});
+				</script>
 				</form>
 					
 					<hr style='border:0.5px solid lightgray;'>
