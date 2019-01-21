@@ -33,8 +33,10 @@ public class MainViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Book> best = new BookService().selectBestseller();
+		List<Book> recent = new BookService().selectRecently();
 		
 		request.setAttribute("best", best);
+		request.setAttribute("recent", recent);
 		request.getRequestDispatcher("/views/main/main.jsp").forward(request, response);
 	}
 

@@ -108,7 +108,7 @@ public class QnaDao {
 	}
 		
 	//관리자 답변
-	public List<QnaRe> selectMyRe(Connection conn, int reNum) {
+	public List<QnaRe> selectMyRe(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<QnaRe> qrList = new ArrayList();
@@ -116,7 +116,7 @@ public class QnaDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reNum);
+			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {	

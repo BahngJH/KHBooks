@@ -81,7 +81,11 @@
 	             </div>          	
 				  <div class="">			  			     				          
 			         <textarea id="" class="noresize" rows="7" cols="60" name="reContent" required="required" /></textarea>	
+			         <button type="" class="btn_sub btn btn-default">문의 수정</button>
 			         <button type="submit" class="btn_sub btn btn-default">문의 등록</button>
+			         
+			         <input type="button" value="수정하기" onclick="fn_updateNotice()">
+					<input type="button" value="삭제하기" onclick="fn_deleteNotice()">
 			         <button class="btn_sub btn btn-default">취소</button>		      				       			        		  
 		  		  </div> 
   			  	</form>				         			        					        					 					  								      						 					       		    				   			

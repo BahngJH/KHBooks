@@ -70,6 +70,9 @@ li {
 	border-top: 0px;
 	boder-left: 0px;
 	boder-bottom: 0px;
+}
+
+#emailInput {
 	
 }
 </style>
@@ -135,7 +138,7 @@ li {
 				    <hr/>	 			 
 				 	<div class="form-group">
 					   <label for="emailInput">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					   <input  type="text" name="mail1" class="form-control input_style10" id="emailInput" value="<%=mail1[0] %>" maxlength="20"  required_msg="E-Mail 정보가 없습니다. 입력하세요.">&nbsp; @&nbsp;												  
+					   <input  type="text" name="mail1" class="form-control input_style10" id="emailInput" value="<%=mail1[0] %>" maxlength="20" required_msg="E-Mail 정보가 없습니다. 입력하세요.">&nbsp; @&nbsp;												  
 					   <input type="text" name="mail2" id="inputMail" name="" class="form-control" value="<%=mail1[1] %>" readonly>&nbsp;&nbsp;&nbsp;&nbsp;
 					   <select id="mailCho" title="이메일 서비스 도메인 선택" name="emailsel" class="select_style01 form-control" onChange="javascript:setMail(this.options[this.selectedIndex].value);" setimage="https://simage.kyobobook.co.kr/newimages/apps/b2c/common/i_SelectArrow.gif"  >
 							<option selected>선택</option>
@@ -284,10 +287,14 @@ li {
 			alert('숫자만 입력가능합니다.');
 		}
 
-	/* 	if (this.value > 100 && this.value < 10000) {
-
-			alert('정확히 입력해주세요.');
-		} */
+	});
+	
+	//이메일 알파벳만 입력 받게 하기    
+	$("#emailInput").keyup(function(event) {
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^a-z0-9]/gi, ''));
+		}
 	});
 
 	function validate() {

@@ -53,14 +53,12 @@
 					        <th><b>문의유형</b></th>
 					        <th><b>문의제목</b></th>				        					        
 					        <th><b>문의날짜</b></th>
-					        <th><b>답변여부</b></th>
-					        <th><button>선택글 삭제</button></th>	
+					        <th><b>답변여부</b></th>					       
 					      </tr>
 					    </thead>					    
 					     <tbody>			
 					      <%for(Qna q : list){ %>	
-					  		 <% if(q.getQnaStatus().equals("Y")){ %> 
-						  	    <th><input type="checkbox" name="vehicle1" value="Bike"></th>	
+					  		 <% if(q.getQnaStatus().equals("Y")){ %> 	
 						        <th><b><%=q.getQnaPart()%></b></th>
 						        <th><b><a href="<%=request.getContextPath() %>/qna/qnaContent?no=<%=q.getQnaNum()%>"><%=q.getQnaTitle()%></a></b></th>						   					        
 						        <th><b><%=q.getQnaDate()%></a></b></th>					       
@@ -86,15 +84,7 @@
 	   	  		 	</nav>
    	  		 	</div>		 	
 	   		</div>
-		</div>		
-	
-	 			<!-- <nav>
-				  <ul class="pagination">
-				    <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>			 
-				    <li><a href="#">pageNo</a></li>
-				    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-				  </ul>
-	   	  		 </nav> -->	   			
+		</div>			 		  			
  </section>
 </div>
 
