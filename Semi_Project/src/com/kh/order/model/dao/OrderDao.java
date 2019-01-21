@@ -109,20 +109,19 @@ Properties prop=new Properties();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Order> list = new ArrayList();
-		String sql = prop.getProperty("sortList");
+		String sql = "";
 		
-		String type = "";
+		
 		switch(sort) {
-		case 1: type="o.orderDate DESC"; break;
-		case 2: type="b.bookName ASC"; break;
-		case 3: type="a.authorName ASC"; break;
+		case 1: sql = prop.getProperty("sortList1"); break;
+		case 2: sql = prop.getProperty("sortList2");; break;
+		case 3: sql = prop.getProperty("sortList3");; break;
 		default: break;
 		}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			pstmt.setString(2, type);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Order o = new Order();
