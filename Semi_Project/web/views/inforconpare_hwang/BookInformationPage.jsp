@@ -323,7 +323,7 @@ function fnMove2(){
 						<!-- 이미지보여주기 -->
 							<img src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
-								onerror="javascript:noImage(this,'L','KOR');' alt="어린왕자'>
+								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
 						<div class='pluslate'>
 							<button class='plus btn-link' onclick="showBigPic();"');">크게보기</button>
@@ -343,7 +343,7 @@ function fnMove2(){
 						<div class='writer'>
 							<!-- 작가이름,관심작가등록,지음,옮김,출판사,출간일 -->
 							<span class='name'> <!-- 작가이름, 관심작가등록 --> <span
-								class='popup_load'> <a href='#'><%=b.getAuthor().getAuthorName() %></a>
+								class='popup_load'> <a href='<%=request.getContextPath()%>/author/authorInfo?author=<%=b.getAuthor().getauthorNum()%>'><%=b.getAuthor().getAuthorName() %></a>
 									<div class='tooltip' style='display: none;'>
 										<a href='#'>작가상세정보</a> <span class='line'>|</span>
 										<!-- 라인 -->

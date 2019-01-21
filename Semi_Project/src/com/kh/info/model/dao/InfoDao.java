@@ -91,6 +91,7 @@ public class InfoDao {
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
 				Author a=new Author();
+				a.setauthorNum(rs.getInt("authornum"));
 				a.setAuthorName(rs.getString("authorName"));
 				a.setAuthorInfo(rs.getString("authorInfo"));
 				b.setAuthor(a);
