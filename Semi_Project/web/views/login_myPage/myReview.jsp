@@ -70,7 +70,7 @@
 						</div>					
 						<ul>
 							<%for(Review r : list) { %>
-								<%if (r.getStatus().equals("y")) {%>
+								<%if (r.getStatus().equals("y") || r.getStatus().equals("Y")) {%>
 								<li>
 									<div class="reviewList">
 										<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=r.getBookId()%>">
