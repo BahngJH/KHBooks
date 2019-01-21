@@ -36,13 +36,13 @@ public class QnaMyListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Member m = (Member) request.getSession(false).getAttribute("logined");			
+		Member m = (Member) request.getSession().getAttribute("logined");			
 		if (m != null) {
 			int memberNum = m.getMemberNum();
 			System.out.println("회원번호: "+memberNum);
 			
 			List<QnaRe> qrList=new QnaService().selectMyRe(memberNum);
-			//List<QnaSub>qsList=new QnaService().selctMySub(memberNum);
+			
 			
 			int cPage;
 			try {
@@ -62,10 +62,9 @@ public class QnaMyListServlet extends HttpServlet {
 				numPerPage=5;
 			}
 		
-			int myTotal=new QnaService().selectMyCount(memberNum);
-			System.out.println(myTotal);
+			int myTotal=new QnaService().selectMyCount(memberNum);		
 			int totalPage=(int)Math.ceil((double)myTotal/numPerPage);
-			System.out.println(totalPage);
+		
 			List<Qna> list=new QnaService().selecMyQnaList(memberNum,cPage,numPerPage);
 			
 			String pageBar="";
@@ -110,8 +109,7 @@ public class QnaMyListServlet extends HttpServlet {
 			request.setAttribute("cPage",cPage);
 			request.setAttribute("pageBar",pageBar);
 			request.setAttribute("list", list);	
-			request.setAttribute("qrList", qrList);	
-			//request.setAttribute("qsList", qsList);	
+			request.setAttribute("qrList", qrList);					
 			request.setAttribute("cnt", list.size());
 			request.getRequestDispatcher("/views/csCenter/qnaMyList.jsp").forward(request, response);
 				

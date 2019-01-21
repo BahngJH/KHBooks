@@ -48,8 +48,7 @@
 				  <div class="qnaList">
 					  <table class="table table-striped">						  
 					    <thead>
-					      <tr>
-					      <th><input type="checkbox" name="vehicle1" value="Bike"></th>
+					      <tr>					  
 					        <th><b>문의유형</b></th>
 					        <th><b>문의제목</b></th>				        					        
 					        <th><b>문의날짜</b></th>

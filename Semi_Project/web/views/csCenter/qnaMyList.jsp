@@ -117,7 +117,8 @@ text-align: left;
 		<div class="csCenter col-md-offset-1 col-md-7">  
 				<div id="askList">	
 					<ul class="askList">						
-				 	<%for(Qna q : list){ %>								   		   					   
+				 	<%for(Qna q : list){ System.out.println(q);%>								
+				 	   		   					   
 		                <li>
 		                	 <button class="btn btn-primary" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    
 							     <em style="display: inline"><b><%=q.getQnaTitle() %></b></em>
@@ -133,21 +134,14 @@ text-align: left;
 						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
 		                     <div class="well" value="">
 		                     	<div class="alert alert-info">
-    								<strong>내질문 : </strong><%=q.getQnaContent() %>
+    								<strong>내질문 : <%=q.getQnaContent() %></strong>
 								 </div>
 								  <div class="alert alert-warning">
-    								<strong>답변 : </strong>여기는 뭐가 올까요
-								 </div>
-								 							 
-								<%-- <div class="alert alert-warning">
-    								<strong>Warning!</strong><%=qr.getReContent() %> 
-								 </div>	                     	
-		                      	  <%for(QnaRe qr : qrList){
-		                     	 if(qr.getQnaNum()==q.QnaWriter()){ %>
-		                     	
-		                     	 <h5 > </h5>	
-		                     	 <%} %>	
-		                     	 <%} %> --%>	                     	                    	                       
+    								<%if(q.getReContent()!=null){%>
+    								<strong>답변 : <%=q.getReContent() %></strong>   								
+    								<% }else{%>
+    								<strong>답변 : 답변대기중입니다.</strong><%} %>
+								 </div>			                     	                    	                       
 								  <ul class="">							    
 								    <li class=""><button>재문의</button></li>
 								  </ul>												                        						                                              
