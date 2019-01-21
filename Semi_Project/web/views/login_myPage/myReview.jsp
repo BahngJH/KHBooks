@@ -4,6 +4,7 @@
 <%@ page import="java.util.*, com.kh.review.model.vo.Review, com.kh.book.model.vo.Book" %>
 <% 
 	List<Review> list = (List)request.getAttribute("list");
+	String pageBar=(String)request.getAttribute("pageBar");
 	int cnt = (int)request.getAttribute("cnt");
 %>
 
@@ -146,6 +147,9 @@
 					<%} else { %>
 						<h2>남긴 리뷰가 없습니다..</h2>
 					<%} %>
+					<div id="pageer">
+						<%=pageBar %>
+					</div>	
 				</article>
 			</section>
 		</div>

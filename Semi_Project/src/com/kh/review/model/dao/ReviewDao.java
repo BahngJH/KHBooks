@@ -28,7 +28,7 @@ public class ReviewDao {
 	}
 	
 	// 리뷰 list 반환
-	public List<Review> selectList(Connection conn, int memberNum) {
+	public List<Review> selectList(Connection conn, int memberNum, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Review> list = new ArrayList();
@@ -36,6 +36,8 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Review r = new Review();
@@ -58,6 +60,28 @@ public class ReviewDao {
 		}
 		return list;
 	}
+	
+	public int selectReviewCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = prop.getProperty("selectReviewCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("cnt");
+			}
+		} catch(SQLException e)
+		{
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	
 	// 리뷰 삭제
 	public int deleteReview(Connection conn, int no) {

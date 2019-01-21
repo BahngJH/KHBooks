@@ -8,18 +8,26 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.order.model.dao.OrderDao;
 import com.kh.review.model.dao.ReviewDao;
 import com.kh.review.model.vo.Review;
 
 public class ReviewService {
 	
 	// 리뷰 list 반환
-	public List<Review> selectList(int memberNum) {
+	public List<Review> selectList(int memberNum, int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Review> list = new ReviewDao().selectList(conn, memberNum);
+		List<Review> list = new ReviewDao().selectList(conn, memberNum, cPage, numPerPage);
 		
 		close(conn);
 		return list;
+	}
+	
+	public int selectReviewCount() {
+		Connection conn = getConnection();
+		int result = new ReviewDao().selectReviewCount(conn);
+		close(conn);
+		return result;
 	}
 	
 	// 리뷰 삭제
