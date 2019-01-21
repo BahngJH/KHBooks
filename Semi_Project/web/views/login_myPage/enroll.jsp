@@ -76,27 +76,36 @@
     $(function(){
     	//blur로 이름 체크
     	$('#name').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue = 0;
     		var name = $('#name').val();
             var nameck = /^[가-힣]{2,5}$/g;
             if(!nameck.test(name)){
             	$('#nameMsg').html("한글만 입력해주세요");
-                //alert("한글만 입력해 주세요");
-                $('#name').css("border","4px solid red");
+                $('#name').css("border","4px solid #F15F5F");
+                blue=0;
                 return;
             }
-            $('#name').css("border","4px solid blue");
-            $('#nameMsg').html("좋습니다!");
+            $('#name').css("border","4px solid #6799FF");
             $('#nameValid').val(1);
+            if(blue==0){
+            $('#nameMsg').html(" ");
+            $('#nameMsg').append(img);
+            blue=1;
+            }
     	});
     	
     	//아이디 체크
     	//먼저 아이디 조합 조건을 체크 후 조건에 부합하면 ajax로 중복여부 확인
     	$('#id').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
     		var id = $('#id').val().trim();
             var idck = /^[a-z]+[a-z0-9]{5,19}$/g;
             if(!idck.test(id)){
             	$('#idMsg').html("다시 입력하세요");
-                $('#id').css("border","4px solid red");
+                $('#id').css("border","4px solid #F15F5F");
+                blue=0;
                 return;
             }
             
@@ -110,81 +119,122 @@
             		console.log("ajax반환값 : "+data);
             		if(id.length>1){
             			$('#idMsg').html("중복된 아이디가 존재합니다.");
-                        $('#id').css("border","4px solid red");
+                        $('#id').css("border","4px solid #F15F5F");
                         $('#idMsg').css("color","red");
+                        blue=0;
+                        return;
             		}else{
-            			$('#id').css("border","4px solid blue");	
+            			$('#id').css("border","4px solid #6799FF");
+            			
                         $('#idMsg').html("");
                         $('#idValid').val(1);
+                        blue=1;
             		}
             	}
             });
+            
+            
             
     	});
     	
     	//패스워드 체크
     	$('#pw').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
     		var pw = $('#pw').val();
             var pwck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
             if(!pwck.test(pw)){
                 $('#pwMsg').html("다시 입력하세요");
-                $('#pw').css("border","4px solid red");
+                $('#pw').css("border","4px solid #F15F5F");
+                blue=0;
                 return;
             }
-            $('#pw').css("border","4px solid blue");
-            $('#pwMsg').html("좋습니다!");
+            $('#pw').css("border","4px solid #6799FF");
             $('#pwValid').val(1);
+            if(blue==0){
+            	$('#pwMsg').html(" ");
+                $('#pwMsg').append(img);
+                blue=1;
+            }
     	});
     	
     	//패스워크 확인 체크
     	$('#pw_ck').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
     		var pw = $('#pw').val();
             var pw_ck = $('#pw_ck').val();
             if(pw!=pw_ck){
                 $('#pwckMsg').html("다시 입력하세요");
-                $('#pw_ck').css("border","4px solid red");
+                $('#pw_ck').css("border","4px solid #F15F5F");
+                blue=0;
                 return;
             }
-            $('#pw_ck').css("border","4px solid blue");	
-            $('#pwckMsg').html("일치합니다!");
+            $('#pw_ck').css("border","4px solid #6799FF");	
+            if(blue==0){
+            	$('#pwckMsg').html(" ");
+                $('#pwckMsg').append(img);
+                blue=1;
+            }
     	});
     	
     	//생년월일 체크
     	$('#birth').blur(function () {
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
             if ($("#birth").val().length != 8 ) {
 	                $('#bthMsg').html("다시 입력하세요");
-	                $('#birth').css("border","4px solid red");
+	                $('#birth').css("border","4px solid #F15F5F");
+	                blue=0;
 	                return;
             }
-            $('#birth').css("border","4px solid blue");	
-            $('#bthMsg').html("좋습니다!");
+            $('#birth').css("border","4px solid #6799FF");	
             $('#birthValid').val(1);
+            if(blue==0){
+            	$('#birthMsg').html(" ");
+                $('#birthMsg').append(img);
+                blue=1;
+            }
         });
     	
     	//연락처 체크
     	$('#phone').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
     		if($("#phone").val().length!=11){
     			$('#phoneMsg').html("다시 입력하세요");
-    			$('#phone').css("border","4px solid red");
+    			$('#phone').css("border","4px solid #F15F5F");
+    			blue=0;
     			return;
     		}
-    		 $('#phone').css("border","4px solid blue");	
-             $('#phoneMsg').html("좋습니다!");
+    		 $('#phone').css("border","4px solid #6799FF");	
              $('#phoneValid').val(1);
+             if(blue==0){
+             	$('#phoneMsg').html(" ");
+                $('#phoneMsg').append(img);
+                blue=1;
+             }
     	});
     	
     	//이메일 체크
     	$('#email').blur(function(){
+    		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
+    		var blue=0;
     		var email = $('#email').val();
             var emailck= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             if(!emailck.test(email)){
                 $('#emailMsg').html("다시 입력하세요");
-                $('#email').css("border","4px solid red");
+                $('#email').css("border","4px solid #F15F5F");
+                blue=0;
                 return;
             }
-            $('#email').css("border","4px solid blue");
-            $('#emailMsg').html("좋습니다!");
+            $('#email').css("border","4px solid #6799FF");
             $('#emailValid').val(1);
+            if(blue==0){
+            	$('#emailMsg').html(" ");
+                $('#emailMsg').append(img);
+                blue=1;
+            }
     	});
     	
     });
