@@ -95,6 +95,8 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReContent(rs.getString("reContent"));
+				
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -108,7 +110,7 @@ public class QnaDao {
 	}
 		
 	//관리자 답변
-	public List<QnaRe> selectMyRe(Connection conn, int reNum) {
+	public List<QnaRe> selectMyRe(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<QnaRe> qrList = new ArrayList();
@@ -116,7 +118,7 @@ public class QnaDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reNum);
+			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {	
@@ -175,6 +177,7 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("list : "+list);
 		return list;
 
 	}
@@ -203,6 +206,7 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReContent(rs.getString("reContent"));
 			}
 
 		} catch (SQLException e) {

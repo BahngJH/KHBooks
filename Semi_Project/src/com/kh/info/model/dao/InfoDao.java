@@ -181,6 +181,7 @@ public class InfoDao {
 			pstmt.setInt(3, r.getBookId());
 			pstmt.setInt(4, r.getCheckOption());
 			pstmt.setString(5, r.getReviewContext());
+			System.out.println("DAO에서 넘어오나?"+r.getMemberNum()+" "+r.getGrade()+" "+r.getBookId()+" "+r.getCheckOption()+" "+r.getReviewContext());
 			
 			result=pstmt.executeUpdate();
 		}

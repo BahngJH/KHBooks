@@ -32,6 +32,7 @@ public class AbsencePagingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cPage;
+	
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 			
@@ -45,13 +46,13 @@ public class AbsencePagingServlet extends HttpServlet {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
 			numPerPage=8;
-			System.out.println(numPerPage);
+			
 		}
 		
 		int totalBoard=new AbsenceService().selectCount(); // 디비 속성갯수
-		System.out.println("저장할 총 디비 속성 갯수"+totalBoard);
+	
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);// 필요한 총 페이지수
-		System.out.println("총 페이지 수"+totalPage);
+	
 		
 		List<Absence> list=new AbsenceService().selectList(cPage,numPerPage);
 		
@@ -87,12 +88,12 @@ public class AbsencePagingServlet extends HttpServlet {
 				}
 		//[다음]
 		if(pageNo>totalPage) {
-			pageBar+="<span><다음></span>";
+			pageBar+="<span>[다음]</span>";
 			
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/absence/page?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
-		System.out.println("페이지바:"+pageBar);
+	
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("pageBar", pageBar);

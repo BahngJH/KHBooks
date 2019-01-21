@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
+	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna, com.kh.csCenter.model.vo.QnaRe"%>
 	<%@ include file="/views/common/noticeHeader.jsp"%>
 
  <%
 	List<Qna> list = (List) request.getAttribute("list");
 	int cnt = (int) request.getAttribute("cnt");
 	String pageBar = (String) request.getAttribute("pageBar");
-	/* 	Qna q = (Qna) request.getAttribute("Qna");
-		Member m = (Member) request.getSession().getAttribute("logined"); */
+	List<QnaRe> qrList = (List)request.getAttribute("qrList");
+		/* Member m = (Member) request.getSession().getAttribute("logined");  */
 %> 
 
 <style>
@@ -82,8 +82,7 @@ text-align: left;
 </script>
 
 
-<section class="board-container col-sm-10">
-	
+<section class="board-container col-sm-10">	
  <!-- 타이틀 -->
  	<div class="row">
 		<div class="csCenter col-md-offset-1 col-md-7">			
@@ -117,11 +116,11 @@ text-align: left;
     <div class="row">
 		<div class="csCenter col-md-offset-1 col-md-7">  
 				<div id="askList">	
-					<ul class="askList">
-				 	<%for(Qna q : list){ %>								   		   					   
+					<ul class="askList">						
+				 	<%for(Qna q : list){ System.out.println(q);%>								
+				 	   		   					   
 		                <li>
-		                	 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    
-					     		<h5 style="display: inline"><b><%=q.getQnaPart() %></b></h5>				       							    
+		                	 <button class="btn btn-primary" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    
 							     <em style="display: inline"><b><%=q.getQnaTitle() %></b></em>
 								 <span class="csInfo"> 
 									<span class=""><%=q.getQnaDate() %>읽음</span> 
@@ -134,15 +133,23 @@ text-align: left;
 						<!--문의글 확인 및 재문의 -->			
 						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
 		                     <div class="well" value="">
-		                     	 <h5 ><%=q.getQnaContent() %> </h5>	
-		                     	 <h5 >여기는 답변내용이 올곳입니다. </h5>			                     	                    	                       
+		                     	<div class="alert alert-info">
+    								<strong>내질문 : <%=q.getQnaContent() %></strong>
+								 </div>
+								  <div class="alert alert-warning">
+    								<%if(q.getReContent()!=null){%>
+    								<strong>답변 : <%=q.getReContent() %></strong>   								
+    								<% }else{%>
+    								<strong>답변 : 답변대기중입니다.</strong><%} %>
+								 </div>			                     	                    	                       
 								  <ul class="">							    
 								    <li class=""><button>재문의</button></li>
 								  </ul>												                        						                                              
 		                      </div>                       
 		                 </div> 
-		                 <%} %>                           							
-					</ul>				
+		                 <%} %> 	                                           							
+					</ul>	
+							
 		 	   </div>
 		</div>
 	</div>
@@ -161,6 +168,27 @@ text-align: left;
 	 
 </section>
 </div>
+
+
+<script>
+
+function fn_Content(){
+	if(qr.get)
+	
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
     
 	
 <script type ="text/javascript" language ="javascript">

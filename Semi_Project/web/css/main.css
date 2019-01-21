@@ -4,6 +4,14 @@ body, header nav{
 
 
 /* 상단 네비바 css */
+@media (max-width: 600px){
+	p.book_content{
+		visibility: hidden;
+		height: 0px;
+	}
+}
+
+
 @media (max-width: 768px){	
 	header {
 		margin-bottom: 81px;
@@ -14,22 +22,8 @@ body, header nav{
 	ul.nav-button>li>a{
 		display: inline;
 	}
-	div.thumbnail-container{
-	padding: 0px;
-	height: 450px;
-	}
 }
 
-@media (max-width: 600px){
-	p.book_content{
-		visibility: hidden;
-		height: 0px;
-	}
-	div.thumbnail-container{
-	padding: 0px;
-	height: 450px;
-	}
-}
 
 @media (min-width: 768px){
 	header{
@@ -41,13 +35,8 @@ body, header nav{
 	.navbar>.container-fluid .navbar-brand{
 		margin-left: 15px;
 	}
-	
-	div.thumbnail-container{
-	padding: 0px;
-	height: 370px;
 }
-	
-}
+
 ul.nav-button>li{
 		display: inline;
 	}
@@ -230,8 +219,13 @@ ul.ui-menu{
 /* 메인화면 */
 div.book-container{
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
+div.book-container:hover{
+	transform:translateY(-10px);
+	
+}
 div.book-container>div:first-child{
 	padding: 0px;
 }
@@ -245,9 +239,18 @@ div.book-container>div>a.author-name{
 }
 
 
-div.thumbnail-container{
-	padding: 0px;
-	height: 370px;
+@media (min-width: 992px) and (max-width: 1200px){
+	div.thumbnail-container{
+		padding: 0px;
+		height: 465px;
+	} 	
+}
+
+@media (min-width:768px) and (max-width: 991px){
+	div.thumbnail-container{
+		padding: 0px;
+		height: 350px;
+	}
 }
 
 a.book-thumbnail{
@@ -257,10 +260,12 @@ a.book-thumbnail{
 	margin: 0px;
 }
 
-div.bookcontainer:hover{
-	transform:translateY(-10px);
-	
-	
+
+div.book-title{
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+	float: none;
+	margin-bottom: 15px;
 }
 
 span.border{

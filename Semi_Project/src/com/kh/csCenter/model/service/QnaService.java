@@ -42,9 +42,9 @@ public class QnaService {
 	}
 
 	// 관리자 답변
-	public List<QnaRe> selectMyRe(int reNum) {
+	public List<QnaRe> selectMyRe(int memberNum) {
 		Connection conn = getConnection();
-		List<QnaRe> qrList = new QnaDao().selectMyRe(conn, reNum);
+		List<QnaRe> qrList = new QnaDao().selectMyRe(conn, memberNum);
 		close(conn);
 		return qrList;
 	}
