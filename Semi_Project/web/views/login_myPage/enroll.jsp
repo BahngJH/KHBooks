@@ -29,7 +29,7 @@
             <div id="inputPasswod"><input type="password" id="pw" name="memberPw" required placeholder="비밀번호 (6글자이상, 영문 숫자 특수문자 조합)"><div id="pwMsg" class="msg"></div><br>
                 <input type="password" id="pw_ck" placeholder="비밀번호 확인"  required><div id="pwckMsg" class="msg"></div></div><br>
             <div id="inputName"><input type="text" id="name" required name="memberName" placeholder="이름"><div class="msg" id="nameMsg"></div></div>
-            <input type="text" id="birth" name="birth" required placeholder="생년월일 ex)19830324"><div id="bthMsg" class="msg"></div><br>
+            <input type="text" id="birth" name="birth" required placeholder="생년월일 ex)19830324"><div id="birthMsg" class="msg"></div><br>
             <input type="text" id="phone" name="phone" required placeholder="연락처 ('-'없이 입력)"><div id="phoneMsg" class="msg"></div><br>
             <div id="inputEmail"><input type="text" id="email" name="email" required name="createEmail" placeholder="이메일주소"><div id="emailMsg" class="msg"></div></div><br>
 
@@ -83,6 +83,7 @@
             if(!nameck.test(name)){
             	$('#nameMsg').html("한글만 입력해주세요");
                 $('#name').css("border","4px solid #F15F5F");
+                $('#nameMsg').css("color","red");
                 blue=0;
                 return;
             }
@@ -125,10 +126,12 @@
                         return;
             		}else{
             			$('#id').css("border","4px solid #6799FF");
-            			
-                        $('#idMsg').html("");
-                        $('#idValid').val(1);
-                        blue=1;
+            			$('#idValid').val(1);
+            			 if(blue==0){
+            	         $('#idMsg').html(" ");
+            	         $('#idMsg').append(img);
+            	         blue=1;
+            	        }
             		}
             	}
             });
@@ -146,6 +149,7 @@
             if(!pwck.test(pw)){
                 $('#pwMsg').html("다시 입력하세요");
                 $('#pw').css("border","4px solid #F15F5F");
+                $('#pwMsg').css("color","red");
                 blue=0;
                 return;
             }
@@ -167,6 +171,7 @@
             if(pw!=pw_ck){
                 $('#pwckMsg').html("다시 입력하세요");
                 $('#pw_ck').css("border","4px solid #F15F5F");
+                $('#pwckMsg').css("color","red");
                 blue=0;
                 return;
             }
@@ -183,8 +188,9 @@
     		var img = $('<img></img>').attr("src","/Semi_Project/images/icons/blueCheck2.png");
     		var blue=0;
             if ($("#birth").val().length != 8 ) {
-	                $('#bthMsg').html("다시 입력하세요");
+	                $('#birthMsg').html("다시 입력하세요");
 	                $('#birth').css("border","4px solid #F15F5F");
+	                $('#birthMsg').css("color","red");
 	                blue=0;
 	                return;
             }
@@ -204,6 +210,7 @@
     		if($("#phone").val().length!=11){
     			$('#phoneMsg').html("다시 입력하세요");
     			$('#phone').css("border","4px solid #F15F5F");
+    			$('#phoneMsg').css("color","red");
     			blue=0;
     			return;
     		}
@@ -225,6 +232,7 @@
             if(!emailck.test(email)){
                 $('#emailMsg').html("다시 입력하세요");
                 $('#email').css("border","4px solid #F15F5F");
+                $('#emailMsg').css("color","red");
                 blue=0;
                 return;
             }
