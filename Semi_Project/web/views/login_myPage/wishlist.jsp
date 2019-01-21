@@ -181,7 +181,7 @@
 				});
 			});
 			
-			<%-- function multiDelete(){
+			 function multiDelete(){
 				var deleteList = $('#checkedList');
 				var url = "<%=request.getContextPath()%>/member/wishlistMultiDelete";
 				deleteList.attr("action",url);
@@ -191,7 +191,7 @@
 				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
 				var bookId = $(event.target).next('input').val();
 				location.href="<%=request.getContextPath()%>/member/wishlistMultiDelete?BookId="+bookId;
-			} --%>
+			} 
 		
 		</script>
 
