@@ -19,11 +19,22 @@
 	.end input{
 		float:right;
 	}
-	#btnCheck{float:left;}
+	#btnCheck{float:right;}
 	.middle{margin-top:40px;}
 	#allCheck{float:right; margin-right:15px;}
 	#allText{margin-right:10px;}
-	#wishlistCheckbox{border:1px solid black;}
+	input[type=number]{
+		float:left;
+		font-size:14px;
+		width:40px;
+		margin-left:25px;
+	}
+	#book_price{
+		float:left;
+	}
+	#selectbox{
+		margin-left:10px;
+	}
 	
 </style>
 	<div class="col-sm-10">
@@ -32,12 +43,7 @@
 					<div id="buyList-title">
 						<h3>장바구니</h3>
 					</div>
-					<!-- 찜목록 상단 메뉴 -->
-					<div id="btnCheck">
-					<button class="btn btn-default" onclick="multiMove();">선택 담기</button>
-					<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
-					<p>총 <%=markCount %>개의 상품이 담겨 있습니다</p>
-					</div>
+					
 					<div id="allCheck">
 					<span id="allText"><strong>전체선택</strong></span><input id="checkAll" onclick="cAll();" type="checkbox">
 					</div>
@@ -69,21 +75,37 @@
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
-                                <button class="btn btn-default">담기</button>
-                                <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
+                                <button class="btn btn-default" type="button">구매</button>
+                                <button class="btn btn-default" type="button">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 
-                            <!-- 책 가격과 체크박스 -->
+                            <!-- 책 가격,수량, 선택 체크박스 -->
                             </div>
                             <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                          	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
-                            <input type="checkbox" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
-                            <input type="hidden" id="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
+	                          	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
+	                          	<input type="number" min="0" step="1" max="" value="1">권	                       	                          		                          	
+	                            <input type="checkbox" id="selectbox" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
+	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">	
                             </div>
                         </div>		
                    	<%	
-                    	}%>
-                    	<div id="wishlistCheckbox">현재 <span id="selectBooks"></span>권의 책이 선택되었습니다.<span id="totalSum"></span></div>
+                    	}%>                   	
+	                    	<table border=1 class="table table-bordered" style="text-align:center">
+	                    		<tr>
+	                    			<td>선택한 권수</td>
+	                    			<td>총 결제 금액</td>
+	                    			<td>적립될 마일리지</td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td><span id="selectBooks">0</span>권</td>
+	                    			<td><span id="totalSum">0</span><span>원</span></td>
+	                    			<td><span id="milage"></span></td>
+	                    		</tr>
+	                    	</table>
+	                    	<div id="btnCheck">
+	                    	<button class="btn btn-danger">선택 삭제</button>
+							<button class="btn btn-primary" >선택 구매</button>
+							</div>
                     	<%
                     }else{
                     %>
@@ -108,50 +130,35 @@
 				}
 			}
 			count = selectBooks;
+			var milage = sum/10;
+			$('#milage').html(milage);
 			$('#selectBooks').html(count);
 		 	$('#totalSum').html(sum);
 		}
-		
 			function cAll(){
 				if($('#checkAll').is(':checked')){
 					$('input[type=checkbox]').prop("checked",true);
-					
+					var sum = 0;
+					var count =$('.bookPrice').length;
+					var selectBooks=0;
+					for(var i=0;i<count;i++){					
+							selectBooks++;
+							sum += parseInt($('.bookPrice')[i].value);
+					}
+					count = selectBooks;
+					var milage = sum/10;
+					$('#milage').html(milage);
+					$('#selectBooks').html(count);
+				 	$('#totalSum').html(sum);
 				}else{
 					$('input[type=checkbox]').prop("checked",false);
+					$('#selectBooks').html(0);
+				 	$('#totalSum').html(0);
+				 	$('#milage').html(0);
+				 	
 				}
-				var sum = 0;
-				var count = $('input[type=checkbox]').length;
-				var selectBooks=0;
-				for(var i=0;i<count;i++){
-					if($('input[type=checkbox]')[i].checked==true){
-						selectBooks++;
-						//여기아래 수정중...
-						sum += parseInt();
-					}
-				}
-					count = selectBooks-1;
-				
-				$('#selectBooks').html(count);
-			 	$('#totalSum').html(sum);
 			}
-			function multiDelete(){
-				var deleteList = $('#checkedList');
-				var url = "<%=request.getContextPath()%>/member/markMutiDelete";
-				deleteList.attr("action",url);
-				deleteList.submit();
-			}
-			function multiMove(){
-				var moveList = $('#checkedList');
-				var url = "<%=request.getContextPath()%>/member/moveWishlist";
-				moveList.attr("action",url);
-				moveList.submit();
-			}
-			function deleteOne(){
-				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
-				var bookId = $(event.target).next('input').val();
-				location.href="<%=request.getContextPath()%>/member/markMutiDelete?BookId="+bookId;
-				
-			}
+			
 		
 		</script>
 

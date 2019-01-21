@@ -34,8 +34,8 @@ public class WishlistServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
+		
 		if(logined==null) {
-			
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
 			return;
 		}

@@ -36,6 +36,11 @@ public class MarkMultoDeleteServlet extends HttpServlet {
 		List<Integer> booksId = new ArrayList();
 		String[] bookId = request.getParameterValues("BookId");
 		Member m = (Member) request.getSession().getAttribute("logined");
+		//로그인이 안되어 있으면 로그인페이지로 이동
+		if(m==null) {
+			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+		}
+		
 		if(bookId==null) {
 			request.setAttribute("msg", "삭제할 상품을 선택해주세요");
 			request.setAttribute("loc", "/member/mark?memberNum="+m.getMemberNum());
