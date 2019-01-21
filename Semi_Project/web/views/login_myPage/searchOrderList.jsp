@@ -45,15 +45,6 @@
 				            </form>
 						</div>
 						
-						
-						<div class="btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">최근 구매순 <span class="caret"></span></button>
-							<ul class="dropdown-menu" role="menu">
-							    <li><a href="#">최근 구매순</a></li>
-							    <li><a href="#">제목순</a></li>
-							    <li><a href="#">저자순</a></li>
-						 	</ul>
-						</div>
 					</div>	
 					
 					<table class="table table-responsive" id="tbl-orderList">

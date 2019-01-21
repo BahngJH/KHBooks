@@ -4,6 +4,7 @@
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
 	List<Order> list = (List)request.getAttribute("sortList");
+	String pageBar=(String)request.getAttribute("pageBar");
 %>
 
 <style>
@@ -109,6 +110,9 @@
 							}%>
 						</tbody>
 					</table>
+					<div id="pageer">
+						<%=pageBar %>
+					</div>
 				</article>
 			</section>
 		</div>

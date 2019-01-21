@@ -329,7 +329,7 @@ function fnMove2(){
 					<div class='cover'>
 						<div class='bookcover'>
 						<!-- 이미지보여주기 -->
-							<img src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
+							<img style="border:1px solid black;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
@@ -363,7 +363,7 @@ function fnMove2(){
 							옮긴이 없음<span class='line'> |</span>
 							<%} %>
 							<!-- 라인 -->
-							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'>새움</a>
+							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'><%=b.getPublisher() %></a>
 							</span> <br> <span class='date' title='출간일'> <!-- 출간일 -->
 								<%=b.getBookDate() %> <span>출간</span>
 							</span> <span class='lating'>

@@ -4,6 +4,7 @@
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
 	List<Order> list = (List)request.getAttribute("list");
+	String pageBar=(String)request.getAttribute("pageBar");
 %>
 
 <style>
@@ -21,6 +22,13 @@
 		width: 120px;
 		min-height: 150px;
 		margin-top: 10px;
+	}
+	div#pager nav{
+		width: 140px;
+	}
+	div#pager{
+		display: inline-block;
+		margin-left: 500px;
 	}
 </style>
 
@@ -98,7 +106,7 @@
 										</td>
 										<!-- 총 가격 -->
 										<td>
-											<h3><%=o.getBook().getPrice() * o.getBookCount()%></h3>
+											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
 										</td>
 									</tr>
 								<%} else {%>	
@@ -109,7 +117,10 @@
 							<% break;}
 							}%>
 						</tbody>
-					</table>							
+					</table>
+					<div id="pageer">
+						<%=pageBar %>
+					</div>							
 				</article>
 			</section>
 		</div>
