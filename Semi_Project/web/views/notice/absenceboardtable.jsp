@@ -105,7 +105,8 @@ function absence(){
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>
 						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
-						<td><%=ab.getAppDate()%></td>					
+						<td><%=ab.getAppDate()%></td>	
+									
 					</tr> 
 					<%} 
 					}%>					

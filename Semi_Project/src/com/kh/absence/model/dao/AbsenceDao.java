@@ -29,6 +29,27 @@ public class AbsenceDao {
 		}
 	}
 	
+	
+	public int deleteAbsence(Connection conn,int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+	
+		String sql=prop.getProperty("deleteNo");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+	}
+	
 	public Absence selectNo(Connection conn, int no) {
 		
 		PreparedStatement pstmt =null;
@@ -50,8 +71,10 @@ public class AbsenceDao {
 				ab.setBookDate(rs.getString("bookdate"));
 				ab.setISBN(rs.getString("isbn"));
 				ab.setPublisher(rs.getString("publisher"));
-				ab.setAppCancel(rs.getBoolean("appnum"));
+				ab.setAppCancel(rs.getBoolean("appcancel"));
+				ab.setAppNum(rs.getInt("appnum"));
 				ab.setStatus(rs.getString("status"));
+				
 				
 			}
 		}catch(SQLException e) {
@@ -156,6 +179,7 @@ public class AbsenceDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+		
 			pstmt.setInt(1, (cPage-1)*numPerPage+1);
 			pstmt.setInt(2, cPage*numPerPage);
 			rs=pstmt.executeQuery();
@@ -169,7 +193,8 @@ public class AbsenceDao {
 				ab.setBookDate(rs.getString("bookdate"));
 				ab.setISBN(rs.getString("isbn"));
 				ab.setPublisher(rs.getString("publisher"));
-				ab.setAppCancel(rs.getBoolean("appnum"));
+				ab.setAppNum(rs.getInt("appnum"));
+				ab.setAppCancel(rs.getBoolean("appcancel"));
 				ab.setStatus(rs.getString("status"));
 				Member m =new Member();
 				m.setMemberId(rs.getString("memberId"));
