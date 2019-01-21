@@ -89,6 +89,6 @@ border-bottom:2px solid darkgray;
 
 </section>
 
-
+</div>
 
 <%@include file="/views/common/footer.jsp"%>

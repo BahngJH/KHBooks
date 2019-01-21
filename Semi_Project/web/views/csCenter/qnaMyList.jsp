@@ -141,10 +141,7 @@ text-align: left;
     								<strong>답변 : <%=q.getReContent() %></strong>   								
     								<% }else{%>
     								<strong>답변 : 답변대기중입니다.</strong><%} %>
-								 </div>			                     	                    	                       
-								  <ul class="">							    
-								    <li class=""><button>재문의</button></li>
-								  </ul>												                        						                                              
+								 </div>			                     	                    	                       																			                        						                                              
 		                      </div>                       
 		                 </div> 
 		                 <%} %> 	                                           							
@@ -171,14 +168,20 @@ text-align: left;
 
 
 <script>
+<th colspan="2">
+<input type="button" value="목록으로" onclick="fn_boardList()"/>
+<input type="button" value="수정하기" onclick="fn_updateBoard()"/>
+<input type="button" value="삭제하기" onclick="fn_deleteBoard()"/>
+</th>
 
-function fn_Content(){
-	if(qr.get)
-	
+function fn_deleteBoard()
+{
+if(!confirm('정말로 삭제하시겠습니까?'))
+{
+return;	
 }
-
-
-
+$('[name=boardDelFrm]').submit();
+}
 
 
 </script>
