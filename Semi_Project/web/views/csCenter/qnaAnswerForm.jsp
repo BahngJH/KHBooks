@@ -9,9 +9,6 @@
     //Member m =(Member)request.getAttribute("m");
    
 %> 
-
-
-
 <section id="board-container">
 	 <div class="row col-md-offset-1 col-md-7">
 			 <div>
@@ -61,46 +58,56 @@
 					            </tr>
 					            <tr>				      
 						         <th><b>첨부파일</b></th>
-						         <th> 
+						         <th><b> 						         
 						         <%if(q.getQnaReFile()!=null) {%>
-						         <img src="<%=request.getContextPath()%>/upload/qna/<%=q.getQnaReFile() %>"></b></th>
-						         <%}else {%>					         
-						         <th><b>첨부파일 없음</b></th><%} %>
+						         <img src="<%=request.getContextPath()%>/upload/qna/<%=q.getQnaReFile() %>"></b></th>						         					         
+						         <th><%}else {%>
+						         <b>첨부파일 없음</b><%} %></th>
 						         <th><b></b></th>
 						         <th><b></b></th>
 						         <th><b></b></th>			        	     					      
 					           </tr>  
 					           <tr>				      
-						         <th> <strong>답변입력</strong></th>					        
-						         <th></th>
-						         <th><b></b></th>
-						         <th></th>
-						        
+						         <th><strong>등록된 답변</strong></th>					        
+						         <th></th>						         
+						         <th><b><%if(q.getReContent()!=null){ %>
+						         <%=q.getReContent() %></b></th>
+						         <th></th>					        
 						         <th></th>			        	     					      
 					           </tr>			          
             			 </table>	              
-	             </div>          	
-				  <div class=""><%if(q.getReContent()!=null){ %>			  			     				          
-			         <textarea id="" class="noresize" rows="7" cols="60" name="reContent" required="required"/><%=q.getReContent() %></textarea>	
-			          <%} %>
-			         <button type="" class="btn_sub btn btn-default"  onclick="fn_updateNotice()">문의 수정</button>
-			         <button type="submit" class="btn_sub btn btn-default" onclick="fn_deleteNotice()">문의 등록</button>
-			         <button class="btn_sub btn btn-default">취소</button>		      				       			        		  
+	             </div>
+	              <div class="">			  			     				          		         		         
+			         <button type="update" class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변 수정</button>			        	      				       			        		  
+		  		  </div> 	                                    	
+				  <div class=""><%}else{ %>			  			     				          			        
+			          <textarea id="" class="noresize" rows="7" cols="60" name="reContent" required="required"/></textarea>
+			          <button type="submit" class="btn_sub btn btn-default" onclick="fn_enrollAnswer()">답변 등록</button><%} %>	
+			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>	      				       			        		  
 		  		  </div> 
   			  	</form>				         			        					        					 					  								      						 					       		    				   			
 			</div>				 				 				                   		                 
 		</div>
  </section>
 </div>
-<!--  <script>
 
 
-		function validate() {
-
-		return false;
+	<%-- <script>	
+		function fn_fileDounwLoad(rName,oName)
+		{
+			var url="<%=request.getContextPath()%>/board/boardFileDownLoad";
+			//한글파일명이 있을경우 인코딩 처리를 해야함.
+			oName=encodeURIComponent(oName);
+			location.href=url+"?oName="+oName+"&rName="+rName;
+		}		
+				
+	
+		function fn_updateAnswer()
+		{
+			location.href="<%=request.getContextPath()%>/board/boardUpdate?no=<%=b.getBoardNo()%>";
 		}
-	</script> 
- -->
+		
+	</script> --%>
 
 
 <%@ include file="/views/common/footer.jsp"%>
