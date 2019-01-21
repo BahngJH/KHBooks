@@ -20,9 +20,7 @@ public class SearchService {
 	
 	public List<Book> selectBook(String key, int cPage, int numPerPage, String genre, String order) {
 		List<Book> list = new SearchDao().selectBook(conn, key, cPage, numPerPage, genre, order);
-
 		close(conn);
-		
 		return list;
 	}
 
@@ -46,6 +44,18 @@ public class SearchService {
 
 	public List<Book> selectBookPreview(String keyword) {
 		List<Book> list = new SearchDao().selectBook(conn, keyword);
+		close(conn);
+		return list;
+	}
+
+	public int getBookCount(String genre) {
+		int totalBook = new SearchDao().getBookCount(conn, genre);
+		close(conn);
+		return totalBook;
+	}
+
+	public List<Book> selectBook(int cPage, int numPerPage, String genre, String order) {
+		List<Book> list = new SearchDao().selectBook(conn, cPage, numPerPage, genre, order);
 		close(conn);
 		return list;
 	}

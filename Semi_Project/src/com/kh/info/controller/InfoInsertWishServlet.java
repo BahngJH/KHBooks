@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class InfoInsertReviewServlet
+ * Servlet implementation class InfoInsertWishServlet
  */
-@WebServlet("/inforconpare_hwang/infoInsertReview")
-public class InfoInsertReviewServlet extends HttpServlet {
+@WebServlet("/inforconpare_hwang/infoInsertWish")
+public class InfoInsertWishServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InfoInsertReviewServlet() {
+    public InfoInsertWishServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class InfoInsertReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);;
 	}
 
 	/**
