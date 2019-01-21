@@ -13,7 +13,7 @@ marquee {
 
 div.title , div.notice {
 	float: left;
-	margin: 0px 0px 0px 550px;
+	margin: 0px 0px 0px 700px;
 	
 }
 
@@ -44,7 +44,7 @@ a#MOVE_TOP_BTN {
 	background-image:
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
-footer.fot {background-color:#E8D9FF;}
+footer.fot {background-color:#f8f8f8;}
 .fot hr{border: 1px solid gray;}
 div#btn{ margin:0px 0px 0px 500px;}
 div#btn a{float:left; margin:0px 10px 0px 120px; }
@@ -69,11 +69,9 @@ div#btn  a{color:black;}
 			</ul>
 		</marquee>
 	</div>
-	
+	<br/>
 	<a id="MOVE_TOP_BTN" href="#"></a>
-	<p>
-		&lt;CopyRight 2018. <strong>KH정보교육원</strong>. All rights reserved.&gt;
-	</p>
+	
 	<hr/>
 	<div id="btn">
 
