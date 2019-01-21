@@ -12,7 +12,7 @@ input[value='수정'],input[value='삭제'] {
   color: white;
   padding: 8px 20px;
   text-decoration: none;
-
+ margin:30px 0px 0px 20px;
   float:right;
   cursor: pointer;
 }
@@ -26,8 +26,9 @@ border: none;
    text-align:center;
 }
 
-fieldset a{float:right;}
-#content{margin:100px 0 0 0; text-align:center;}
+
+fieldset a{float:left;}
+#content{margin:100px 0 0 0; white-space: pre-line; }
 
 </style>
 <section>
@@ -38,7 +39,7 @@ fieldset a{float:right;}
 				
 				
 			<br/><br/><br/>
-				<fieldset>
+				
 				<article id="edit">
 				<%if(logined!=null&&logined.getMemberId().equals("admin")){ %>
 			
@@ -54,10 +55,10 @@ fieldset a{float:right;}
 										
 						
 						
-						<h4 id="content"><%=n.getNoticeContent()%></h4>
+						<p id="content"><%=n.getNoticeContent()%><br/></p>
+				
 						
-				</fieldset>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			
 
 				<button id="return" onclick="main_Notice();">목록으로</button>
 				<br/><br/><br/><br/>

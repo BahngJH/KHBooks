@@ -69,7 +69,7 @@
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
-                                <button class="btn btn-default">담기</button>
+                                <button class="btn btn-default" type="button" onclick="moveOne();">담기</button>
                                 <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 
@@ -124,7 +124,10 @@
 				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
 				var bookId = $(event.target).next('input').val();
 				location.href="<%=request.getContextPath()%>/member/markMutiDelete?BookId="+bookId;
-				
+			}
+			function moveOne(){
+				var bookId = $(event.target).nextAll('input[type=hidden]').val();
+				location.href="<%=request.getContextPath()%>/member/moveWishlist?BookId="+bookId;
 			}
 		
 		</script>

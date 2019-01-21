@@ -96,7 +96,7 @@
                     	int i=0;%>
                     	<ul>
                     	<%for(Author a : authors){%>
-                    		<li <%=i++>2?"class='over hidden'":"" %>><a href="/author/author?authorNum=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
+                    		<li <%=i++>2?"class='over hidden'":"" %>><a href="<%=request.getContextPath()%>/author/authorInfo?author=<%=a.getauthorNum()%>"><span class="glyphicon glyphicon-user user-icon"></span><span class="author-name"><strong><%=a.getAuthorName() %></strong></span></a></li>
                     			
                     	<%}%>
                     	</ul>
@@ -154,7 +154,7 @@
                                 </h4>
                                 <p class="book_info">
                                 	<span class="book_info"><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">5.0</a>|</span>
-                                	<span class="book_info"><a href="#"><%=b.getAuthor().getAuthorName() %></a>|</span>
+                                	<span class="book_info"><a href="<%=request.getContextPath()%>/author/authorInfo?author=<%=b.getAuthor().getauthorNum()%>"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
                             	<!-- 책 줄거리 -->

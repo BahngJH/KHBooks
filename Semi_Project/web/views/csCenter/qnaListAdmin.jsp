@@ -13,7 +13,6 @@
 <!-- 최상단  -->
 
 <section id="board-container">
-	
 		 <div class="row col-md-offset-1 col-md-7">
 			 <div>
 				 <h3 class="title">1:1 문의(관리자화면)</h3>
@@ -48,8 +47,7 @@
 				  <div class="qnaList">
 					  <table class="table table-striped">						  
 					    <thead>
-					      <tr>
-					      <th><input type="checkbox" name="vehicle1" value="Bike"></th>
+					      <tr>					  
 					        <th><b>문의유형</b></th>
 					        <th><b>문의제목</b></th>				        					        
 					        <th><b>문의날짜</b></th>

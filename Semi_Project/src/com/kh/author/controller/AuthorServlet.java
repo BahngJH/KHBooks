@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.author.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.author.model.service.AuthorService;
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class WishlistServlet
+ * Servlet implementation class AuthorServlet
  */
-@WebServlet("/member/wishlist")
-public class WishlistServlet extends HttpServlet {
+@WebServlet("/author/authorInfo")
+public class AuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WishlistServlet() {
+    public AuthorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +33,14 @@ public class WishlistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Member logined = (Member) request.getSession(false).getAttribute("logined");
+		String authorId = request.getParameter("author");
 		
-		if(logined==null) {
-			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
-			return;
-		}
+		Author author = new AuthorService().selectAuthor(authorId);
+		List<Book> blist = new AuthorService().selectAuthorBook(authorId);
 		
-		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
-		List<Book> booksList = new MemberService().getWishlist(memberNum);
-		int wishlistCount = booksList.size();
-		
-		request.setAttribute("booksList", booksList);
-		request.setAttribute("wishlistCount", wishlistCount);
-		request.getRequestDispatcher("/views/login_myPage/wishlist.jsp").forward(request, response);
-		
+		request.setAttribute("author", author);
+		request.setAttribute("blist", blist);
+		request.getRequestDispatcher("/views/main/author.jsp").forward(request, response);
 	}
 
 	/**

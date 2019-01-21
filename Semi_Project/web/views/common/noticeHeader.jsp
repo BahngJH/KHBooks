@@ -33,7 +33,8 @@ a {
 #map table {
    cellpadding: 0;
    cellspacing: 0;
-   width: 150px;
+   width: 100px;
+   
 }
 
 #map table td {
@@ -41,8 +42,8 @@ a {
 }
 
 #map table td img {
-   width: 180px;
-   height: 200px;
+   width: 150px;
+   height: 180px;
    border: 0px;
    vertical-align: top;
 }
@@ -96,12 +97,13 @@ a {
       <%if(logined!=null){%>
       <ul class="hide">
          <br />
-         <li><%if(logined.getMemberId().equals("admin")){%>
-         <a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
-        <%} %></li>
+         <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
+         </li>
          <br />
          <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
-               신청</a></li>
+          <br />
+         <li><a href="<%=request.getContextPath()%>/qna/qnaListAdmin">1:1 (관리자)</a>
+         </li>
 
       </ul>
       <%}else {%>
@@ -110,7 +112,9 @@ a {
          <br />
          <li><a onclick="a_click();">1:1문의</a></li>
          <br />
-         <li><a onclick="a_click();">희망도서 신청</a></li>
+         <li><a onclick="a_click();">희망도서 신청</a></li> 
+         <br />    
+         <li><a onclick="a_click();">1:1 관리자</a></li>
 
       </ul>
       <%}%>
