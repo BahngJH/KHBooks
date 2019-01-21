@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
+import com.kh.mark.model.vo.Mark;
 import com.kh.member.model.vo.Member;
 import com.kh.review.model.vo.Review;
 import com.kh.wish.model.vo.Wish;
@@ -32,33 +33,6 @@ public class InfoDao {
 		}
 	}
 	
-	public Member selectInfoMember(Connection conn, int memberNum)
-	{
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		Member m=null;
-		String sql=prop.getProperty("selectInfoMember");
-		try
-		{
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, memberNum);
-			rs=pstmt.executeQuery();
-			if(rs.next())
-			{
-				m=new Member();
-				m.setMemberId(rs.getString("memberId"));
-			}
-		}catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			close(rs);
-			close(pstmt);
-		}
-		return m;
-	}
 	public Book selectInfoBook(Connection conn,int bookId)
 	{
 		PreparedStatement pstmt=null;
@@ -95,9 +69,6 @@ public class InfoDao {
 				a.setAuthorName(rs.getString("authorName"));
 				a.setAuthorInfo(rs.getString("authorInfo"));
 				b.setAuthor(a);
-				Member m=new Member();
-				m.setMemberId(rs.getString("memberId"));
-				b.setMember(m);
 			}
 		}catch(SQLException e)
 		{
@@ -123,6 +94,7 @@ public class InfoDao {
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
+				Member m=new Member();
 				Review r=new Review();
 				r.setBookId(rs.getInt("bookId"));
 				r.setGrade(rs.getInt("grade"));
@@ -132,7 +104,9 @@ public class InfoDao {
 				r.setReviewNum(rs.getInt("reviewNum"));
 				r.setStatus(rs.getString("status"));
 				r.setWriteDate(rs.getDate("writeDate"));
-				
+				m.setMemberNum(rs.getInt("memberNum"));
+				m.setMemberId(rs.getString("memberId"));
+				r.setMember(m);
 				list.add(r);
 			}
 		}catch(SQLException e)
@@ -153,10 +127,11 @@ public class InfoDao {
 		String sql=prop.getProperty("insertWish");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, w.getWishNo());
-			pstmt.setInt(2, w.getMemberNum());
-			pstmt.setInt(3, w.getBookId());
-			pstmt.setInt(4, w.getBookCount());
+			pstmt.setInt(1, w.getMemberNum());
+			pstmt.setInt(2, w.getBookId());
+			pstmt.setInt(3, w.getBookCount());
+			result=pstmt.executeUpdate();
+			System.out.println("DAO에서 장바구니 넘어오나?"+" "+w.getMemberNum()+" "+w.getBookId()+" "+w.getBookCount());
 		}
 		catch(SQLException e)
 		{
@@ -182,9 +157,32 @@ public class InfoDao {
 			pstmt.setInt(3, r.getBookId());
 			pstmt.setInt(4, r.getCheckOption());
 			pstmt.setString(5, r.getReviewContext());
-			System.out.println("DAO에서 넘어오나?"+r.getMemberNum()+" "+r.getGrade()+" "+r.getBookId()+" "+r.getCheckOption()+" "+r.getReviewContext());
-			
 			result=pstmt.executeUpdate();
+			System.out.println("DAO에서 리뷰 넘어오나?"+r.getMemberNum()+" "+r.getGrade()+" "+r.getBookId()+" "+r.getCheckOption()+" "+r.getReviewContext());
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertMark(Connection conn, Mark j)
+	{
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertMark");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, j.getBookId());
+			pstmt.setInt(2, j.getMemberNum());
+			result=pstmt.executeUpdate();
+			System.out.println("DAO에서 찜 넘어오나?"+j.getMemberNum()+" "+j.getBookId());
 		}
 		catch(SQLException e)
 		{

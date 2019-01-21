@@ -61,16 +61,11 @@
 		            <div class="dropdown" style="display: inline">
 		                <button class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" role="button" aria-expanded="false" id="category">카테고리<span class="caret"></span></button>
 		                <ul class="dropdown-menu" role="menu" aria-labelledby="category">
-		                    <li><a href="#">소설</a></li>
-		                    <li><a href="#">경제</a></li>
-		                    <li><a href="#">인문</a></li>
-		                    <li><a href="#">역사</a></li>
-		                    <li><a href="#">여행</a></li>
-		                    <li><a href="#">컴퓨터/IT</a></li>
-		                    <li><a href="#">외국어</a></li>
-		                    <li><a href="#">과학</a></li>
-		                    <li><a href="#">건강</a></li>
-		                    <li><a href="#">어린이</a></li>
+		                	<%//전체 카테고리
+			              	String[] genres = {"소설", "경제", "인문", "역사", "여행", "컴퓨터/IT", "외국어", "과학", "건강", "어린이"};
+			                for(String g: genres){%>
+			            		<li><a href="<%=request.getContextPath()%>/search/category?category=<%=g%> "><%=g %></a></li>    
+			          	<%}%> 
 		                </ul>
 	            	</div>
 	        	</div>
@@ -101,7 +96,11 @@
 			            <%}else{ %>
 			            <ul class="nav navbar-nav navbar-right nav-button">
 			                <li><button type="button" class="btn btn-default navbar-btn" onclick="goLogout();">로그아웃</button></li>
+			               <%if(logined.getMemberId().equals("admin")){%> 
+			               <li><a href="<%=request.getContextPath()%>/admin/mainview"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
+			              <% } else{%> 
 			                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
+			                <%} %>
 			                <li><a href="<%=request.getContextPath()%>/member/wishlist?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/mark?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
 			            </ul>

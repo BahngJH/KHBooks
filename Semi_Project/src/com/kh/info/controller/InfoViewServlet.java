@@ -34,21 +34,13 @@ public class InfoViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
 		List<Review> list=new InfoService().selectInfoReview(bookId);
-//		System.out.println(bookId);
 
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
-//		Wish w=new InfoService().selectWish(bookId);
-//		System.out.println(w);
-//		System.out.println(pageBar);
-//		System.out.println(b);
-//		System.out.println(list.size());
-//		request.setAttribute("wish", w);
 		request.setAttribute("book", b);
 		request.setAttribute("reviewList", list);
 		request.setAttribute("reviewsize", list.size());

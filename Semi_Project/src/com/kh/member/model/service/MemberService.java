@@ -117,6 +117,23 @@ public class MemberService {
 		close(conn);
 		return rs;
 	}
+	//장바구니 삭제하기
+		public int wishlistMutiDelete(List<Integer> booksId,int memberNum, int deleteCount)
+		{
+			Connection conn = getConnection();
+			int rs = new MemberDao().wishlistMutiDelete(conn,booksId, memberNum);
+			if(rs==deleteCount && rs>0) {
+				//모두 삭제
+				commit(conn);
+			}else if(rs>0 && rs<deleteCount) {
+				//일부만 삭제됨
+				rollback(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+			return rs;
+		}
 	//페이징에 사용된 토탈 구해오는 메소드
 	public int selectMarkCount(int memberNum)
 	{
