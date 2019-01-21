@@ -54,10 +54,16 @@ table.type10 td {
 table.type10 .even {
 	background: #E6FFFF;
 }
-table{
+input[value='삭제하기'] {
+  background-color: skyblue;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-decoration: none;
 
+  float:right;
+  cursor: pointer;
 }
-
 
 </style>
 <section>
@@ -73,8 +79,9 @@ table{
 				
 			<br/><br/><br/>
 			 	<%if(logined!=null||logined.getMemberId().equals("admin")){ %>
-				
-			 	
+					<%if(ab.getMemberNum()==logined.getMemberNum()){ %>
+			 		<input type="button" value="삭제하기" id="deleted" onclick="deleted();"/>
+			 	<%} %>
 				<table class="type10">
 				<thead>
 				
@@ -103,7 +110,7 @@ table{
 					</tr>
 					<tr>
 						<th scope="row"><h4>신청번호</h4></th>
-						<td><%=ab.getAppNum() %></td>
+						<td><%=ab.getAppNum()%></td>
 					</tr>
 					<tr>
 					<th scope="row" class="even"><h4>등록일</h4></th>
@@ -127,6 +134,16 @@ table{
 				<button id="return" onclick="main_absence();">목록으로</button>
 				<br/><br/><br/><br/>
 		<script>
+		
+		function deleted(){
+			if(!confirm('정말 삭제하시겠습니까?')){
+				return;
+			}
+			location.href="<%=request.getContextPath()%>/absence/deleted?no3=<%=ab.getAppNum()%>";
+			
+		}
+		
+		
 		function main_absence(){
 			location.href="<%=request.getContextPath()%>/absence/page";
 		}

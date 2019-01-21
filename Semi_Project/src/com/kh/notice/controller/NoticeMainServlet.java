@@ -92,7 +92,7 @@ public class NoticeMainServlet extends HttpServlet {
 				}
 		//[다음]
 		if(pageNo>totalPage) {
-			pageBar+="<span><다음></span>";
+			pageBar+="<span>[다음]</span>";
 			
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/notice/noticemain?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";

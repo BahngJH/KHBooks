@@ -31,7 +31,9 @@ public class AbsenceContentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no =Integer.parseInt(request.getParameter("no"));
-		System.out.println(no);
+	
+		
+		
 		Absence ab=new AbsenceService().selectNo(no);
 		
 		request.setAttribute("ab", ab);

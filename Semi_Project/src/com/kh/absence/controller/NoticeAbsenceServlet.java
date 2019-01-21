@@ -60,7 +60,7 @@ public class NoticeAbsenceServlet extends HttpServlet {
 		ab.setPublisher(publisher);
 		ab.setAppCancel(false);
 		ab.setStatus(null);
-		ab.setAppNum(0);
+	
 		
 		int result=new AbsenceService().insertAbsence(ab);
 		
