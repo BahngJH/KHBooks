@@ -37,7 +37,7 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		int checkOption=Integer.parseInt(request.getParameter("checkOption"));
 		String reviewContext=request.getParameter("reviewContext");
-		int grade=Integer.parseInt(request.getParameter("grade"));
+		int grade=Integer.parseInt(request.getParameter("star_grade"));
 		
 		System.out.println("넘어오나?"+memberNum+" "+grade+" "+bookId+" "+checkOption+" "+reviewContext);
 		

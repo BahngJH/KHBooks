@@ -604,10 +604,11 @@ function fnMove2(){
 				</style>		
 				<pre class='reviewpre' style='width:96%'>
 				<div id='reviewview'>
-                <form action="<%=request.getContextPath()%>/inforconpare_hwang/infoInsertReviewEnd" name="reviewText" method="post">
+                <form action="<%=request.getContextPath()%>/inforconpare_hwang/infoInsertReviewEnd" id="insertReviewFrm" name="reviewText" method="post">
 					<div class="wrappluswritereview" style='background-color:white; padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:9px;border: 1px solid silver;'>
 	                    <div class="wrap11">
 	                    	<input type='hidden' id="bookId" name="bookId" value='<%=b.getBookId() %>'/>
+	                    	<input type="hidden" id="star_grade" name="star_grade" value=""/>
 	                    	<input type='hidden' id="checkOption" name="checkOption" value='1'/>
 	                    	<textarea id="content" id="reviewContext" name="reviewContext" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
@@ -626,7 +627,7 @@ function fnMove2(){
 									</span>
 								</td>
 							</tr>
-                    		<input type='submit' class="reviewWrite" value='리뷰쓰기' onclick="return validate();"/>
+                    		<button type='button' class="reviewWrite" onclick="fn_insertReview();">리뷰쓰기</button>
                     		<%}%>
                     	</div>
                     </div>
@@ -637,6 +638,12 @@ function fnMove2(){
 					$(this).addClass("on").prevAll("a").addClass("on");
 					return false;
 				});
+				
+				function fn_insertReview() {
+					var grade = $('.on').length;
+					$('#star_grade').val(grade);
+					$('#insertReviewFrm').submit();
+				}
 				</script>
 				</form>
 					
