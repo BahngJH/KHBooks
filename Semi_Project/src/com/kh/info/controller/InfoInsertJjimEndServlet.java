@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.info.model.service.InfoService;
+import com.kh.mark.model.vo.Mark;
 import com.kh.member.model.vo.Member;
-import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class InfoInsertReviewEndServlet
+ * Servlet implementation class InfoInsertJjimEndServlet
  */
-@WebServlet("/inforconpare_hwang/infoInsertReviewEnd")
-public class InfoInsertReviewEndServlet extends HttpServlet {
+@WebServlet("/inforconpare_hwang/infoInsertJjimEnd")
+public class InfoInsertJjimEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InfoInsertReviewEndServlet() {
+    public InfoInsertJjimEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,35 +35,26 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		Member logined=(Member)request.getSession(false).getAttribute("logined");
 		int memberNum=logined.getMemberNum();
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
-		int checkOption=Integer.parseInt(request.getParameter("checkOption"));
-		String reviewContext=request.getParameter("reviewContext");
-		int grade=Integer.parseInt(request.getParameter("star_grade"));
 		
-		System.out.println("장바구니 서블릿으로 넘어오나?"+memberNum+" "+grade+" "+bookId+" "+checkOption+" "+reviewContext);
+		System.out.println("찜 서블릿으로 넘어와 "+" "+memberNum+" "+bookId);
 		
-		Review r= new Review();
+		Mark j=new Mark();
 		
-		r.setMemberNum(memberNum);
-		r.setWriteDate(null);
-		r.setGrade(grade);
-		r.setBookId(bookId);
-		r.setStatus(null);
-		r.setCheckOption(checkOption);
-		r.setReviewContext(reviewContext);
+		j.setMemberNum(memberNum);
+		j.setBookId(bookId);
 		
-		int result=new InfoService().insertReview(r);
+		int result=new InfoService().insertMark(j);
 		
 		if(result>0)
 		{
-			//리뷰등록 성공
-			request.setAttribute("msg", "리뷰가 작성 되었습니다.");
+			request.setAttribute("msg", "찜을 성공하였습니다.");
 			request.setAttribute("loc", "/inforconpare_hwang/infoView?bookId="+bookId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}else
+		}
+		else
 		{
-			//리뷰등록 실패
-			request.setAttribute("msg", "리뷰 등록을 실패하였습니다.");
-			request.setAttribute("loc", "inforconpare_hwang/infoView?bookId="+bookId);
+			request.setAttribute("msg", "찜을 실패하였습니다.");
+			request.setAttribute("loc", "/inforconpare_hwang/infoView?bookId="+bookId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 	}

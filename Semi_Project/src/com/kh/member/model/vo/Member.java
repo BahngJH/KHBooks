@@ -2,6 +2,8 @@ package com.kh.member.model.vo;
 
 import java.sql.Date;
 
+import com.kh.review.model.vo.Review;
+
 public class Member {
 	
 	private Date enrollDate;
@@ -17,6 +19,7 @@ public class Member {
 	private String phone;
 	private String email;
 	private String gender;
+	private Review review;
 	
 	
 	public Member() {}
@@ -37,6 +40,13 @@ public class Member {
 		this.mileage = mileage;
 	}
 
+	public Review getReview() {
+		return review;
+	}
+	public void setReview(Review review)
+	{
+		this.review = review;
+	}
 	public int getMemberNum() {
 		return memberNum;
 	}

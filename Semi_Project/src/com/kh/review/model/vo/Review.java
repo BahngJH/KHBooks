@@ -20,6 +20,7 @@ public class Review {
 	private String status;			// 상태
 	private int reviewNum;			// 댓글 번호
 	private Book book;				// 북 객체
+	private Member member;
 	
 	public Review() {}
 	
@@ -34,6 +35,12 @@ public class Review {
 		this.bookId = bookId;
 		this.status = status;
 		this.reviewNum = reviewNum;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	public int getMemberNum() {
 		return memberNum;
