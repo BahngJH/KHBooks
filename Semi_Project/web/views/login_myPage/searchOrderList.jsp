@@ -8,12 +8,19 @@
 
 <style>
 	div#buyList-options div.input-group{float: left;}
-	div.btn-group{float: right;}
-	div.bookInfo #bookPrice {
-		margin-top: 55px;
+	div.btn-group{float: right;}	
+	table#tbl-orderList{
+		margin-top: 65px;
+		border-collapse: collapse;
 	}
-	div.orderDate, div.orderCount, div.finalPrice {
-		margin: 60px 0px;
+	table#tbl-orderList th, table#tbl-orderList td{
+		vertical-align: middle;
+		text-align: center;
+	}
+	table#tbl-orderList td div#bookImg{
+		width: 120px;
+		min-height: 150px;
+		margin-top: 10px;
 	}
 </style>
 
@@ -48,47 +55,61 @@
 						 	</ul>
 						</div>
 					</div>	
-					<hr style='margin-top: 60px; border: 1px solid lightgray;'/>							
 					
-					
-					<%if(!list.isEmpty()) {%>					
-						<%for(Order o : list) {%>
-							<%if(o.getStatus().equals("Y") || o.getStatus().equals("y")) { %>
-								<div class="buyList row">
-					          		<!-- 책 이미지 -->
-	          						<div class='result-image col-xs-3 col-sm-2 col-md-2 col-lg-2'>
-	                                	<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>" class="thumbnail">
-	                                    	<img src="<%=request.getContextPath() %>/images/book/<%=o.getBook().getBookImage() %>"alt="책 이미지">
-	                                	</a>
-	                            	</div>
-	    							<!-- 제목, 저자, 가격 -->                        	
-	                            	<div class='bookInfo result-image col-xs-3 col-sm-4 col-md-4 col-lg-4'>
-		                                <h4 class='book_info'>
+					<table class="table table-responsive" id="tbl-orderList">
+						<thaed>
+							<tr>
+								<th id="t-info" colspan='2' scope="col">도서 정보</th>
+								<th id="t-date" scope="col">구매일</th>
+								<th id="t-count" scope="col">수량</th>
+								<th id="t-price" scope="col">결제 금액</th>
+							</tr>
+						</thaed>
+						<tbody>							
+							<%for(Order o : list) {%>
+								<%if(o.getStatus().equals("Y") || o.getStatus().equals("y")) { %>
+									<tr>
+										<!-- 책 이미지 -->
+										<td>
+											<div id="bookImg">
+		                                		<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>" class="thumbnail">
+		                                    		<img src="<%=request.getContextPath() %>/images/book/<%=o.getBook().getBookImage() %>"alt="책 이미지">
+		                                		</a>
+	                                		</div>
+										</td>
+										<!-- 제목, 저자, 가격 -->                        		                            	
+										<td style="text-align: left;">
+		                                	<h4 class='book_info'>
 	    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>">
-		                                        <h3><strong><%=o.getBook().getBookName()%></strong></h3>
+		                                    	<h3><strong><%=o.getBook().getBookName()%></strong></h3>
 	                                    	</a>
-	                                	</h4>
-	                                	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
-	                                	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>                              
-	                            	</div>
-	                            	<!-- 구매일 -->
-	                            	<div class="orderDate col-xs-2 col-sm-2 col-md-2 col-lg-2">
-	                            		<p><%=o.getOrderDate() %></p>
-	                            	</div>
-	                            	<!-- 수량 -->
-	                            	<div class="orderCount col-xs-2 col-sm-2 col-md-2 col-lg-2">
-	                            		<p><%=o.getBookCount()%></p>
-	                            	</div>
-	                           		<!-- 총 가격 -->
-	                            	<div class="finalPrice end col-xs-2 col-sm-2 col-md-2 col-lg-2">
-	                          			<p class="book_info book_price" id="book_price"><strong><%=o.getBook().getPrice() %>원</strong></p>
-	                            	</div>
-								</div>
-							<%}%>
-						<%} %>							
-					<%} else {%>
-						<h2>검색 결과가 없습니다.</h2>
-					<%} %>
+		                                	</h4>
+		                                	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
+		                                	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>       
+										</td>
+										<!-- 구매일 -->
+										<td>
+	                            			<p><%=o.getOrderDate() %></p>
+										</td>
+										<!-- 수량 -->
+										<td>
+		                            		<p><%=o.getBookCount()%></p>
+										</td>
+										<!-- 총 가격 -->
+										<td>
+											<h3><%=o.getBook().getPrice() * o.getBookCount()%></h3>
+										</td>
+									</tr>
+								<%} else {%>	
+									<tr>
+										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+									</tr>							
+																		
+							<% break;}
+							}%>
+						</tbody>
+					</table>
+
 				</article>
 			</section>
 		</div>

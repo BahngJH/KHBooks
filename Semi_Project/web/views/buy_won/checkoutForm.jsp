@@ -3,7 +3,7 @@
     
     
 
-<%@ include file="/views/common/noticeHeader.jsp"%>
+<%@ include file="/views/common/header.jsp"%>
 
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 

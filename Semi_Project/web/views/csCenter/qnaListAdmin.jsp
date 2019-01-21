@@ -13,7 +13,6 @@
 <!-- 최상단  -->
 
 <section id="board-container">
-	
 		 <div class="row col-md-offset-1 col-md-7">
 			 <div>
 				 <h3 class="title">1:1 문의(관리자화면)</h3>
