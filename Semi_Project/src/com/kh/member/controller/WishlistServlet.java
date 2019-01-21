@@ -41,6 +41,7 @@ public class WishlistServlet extends HttpServlet {
 		}
 		
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
+		
 		List<Book> booksList = new MemberService().getWishlist(memberNum);
 		int wishlistCount = booksList.size();
 		
