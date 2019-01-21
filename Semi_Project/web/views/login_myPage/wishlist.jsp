@@ -27,12 +27,13 @@
 		float:left;
 		font-size:14px;
 		width:40px;
-		margin-left:25px;
+		margin-left:20px;
 	}
 	#book_price{
 		float:left;
 	}
 	#selectbox{
+		
 		margin-left:10px;
 	}
 	
@@ -82,10 +83,12 @@
                             <!-- 책 가격,수량, 선택 체크박스 -->
                             </div>
                             <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
-	                          	<p class="book_info book_price" id="book_price"><strong><%=b.getPrice() %>원</strong></p>
-	                          	<input type="number" min="0" step="1" max="" value="1">권	                       	                          		                          	
+	                          	<strong><p class="book_info book_price"><%=b.getPrice() %>원</p></strong>
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">	                       	                          		                          	
 	                            <input type="checkbox" id="selectbox" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
-	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">	
+	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
+	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
+	                            	
                             </div>
                         </div>		
                    	<%	
@@ -119,13 +122,15 @@
 			</section>
 		</div>
 		<script>
+		
+		//개별선택 체크 했을 때 가격과 수량 체크
 		function bookSum(frm){
 			var sum = 0;
 			var count = frm.BookId.length;
 			var selectBooks=0;
 			for(var i=0;i<count;i++){
 				if(frm.BookId[i].checked==true){
-					selectBooks++;
+					selectBooks +=parseInt(frm.bookCount[i].value);
 					sum += parseInt(frm.bookPrice[i].value);
 				}
 			}
@@ -135,6 +140,7 @@
 			$('#selectBooks').html(count);
 		 	$('#totalSum').html(sum);
 		}
+		//전체 체크옵션, 수량 가격 체크
 			function cAll(){
 				if($('#checkAll').is(':checked')){
 					$('input[type=checkbox]').prop("checked",true);
@@ -142,7 +148,7 @@
 					var count =$('.bookPrice').length;
 					var selectBooks=0;
 					for(var i=0;i<count;i++){					
-							selectBooks++;
+							selectBooks+=parseInt($('.bookCount')[i].value);
 							sum += parseInt($('.bookPrice')[i].value);
 					}
 					count = selectBooks;
@@ -155,10 +161,26 @@
 					$('#selectBooks').html(0);
 				 	$('#totalSum').html(0);
 				 	$('#milage').html(0);
-				 	
 				}
 			}
-			
+		//수량이 바뀌면 값도 변하게 수정
+			$(function(){
+				$('.bookCount').blur(function(){
+					//원본데이터를 하나 만들어서 본래의 가격 유지
+					var price = parseInt($(event.target).parent().children('.bookPrice2').val());
+					var count = parseInt($(event.target).parent().children('.bookCount').val());
+					var changePrice = price * count;
+					
+					$(event.target).parent().children('.bookPrice').val(changePrice);
+					$(event.target).parent().children().children('p').html(changePrice+"원");
+					console.log($(event.target).parent().children('#selectbox').checked)
+					if($(event.target).parent().children('#selectbox').is(":checked")==true)
+						{
+							checked=false;
+						}
+				});
+				
+			});
 		
 		</script>
 
