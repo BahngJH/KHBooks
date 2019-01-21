@@ -5,6 +5,7 @@
 	Member member = (Member)request.getAttribute("member");
 %>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <style>
 	article.checkAccount{margin-top: 50px;}
 	div.input-group {width: 40%;}

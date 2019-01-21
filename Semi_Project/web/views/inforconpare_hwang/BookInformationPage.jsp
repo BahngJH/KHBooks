@@ -1,25 +1,23 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
 import='java.util.*,
+java.sql.*,
+java.text.*,
 com.kh.book.model.vo.Book, 
-com.kh.review.model.vo.Review, 
+com.kh.review.model.vo.Review,
 com.kh.member.model.vo.Member,
-com.kh.author.model.vo.Author,
-com.kh.wish.model.vo.Wish'
+com.kh.author.model.vo.Author'
 	pageEncoding='UTF-8'%>
 	
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%
+	Member m=(Member)request.getAttribute("member");
 	Book b=(Book)request.getAttribute("book");
-	Wish w=(Wish)request.getAttribute("wish");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	List<Review> reviewCountList=(List<Review>)request.getAttribute("reviewCountList");
-	String pageBar=(String)request.getAttribute("pageBar");
 	int reviewsize=(int)request.getAttribute("reviewsize");
 %>
 <%@ include file='/views/common/header.jsp'%>
 <style>
-div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
-div#pageBar span.cPage{color: #0066ff;}
 html, body
 {
 	width:100%; height:100%;
@@ -178,6 +176,7 @@ li {
 	color: black;
 	border: 0;
 	padding: 0;
+	float:right;
 	background-color: white;
 }
 
@@ -278,105 +277,14 @@ li {
 	position: relative;
 	margin-left: 10px;
 }
-.alt {
-	float:right;
-	-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
-	background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
-	background-color:#7396ff;
-	-webkit-border-top-left-radius:9px;
-	-moz-border-radius-topleft:9px;
-	border-top-left-radius:9px;
-	-webkit-border-top-right-radius:9px;
-	-moz-border-radius-topright:9px;
-	border-top-right-radius:9px;
-	-webkit-border-bottom-right-radius:9px;
-	-moz-border-radius-bottomright:9px;
-	border-bottom-right-radius:9px;
-	-webkit-border-bottom-left-radius:9px;
-	-moz-border-radius-bottomleft:9px;
-	border-bottom-left-radius:9px;
-	text-indent:0px;
-	border:1px solid #ffffff;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:11px;
-	font-weight:bold;
-	font-style:normal;
-	height:23px;
-	line-height:23px;
-	width:40px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:0px 0px 0px #3522c7;
-}
-.alt:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
-	background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
-	background-color:#5784ff;
-}.alt:active {
-	position:relative;
-	top:1px;
-}
-.del {
-	float:right;
-	-moz-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	-webkit-box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	box-shadow:inset 0px 0px 7px 1px #9fbcf5;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7396ff), color-stop(1, #5784ff) );
-	background:-moz-linear-gradient( center top, #7396ff 5%, #5784ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7396ff', endColorstr='#5784ff');
-	background-color:#7396ff;
-	-webkit-border-top-left-radius:9px;
-	-moz-border-radius-topleft:9px;
-	border-top-left-radius:9px;
-	-webkit-border-top-right-radius:9px;
-	-moz-border-radius-topright:9px;
-	border-top-right-radius:9px;
-	-webkit-border-bottom-right-radius:9px;
-	-moz-border-radius-bottomright:9px;
-	border-bottom-right-radius:9px;
-	-webkit-border-bottom-left-radius:9px;
-	-moz-border-radius-bottomleft:9px;
-	border-bottom-left-radius:9px;
-	text-indent:0px;
-	border:1px solid #ffffff;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:11px;
-	font-weight:bold;
-	font-style:normal;
-	height:23px;
-	line-height:23px;
-	width:40px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:0px 0px 0px #3522c7;
-}
-.del:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5784ff), color-stop(1, #7396ff) );
-	background:-moz-linear-gradient( center top, #5784ff 5%, #7396ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5784ff', endColorstr='#7396ff');
-	background-color:#5784ff;
-}.del:active {
-	position:relative;
-	top:1px;
-}
-
 #counter {
   background:rgba(255,0,0,0.5);
   border-radius: 0.5em;
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
 }
-div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
-div#pageBar span.cPage{color: #0066ff;}
+
+
 </style>
 <script language='javascript'>
 /* 장바구니, 바로구매 버튼 호버 */
@@ -503,12 +411,11 @@ function fnMove2(){
 		</div>
 		<div class='choiceTab'>
 			<div class='jangbaTab' style='float:left;'>
-			<%int wishNo=1; %>
-			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsert' method='post'>
-			<input type='hidden' name='wishNo' value="<%=wishNo%>"/>
-			<input type='hidden' name='memberNum' value="<%=w.getMemberNum()%>"/>
-			<input type='hidden' name='bookId' value="<%=w.getMemberNum()%>"/>
-			<input type='hidden' name='bookCount' value="<%=w.getBookCount() %>"/>
+			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsert' method='post'>
+			<%-- <input type='hidden' name='wishNo' value="<%=1%>"/>
+			<input type='hidden' name='memberNum' value="<%=logined.getMemberNum()%>"/>
+			<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
+			<input type='hidden' name='bookCount' value="<%=10%>"/> --%>
 			<input type='submit' class='jangba btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='장바구니 담기' style='font-weight:bold;'>
 			</form>
 			</div>
@@ -671,86 +578,163 @@ function fnMove2(){
 				<br>
 				<br>
 				<ul>
+				<script>
+				function validate(){
+					var content=$('[name=reviewContent]').val();
+					if(content.trim().length==0)
+					{
+						alert("내용을 입력하세요!");
+						return false;
+					}
+					return true;
+				}
+				</script>
+				<style>
+				.star_rating {font-size:0; letter-spacing:-4px;}
+				.star_rating a {
+				    font-size:22px;
+				    letter-spacing:0;
+				    display:inline-block;
+				    margin-left:5px;
+				    color:#ccc;
+				    text-decoration:none;
+				}
+				.star_rating a:first-child {margin-left:0;}
+				.star_rating a.on {color:red;}
+				</style>		
+				<pre class='reviewpre' style='width:96%'>
 				<div id='reviewview'>
-					<form action="#" name="reviewText" method="post">
-					<pre class='reviewpre' style='width:96%'>
-					<div class="wrappluswritereview" style='padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:5px;border: 1px solid silver;'>
+                <form action="<%=request.getContextPath()%>/inforconpare_hwang/infoInsertReviewEnd" id="insertReviewFrm" name="reviewText" method="post">
+					<div class="wrappluswritereview" style='background-color:white; padding-top:6px;padding-left: 7px;padding-right:7px;padding-bottom:9px;border: 1px solid silver;'>
 	                    <div class="wrap11">
-	                    	<textarea id="content" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
+	                    	<input type='hidden' id="bookId" name="bookId" value='<%=b.getBookId() %>'/>
+	                    	<input type="hidden" id="star_grade" name="star_grade" value=""/>
+	                    	<input type='hidden' id="checkOption" name="checkOption" value='1'/>
+	                    	<textarea id="content" id="reviewContext" name="reviewContext" maxlength="100" style="width:100%;" placeholder='100글자 이내의 글만 입력이 가능합니다.'></textarea>
 	                    	<span id="counter"></span>
 	                    </div>
 	                    <div class='writereview' style='margin-top:-15px;'>
-                    		<input type='submit' class='reviewWrite' value='리뷰쓰기'>
-	                    </div>
-					</div>
-					</form>
+	                    	<%if(logined!=null) {%>
+	                    	<tr>
+								<th><label></label></th>
+								<td>
+									<span class="star_rating">
+									    <a href="#" class="on">★</a>
+									    <a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+									</span>
+								</td>
+							</tr>
+                    		<button type='button' class="reviewWrite" onclick="fn_insertReview();">리뷰쓰기</button>
+                    		<%}%>
+                    	</div>
+                    </div>
+				</div>
+				<script>
+				$(".star_rating a").click(function() {
+					$(this).parent().children("a").removeClass("on");
+					$(this).addClass("on").prevAll("a").addClass("on");
+					return false;
+				});
+				
+				function fn_insertReview() {
+					var grade = $('.on').length;
+					$('#star_grade').val(grade);
+					$('#insertReviewFrm').submit();
+				}
+				</script>
+				</form>
+					
 					<hr style='border:0.5px solid lightgray;'>
                     <%for(Review r : list) {%>
+                    <%int over=26; %>
 	                    <style>
 	                    input[type='checkbox'] {
 							display: none;
 						}
 						
-						label {
+						#lala {
 							color: royalblue;
 							margin-top: 10px;
 							cursor: pointer;
 							display: inline-block;
 						}
 						
-						label:after {
-							contents: '펼쳐보기';
+						#lala:after {
+							content: '더보기';
 						}
 						
-						input:checked ~ label:after {
-							contents: '닫기';
+						input:checked ~ #lala:after {
+							content: '닫기';
 						}
 						
 	                    .inner<%=r.getReviewNum()%> {
 							max-height: 26px;
 							overflow: hidden;
-							transition: all .2s ease;
+							transition: all .1s ease;
 						}
 						
-						input:checked+.inner<%=r.getReviewNum()%> {
+						input:checked+ .inner<%=r.getReviewNum()%> {
 							max-height: 1000px;
 						}
 	                    </style>
 	                    <div class='reviews'>
 	                        <small>
-	                        <span class='info'>hw**g3324</span>
+	                        <span class='info'><strong><%=b.getMember().getMemberId() %></strong></span>
 	                        <span class='line'>|</span>
 	                        <span class='reviewdate'><%=r.getWriteDate() %></span>
 	                        <span class='line'>|</span>
-	                        <img src='<%=request.getContextPath() %>/images/rating/star05.gif'>
+	                        <%String str=""; %>
+	                        <%switch(r.getGrade()){
+	                        case 1 : str="/images/rating/star01.gif";
+	                        case 2 : str="/images/rating/star02.gif";
+	                        case 3 : str="/images/rating/star03.gif";
+	                        case 4 : str="/images/rating/star04.gif";
+	                        case 5 : str="/images/rating/star05.gif";
+	                        }%>
+	                        <img src="<%=request.getContextPath()%><%=str%>"/>
 	                        </small>
 	                    </div>
-	                    <div class='contents'>
+	                    <style>
+	                    .alt {
+							background: url('<%=request.getContextPath()%>/images/icons/modify.png') no-repeat;
+							border: none;
+							width: 16px;
+							height: 16px;
+							cursor: pointer;
+						}
+						.del {
+							background: url('<%=request.getContextPath()%>/images/icons/deletes.png') no-repeat;
+							border: none;
+							width: 16px;
+							height: 16px;
+							cursor: pointer;
+						}
+						</style>
+	                    <div class='content'>
 	                        <small>
 	                            <input type='checkbox' id='readmore<%=r.getReviewNum()%>' /> 
 	                            <div class='inner<%=r.getReviewNum() %>' style='width:100%;'>
 	                            <pre style='border:none; white-space:pre-wrap; word-break:break-all; margin-bottom:0px; padding-bottom:0px;'><small><%=r.getReviewContext() %></small></pre>
 	                            </div>
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
-	                            <div type=hidden class='delal'>
-		                    		<button onclick="" class='del'>삭제</button>
-		                            <button onclick="" class='alt'>수정</button>
+	                            <div type=hidden class='delal' style="float:right;">
+								<input type="button" class="alt" value=""/>
+								<input type="button" class="del" value=""/>
 		                    	</div>
 		                    	<%}%>
-	                            <label for='readmore<%=r.getReviewNum()%>'>
-	                            </label>
+								<label id='lala' for='readmore<%=r.getReviewNum()%>'></label>
 	                        </small>
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>
                     <%} %>
-                        <div id="pageBar">
-                        	<%=pageBar %>
-                        </div>
-                    </pre>
-				</ul>
-			</div>
+					</div>
+					</div>
+				</pre>
+			</ul>
 		</div>
-	</div>
 </section>
 
 <%@include file='/views/common/footer.jsp'%>

@@ -143,7 +143,15 @@ public class MemberService {
 		close(conn);
 		return rs;
 	}
-	
+	//장바구니 목록 불러오는 메소드
+	public List<Book> getWishlist(int memberNum)
+	{
+		Connection conn = getConnection();
+		List<Book> booksList  = new MemberDao().getWishlist(conn, memberNum);
+		close(conn);
+		return booksList;
+		
+	}
 
 
 	

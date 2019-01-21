@@ -31,7 +31,7 @@
 </head>
 <body>
 <div id="container">
-		<div id="logo"><a href="<%=request.getContextPath()%>/views/main/main.jsp"><b>KH BOOKS</b></a></div>
+		<div id="logo"><a href="<%=request.getContextPath() %>/main/mainview"><b>KH BOOKS</b></a></div>
 		<h3>회원님의 아이디는 다음과 같습니다.</h3>					
 			<h4><%=id %></h4>
 			<input type="button" class="btn btn-primary" onclick="goLogin()" value="로그인 하러 가기"><br><br>
