@@ -99,11 +99,12 @@ function insertNotice(){
 				<div class="text-center">
 					<%=pageBar %>
 				</div>
+
 				</div>
 			
-
 </section>
-			</div>
+
+	</div>
 
 			
 
