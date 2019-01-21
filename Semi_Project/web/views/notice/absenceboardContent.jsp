@@ -33,6 +33,7 @@ table.type10 {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	margin: 40px 10px 0px 180px;
+	width:0px; height:30px;
 }
 
 table.type10 thead th {
@@ -41,7 +42,7 @@ table.type10 thead th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #0100FF;
+	background: #8C8C8C;
 	margin: 20px 10px;
 	text-align: center;
 }
@@ -59,7 +60,7 @@ table.type10 td {
 }
 
 table.type10 .even {
-	background: #E6FFFF;
+	background: #EAEAEA;
 }
 
 input[value='삭제하기'] {
@@ -92,6 +93,7 @@ input[value='삭제하기'] {
 			<br />
 			<%if(logined!=null||logined.getMemberId().equals("admin")){ %>
 
+			
 			<table class="type10">
 				<thead>
 

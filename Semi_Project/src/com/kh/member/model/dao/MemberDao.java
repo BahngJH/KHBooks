@@ -290,6 +290,28 @@ public class MemberDao {
 		}
 		return rs;	
 	}
+	//장바구니 목록 다중 삭제
+		public int wishlistMutiDelete(Connection conn, List<Integer> booksId, int memberNum)
+		{
+			PreparedStatement pstmt = null;
+			int rs = 0;
+			String sql = prop.getProperty("wishlistMutiDelete");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				for(int i=0;i<booksId.size();i++) {
+					pstmt.setInt(1, booksId.get(i));
+					pstmt.setInt(2, memberNum);
+					rs += pstmt.executeUpdate();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return rs;	
+		}
 	//찜 목록에서 장바구니로 이동
 	public int moveWishlist(Connection conn, List<Integer> list, int memberNum)
 	{
