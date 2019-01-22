@@ -13,7 +13,7 @@ marquee {
 
 div.title , div.notice {
 	float: left;
-	margin: 0px 0px 0px 550px;
+	margin: 0px 0px 0px 780px;
 	
 }
 
@@ -44,9 +44,9 @@ a#MOVE_TOP_BTN {
 	background-image:
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
-footer.fot {background-color:#E8D9FF;}
+footer.fot {background-color:#f8f8f8;}
 .fot hr{border: 1px solid gray;}
-div#btn{ margin:0px 0px 0px 500px;}
+div#btn{ margin:0px 0px 0px 590px;}
 div#btn a{float:left; margin:0px 10px 0px 120px; }
 div#btn  a{color:black;}
 </style>
@@ -69,11 +69,9 @@ div#btn  a{color:black;}
 			</ul>
 		</marquee>
 	</div>
-	
+	<br/>
 	<a id="MOVE_TOP_BTN" href="#"></a>
-	<p>
-		&lt;CopyRight 2018. <strong>KH정보교육원</strong>. All rights reserved.&gt;
-	</p>
+	
 	<hr/>
 	<div id="btn">
 
@@ -86,7 +84,7 @@ div#btn  a{color:black;}
 	<address>
 		㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 
 		대표전화 : 02-858-8282(발신자부담전화)<br/> 
-		 팩스 :785-41258 (지역번호공통)<br />
+		 팩스 :785-41258 (지역번호공통)
 	</address>
 
 

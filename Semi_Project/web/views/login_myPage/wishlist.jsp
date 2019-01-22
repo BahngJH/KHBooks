@@ -33,8 +33,11 @@
 		float:left;
 	}
 	#selectbox{
-		
+		float:right;
 		margin-left:10px;
+	}
+	#bookCount{
+		float:left;
 	}
 	
 </style>
@@ -67,7 +70,7 @@
                                         alt="책 이미지">
                                 </a>
                             </div>
-                            <div class='middle result-image col-xs-6 col-sm-7 col-md-7 col-lg-7'>
+                            <div class='middle result-image col-xs-5 col-sm-5 col-md-5 col-lg-5'>
                             	<!-- 책 정보 -->
                                 <h4 class='book_info'>
                                     <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">
@@ -77,15 +80,15 @@
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
                                 <button class="btn btn-default" type="button">구매</button>
-                                <button class="btn btn-default" type="button">삭제</button>
+                                <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 
                             <!-- 책 가격,수량, 선택 체크박스 -->
                             </div>
-                            <div class="end col-xs-3 col-sm-3 col-md-3 col-lg-3">
-	                          	<strong><p class="book_info book_price"><%=b.getPrice() %>원</p></strong>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">	                       	                          		                          	
-	                            <input type="checkbox" id="selectbox" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
+                            <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
+	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">권	                       	                          		                          	
+	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
 	                            	
@@ -106,8 +109,8 @@
 	                    		</tr>
 	                    	</table>
 	                    	<div id="btnCheck">
-	                    	<button class="btn btn-danger">선택 삭제</button>
-							<button class="btn btn-primary" >선택 구매</button>
+	                    	<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
+							<button class="btn btn-primary">선택 구매</button>
 							</div>
                     	<%
                     }else{
@@ -139,7 +142,9 @@
 			$('#milage').html(milage);
 			$('#selectBooks').html(count);
 		 	$('#totalSum').html(sum);
-		}
+		} 
+		
+		
 		//전체 체크옵션, 수량 가격 체크
 			function cAll(){
 				if($('#checkAll').is(':checked')){
@@ -163,7 +168,7 @@
 				 	$('#milage').html(0);
 				}
 			}
-		//수량이 바뀌면 값도 변하게 수정
+			//수량이 바뀌면 값도 변하게 수정
 			$(function(){
 				$('.bookCount').blur(function(){
 					//원본데이터를 하나 만들어서 본래의 가격 유지
@@ -172,16 +177,23 @@
 					var changePrice = price * count;
 					
 					$(event.target).parent().children('.bookPrice').val(changePrice);
-					$(event.target).parent().children().children('p').html(changePrice+"원");
-					console.log($(event.target).parent().children('#selectbox').checked)
-					if($(event.target).parent().children('#selectbox').is(":checked")==true)
-						{
-							checked=false;
-						}
+					$(event.target).parent().children('p').html(changePrice+"원");
+					//alert("체크해제 후 다시 체크하세요");
+					
 				});
-				
 			});
+			
+			 function multiDelete(){
+				var deleteList = $('#checkedList');
+				var url = "<%=request.getContextPath()%>/member/wishlistMultiDelete";
+				deleteList.attr("action",url);
+				deleteList.submit();
+			}
+			 function deleteOne(){
+				//버튼을 누르면 event가 매개변수로 자동으로 들어오고 event.target으로 현재의 버튼에서 원하는 자료를 찾아간다.
+				var bookId = $(event.target).next('input').val();
+				location.href="<%=request.getContextPath()%>/member/wishlistMultiDelete?BookId="+bookId;
+			} 
 		
 		</script>
 
-<%@ include file="/views/common/footer.jsp"%>

@@ -243,4 +243,104 @@ public class SearchDao {
 		
 		return count;
 	}
+
+	public int getBookCount(Connection conn, String genre) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getGenreBookCount"));
+			pstmt.setString(1, "%"+genre+"%");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("CNT");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
+	public List<Book> selectBook(Connection conn, int cPage, int numPerPage, String genre, String order) {
+List<Book> list=new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String orderby = "";
+			switch(order) {
+			case "default":
+				orderby = "NULL";
+				break;
+			case "popularity":
+				/*인기순*/
+				orderby += "SALES DESC";
+				break;
+			case "recent":
+				/*최근순*/
+				orderby += "BOOKDATE DESC";
+				break;
+			case "grade":
+				/*평점순*/
+				
+				break;
+			case "review":
+				/*리뷰 많은 순*/
+				
+				break;
+			case "price":
+				/*가격 낮은 순*/
+				orderby += "PRICE ASC";
+				break;
+			}
+			String sql = prop.getProperty("searchGenreBookS") + orderby + prop.getProperty("searchGenreBookE");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+genre+"%");
+			pstmt.setInt(2, (cPage-1) * numPerPage+1);
+			pstmt.setInt(3, cPage * numPerPage);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Book b = new Book();
+				/* 작가 정보 */
+				Author t = new Author();
+				t.setAuthorName(rs.getString("authorname"));
+				t.setAuthorInfo(rs.getString("authorinfo"));
+				t.setauthorNum(rs.getInt("authornum"));
+				/*책 정보*/
+				b.setAuthor(t);
+				b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				
+				list.add(b);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();		
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

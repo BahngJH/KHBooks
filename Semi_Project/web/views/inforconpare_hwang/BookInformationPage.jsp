@@ -10,10 +10,8 @@ com.kh.author.model.vo.Author'
 	
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%
-	Member m=(Member)request.getAttribute("member");
 	Book b=(Book)request.getAttribute("book");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
-	List<Review> reviewCountList=(List<Review>)request.getAttribute("reviewCountList");
 	int reviewsize=(int)request.getAttribute("reviewsize");
 %>
 <%@ include file='/views/common/header.jsp'%>
@@ -143,6 +141,16 @@ li {
 	border-top-color: black;
 	border-bottom-color: black;
 	width: 95pt;
+	height: 30pt;
+	padding: 0px;
+	background-color: black;
+}
+.jjim {
+	border-left-color: black;
+	border-right-color: black;
+	border-top-color: black;
+	border-bottom-color: black;
+	width: 30pt;
 	height: 30pt;
 	padding: 0px;
 	background-color: black;
@@ -283,17 +291,17 @@ li {
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
 }
-
-
 </style>
 <script language='javascript'>
 /* 장바구니, 바로구매 버튼 호버 */
 function change1(obj) {
-	obj.style.background = 'rgb(66, 66, 66)';
+	obj.style.background = '#0066ff';
+	obj.style.border = 'black';
 	obj.style.color = 'white';
 }
 function change2(obj) {
 	obj.style.background = 'black';
+	obj.style.border = 'blue';
 	obj.style.color = 'white';
 }
 /* 이미지 크게보기 버튼 */
@@ -321,7 +329,7 @@ function fnMove2(){
 					<div class='cover'>
 						<div class='bookcover'>
 						<!-- 이미지보여주기 -->
-							<img src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
+							<img style="border:1px solid black;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
@@ -342,14 +350,8 @@ function fnMove2(){
 						</h1>
 						<div class='writer'>
 							<!-- 작가이름,관심작가등록,지음,옮김,출판사,출간일 -->
-							<span class='name'> <!-- 작가이름, 관심작가등록 --> <span
-								class='popup_load'> <a href='<%=request.getContextPath()%>/author/authorInfo?author=<%=b.getAuthor().getauthorNum()%>'><%=b.getAuthor().getAuthorName() %></a>
-									<div class='tooltip' style='display: none;'>
-										<a href='#'>작가상세정보</a> <span class='line'>|</span>
-										<!-- 라인 -->
-										<a href='#'>관심작가등록</a> <span class='arrow'></span>
-									</div>
-							</span>
+							<span class='name'> <!-- 작가이름, 관심작가등록 --> 
+							<span class='popup_load'> <a href='<%=request.getContextPath()%>/author/authorInfo?author=<%=b.getAuthor().getauthorNum()%>'><%=b.getAuthor().getAuthorName() %></a></span>
 							</span> 지음 <span class='line'>|</span>
 							<!-- 라인 -->
 							<!-- 에디터가 있을 때 보여주고 없을 때 옮긴이 없음 -->
@@ -361,7 +363,7 @@ function fnMove2(){
 							옮긴이 없음<span class='line'> |</span>
 							<%} %>
 							<!-- 라인 -->
-							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'>새움</a>
+							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'><%=b.getPublisher() %></a>
 							</span> <br> <span class='date' title='출간일'> <!-- 출간일 -->
 								<%=b.getBookDate() %> <span>출간</span>
 							</span> <span class='lating'>
@@ -411,21 +413,57 @@ function fnMove2(){
 		</div>
 		<div class='choiceTab'>
 			<div class='jangbaTab' style='float:left;'>
-			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsert' method='post'>
-			<%-- <input type='hidden' name='wishNo' value="<%=1%>"/>
-			<input type='hidden' name='memberNum' value="<%=logined.getMemberNum()%>"/>
-			<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
-			<input type='hidden' name='bookCount' value="<%=10%>"/> --%>
-			<input type='submit' class='jangba btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='장바구니 담기' style='font-weight:bold;'>
-			</form>
+			<button type="button" class="jangba btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>장바구니담기</button>
+			<%if(logined!=null) {%>
+			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' method='post'>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="닫기"><span aria-hidden="true">×</span></button>
+			        <h4 class="modal-title" id="myModalLabel" style="color:black;">수량입력</h4>
+			      </div>
+			      <div class="modal-body">
+					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
+					<input type='number' name='bookCount' placeholder='수량을 입력하세요.' style='color:black;'/>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button>
+			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='장바구니담기'></button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
+			</form>
+			<%} %>
+			</div>
+			<script>
+			// 장바구니탭에서 모달창 띄어주기
+			$('#myModal').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
+			  var button = $(event.relatedTarget) // 모달 윈도우를 오픈하는 버튼
+			  var titleTxt = button.data('title') // 버튼에서 data-title 값을 titleTxt 변수에 저장
+			  var modal = $(this)
+			  modal.find('.modal-title').text('책 ' + titleTxt) // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
+			})
+			</script>
+			
+			
+			
 			<div class='buyTab' style='float:left; margin-left:5px;'>
-			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsert' method='post'>
-			<button type='submit' class='buy btn-lg' onmouseout='change2(this)'
-				onmouseover='change1(this)'>
+			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsertBuyEnd' method='post'>
+			<button type='submit' class='buy btn-lg' onmouseout='change2(this)'	onmouseover='change1(this)'>
 				<strong>구매하기</strong>
 			</button>
 			</form>
+			</div>
+			
+			
+			
+			<div class='jjimTab' style='float:left; margin-left:5px;'>
+				<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertJjimEnd' method='post'>
+					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
+					<input type='submit' class='jjim btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='찜' style='font-weight:bold;'>
+				</form>
 			</div>
 		</div>
 		<br>
@@ -619,11 +657,11 @@ function fnMove2(){
 								<th><label></label></th>
 								<td>
 									<span class="star_rating">
-									    <a href="#" class="on">★</a>
-									    <a href="#">★</a>
-										<a href="#">★</a>
-										<a href="#">★</a>
-										<a href="#">★</a>
+									    <a href="#" class="on" style='font-size:15px; font-weight:bold;'>★ </a>
+									    <a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+										<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+										<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+										<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
 									</span>
 								</td>
 							</tr>
@@ -682,17 +720,17 @@ function fnMove2(){
 	                    </style>
 	                    <div class='reviews'>
 	                        <small>
-	                        <span class='info'><strong><%=b.getMember().getMemberId() %></strong></span>
+	                        <span class='info'><strong style='color:#220706;'><%=r.getMember().getMemberId() %></strong></span>
 	                        <span class='line'>|</span>
 	                        <span class='reviewdate'><%=r.getWriteDate() %></span>
 	                        <span class='line'>|</span>
 	                        <%String str=""; %>
 	                        <%switch(r.getGrade()){
-	                        case 1 : str="/images/rating/star01.gif";
-	                        case 2 : str="/images/rating/star02.gif";
-	                        case 3 : str="/images/rating/star03.gif";
-	                        case 4 : str="/images/rating/star04.gif";
-	                        case 5 : str="/images/rating/star05.gif";
+	                        case 1 : str="/images/rating/1.png";break;
+	                        case 2 : str="/images/rating/2.png";break;
+	                        case 3 : str="/images/rating/3.png";break;
+	                        case 4 : str="/images/rating/4.png";break;
+	                        case 5 : str="/images/rating/5.png";break;
 	                        }%>
 	                        <img src="<%=request.getContextPath()%><%=str%>"/>
 	                        </small>
