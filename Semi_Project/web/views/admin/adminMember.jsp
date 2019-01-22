@@ -18,12 +18,12 @@ cellspacing:0;
 
 table th{
  border-bottom:1px solid skyblue;
-margin: 5px 0;
+
 padding: 8px 10px;
-border-width: 2px;
-border-height: 10px;
+
  text-align:center;
  }
+ , table td{ text-align:center;}
  		
 </style>
 
