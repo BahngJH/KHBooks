@@ -1,4 +1,4 @@
-package com.kh.notice.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
+import com.kh.admin.model.service.AdminService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class NoticeMainServlet
+ * Servlet implementation class AdminMemberServlet
  */
-@WebServlet("/notice/noticemain")
-public class NoticeMainServlet extends HttpServlet {
+@WebServlet("/admin/member")
+public class AdminMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeMainServlet() {
+    public AdminMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +32,6 @@ public class NoticeMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
 		int cPage;
 		
 		try {
@@ -48,18 +46,17 @@ public class NoticeMainServlet extends HttpServlet {
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
-			numPerPage=8;
+			numPerPage=7;
 			
 		}
 		
-		int totalBoard=new NoticeService().selectCount(); // 디비 속성갯수
-		
+		int totalBoard=new AdminService().selectCount(); // 디비 속성갯수
+	
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);// 필요한 총 페이지수
+	
 		
 		
-
-		List<Notice> list=new NoticeService().selectList(cPage,numPerPage);
-		
+		List<Member> list=new AdminService().selectMember(cPage, numPerPage);
 		String pageBar="";
 		pageBar+="<ul class='pagination'>";
 		int pageSize=5; //페이지 최대 수 5이면 12345<다음>
@@ -70,11 +67,11 @@ public class NoticeMainServlet extends HttpServlet {
 		if(pageNo ==1) {			
 			pageBar+="<li><span aria-hidden='true'>&laquo;</span></li>";
 		}else {
-			 
+		
 			//2이상이면 이전 클릭시 현재 페이지 -1페이지로 이동
 			pageBar+="<li><a href='"+request.getContextPath()
-			+"/notice/noticemain?cPage="+(pageNo-1)
-			+"&numPerPage="+numPerPage+"'aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+			+"/admin/member?cPage="+(pageNo-1)
+			+"&numPerPage="+numPerPage+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}
 		//선택페이지 만들기
 				while(!(pageNo>pageEnd||pageNo>totalPage))
@@ -86,7 +83,7 @@ public class NoticeMainServlet extends HttpServlet {
 					else
 					{
 						pageBar+="<li><a href='"+request.getContextPath()
-						+"/notice/noticemain?cPage="+(pageNo)
+						+"/admin/member?cPage="+(pageNo)
 						+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 					}
 					pageNo++;
@@ -96,21 +93,13 @@ public class NoticeMainServlet extends HttpServlet {
 			pageBar+="<li><span aria-hidden='true'>&raquo;</span></li>";
 			
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/notice/noticemain?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/admin/member?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}
-		
-		
+	
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/notice/mainnotice.jsp").forward(request, response);
-		
-		
-		
-			
-	
-		
-			
+		request.getRequestDispatcher("/views/admin/adminMember.jsp").forward(request, response);
 		
 	}
 

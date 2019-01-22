@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,com.kh.absence.model.vo.*,com.kh.notice.model.vo.*" %>
-<%@ include file="/views/common/header.jsp"%>
+<%@ include file="/views/common/adminheader.jsp"%>
 
 <%
 	List<Absence> list=(List)request.getAttribute("list");
@@ -9,47 +9,31 @@
 %>
 <style>
 
-.col-sm-2 a {
-   color: black;
-   cursor: pointer;
-   text-decoration: none;
-}
+.col-sm-9 table{
+cellspacing:0;
+ cellpadding:0;
+ border:0px;
+ }
 
-.col-sm-2 {
-   margin: 80px 0 0 0;
-}
-
-/*  .col-sm-2 hr {
-   border: 1px solid  darkgray;
-}  */
-
-.col-sm-2 h4 {
-   color: black;
-}
+table th{
+ border-bottom:1px solid skyblue;
+margin: 5px 0;
+padding: 8px 10px;
+border-width: 2px;
+border-height: 10px;
+ text-align:center;
+ }
+ 
+ .col-sm-9 td{
+ text-align:center;
+ }
 
 </style>
 
 
 
-<div class="container">
-   <div class="col-sm-2">
 
-      <h4>
-          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <strong>관리자 페이지</strong>
-      </h4>
-      <hr/>
-    	<a href=""><strong>도서정보</strong></a>
-      <hr/>
-      <a href=""><strong>회원정보</strong></a>
-      <hr/>
-		
-	  <a herf=""><strong>도서신청 목록</strong></a>
-	  <hr/>
-      <a href="#"><strong>1대1문의내역</strong></a>
-      <hr/>
-      </div>
-      
-  			<div class="col-sm-9">
+  			<div class="col-sm-10">
   			
   				<h2>최근 부재도서 주문내역</h2>
 				<hr/>
@@ -83,7 +67,7 @@
 								
 				</table>
 				<br/>
-				<hr/>
+				
 				<h2>최근 공지사항내역</h2>
 				<hr/>
 				<br/>
