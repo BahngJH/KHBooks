@@ -119,6 +119,7 @@ public class SearchPw2Servlet extends HttpServlet {
 		}catch (Exception e) {
 			e.printStackTrace();// TODO: handle exception
 		}
+		
 		HttpSession saveKey = request.getSession();
 		saveKey.setAttribute("AuthenticationKey", AuthenticationKey);
 		//패스워드 바꿀때 뭘 바꿀지 조건에 들어가는 id

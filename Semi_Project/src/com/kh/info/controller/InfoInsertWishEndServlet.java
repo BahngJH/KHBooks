@@ -57,7 +57,7 @@ public class InfoInsertWishEndServlet extends HttpServlet {
 		}
 		else
 		{
-			request.setAttribute("msg", "장바구니에 책을 넣지 못했습니다.");
+			request.setAttribute("msg", "이미 장바구니에 담겨있습니다.");
 			request.setAttribute("loc", "/inforconpare_hwang/infoView?bookId="+bookId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}

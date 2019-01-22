@@ -24,21 +24,19 @@ public class QnaService {
 		close(conn);
 		return result;
 	}
-	
-	//답변수정
+
+	// 답변수정
 	public int updateAnswer(QnaRe qr) {
-		Connection conn=getConnection();
-		int result=new QnaDao().updateAnswer(conn,qr);
-		if(result>0){commit(conn);}
-		else rollback(conn);
+		Connection conn = getConnection();
+		int result = new QnaDao().updateAnswer(conn, qr);
+		if (result > 0) {
+			commit(conn);
+		} else
+			rollback(conn);
 		close(conn);
 		return result;
-		
+
 	}
-	
-	
-	
-	
 
 	// 내가 쓴 문의글
 	public int selectMyCount(int memberNum) {
@@ -85,14 +83,13 @@ public class QnaService {
 		return rs;
 	}
 
-    //문의글 선택
+	// 문의글 선택
 	public Qna selectNo(int no) {
 		Connection conn = getConnection();
 		Qna q = new QnaDao().selectNo(conn, no);
 		close(conn);
 		return q;
 	}
-	
 
 	// 관리자 답변 등록
 	public int qnaAnswerEnroll(QnaRe qr) {
@@ -105,6 +102,14 @@ public class QnaService {
 		}
 		close(conn);
 		return rs;
+	}
+
+	// 관리자 답변 메일 전송
+	public Qna sendEmail(int qnaNum) {
+		Connection conn = getConnection();
+		Qna q = new QnaDao().sendEmail(conn, qnaNum);
+		close(conn);
+		return q;
 	}
 
 }

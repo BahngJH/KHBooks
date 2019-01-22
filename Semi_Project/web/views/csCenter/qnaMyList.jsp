@@ -8,26 +8,12 @@
 	String pageBar = (String) request.getAttribute("pageBar");
 	List<QnaRe> qrList = (List)request.getAttribute("qrList");
 		/* Member m = (Member) request.getSession().getAttribute("logined");  */
-%> 
+%>
 
 <style>
-li {
+.askLi {
+	padding: 11px 50px 2px 50px;
 	list-style: none;
-}
-
-.cs_title {
-	text-align: center;
-	padding: 0 0 25px 0;
-}
-
-.csInfo {
-	padding: 0 0 0 280px;
-}
-
-li {
-	padding: 0 0 13px;
-	20
-	px;
 }
 
 ul {
@@ -36,34 +22,25 @@ ul {
 	padding-inline-start: 40px;
 }
 
-.csCenter {
-  max-width:100%; 
-  max-height:100%;
-  margin:auto;
-  display:block;
-  
-  
-}
-
 em {
 	font-size: 17px;
 }
 
 .cs_title {
-
 	font-size: 2em;
 	float: left;
 	padding-top: 35px;
-	
+	margin: 40px 0 0 40px;
 }
 
 #askBtn {
 	width: 120px;
 	height: 30px;
 	font-size: 15px;
-/* 	padding: 0 0 1px 0; */
+	/* 	padding: 0 0 1px 0; */
 	float: right;
 	text-align: center;
+	margin: 90px 0 0 0;
 }
 
 .row hr {
@@ -72,35 +49,52 @@ em {
 	background: #ccc;
 }
 
-.cbtn {
-	margin-left: 120px;
-}
-
 .qna-paging {
 	text-align: center;
 }
-.searchDate{
-text-align: left;
-}
-#askTitle_tg{
-width:600px;
-}
-.askInfo{
-display: inline;
-text-align: left;
 
-}
-#outer {
-position: relative;
+.searchDate {
+	text-align: left;
+	padding-left: 70px;
+	padding-bottom: 20px;
 }
 
-#inner {
-margin: auto;
-position: absolute;
-left:0;
-right: 0;
-top: 0;
-bottom: 0;
+#askTitle_tg {
+	width: 700px;
+	text-aglign: center;
+}
+
+.sch-lcont {
+	padding: 0 50px 50px 20px;
+}
+
+.cal {
+	padding: 0 15px 10px 15px;
+}
+
+.search_btn {
+	padding-top: 15px;
+}
+
+.searchDate {
+	padding-bottom: 40px;
+}
+
+.answer_tg {
+	padding: 0 130px 0 50px;
+}
+
+.myAsk {
+	padding-right: 80px;
+	margin-right: 70px;
+}
+
+.Answer {
+	margin-left: 70px;
+}
+.pageBar{
+
+padding-top: 30px;
 }
 </style>
 
@@ -113,7 +107,7 @@ bottom: 0;
 <section class="board-container col-sm-10">	
  <!-- 타이틀 -->
  	<div class="row">
-		<div class="csCenter col-md-offset-2 col-md-7">			
+		<div class="csCenter col-md-10">			
 				<strong><h3 class="cs_title">1:1 문의내역</h3></strong>										
 			 <%if(logined!=null){%> 
 				<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
@@ -122,44 +116,50 @@ bottom: 0;
 	</div>
 	<!-- 날짜 조회 -->	
 	<div class="row">	
-		<div class="searchDate col-md-offset-2 col-md-7">	 
+		<div class="searchDate col-md-12">	 
 			<hr>
 			 <div class="sch-lcont">
-				<strong>기간별 조회</strong>
-				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-				<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
-				<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-				<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
-				<span class="cbtn">					  		
-			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
-			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
-			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
-			      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
-			      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>     
-				</span>
+				 <div class="cal col-md-12">
+					<strong>기간별 조회</strong>
+					<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
+					<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
+					<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
+					<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
+				</div>
+				<div class="search_btn col-md-12">
+					<span class="cbtn">					  		
+				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
+				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
+				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
+				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
+				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>
+				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">선택삭제</a>      
+					</span>
+				</div>
 			 </div>				                   		                 
 		</div>
 	</div>	
     <!-- 문의리스트 -->
     <div class="row">
-		<div class="csCenter col-md-offset-2 col-md-7">  				
+		<div class="csCenter col-md-12">  				
 			<div class="askTitle">
 				<ul class="askList">						
 			 	  <%for(Qna q : list){ System.out.println(q);%>									 	   		   					   
-	                <li>
+	                <li class="askLi">
 		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     
+						        <input type="checkbox"/>
 						        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>
-						        <span class=""><%=q.getQnaDate() %></span> 																						 </th>
+						        <span class=""><%=q.getQnaDate() %></span> 
 						       <em class="">&nbsp;</em>						   						     
 						</button>					
 					</li> 							 						
 					<!--문의글 확인 및 재문의 -->			
-					<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
+					<div class="answer_tg collapse" id="Qnum<%=q.getQnaNum()%>">
 	                     <div class="well" value="">
-	                     	 <div class="alert alert-info">
+	                     	 <div class="myAsk alert alert-info">
 	  								<strong>내질문 : <%=q.getQnaContent() %></strong>
 							 </div>
-							  <div class="alert alert-warning">
+							  <div class="Answer alert alert-warning">
 	  								<%if(q.getReContent()!=null){%>
 	  								<strong>답변 : <%=q.getReContent() %></strong>   								
 	  								<% }else{%>
@@ -174,10 +174,10 @@ bottom: 0;
 	</div>
 				<!--페이징처리 -->
 	<div class="row">		                
-   		<div class="qna-paging col-md-offset-2 col-md-7" >
+   		<div class="qna-paging col-md-12" >
    			<div id='pageBar'>
 	 			<nav>
-	 				<ul class="pagination">			  		
+	 				<ul class="pageBar pagination">			  		
 						<li><%=pageBar %></li>				
 					</ul>
    	  		 	</nav>

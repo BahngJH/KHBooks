@@ -136,7 +136,20 @@ input[value='삭제하기'] {
 
 
 			</table>
-		
+			
+			<!-- 댓글 폼 구현중  -->
+	<%-- 		<div class="comment-editor">			
+				<form action="<%=request.getContextPath() %>/board/commentInsert" name="boardCommentFrm" method="post">
+					<input type="text" class="form-control" placeholder="Text input">
+						<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>"/> 
+						<input type="hidden" name="boardCommentWriter" value="<%=logined.getMemberId() %>"/>
+						<input type="hidden" name="boardCommentLevel" value="1"/>
+						<input type="hidden" name="boardCommentRef" value="0"/>
+						<textarea cols='60' rows='3' name=""></textarea>
+						<button type="submit" id="btn-insert">등록</button>
+				</form>
+			</div> --%>
+			
 
 
 

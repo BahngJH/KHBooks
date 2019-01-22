@@ -91,25 +91,7 @@ border-height: 10px;
 	   			</div>
 			</div>				 				 				                   		                 
 		</div>
-	</div>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-						 		  			
+	</div>							 		  			
  </section>
  
  

@@ -4,7 +4,7 @@
 <%String isbn = (String)request.getAttribute("isbn"); %>
 <section class='container'>
 <h4>도서 정보 입력 </h4>
-	<form action="">
+	<form action="/book/insertbook" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<th>책 제목</th>
@@ -26,11 +26,11 @@
 					<%} %>
 				</select></td>
 				<th>ISBN</th>
-				<td><input type="number" name="" id="" value="<%=isbn%>"class="form-control" readonly required/></td>
+				<td><input type="text" name="isbn" id="isbn" value="<%=isbn%>"class="form-control" required/></td>
 			</tr>
 			<tr>
 				<th>책 표지</th>
-				<td><input type="file" name="" id="" class="form-control"/></td>
+				<td><input type="file" name="image" id="image" class="form-control"/></td>
 				<th>페이지 수</th>
 				<td><input type="number" name="page" id="page" class="form-control"/></td>
 			</tr>
@@ -47,10 +47,10 @@
 				<td colspan="3"><textarea name="index" id="index" cols="80" rows="7" class="form-control"></textarea></td>
 			</tr>
 			<tr>
-				<th>역자</th>
-				<td><input type="text" name="" id="" class="form-control"/></td>
+				<th>엮은이</th>
+				<td><input type="text" name="editor" id="editor" class="form-control"/></td>
 				<th>번역가</th>
-				<td><input type="text" name="" id="" class="form-control"/></td>
+				<td><input type="text" name="translator" id="translator" class="form-control"/></td>
 			</tr>
 			<tr>
 				<th>수량</th>
@@ -81,12 +81,15 @@
 	    			target:'isbn'
 	   			},
 	   			success : function(result){
-	   				var data = result.documents[0];
+	   				let data = result.documents[0];
 	   				$("#title").val(data.title);
 	   				$('#author').val(data.authors);
 	   				$('#pub').val(data.publisher);
 	   				$('#price').val(data.price);
 	   				$('#info').val(data.contents+"...");
+	   				let date = data.datetime.split('T')[0];
+	   				$('#date').val(date);
+	   				$('#translator').val(data.translators);
 	   			}
 	   		});
 			}
