@@ -1,7 +1,6 @@
-package com.kh.admin.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
+import com.kh.book.model.vo.Book;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class AdminMainServlet
+ * Servlet implementation class UpdateBookcountServlet
  */
-@WebServlet("/admin/mainview")
-public class AdminMainServlet extends HttpServlet {
+@WebServlet("/member/updateBookcount")
+public class UpdateBookcountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMainServlet() {
+    public UpdateBookcountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +32,25 @@ public class AdminMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Absence> list=new AbsenceService().selectAllAbsence();
-		List<Notice> list1=new NoticeService().allNotice();
+		String bookId = request.getParameter("bookId");
+		String bookCount = request.getParameter("bookCount");
+		Member logined = (Member) request.getSession().getAttribute("logined");
+		int memberNum = logined.getMemberNum();
 		
-		request.setAttribute("list",list);
-		request.setAttribute("list1",list1);
+		Book b = new Book();
+		b.setBookId(Integer.parseInt(bookId));
+		b.setBookCount(Integer.parseInt(bookCount));
 		
-		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+		
+		System.out.println(bookId+" "+bookCount);
+		int rs = new MemberService().updateBookcount(b,memberNum);
+		if(rs>0) {
+			System.out.println("수량 변경 성공");
+		}else {
+			System.out.println("수량 변경 실패");
+		}
+		
+		
 	}
 
 	/**

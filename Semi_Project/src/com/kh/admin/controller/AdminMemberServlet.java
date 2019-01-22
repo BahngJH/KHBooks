@@ -1,4 +1,4 @@
-package com.kh.absence.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
+import com.kh.admin.model.service.AdminService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class AbsencePagingServlet
+ * Servlet implementation class AdminMemberServlet
  */
-@WebServlet("/absence/page")
-public class AbsencePagingServlet extends HttpServlet {
+@WebServlet("/admin/member")
+public class AdminMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AbsencePagingServlet() {
+    public AdminMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +33,7 @@ public class AbsencePagingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cPage;
-	
+		
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 			
@@ -45,17 +46,17 @@ public class AbsencePagingServlet extends HttpServlet {
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
-			numPerPage=8;
+			numPerPage=7;
 			
 		}
 		
-		int totalBoard=new AbsenceService().selectCount(); // 디비 속성갯수
+		int totalBoard=new AdminService().selectCount(); // 디비 속성갯수
 	
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);// 필요한 총 페이지수
 	
 		
-		List<Absence> list=new AbsenceService().selectList(cPage,numPerPage);
 		
+		List<Member> list=new AdminService().selectMember(cPage, numPerPage);
 		String pageBar="";
 		pageBar+="<ul class='pagination'>";
 		int pageSize=5; //페이지 최대 수 5이면 12345<다음>
@@ -69,7 +70,7 @@ public class AbsencePagingServlet extends HttpServlet {
 		
 			//2이상이면 이전 클릭시 현재 페이지 -1페이지로 이동
 			pageBar+="<li><a href='"+request.getContextPath()
-			+"/absence/page?cPage="+(pageNo-1)
+			+"/admin/member?cPage="+(pageNo-1)
 			+"&numPerPage="+numPerPage+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}
 		//선택페이지 만들기
@@ -82,7 +83,7 @@ public class AbsencePagingServlet extends HttpServlet {
 					else
 					{
 						pageBar+="<li><a href='"+request.getContextPath()
-						+"/absence/page?cPage="+(pageNo)
+						+"/admin/member?cPage="+(pageNo)
 						+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 					}
 					pageNo++;
@@ -92,16 +93,13 @@ public class AbsencePagingServlet extends HttpServlet {
 			pageBar+="<li><span aria-hidden='true'>&raquo;</span></li>";
 			
 		}else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/absence/page?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/admin/member?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}
 	
-		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/notice/absenceboardtable.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("/views/admin/adminMember.jsp").forward(request, response);
 		
 	}
 

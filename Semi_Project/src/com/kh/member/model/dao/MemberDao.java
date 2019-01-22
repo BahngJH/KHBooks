@@ -448,6 +448,7 @@ public class MemberDao {
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setBookCount(rs.getInt("bookcount"));
 				
             	bookList.add(b);
 			}
@@ -460,7 +461,29 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return bookList;
+	}
+	//장바구니 수량 변경 메소드
+	public int updateBookcount(Connection conn, Book b,int memberNum)
+	{
+		PreparedStatement pstmt =null;
+		String sql =prop.getProperty("updateBookcount");
+		int rs =0;
 		
+		try {
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, b.getBookCount());
+			pstmt.setInt(2, memberNum);
+			pstmt.setInt(3, b.getBookId());
+			
+			rs = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
 		
 		
 	}

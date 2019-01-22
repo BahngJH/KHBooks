@@ -12,6 +12,8 @@ com.kh.author.model.vo.Author'
 <%
 	Book b=(Book)request.getAttribute("book");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
+	String pageBar=(String)request.getAttribute("pageBar");
+	int cnt = (int)request.getAttribute("cnt");
 	int reviewsize=(int)request.getAttribute("reviewsize");
 %>
 <%@ include file='/views/common/header.jsp'%>
@@ -329,7 +331,7 @@ function fnMove2(){
 					<div class='cover'>
 						<div class='bookcover'>
 						<!-- 이미지보여주기 -->
-							<img style="border:1px solid black;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
+							<img style="border:1px solid lightgrey;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
@@ -736,14 +738,14 @@ function fnMove2(){
 	                        </small>
 	                    </div>
 	                    <style>
-	                    .alt {
+	                    .alt<%=r.getReviewNum()%> {
 							background: url('<%=request.getContextPath()%>/images/icons/modify.png') no-repeat;
 							border: none;
 							width: 16px;
 							height: 16px;
 							cursor: pointer;
 						}
-						.del {
+						.del<%=r.getReviewNum()%> {
 							background: url('<%=request.getContextPath()%>/images/icons/deletes.png') no-repeat;
 							border: none;
 							width: 16px;
@@ -751,16 +753,41 @@ function fnMove2(){
 							cursor: pointer;
 						}
 						</style>
+						<script>
+						function delete_review<%=r.getReviewNum()%>(){
+							if(confirm("정말 삭제하시겠습니까?")==true){
+								document.getElementById('deletefrm').submit();
+							}
+							else{
+								return;	
+							}
+						}
+						function update_review<%=r.getReviewNum() %>(){
+							//모달창띄워주자
+						}
+						</script>
 	                    <div class='content'>
 	                        <small>
 	                            <input type='checkbox' id='readmore<%=r.getReviewNum()%>' /> 
 	                            <div class='inner<%=r.getReviewNum() %>' style='width:100%;'>
 	                            <pre style='border:none; white-space:pre-wrap; word-break:break-all; margin-bottom:0px; padding-bottom:0px;'><small><%=r.getReviewContext() %></small></pre>
 	                            </div>
+	                            
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
-	                            <div type=hidden class='delal' style="float:right;">
-								<input type="button" class="alt" value=""/>
-								<input type="button" class="del" value=""/>
+	                            <div type=hidden class='delal'>
+								
+								<form id="deletefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoDeleteReview" style='float:right;'>
+								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
+								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
+								<input type="button" class="del<%=r.getReviewNum() %>" onclick="delete_review<%=r.getReviewNum()%>();"/>
+								</form>
+								
+								<form id="updatefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoUpdateReview" style='float:right;'>
+								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
+								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
+								<input type="button" class="alt<%=r.getReviewNum() %>" style='float:right;'/>
+								</form>
+								
 		                    	</div>
 		                    	<%}%>
 								<label id='lala' for='readmore<%=r.getReviewNum()%>'></label>
@@ -768,6 +795,9 @@ function fnMove2(){
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>
                     <%} %>
+                    <div id="pageer">
+						<%=pageBar %>
+					</div>
 					</div>
 					</div>
 				</pre>
