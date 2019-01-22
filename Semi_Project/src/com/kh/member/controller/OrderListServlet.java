@@ -84,7 +84,7 @@ public class OrderListServlet extends HttpServlet {
 		{
 			if(cPage==pageNo)
 			{
-				pageBar+="<li><span class='cPage'>"+pageNo+"</span></li>";
+				pageBar+="<li class='page-item active'><span class='cPage'>"+pageNo+"</span></li>";
 			}
 			else
 			{
