@@ -253,6 +253,13 @@ div.book-container>div>a.author-name{
 	}
 }
 
+@media (max-width:768px){
+	div.thumbnail-container{
+		padding: 0px;
+		height: 600px;
+	}
+}
+
 a.book-thumbnail{
 	border: none;
 	transition: transform .3s ease-in;
