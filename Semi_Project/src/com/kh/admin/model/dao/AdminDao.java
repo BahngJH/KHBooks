@@ -28,10 +28,11 @@ public class AdminDao {
 		}
 	}
 	
-	public List<Book> selectBook(Connection conn){
+	
+	public List<Book> selectBook(Connection conn,int cPage,int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql=prop.getProperty("booklist");
+		String sql=prop.getProperty("selectbooklist");
 		List<Book> list=new ArrayList();
 		
 		Book b=null;
@@ -39,6 +40,8 @@ public class AdminDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				b=new Book();
@@ -118,6 +121,31 @@ public class AdminDao {
 		ResultSet rs=null;
 		int result=0;
 		String sql=prop.getProperty("selectCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+				System.out.println(result);
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+		
+	}
+	public int selectBookCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectBookCount");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

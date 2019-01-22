@@ -21,9 +21,9 @@ public class AdminService {
 		return list;
 		
 	}
-	public List<Book> selectBook(){
+	public List<Book> selectBook(int cPage,int numPerPage){
 		Connection conn=getConnection();
-		List<Book> list=new AdminDao().selectBook(conn);
+		List<Book> list=new AdminDao().selectBook(conn,cPage,numPerPage);
 		close(conn);
 		return list;
 		
@@ -35,6 +35,12 @@ public class AdminService {
 		return result;
 	}
 	
+	public int selectBookCount() {
+		Connection conn =getConnection();
+		int result=new AdminDao().selectBookCount(conn);
+		close(conn);
+		return result;
+	}
 	
 
 }

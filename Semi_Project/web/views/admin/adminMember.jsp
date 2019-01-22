@@ -23,7 +23,7 @@ padding: 8px 10px;
 
  text-align:center;
  }
- , table td{ text-align:center;}
+ table td{ text-align:center;}
  		
 </style>
 
@@ -42,31 +42,28 @@ padding: 8px 10px;
 						<col width="126px" />
 					</colgroup>
 					<tr>
+						<th>선택</th>
 						<th>이름</th>
 						<th>ID</th>
-						<th>번호</th>
 						<th>주소</th>
 						<th>생년월일</th>
 						<th>성별</th>
 						<th>phone</th>
 						<th>email</th>
-						<th>가입일</th>
-						<th>마일리지</th>
+						
 						
 					</tr>
 					<%for(Member m : list) {%>
 					<tr>
-						
+						<td><input type="checkbox"></td>
 						<td><%=m.getMemberName()%></td>
 						<td><%=m.getMemberId()%></td>
-						<td><%=m.getMemberNum()%></td>
 						<td><%=m.getAddress()%></td>
 						<td><%=m.getBirth()%></td>
 						<td><%=m.getGender()%></td>
 						<td><%=m.getPhone()%></td>
 						<td><%=m.getEmail() %></td>
-						<td><%=m.getEnrollDate() %></td>
-						<td><%=m.getMileage() %></td>
+					
 					
 						
 					</tr>
