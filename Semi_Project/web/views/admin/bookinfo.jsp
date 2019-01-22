@@ -68,7 +68,7 @@ padding: 8px 10px;
 						<td><%=b.getBookId()%></td>
 						<td><%=b.getIsbn()%></td>
 						<td><%=b.getBookDate()%></td>
-						<td><input type="checkbox"/></td>
+						<td><input type="checkbox" name="delete" value="delete"/></td>
 						
 						
 					</tr>

@@ -7,16 +7,18 @@ marquee {
 }
 marquee ul {list-style-type: none;}
 
-.title a, .notice p {
+.title h4, .notice h4 {
+
 	color: black;
 	text-decoration: none;
 }
 
-div.title , div.notice{
+div.title , div.notice {
 	float: left;
-	margin: 0px 0px 0px 550px;
+	margin: 0px 0px 0px 400px;
 	
 }
+div.notice{margin:0px 0px 0px 0px;}
 
 
 .fot address {
@@ -42,18 +44,18 @@ a#MOVE_TOP_BTN {
 	background-image:
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
-footer.fot {background-color:#f8f8f8;}
+footer.fot, div#btn a {background-color:#f8f8f8;content:"width:device-width,initial-scale:1"; }
+
 .fot hr{border: 1px solid gray;}
-div#btn{ margin:0px 0px 0px 605px;}
-div#btn a,div#btn h4{float:left; margin:0px 0px 0px 100px;color:black; }
+div#btn{ margin:0px 0px 0px 550px;position:relative;}
+div#btn a,div#btn h4{float:left; margin:0px 0px 0px 80px;color:black; }
 
 </style>
 
 <footer class="fot">
 
 	<div class="title">
-		<h4><strong>공지사항
-				:</strong><h4>
+		<h4><strong>공지사항:</strong><h4>
 	</div>
 	<div class="notice">
 		<marquee onmouseover='this.stop()' onmouseout='this.start()'
@@ -67,27 +69,29 @@ div#btn a,div#btn h4{float:left; margin:0px 0px 0px 100px;color:black; }
 			</ul>
 		</marquee>
 	</div>
-
-	<br/>
-	<a id="MOVE_TOP_BTN" href="#"></a>
-	
+	<br/>	<br/>
 	<hr/>
 	<div id="btn">
+	
 	 <h4>
          <strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
   	 </h4>
+  	
 	<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 	<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
 	<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
+	
 	</div>
 	<br/><br/>
 	
-	<address>
+	 <address>
 		㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 
 		대표전화 : 02-858-8282(발신자부담전화)<br/> 
 		 팩스 :785-41258 (지역번호공통)
 	</address>
 
+
+	<a id="MOVE_TOP_BTN" href="#"></a>
 
 
 </footer>
