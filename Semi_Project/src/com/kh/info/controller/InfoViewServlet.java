@@ -84,7 +84,7 @@ public class InfoViewServlet extends HttpServlet {
 						}else {
 							newValue = cookieValue;
 						}
-						newValue += bookId + "|";
+						
 					}else {
 						//중복 값이 있을 때
 						newValue = cookieValue;
