@@ -82,7 +82,7 @@ public class MyReviewServlet extends HttpServlet {
 			{
 				if(cPage==pageNo)
 				{
-					pageBar+="<span class='cPage'>"+pageNo+"</span></li>";
+					pageBar+="<li class='page-item active'><span class='cPage'>"+pageNo+"</span></li>";
 				}
 				else
 				{

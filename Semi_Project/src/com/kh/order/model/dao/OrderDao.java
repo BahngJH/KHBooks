@@ -88,6 +88,55 @@ Properties prop=new Properties();
 		return list;
 	}
 
+	//구매된 장바구니 데이터 지우기
+	public int deleteWishlist(Connection conn, int memberNum, List<Book> payList) {
+		PreparedStatement pstmt=null;
+		String sql = prop.getProperty("deleteWishlist");
+		int rs = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<payList.size();i++)
+			{
+				pstmt.setInt(1, memberNum);
+				pstmt.setInt(2, payList.get(i).getBookId());
+				rs += pstmt.executeUpdate();
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+	}
+	//구매된 책 orderlist에 추가
+	public int insertOrderlist(Connection conn, int memberNum, List<Book> payList) {
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("insertOrderlist");
+		int rs = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<payList.size();i++) {
+				pstmt.setInt(1, memberNum);
+				pstmt.setInt(2, payList.get(i).getBookId());
+				pstmt.setInt(3, payList.get(i).getBookCount());
+				rs += pstmt.executeUpdate();
+			}
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
 	
 	public List<Order> searchOrder(Connection conn, String keyword, int no) {
 		PreparedStatement pstmt = null;

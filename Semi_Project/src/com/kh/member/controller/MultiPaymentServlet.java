@@ -47,6 +47,9 @@ public class MultiPaymentServlet extends HttpServlet {
 		 }
 		 
 		 List<Book> payList = new BookService().payList(ids, memberNum);
+		 //장바구니 목록제거, 구매목록 추가에 쓰기 위해 세션에 값을 저장
+		 HttpSession s = request.getSession();
+		 s.setAttribute("payBookList", payList);
 		 
 		 request.setAttribute("payList", payList);
 		 request.getRequestDispatcher("/views/login_myPage/payment.jsp").forward(request, response);
