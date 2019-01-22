@@ -189,11 +189,23 @@
 					//원본데이터를 하나 만들어서 본래의 가격 유지
 					var price = parseInt($(event.target).parent().children('.bookPrice2').val());
 					var count = parseInt($(event.target).parent().children('.bookCount').val());
+					var bookId = parseInt($(event.target).parent().children('.BookId').val());
 					var changePrice = price * count;
 					
 					$(event.target).parent().children('.bookPrice').val(changePrice);
-					$(event.target).parent().children('p').html(changePrice+"원");
+					
 					//alert("체크해제 후 다시 체크하세요");
+					
+					//수량이 바뀌면 디비에 그 수량 바꿔줌
+					$.ajax({
+						type:"get",
+						url:"<%=request.getContextPath()%>/member/updateBookcount",
+						data:{bookCount:count, bookId:bookId},
+						success:function(data){
+							console.log(data);
+						}
+						
+					});
 					
 				});
 			});
