@@ -8,6 +8,7 @@
 	for (Book b : list) {
 		totalPrice += b.getPrice() * b.getBookCount();
 	}
+	
 %>
 
 <style>
@@ -115,7 +116,8 @@
 								<input type="hidden" name="email" value="<%=logined.getEmail()%>"/>
 								<input type="hidden" name="phone" value="<%=logined.getPhone()%>"/>
 								<input type="hidden" name="address" value="<%=logined.getAddress()%>"/>
-								<input type="hidden" name="totalPrice" value="<%=totalPrice%>"/>											
+								<input type="hidden" name="totalPrice" value="<%=totalPrice%>"/>
+								<input type="hidden" name="payBookList" value="<%=list%>">											
 								<input style="width: 100%" class="btn btn-primary" type="submit" value="결제하기"></button>
 							</form>							
 							
