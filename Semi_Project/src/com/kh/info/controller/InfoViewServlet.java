@@ -47,10 +47,8 @@ public class InfoViewServlet extends HttpServlet {
 			cPage=1;
 		}
 		int numPerPage = 5;//페이지당 자료수
-		
 
 		List<Review> list=new InfoService().selectInfoReview(bookId, cPage, numPerPage);
-		
 		
 		//페이지구성해보자~!
 		//전체자료수를 확인

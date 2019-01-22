@@ -795,6 +795,12 @@ function fnMove2(){
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>
                     <%} %>
+                    <style>
+                    .cPage
+                    {
+                    	font-weight:bold;
+                    }
+                    </style>
                     <div id="pageer">
 						<%=pageBar %>
 					</div>
