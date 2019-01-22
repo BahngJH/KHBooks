@@ -58,6 +58,8 @@
                 <!-- 책 검색 결과 -->
                 <div id="book" class="col-xs-12 col-md-12">
                     <h3>책 검색</h3>
+                    <!-- 검색 결과가 있을 경우 -->
+                    <%if(!books.isEmpty()) {%>
                     <div id='order' class="row">
                         <ul class="order-buttons list-inline col-xs-12 col-md-12">
                             <!-- 정렬 버튼 -->
@@ -78,10 +80,7 @@
                         </ul>
                     </div>
                     <div>
-                    <!-- 검색 결과가 있을 경우 -->
-                    <%if(!books.isEmpty()) {
-                    	for(Book b : books){
-                   	%>
+                    	<%for(Book b : books){%>
                     	<div class='book-result row'>
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
@@ -121,18 +120,18 @@
                         </div>
                     
                     		
-                   	<%	
-                    	}
-                    }
-                    %>
+                   		<%}%>
+		                <!--페이지네이션-->
+		                <div class="paging col-xs-12" style="text-align: center">
+		                    <ul class="pagination pagination-lg">
+		                        <%=pageBar %>
+		                    </ul>
+		
+		                </div>
                     </div>
-                </div>
-                <!--페이지네이션-->
-                <div class="paging col-xs-12" style="text-align: center">
-                    <ul class="pagination pagination-lg">
-                        <%=pageBar %>
-                    </ul>
-
+                    <%}else{%>
+                    	<h3 id="empty"><%=category %> 카테고리에 책이 없습니다.</h3>
+                    <%} %>
                 </div>
             </div>
 
