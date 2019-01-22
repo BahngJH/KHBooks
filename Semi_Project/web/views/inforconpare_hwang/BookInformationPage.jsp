@@ -329,7 +329,7 @@ function fnMove2(){
 					<div class='cover'>
 						<div class='bookcover'>
 						<!-- 이미지보여주기 -->
-							<img style="border:1px solid black;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
+							<img style="border:1px solid lightgrey;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
 								width='175' height='250'
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
