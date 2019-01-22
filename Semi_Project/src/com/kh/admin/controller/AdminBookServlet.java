@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
+import com.kh.admin.model.service.AdminService;
+import com.kh.book.model.vo.Book;
 
 /**
- * Servlet implementation class AdminMainServlet
+ * Servlet implementation class AdminBookServlet
  */
-@WebServlet("/admin/mainview")
-public class AdminMainServlet extends HttpServlet {
+@WebServlet("/admin/book")
+public class AdminBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMainServlet() {
+    public AdminBookServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +32,10 @@ public class AdminMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Absence> list=new AbsenceService().selectAllAbsence();
-		List<Notice> list1=new NoticeService().allNotice();
+		List<Book> list =new AdminService().selectBook();
+		request.setAttribute("list", list);
 		
-		request.setAttribute("list",list);
-		request.setAttribute("list1",list1);
-		
-		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/bookinfo.jsp").forward(request, response);
 	}
 
 	/**

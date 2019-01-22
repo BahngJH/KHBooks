@@ -169,7 +169,17 @@ public class MemberService {
 		return booksList;
 		
 	}
-
+	//장바구니 수량 변화하면 디비에도 적용시키는 메소드
+	public int updateBookcount(Book b, int memberNum)
+	{
+		Connection conn =getConnection();
+		int rs = new MemberDao().updateBookcount(conn,b,memberNum);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		
+		return rs;
+	}
 
 	
 	

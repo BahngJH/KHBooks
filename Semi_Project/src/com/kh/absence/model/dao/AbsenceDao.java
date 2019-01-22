@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.absence.model.vo.Absence;
 import com.kh.member.model.vo.Member;
 
+import oracle.jdbc.proxy.annotation.Pre;
 import sun.dc.pr.PRError;
 
 public class AbsenceDao {
@@ -29,6 +30,46 @@ public class AbsenceDao {
 		}
 	}
 	
+	
+	public List<Absence> selectAllAbsence(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("allabsence");
+		List<Absence> list=new ArrayList();
+		System.out.println(sql);
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Absence ab=new Absence();
+				ab.setMemberNum(rs.getInt("membernum"));
+				ab.setBookName(rs.getString("bookname"));
+				ab.setAppDate(rs.getDate("appdate"));
+				ab.setAuthor(rs.getString("author"));
+				ab.setBookDate(rs.getString("bookdate"));
+				ab.setISBN(rs.getString("isbn"));
+				ab.setPublisher(rs.getString("publisher"));
+				ab.setAppCancel(rs.getBoolean("appcancel"));
+				ab.setAppNum(rs.getInt("appnum"));
+				ab.setStatus(rs.getString("status"));
+				
+				Member m =new Member();
+				m.setMemberId(rs.getString("memberId"));
+				System.out.println("m객체:"+m.getMemberId());
+				ab.setMember(m);
+				list.add(ab);
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+	}
 	
 	public int deleteAbsence(Connection conn,int no) {
 		PreparedStatement pstmt=null;

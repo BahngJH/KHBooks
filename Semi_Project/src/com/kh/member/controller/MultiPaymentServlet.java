@@ -1,6 +1,7 @@
-package com.kh.admin.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,23 +9,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
-import com.kh.notice.model.service.NoticeService;
-import com.kh.notice.model.vo.Notice;
+import com.kh.book.model.service.BookService;
+import com.kh.book.model.vo.Book;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class AdminMainServlet
+ * Servlet implementation class MultiPaymentServlet
  */
-@WebServlet("/admin/mainview")
-public class AdminMainServlet extends HttpServlet {
+@WebServlet("/member/multiPayment")
+public class MultiPaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMainServlet() {
+    public MultiPaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +34,20 @@ public class AdminMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Member logined = (Member) request.getSession(false).getAttribute("logined");
+		int memberNum = logined.getMemberNum();
 		
-		List<Absence> list=new AbsenceService().selectAllAbsence();
-		List<Notice> list1=new NoticeService().allNotice();
-		
-		request.setAttribute("list",list);
-		request.setAttribute("list1",list1);
-		
-		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+		 String[] bookIds = request.getParameterValues("BookId");
+		 List<Integer> ids = new ArrayList();		 
+		 
+		 for(int i=0; i<bookIds.length; i++) {
+			 ids.add(Integer.parseInt(bookIds[i]));  
+		 }
+		 
+		 List<Book> payList = new BookService().payList(ids, memberNum);
+		 
+		 request.setAttribute("payList", payList);
+		 request.getRequestDispatcher("/views/login_myPage/payment.jsp").forward(request, response);
 	}
 
 	/**

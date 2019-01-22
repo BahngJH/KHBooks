@@ -30,12 +30,42 @@ public class NoticeDao {
 			e.printStackTrace();
 		}
 	}
-
+	public List<Notice> allNotice(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Notice> list=new ArrayList();
+		String sql = prop.getProperty("selectall");
+		
+		Notice n=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				n=new Notice();
+				n.setNoticeNo(rs.getInt("noticenum"));
+				n.setNoticeTitle(rs.getString("noticetitle"));
+				n.setNoticeContent(rs.getString("noticecontent"));
+				n.setNoticeDate(rs.getDate("noticedate"));
+				n.setStatus(rs.getString("status"));
+				list.add(n);
+			}
+					
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+	}
+	
+	
+	
 	public int insertNotice(Connection conn, Notice n) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertNotice");
-		System.out.println(sql);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getNoticeTitle());

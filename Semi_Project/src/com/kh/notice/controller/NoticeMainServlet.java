@@ -49,55 +49,56 @@ public class NoticeMainServlet extends HttpServlet {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
 			numPerPage=8;
-			System.out.println(numPerPage);
+			
 		}
 		
 		int totalBoard=new NoticeService().selectCount(); // 디비 속성갯수
-		System.out.println("저장할 총 디비 속성 갯수"+totalBoard);
+		
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerPage);// 필요한 총 페이지수
-		System.out.println("총 페이지 수"+totalPage);
+		
 		
 
 		List<Notice> list=new NoticeService().selectList(cPage,numPerPage);
 		
 		String pageBar="";
+		pageBar+="<ul class='pagination'>";
 		int pageSize=5; //페이지 최대 수 5이면 12345<다음>
 		int pageNo=((cPage-1)/pageSize)*pageSize+1;  //시작페이지
 		int pageEnd=pageNo+pageSize-1; //끝페이지
 		
 		//보고있는페이지가 1이면 이전  
 		if(pageNo ==1) {			
-			pageBar+="<span>[이전]<span>";
+			pageBar+="<li><span aria-hidden='true'>&laquo;</span></li>";
 		}else {
 			 
 			//2이상이면 이전 클릭시 현재 페이지 -1페이지로 이동
-			pageBar+="<a href='"+request.getContextPath()
+			pageBar+="<li><a href='"+request.getContextPath()
 			+"/notice/noticemain?cPage="+(pageNo-1)
-			+"&numPerPage="+numPerPage+"'>[이전]</a>";
+			+"&numPerPage="+numPerPage+"'aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}
 		//선택페이지 만들기
 				while(!(pageNo>pageEnd||pageNo>totalPage))
 				{
 					if(cPage==pageNo)
 					{
-						pageBar+="<span class='cPage'>"+pageNo+"</span>";
+						pageBar+="<li><span class='cPage'>"+pageNo+"</span></li>";
 					}
 					else
 					{
-						pageBar+="<a href='"+request.getContextPath()
+						pageBar+="<li><a href='"+request.getContextPath()
 						+"/notice/noticemain?cPage="+(pageNo)
-						+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
+						+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 					}
 					pageNo++;
 				}
 		//[다음]
 		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
+			pageBar+="<li><span aria-hidden='true'>&raquo;</span></li>";
 			
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/notice/noticemain?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
-		System.out.println("페이지바:"+pageBar);
+		
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("pageBar", pageBar);

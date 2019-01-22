@@ -25,4 +25,11 @@ public class BookService {
 		close(conn);
 		return list;
 	}
+	
+	public List<Book> payList(List<Integer> ids, int memberNum) {
+		List<Book> list = new BookDao().payList(conn, ids, memberNum);
+		close(conn);
+		return list;
+	}
+	
 }
