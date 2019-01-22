@@ -4,6 +4,7 @@
 <%
 	List<Book> books = (List<Book>)request.getAttribute("booksList");
 	int markCount = (int)request.getAttribute("wishlistCount");
+	
 %>
 <%@ include file="/views/common/myHeader.jsp"%>
 <style>
@@ -87,11 +88,15 @@
                             </div>
                             <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
 	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">권	                       	                          		                          	
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="<%=b.getBookCount()%>">권	                       	                          		                          	
 	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
-	                            	
+	                            <!-- 구매 창으로 넘기는 책 이미지, 작가, 출판사 정보 -->
+	                            <input type="hidden" name="bookImage" value="<%=b.getBookImage()%>">
+	                            <input type="hidden" name="authorName" value="<%=b.getAuthor().getAuthorName()%>">
+	                            <input type="hidden" name="publisher" value="<%=b.getPublisher()%>">
+	                            <input type="hidden" name="bookName" value="<%=b.getBookName() %>">
                             </div>
                         </div>		
                    	<%	
@@ -110,7 +115,7 @@
 	                    	</table>
 	                    	<div id="btnCheck">
 	                    	<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
-							<button class="btn btn-primary">선택 구매</button>
+							<button class="btn btn-primary" onclick="multiPayment();">선택 구매</button>
 							</div>
                     	<%
                     }else{
@@ -184,11 +189,23 @@
 					//원본데이터를 하나 만들어서 본래의 가격 유지
 					var price = parseInt($(event.target).parent().children('.bookPrice2').val());
 					var count = parseInt($(event.target).parent().children('.bookCount').val());
+					var bookId = parseInt($(event.target).parent().children('.BookId').val());
 					var changePrice = price * count;
 					
 					$(event.target).parent().children('.bookPrice').val(changePrice);
-					$(event.target).parent().children('p').html(changePrice+"원");
+					
 					//alert("체크해제 후 다시 체크하세요");
+					
+					//수량이 바뀌면 디비에 그 수량 바꿔줌
+					$.ajax({
+						type:"get",
+						url:"<%=request.getContextPath()%>/member/updateBookcount",
+						data:{bookCount:count, bookId:bookId},
+						success:function(data){
+							console.log(data);
+						}
+						
+					});
 					
 				});
 			});
@@ -204,6 +221,12 @@
 				var bookId = $(event.target).next('input').val();
 				location.href="<%=request.getContextPath()%>/member/wishlistMultiDelete?BookId="+bookId;
 			} 
+			 function multiPayment(){
+				 var payList = $('#checkedList');
+					var url = "<%=request.getContextPath()%>/member/multiPayment";
+					deleteList.attr("action",url);
+					deleteList.submit();
+			 }
 		
 		</script>
 
