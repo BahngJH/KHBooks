@@ -619,13 +619,18 @@ function fnMove2(){
 				<br>
 				<ul>
 				<script>
-				function validate(){
-					var content=$('[name=reviewContent]').val();
-					if(content.trim().length==0)
+				
+				//리뷰작성스크립트
+				function fn_insertReview() {
+					var context=$('[name=reviewContext]').val();
+					if(context.trim().length==0)
 					{
 						alert("내용을 입력하세요!");
-						return false;
+						return false
 					}
+					var grade = $('.on').length;
+					$('#star_grade').val(grade);
+					$('#insertReviewFrm').submit();
 					return true;
 				}
 				</script>
@@ -667,7 +672,7 @@ function fnMove2(){
 									</span>
 								</td>
 							</tr>
-                    		<button type='button' class="reviewWrite" onclick="fn_insertReview();">리뷰쓰기</button>
+                    		<button type='button' class="reviewWrite" onclick="fn_insertReview()">리뷰쓰기</button>
                     		<%}%>
                     	</div>
                     </div>
@@ -678,12 +683,6 @@ function fnMove2(){
 					$(this).addClass("on").prevAll("a").addClass("on");
 					return false;
 				});
-				
-				function fn_insertReview() {
-					var grade = $('.on').length;
-					$('#star_grade').val(grade);
-					$('#insertReviewFrm').submit();
-				}
 				</script>
 				</form>
 					
@@ -775,7 +774,7 @@ function fnMove2(){
 	                            
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
 	                            <div type=hidden class='delal'>
-								
+	                            
 								<form id="deletefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoDeleteReview" style='float:right;'>
 								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
 								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
