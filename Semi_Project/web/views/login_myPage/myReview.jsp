@@ -49,6 +49,10 @@
 	/* 체크박스 크기키움 */
 		-webkit-transform: scale(1.3);
 	}
+	
+	ul.pagination{
+		margin-left: 350px;
+	}
 </style>
 
 
@@ -272,3 +276,4 @@
 		
 	</div>
 </div>
+<%@ include file="/views/common/footer.jsp"%>
