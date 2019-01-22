@@ -448,6 +448,7 @@ public class MemberDao {
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setBookCount(rs.getInt("bookcount"));
 				
             	bookList.add(b);
 			}
