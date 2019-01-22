@@ -224,8 +224,8 @@
 			 function multiPayment(){
 				 var payList = $('#checkedList');
 					var url = "<%=request.getContextPath()%>/member/multiPayment";
-					deleteList.attr("action",url);
-					deleteList.submit();
+					payList.attr("action",url);
+					payList.submit();
 			 }
 		
 		</script>

@@ -1,31 +1,23 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.kh.book.model.service.BookService;
-import com.kh.book.model.vo.Book;
-import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MultiPaymentServlet
+ * Servlet implementation class RealPayServlet
  */
-@WebServlet("/member/multiPayment")
-public class MultiPaymentServlet extends HttpServlet {
+@WebServlet("/member/realPay")
+public class RealPayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MultiPaymentServlet() {
+    public RealPayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +26,19 @@ public class MultiPaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		int memberNum = logined.getMemberNum();
+		String name = request.getParameter("memberName");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 		
+		request.setAttribute("name", name);
+		request.setAttribute("email", email);
+		request.setAttribute("phone", phone);
+		request.setAttribute("address", address);
+		request.setAttribute("totalPrice", totalPrice);
 		
-		
-		 String[] bookIds = request.getParameterValues("BookId");
-		 List<Integer> ids = new ArrayList();		 
-		 
-		 for(int i=0; i<bookIds.length; i++) {
-			 ids.add(Integer.parseInt(bookIds[i])); 
-		 }
-		 
-		 List<Book> payList = new BookService().payList(ids, memberNum);
-		 
-		 request.setAttribute("payList", payList);
-		 request.getRequestDispatcher("/views/login_myPage/payment.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/login_myPage/realPay.jsp").forward(request, response);
 	}
 
 	/**
