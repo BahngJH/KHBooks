@@ -43,7 +43,7 @@ em {
 	margin: 90px 0 0 0;
 }
 
-hr {
+.row hr {
 	border: 0;
 	height: 2px;
 	background: #ccc;

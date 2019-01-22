@@ -3,25 +3,23 @@
 
 <style>
 marquee {
-	height: 20px;
+	height: 35px;
 }
+marquee ul {list-style-type: none;}
 
 .title a, .notice p {
 	color: black;
 	text-decoration: none;
 }
 
-div.title , div.notice {
+div.title , div.notice{
 	float: left;
-	margin: 0px 0px 0px 780px;
+	margin: 0px 0px 0px 550px;
 	
 }
 
-div.notice {
-	margin: 0 30px 0 0;
-}
 
-address {
+.fot address {
 	text-align: center;
 }
 
@@ -46,38 +44,41 @@ a#MOVE_TOP_BTN {
 }
 footer.fot {background-color:#f8f8f8;}
 .fot hr{border: 1px solid gray;}
-div#btn{ margin:0px 0px 0px 590px;}
-div#btn a{float:left; margin:0px 10px 0px 120px; }
-div#btn  a{color:black;}
+div#btn{ margin:0px 0px 0px 605px;}
+div#btn a,div#btn h4{float:left; margin:0px 0px 0px 100px;color:black; }
+
 </style>
 
 <footer class="fot">
 
 	<div class="title">
-		<a><strong>공지사항
-				:</strong><a>
+		<h4><strong>공지사항
+				:</strong><h4>
 	</div>
 	<div class="notice">
 		<marquee onmouseover='this.stop()' onmouseout='this.start()'
 			direction='up' scrolldelay=1500>
 			<ul class="Notice_List">
-				<p><li>kh문고 시스템 점검 안내</li></p>
-				<p><li>개인정보처리방침 개정 안내</li></p>
-				<p><li>설 연휴기간 주문 안내</li></p>
-				<p><li>도서 신청 안내</li></p>
-				<p><li>2019년 휴무일 안내</li></p>
+				<h4><li>kh문고 시스템 점검 1/30</li></h4>
+				<h4><li>개인정보처리방침 개정 </li></h4>
+				<h4><li>설 연휴기간 휴무</li></h4>
+				<h4><li>고객센터 하단메뉴이용</li></h4>
+				<h4><li>2019년 휴무일 안내</li></h4>
 			</ul>
 		</marquee>
 	</div>
+
 	<br/>
 	<a id="MOVE_TOP_BTN" href="#"></a>
 	
 	<hr/>
 	<div id="btn">
-
-	<a href="<%=request.getContextPath()%>/notice/firstNotice">고객센터</a>
-	<a href="<%=request.getContextPath()%>/qna/qnaListMain">1대1문의</a>
-	<a href="<%=request.getContextPath()%>/absence/page">도서주문</a>
+	 <h4>
+         <strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
+  	 </h4>
+	<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
+	<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
+	<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
 	</div>
 	<br/><br/>
 	

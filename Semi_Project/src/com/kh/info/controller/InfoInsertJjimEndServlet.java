@@ -53,7 +53,7 @@ public class InfoInsertJjimEndServlet extends HttpServlet {
 		}
 		else
 		{
-			request.setAttribute("msg", "찜을 실패하였습니다.");
+			request.setAttribute("msg", "이미 찜이 되었습니다.");
 			request.setAttribute("loc", "/inforconpare_hwang/infoView?bookId="+bookId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}

@@ -21,16 +21,21 @@ public class Book {
 	private String editor;
 	private String translator;
 	private int pageNum;
+	//홈페이지(가게)에 보유중인 재고량
 	private int stock;
 	private String toc;
 	private int sales;
 	private Author author;
 	private Member member;
-	
+	//장바구니에 담은 수량
+	private int bookCount;
+	private int grade;
+
 	
 	public Book() {
 		super();
 	}
+	
 	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
 			String bookImage, Date bookDate, String bookInfo, String bookContent, String editor, String translator, int pageNum, int stock,
 			int sales, String toc) {
@@ -290,7 +295,20 @@ public class Book {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+	public int getBookCount()
+	{
+		return bookCount;
+	}
+	public void setBookCount(int bookCount) 
+	{
+		this.bookCount = bookCount;
+	}
 	
-	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	
 }

@@ -23,12 +23,8 @@
 		min-height: 150px;
 		margin-top: 10px;
 	}
-	div#pager nav{
-		width: 140px;
-	}
-	div#pager{
-		display: inline-block;
-		margin-left: 500px;
+	ul.pagination{
+		margin-left: 350px;
 	}
 </style>
 

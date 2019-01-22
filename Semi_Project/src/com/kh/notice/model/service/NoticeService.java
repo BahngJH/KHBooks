@@ -1,20 +1,15 @@
 package com.kh.notice.model.service;
 
-import static common.JDBCTemplate.getConnection
-;
-
-
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.kh.absence.model.dao.AbsenceDao;
-import com.kh.absence.model.vo.Absence;
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.rollback;
 
 public class NoticeService {
 	
@@ -22,6 +17,12 @@ public class NoticeService {
 		
 		Connection conn=getConnection();
 		List<Notice> list=new NoticeDao().selectAllNotice(conn);
+		close(conn);
+		return list;
+	}
+	public List<Notice> allNotice() {
+		Connection conn=getConnection();
+		List<Notice> list=new NoticeDao().allNotice(conn);
 		close(conn);
 		return list;
 	}

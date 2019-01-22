@@ -39,7 +39,7 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		String reviewContext=request.getParameter("reviewContext");
 		int grade=Integer.parseInt(request.getParameter("star_grade"));
 		
-		System.out.println("장바구니 서블릿으로 넘어오나?"+memberNum+" "+grade+" "+bookId+" "+checkOption+" "+reviewContext);
+		System.out.println("리뷰작성 서블릿으로 넘어오나?"+memberNum+" "+grade+" "+bookId+" "+checkOption+" "+reviewContext);
 		
 		Review r= new Review();
 		
@@ -63,7 +63,7 @@ public class InfoInsertReviewEndServlet extends HttpServlet {
 		{
 			//리뷰등록 실패
 			request.setAttribute("msg", "리뷰 등록을 실패하였습니다.");
-			request.setAttribute("loc", "inforconpare_hwang/infoView?bookId="+bookId);
+			request.setAttribute("loc", "/inforconpare_hwang/infoView?bookId="+bookId);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 	}
