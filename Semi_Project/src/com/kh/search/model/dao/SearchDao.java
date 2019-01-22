@@ -33,6 +33,7 @@ public class SearchDao {
 		
 	}
 	
+	//책 정보 미리보기
 	public List<Book> selectBook(Connection conn, String key){
 		List<Book> list = new ArrayList<>();
 		
@@ -80,11 +81,14 @@ public class SearchDao {
 		return list;
 	}
 	
+	//검색 정보 책 리스트
 	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre, String order) {
 		List<Book> list=new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		//리뷰 기준에만 사용함
+		String query="";
 		try {
 			String orderby = "";
 			switch(order) {
@@ -101,18 +105,19 @@ public class SearchDao {
 				break;
 			case "grade":
 				/*평점순*/
-				
+				orderby += "G DESC nulls last";
 				break;
 			case "review":
 				/*리뷰 많은 순*/
-				
+				query="LEFT JOIN (SELECT BOOKID, COUNT(BOOKID) C FROM REVIEW GROUP BY BOOKID) USING(BOOKID)";
+				orderby += "C DESC nulls last";
 				break;
 			case "price":
 				/*가격 낮은 순*/
 				orderby += "PRICE ASC";
 				break;
 			}
-			String sql = prop.getProperty("searchBookS") + orderby + prop.getProperty("searchBookE");
+			String sql = prop.getProperty("searchBookS") + query + prop.getProperty("searchBookM") +orderby + prop.getProperty("searchBookE");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+key+"%");
@@ -147,6 +152,7 @@ public class SearchDao {
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setGrade(rs.getInt("g"));
 				
 				list.add(b);
 			}
@@ -160,118 +166,13 @@ public class SearchDao {
 		return list;
 	}
 
-	
-	public List<Author> selectAuthor(Connection conn, String key) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<Author> list = null;
-		
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("searchAuthor"));
-			pstmt.setString(1, "%"+key+"%");
-			rs = pstmt.executeQuery();
-			list = new ArrayList<Author>();
-			
-			while(rs.next()) {
-				Author a = new Author();
-				a.setAuthorInfo(rs.getString("authorinfo"));
-				a.setAuthorName(rs.getString("authorname"));
-				a.setauthorNum(rs.getInt("authornum"));
-				list.add(a);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-
-	public List<GenreCount> getGenreCount(Connection conn, String key) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<GenreCount> list = null;
-		
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("getGenreCount"));
-			pstmt.setString(1, "%"+key+"%");
-			pstmt.setString(2, "%"+key+"%");
-			pstmt.setString(3, "%"+key+"%");
-			rs = pstmt.executeQuery();
-			list = new ArrayList<GenreCount>();
-			
-			while(rs.next()) {
-				GenreCount c = new GenreCount();
-				c.setCnt(rs.getInt("cnt"));
-				c.setGenre(rs.getString("genre"));
-				list.add(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return list;
-	}
-
-	public int getBookCount(Connection conn, String key, String genre) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int count = 0;
-		
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("getBookCount"));
-			pstmt.setString(1, "%"+key+"%");
-			pstmt.setString(2, "%"+key+"%");
-			pstmt.setString(3, "%"+key+"%");
-			pstmt.setString(4, "%"+(genre.equals("all")?"":genre)+"%");
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				count = rs.getInt("CNT");
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return count;
-	}
-
-	public int getBookCount(Connection conn, String genre) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int count = 0;
-		
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("getGenreBookCount"));
-			pstmt.setString(1, genre);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				count = rs.getInt("CNT");
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return count;
-	}
-
+	//카테고리 책 리스트
 	public List<Book> selectBook(Connection conn, int cPage, int numPerPage, String genre, String order) {
-List<Book> list=new ArrayList<>();
+		List<Book> list=new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String query="";
 		try {
 			String orderby = "";
 			switch(order) {
@@ -288,18 +189,19 @@ List<Book> list=new ArrayList<>();
 				break;
 			case "grade":
 				/*평점순*/
-				
+				orderby += "G DESC nulls last";
 				break;
 			case "review":
 				/*리뷰 많은 순*/
-				
+				query="LEFT JOIN (SELECT BOOKID, COUNT(BOOKID) C FROM REVIEW GROUP BY BOOKID) USING(BOOKID)";
+				orderby += "C DESC nulls last";
 				break;
 			case "price":
 				/*가격 낮은 순*/
 				orderby += "PRICE ASC";
 				break;
 			}
-			String sql = prop.getProperty("searchGenreBookS") + orderby + prop.getProperty("searchGenreBookE");
+			String sql = prop.getProperty("searchGenreBookS") + query + prop.getProperty("searchGenreBookM") +orderby + prop.getProperty("searchGenreBookE");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, genre);
@@ -331,6 +233,7 @@ List<Book> list=new ArrayList<>();
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setGrade(rs.getInt("g"));
 				
 				list.add(b);
 			}
@@ -343,4 +246,116 @@ List<Book> list=new ArrayList<>();
 		
 		return list;
 	}
+
+	
+	//작가 정보 리스트 가져오기
+	public List<Author> selectAuthor(Connection conn, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Author> list = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("searchAuthor"));
+			pstmt.setString(1, "%"+key+"%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Author>();
+			
+			while(rs.next()) {
+				Author a = new Author();
+				a.setAuthorInfo(rs.getString("authorinfo"));
+				a.setAuthorName(rs.getString("authorname"));
+				a.setauthorNum(rs.getInt("authornum"));
+				list.add(a);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	//책 검색시 해당 카테고리 내의 책 ㄱ수
+	public List<GenreCount> getGenreCount(Connection conn, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<GenreCount> list = null;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getGenreCount"));
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+key+"%");
+			pstmt.setString(3, "%"+key+"%");
+			rs = pstmt.executeQuery();
+			list = new ArrayList<GenreCount>();
+			
+			while(rs.next()) {
+				GenreCount c = new GenreCount();
+				c.setCnt(rs.getInt("cnt"));
+				c.setGenre(rs.getString("genre"));
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	//검색 전체 책 수 (페이징)
+	public int getBookCount(Connection conn, String key, String genre) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getBookCount"));
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+key+"%");
+			pstmt.setString(3, "%"+key+"%");
+			pstmt.setString(4, "%"+(genre.equals("all")?"":genre)+"%");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("CNT");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
+	//카테고리 전체 책 수 (페이징)
+	public int getBookCount(Connection conn, String genre) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("getGenreBookCount"));
+			pstmt.setString(1, genre);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("CNT");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
 }
