@@ -115,7 +115,7 @@
                     	<%
                     }else{
                     %>
-                    <h2><b>현재 담긴 상품이 없습니다.</b></h2>
+                    <h2 id="empty"><b>현재 담긴 상품이 없습니다.</b></h2>
                     <%} %>           
                    </form>
                     </div>
@@ -130,13 +130,23 @@
 		function bookSum(frm){
 			var sum = 0;
 			var count = frm.BookId.length;
+			if(count==undefined){
+				count=1;
+			}
 			var selectBooks=0;
+			if(count==1){
+				if(frm.BookId.checked==true){
+				selectBooks += parseInt(frm.bookCount.value);
+				sum+=parseInt(frm.bookPrice.value);
+				}
+			}else{ 
 			for(var i=0;i<count;i++){
 				if(frm.BookId[i].checked==true){
 					selectBooks +=parseInt(frm.bookCount[i].value);
 					sum += parseInt(frm.bookPrice[i].value);
 				}
 			}
+		}
 			count = selectBooks;
 			var milage = sum/10;
 			$('#milage').html(milage);
@@ -197,3 +207,4 @@
 		
 		</script>
 
+<%@ include file="/views/common/footer.jsp" %>

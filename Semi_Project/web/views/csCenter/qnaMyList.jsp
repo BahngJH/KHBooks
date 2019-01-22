@@ -37,7 +37,12 @@ ul {
 }
 
 .csCenter {
-	padding: 25px 0;
+  max-width:100%; 
+  max-height:100%;
+  margin:auto;
+  display:block;
+  
+  
 }
 
 em {
@@ -45,15 +50,18 @@ em {
 }
 
 .cs_title {
+
 	font-size: 2em;
 	float: left;
+	padding-top: 35px;
+	
 }
 
 #askBtn {
 	width: 120px;
 	height: 30px;
 	font-size: 15px;
-	padding: 0 0 1px 0;
+/* 	padding: 0 0 1px 0; */
 	float: right;
 	text-align: center;
 }
@@ -74,6 +82,26 @@ hr {
 .searchDate{
 text-align: left;
 }
+#askTitle_tg{
+width:600px;
+}
+.askInfo{
+display: inline;
+text-align: left;
+
+}
+#outer {
+position: relative;
+}
+
+#inner {
+margin: auto;
+position: absolute;
+left:0;
+right: 0;
+top: 0;
+bottom: 0;
+}
 </style>
 
 <script>
@@ -85,17 +113,17 @@ text-align: left;
 <section class="board-container col-sm-10">	
  <!-- 타이틀 -->
  	<div class="row">
-		<div class="csCenter col-md-offset-1 col-md-7">			
-				<h3 class="cs_title">1:1 문의내역</h3>		
-				<hr>		
-				 <span><%if(logined!=null){%> 
-					<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
-				</span><% } %>  						
-		</div>
-
+		<div class="csCenter col-md-offset-2 col-md-7">			
+				<strong><h3 class="cs_title">1:1 문의내역</h3></strong>										
+			 <%if(logined!=null){%> 
+				<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
+			<% } %> 
+		</div>	  												
+	</div>
 	<!-- 날짜 조회 -->	
 	<div class="row">	
-		<div class="searchDate col-md-offset-1 col-md-7">	 
+		<div class="searchDate col-md-offset-2 col-md-7">	 
+			<hr>
 			 <div class="sch-lcont">
 				<strong>기간별 조회</strong>
 				<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
@@ -114,52 +142,46 @@ text-align: left;
 	</div>	
     <!-- 문의리스트 -->
     <div class="row">
-		<div class="csCenter col-md-offset-1 col-md-7">  
-				<div id="askList">	
-					<ul class="askList">						
-				 	<%for(Qna q : list){ System.out.println(q);%>								
-				 	   		   					   
-		                <li>
-		                	 <button class="btn btn-primary" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    
-							     <em style="display: inline"><b><%=q.getQnaTitle() %></b></em>
-								 <span class="csInfo"> 
-									<span class=""><%=q.getQnaDate() %>읽음</span> 
-									<span class="divi">|</span> 	
-									<span class=""> 읽지않음</span> 														
-								 </span> 
-							     <em class="">&nbsp;</em>
-							</button>					
-						</li> 							 						
-						<!--문의글 확인 및 재문의 -->			
-						<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
-		                     <div class="well" value="">
-		                     	<div class="alert alert-info">
-    								<strong>내질문 : <%=q.getQnaContent() %></strong>
-								 </div>
-								  <div class="alert alert-warning">
-    								<%if(q.getReContent()!=null){%>
-    								<strong>답변 : <%=q.getReContent() %></strong>   								
-    								<% }else{%>
-    								<strong>답변 : 답변대기중입니다.</strong><%} %>
-								 </div>			                     	                    	                       																			                        						                                              
-		                      </div>                       
-		                 </div> 
-		                 <%} %> 	                                           							
-					</ul>	
-							
-		 	   </div>
+		<div class="csCenter col-md-offset-2 col-md-7">  				
+			<div class="askTitle">
+				<ul class="askList">						
+			 	  <%for(Qna q : list){ System.out.println(q);%>									 	   		   					   
+	                <li>
+		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     
+						        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>
+						        <span class=""><%=q.getQnaDate() %></span> 																						 </th>
+						       <em class="">&nbsp;</em>						   						     
+						</button>					
+					</li> 							 						
+					<!--문의글 확인 및 재문의 -->			
+					<div class="collapse" id="Qnum<%=q.getQnaNum()%>">
+	                     <div class="well" value="">
+	                     	 <div class="alert alert-info">
+	  								<strong>내질문 : <%=q.getQnaContent() %></strong>
+							 </div>
+							  <div class="alert alert-warning">
+	  								<%if(q.getReContent()!=null){%>
+	  								<strong>답변 : <%=q.getReContent() %></strong>   								
+	  								<% }else{%>
+	  								<strong>답변 : 답변대기중입니다.</strong><%} %>
+							 </div>			                     	                    	                       																			                        						                                              
+	                      </div>                       
+	                 </div> 
+	                 <%} %> 	                                           							
+				</ul>
+			</div>									 	  
 		</div>
 	</div>
 				<!--페이징처리 -->
 	<div class="row">		                
-   		<div class="qna-paging col-md-offset-1 col-md-7" >
+   		<div class="qna-paging col-md-offset-2 col-md-7" >
    			<div id='pageBar'>
 	 			<nav>
 	 				<ul class="pagination">			  		
 						<li><%=pageBar %></li>				
 					</ul>
    	  		 	</nav>
-  	  		 	</div>		 	
+  	  		 </div>		 	
    		</div>
 	</div>
 	 
