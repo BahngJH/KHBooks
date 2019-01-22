@@ -32,7 +32,7 @@ border-height: 10px;
 
 <div class="col-sm-10">
   			
-  				<h2>도서정보</h2>
+  				<h2>회원정보</h2>
 				<hr/>
 				<br/>
 		<table class="table table-striped">

@@ -3,7 +3,7 @@
 
 <style>
 marquee {
-	height: 30px;
+	height: 35px;
 }
 marquee ul {list-style-type: none;}
 
@@ -14,13 +14,10 @@ marquee ul {list-style-type: none;}
 
 div.title , div.notice{
 	float: left;
-	margin: 0px 0px 0px 600px;
+	margin: 0px 0px 0px 550px;
 	
 }
 
-div.notice {
-	margin: 0 30px 0 0;
-}
 
 .fot address {
 	text-align: center;
@@ -48,8 +45,8 @@ a#MOVE_TOP_BTN {
 footer.fot {background-color:#f8f8f8;}
 .fot hr{border: 1px solid gray;}
 div#btn{ margin:0px 0px 0px 605px;}
-div#btn a,div#btn h4{float:left; margin:0px 1px 0px 80px; }
-div#btn  a{color:black;}
+div#btn a,div#btn h4{float:left; margin:0px 0px 0px 100px;color:black; }
+
 </style>
 
 <footer class="fot">
@@ -76,7 +73,9 @@ div#btn  a{color:black;}
 	
 	<hr/>
 	<div id="btn">
-	<h4><strong>바로가기→</strong></h4>
+	 <h4>
+         <strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
+  	 </h4>
 	<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 	<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
 	<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
