@@ -66,7 +66,7 @@ em {
 	text-align: center;
 }
 
-hr {
+.row hr {
 	border: 0;
 	height: 2px;
 	background: #ccc;

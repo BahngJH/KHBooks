@@ -29,11 +29,13 @@ public class Book {
 	private Member member;
 	//장바구니에 담은 수량
 	private int bookCount;
-	
+	private int grade;
+
 	
 	public Book() {
 		super();
 	}
+	
 	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
 			String bookImage, Date bookDate, String bookInfo, String bookContent, String editor, String translator, int pageNum, int stock,
 			int sales, String toc) {
@@ -302,6 +304,11 @@ public class Book {
 		this.bookCount = bookCount;
 	}
 	
-	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	
 }

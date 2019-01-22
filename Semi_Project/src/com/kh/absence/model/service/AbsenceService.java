@@ -15,6 +15,13 @@ import com.kh.notice.model.vo.Notice;
 public class AbsenceService {
 	
 	
+	public List<Absence> selectAllAbsence() {
+		Connection conn=getConnection();
+		List<Absence> list=new AbsenceDao().selectAllAbsence(conn);
+		close(conn);
+		return list;
+	}
+	
 	public int deleteAbsence(int no) {
 		Connection conn=getConnection();
 		int result=new AbsenceDao().deleteAbsence(conn,no);

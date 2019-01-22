@@ -101,6 +101,8 @@
 				</article>
 			</section>
 		</div>
+		</div>
+		</div>
 		<script>
 			function cAll(){
 				if($('#checkAll').is(':checked')){

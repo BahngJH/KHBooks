@@ -25,6 +25,12 @@ public class NoticeService {
 		close(conn);
 		return list;
 	}
+	public List<Notice> allNotice() {
+		Connection conn=getConnection();
+		List<Notice> list=new NoticeDao().allNotice(conn);
+		close(conn);
+		return list;
+	}
 	
 	public int insertNotice(Notice n) {
 		Connection conn=getConnection();

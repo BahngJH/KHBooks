@@ -33,6 +33,7 @@ public class SearchDao {
 		
 	}
 	
+	//책 정보 미리보기
 	public List<Book> selectBook(Connection conn, String key){
 		List<Book> list = new ArrayList<>();
 		
@@ -80,11 +81,14 @@ public class SearchDao {
 		return list;
 	}
 	
+	//검색 정보 책 리스트
 	public List<Book> selectBook(Connection conn, String key, int cPage, int numPerPage, String genre, String order) {
 		List<Book> list=new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		//리뷰 기준에만 사용함
+		String query="";
 		try {
 			String orderby = "";
 			switch(order) {
@@ -101,18 +105,19 @@ public class SearchDao {
 				break;
 			case "grade":
 				/*평점순*/
-				
+				orderby += "G DESC nulls last";
 				break;
 			case "review":
 				/*리뷰 많은 순*/
-				
+				query="LEFT JOIN (SELECT BOOKID, COUNT(BOOKID) C FROM REVIEW GROUP BY BOOKID) USING(BOOKID)";
+				orderby += "C DESC nulls last";
 				break;
 			case "price":
 				/*가격 낮은 순*/
 				orderby += "PRICE ASC";
 				break;
 			}
-			String sql = prop.getProperty("searchBookS") + orderby + prop.getProperty("searchBookE");
+			String sql = prop.getProperty("searchBookS") + query + prop.getProperty("searchBookM") +orderby + prop.getProperty("searchBookE");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+key+"%");
@@ -147,6 +152,88 @@ public class SearchDao {
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setGrade(rs.getInt("g"));
+				
+				list.add(b);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();		
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	//카테고리 책 리스트
+	public List<Book> selectBook(Connection conn, int cPage, int numPerPage, String genre, String order) {
+		List<Book> list=new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query="";
+		try {
+			String orderby = "";
+			switch(order) {
+			case "default":
+				orderby = "NULL";
+				break;
+			case "popularity":
+				/*인기순*/
+				orderby += "SALES DESC";
+				break;
+			case "recent":
+				/*최근순*/
+				orderby += "BOOKDATE DESC";
+				break;
+			case "grade":
+				/*평점순*/
+				orderby += "G DESC nulls last";
+				break;
+			case "review":
+				/*리뷰 많은 순*/
+				query="LEFT JOIN (SELECT BOOKID, COUNT(BOOKID) C FROM REVIEW GROUP BY BOOKID) USING(BOOKID)";
+				orderby += "C DESC nulls last";
+				break;
+			case "price":
+				/*가격 낮은 순*/
+				orderby += "PRICE ASC";
+				break;
+			}
+			String sql = prop.getProperty("searchGenreBookS") + query + prop.getProperty("searchGenreBookM") +orderby + prop.getProperty("searchGenreBookE");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, genre);
+			pstmt.setInt(2, (cPage-1) * numPerPage+1);
+			pstmt.setInt(3, cPage * numPerPage);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Book b = new Book();
+				/* 작가 정보 */
+				Author t = new Author();
+				t.setAuthorName(rs.getString("authorname"));
+				t.setAuthorInfo(rs.getString("authorinfo"));
+				t.setauthorNum(rs.getInt("authornum"));
+				/*책 정보*/
+				b.setAuthor(t);
+				b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setStock(rs.getInt("stock"));
+				b.setSales(rs.getInt("sales"));
+				b.setGrade(rs.getInt("g"));
 				
 				list.add(b);
 			}
@@ -161,6 +248,7 @@ public class SearchDao {
 	}
 
 	
+	//작가 정보 리스트 가져오기
 	public List<Author> selectAuthor(Connection conn, String key) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -189,6 +277,7 @@ public class SearchDao {
 		return list;
 	}
 
+	//책 검색시 해당 카테고리 내의 책 ㄱ수
 	public List<GenreCount> getGenreCount(Connection conn, String key) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -218,6 +307,7 @@ public class SearchDao {
 		return list;
 	}
 
+	//검색 전체 책 수 (페이징)
 	public int getBookCount(Connection conn, String key, String genre) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -244,6 +334,7 @@ public class SearchDao {
 		return count;
 	}
 
+	//카테고리 전체 책 수 (페이징)
 	public int getBookCount(Connection conn, String genre) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -251,7 +342,7 @@ public class SearchDao {
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("getGenreBookCount"));
-			pstmt.setString(1, "%"+genre+"%");
+			pstmt.setString(1, genre);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -267,80 +358,4 @@ public class SearchDao {
 		return count;
 	}
 
-	public List<Book> selectBook(Connection conn, int cPage, int numPerPage, String genre, String order) {
-List<Book> list=new ArrayList<>();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			String orderby = "";
-			switch(order) {
-			case "default":
-				orderby = "NULL";
-				break;
-			case "popularity":
-				/*인기순*/
-				orderby += "SALES DESC";
-				break;
-			case "recent":
-				/*최근순*/
-				orderby += "BOOKDATE DESC";
-				break;
-			case "grade":
-				/*평점순*/
-				
-				break;
-			case "review":
-				/*리뷰 많은 순*/
-				
-				break;
-			case "price":
-				/*가격 낮은 순*/
-				orderby += "PRICE ASC";
-				break;
-			}
-			String sql = prop.getProperty("searchGenreBookS") + orderby + prop.getProperty("searchGenreBookE");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+genre+"%");
-			pstmt.setInt(2, (cPage-1) * numPerPage+1);
-			pstmt.setInt(3, cPage * numPerPage);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Book b = new Book();
-				/* 작가 정보 */
-				Author t = new Author();
-				t.setAuthorName(rs.getString("authorname"));
-				t.setAuthorInfo(rs.getString("authorinfo"));
-				t.setauthorNum(rs.getInt("authornum"));
-				/*책 정보*/
-				b.setAuthor(t);
-				b.setBookName(rs.getString("bookname"));
-				b.setPrice(rs.getInt("price"));
-				b.setPublisher(rs.getString("publisher"));
-				b.setAuthorNum(rs.getInt("authornum"));
-				b.setGenre(rs.getString("genre"));
-				b.setBookId(rs.getInt("bookid"));
-				b.setIsbn(rs.getString("isbn"));
-				b.setBookImage(rs.getString("bookImage"));
-				b.setBookInfo(rs.getString("bookinfo"));
-				b.setEditor(rs.getString("editor"));
-				b.setTranslator(rs.getString("translator"));
-				b.setPageNum(rs.getInt("pagenum"));
-				b.setStock(rs.getInt("stock"));
-				b.setSales(rs.getInt("sales"));
-				
-				list.add(b);
-			}
-		}catch(SQLException e){
-			e.printStackTrace();		
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return list;
-	}
 }
