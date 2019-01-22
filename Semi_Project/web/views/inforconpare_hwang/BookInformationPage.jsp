@@ -13,8 +13,10 @@ com.kh.author.model.vo.Author'
 	Book b=(Book)request.getAttribute("book");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	String pageBar=(String)request.getAttribute("pageBar");
-	int cnt = (int)request.getAttribute("cnt");
+	int cnt=(int)request.getAttribute("cnt");
+	int avg=(int)request.getAttribute("avg");
 	int reviewsize=(int)request.getAttribute("reviewsize");
+	int reviewCnt=(int)request.getAttribute("reviewCnt");
 %>
 <%@ include file='/views/common/header.jsp'%>
 <style>
@@ -136,7 +138,6 @@ li {
 	padding: 0px;
 	background-color: black;
 }
-
 .buy {
 	border-left-color: black;
 	border-right-color: black;
@@ -336,9 +337,9 @@ function fnMove2(){
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
 						<div class='pluslate'>
-							<button class='plus btn-link' onclick="showBigPic();"');">크게보기</button>
+							<button class='plus btn-link' onclick="showBigPic();">크게보기</button>
 							<span>|</span>
-							<button class='late btn-link' onclick="location.href='#'"">평점보기</button>
+							<button class='late btn-link' onclick="location.href='#'">평점보기</button>
 						</div>
 					</div>
 				</div>
@@ -370,18 +371,27 @@ function fnMove2(){
 								<%=b.getBookDate() %> <span>출간</span>
 							</span> <span class='lating'>
 								<p>
+								<%String rating="";%>
+								<%switch(avg) {
+								case 0 : rating="이 책은 평점이 없습니다."; break;
+								case 1 : rating="★"; break;
+								case 2 : rating="★★"; break;
+								case 3 : rating="★★★"; break;
+								case 4 : rating="★★★★"; break;
+								case 5 : rating="★★★★★"; break;
+								}%>
 									<button class='starlating btn-link' onclick="location.href='#'">
-										★★★★★</button>
+										<%=rating%></button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
 										onclick="fnMove2()">
-										리뷰 <span class='counting'><%=reviewsize %></span>개
+										리뷰 <span class='counting'><%=reviewCnt %></span>개
 									</button>
 									<span class='line'>|</span>
 									<button class='reviewgogo btn-link'	onclick="fnMove1()">리뷰쓰러가기</button>
 								</p>
 							</span>
-						</div>
+						</div> 
 					</div>
 					<!--  -->
 					<hr>
@@ -415,8 +425,8 @@ function fnMove2(){
 		</div>
 		<div class='choiceTab'>
 			<div class='jangbaTab' style='float:left;'>
-			<button type="button" class="jangba btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>장바구니담기</button>
 			<%if(logined!=null) {%>
+			<button type="button" class="jangba btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>장바구니담기</button>
 			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' method='post'>
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
@@ -437,9 +447,16 @@ function fnMove2(){
 			  </div>
 			</div>
 			</form>
-			<%} %>
+			<%} else{ %>
+				<input type="button" class="jangba btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' onclick='loginafter();' style='font-weight:bold;' value="장바구니담기"/>
+			<% }%>
 			</div>
 			<script>
+			//로그인권한
+			function loginafter(){
+				alert("로그인 후 이용이 가능합니다!");
+				location.href="<%=request.getContextPath()%>/member/login";
+			}
 			// 장바구니탭에서 모달창 띄어주기
 			$('#myModal').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
 			  var button = $(event.relatedTarget) // 모달 윈도우를 오픈하는 버튼
@@ -460,12 +477,15 @@ function fnMove2(){
 			</div>
 			
 			
-			
 			<div class='jjimTab' style='float:left; margin-left:5px;'>
+			<%if(logined!=null) {%>
 				<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertJjimEnd' method='post'>
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
 					<input type='submit' class='jjim btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='찜' style='font-weight:bold;'>
 				</form>
+			<%} else{ %>
+				<input type="button" class="jjim btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' onclick='loginafter();' style='font-weight:bold;' value="찜"/>
+			<% }%>
 			</div>
 		</div>
 		<br>
@@ -673,7 +693,21 @@ function fnMove2(){
 								</td>
 							</tr>
                     		<button type='button' class="reviewWrite" onclick="fn_insertReview()">리뷰쓰기</button>
-                    		<%}%>
+							<%} else{ %>
+								<tr>
+									<th><label></label></th>
+									<td>
+										<span class="star_rating">
+										    <a href="#" class="on" style='font-size:15px; font-weight:bold;'>★ </a>
+										    <a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+											<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+											<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+											<a href="#" style='font-size:15px; font-weight:bold;'>★ </a>
+										</span>
+									</td>
+								</tr>
+								<input type="button" class="reviewWrite btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' onclick='loginafter();' value="리뷰쓰기"/>
+							<% }%>
                     	</div>
                     </div>
 				</div>
@@ -761,19 +795,21 @@ function fnMove2(){
 								return;	
 							}
 						}
+						
 						function update_review<%=r.getReviewNum() %>(){
 							//모달창띄워주자
 						}
+						
 						</script>
 	                    <div class='content'>
 	                        <small>
 	                            <input type='checkbox' id='readmore<%=r.getReviewNum()%>' /> 
 	                            <div class='inner<%=r.getReviewNum() %>' style='width:100%;'>
-	                            <pre style='border:none; white-space:pre-wrap; word-break:break-all; margin-bottom:0px; padding-bottom:0px;'><small><%=r.getReviewContext() %></small></pre>
+	                            <pre id="concontext" style='border:none; white-space:pre-wrap; word-break:break-all; margin-bottom:0px; padding-bottom:0px;'><small><%=r.getReviewContext() %></small></pre>
 	                            </div>
 	                            
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
-	                            <div type=hidden class='delal'>
+	                            <div type='hidden' class='delal'>
 	                            
 								<form id="deletefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoDeleteReview" style='float:right;'>
 								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
@@ -789,6 +825,11 @@ function fnMove2(){
 								
 		                    	</div>
 		                    	<%}%>
+		                    	<script type='text/javaScript'>
+		                    	$('#concontext').val().split('\n').length(function(){
+		                            var rows = $('#textarea').val().split('\n').length;
+		                            var maxRows = 3;
+		                    	</script>
 								<label id='lala' for='readmore<%=r.getReviewNum()%>'></label>
 	                        </small>
 	                    </div>
@@ -801,7 +842,7 @@ function fnMove2(){
                     }
                     </style>
                     <div id="pageer">
-						<%=pageBar %>
+						<%=pageBar%>
 					</div>
 					</div>
 					</div>

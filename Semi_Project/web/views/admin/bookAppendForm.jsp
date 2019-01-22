@@ -8,25 +8,25 @@
 		<table class="table">
 			<tr>
 				<th>책 제목</th>
-				<td> <input type="text" name="title" id="title" class="form-control"/> </td>
+				<td> <input type="text" name="title" id="title" class="form-control" required/> </td>
 				<th>저자 명</th>
-				<td> <input type="text" name="author" id="author" class="form-control"/> </td>
+				<td> <input type="text" name="author" id="author" class="form-control" required/> </td>
 			</tr>
 			<tr>
 				<th>출판사</th>
-				<td><input type="text" name="pub" id="pub" class="form-control"/></td>
+				<td><input type="text" name="pub" id="pub" class="form-control" required/></td>
 				<th>가격</th>
-				<td><input type="number" name="price" id="price" class="form-control"/></td>
+				<td><input type="number" name="price" id="price" class="form-control" required/></td>
 			</tr>
 			<tr>
 				<th>장르</th>
-				<td><select name="genre" id="genre">
+				<td><select name="genre" id="genre" required>
 					<%for(String g: genres){%>
 						<option value="<%=g%>"><%=g%></option>
 					<%} %>
 				</select></td>
 				<th>ISBN</th>
-				<td><input type="number" name="" id="" value="<%=isbn%>"class="form-control" readonly/></td>
+				<td><input type="number" name="" id="" value="<%=isbn%>"class="form-control" readonly required/></td>
 			</tr>
 			<tr>
 				<th>책 표지</th>
@@ -54,9 +54,9 @@
 			</tr>
 			<tr>
 				<th>수량</th>
-				<td><input type="number" name="count" id="" class="form-control"/></td>
+				<td><input type="number" name="count" id="count" class="form-control" required/></td>
 				<th>출간일</th>
-				<td> <input type="date" name="date" id="" /> </td>
+				<td> <input type="date" name="date" id="date" required/> </td>
 			</tr>
 			<tr>
 				<td><input type="reset" class="form-control btn btn-danger"/></td>
@@ -68,23 +68,30 @@
 <script>
 	$(function(){
 		$.ajax({
-   			url: "https://dapi.kakao.com/v3/search/book",
-   			headers: {'Authorization': 'KakaoAK {인증번호}'},
-   			type : "get",
-   			data:{
-   				query: '<%=isbn%>',
-    			target:'isbn'
-   			},
-   			success : function(result){
-   				var data = result.documents[0];
-   				$("#title").val(data.title);
-   				$('#author').val(data.authors);
-   				$('#pub').val(data.publisher);
-   				$('#price').val(data.price);
-   				$('#info').val(data.contents+"...");
-   				console.log(data.authors[0]);
-   			}
-   		});
+			url: "<%=request.getContextPath()%>/file/kakaoApi.txt",
+			type: "get",
+			dataType:"text",
+			success: function(result){
+			$.ajax({
+	   			url: "https://dapi.kakao.com/v3/search/book",
+	   			headers: {'Authorization': 'KakaoAK '+ result},
+	   			type : "get",
+	   			data:{
+	   				query: '<%=isbn%>',
+	    			target:'isbn'
+	   			},
+	   			success : function(result){
+	   				var data = result.documents[0];
+	   				$("#title").val(data.title);
+	   				$('#author').val(data.authors);
+	   				$('#pub').val(data.publisher);
+	   				$('#price').val(data.price);
+	   				$('#info').val(data.contents+"...");
+	   			}
+	   		});
+			}
+		})
+		
 	})
 
 </script>

@@ -42,9 +42,12 @@ height:10px;
 					</tr>
 					<%for(Book b : list) {%>
 					<tr>
-						<div class="tbl">
-						<td><image src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"></td>
-						</div>
+					
+					<div class="col-xs-6 col-md-3">
+    				<td><a href="#" class="thumbnail"><img src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>" alt="도서사진"></a></td>
+  					</div>
+					
+						
 						<td><%=b.getBookName()%></td>
 						<td><%=b.getPrice()%></td>
 						<td><%=b.getPublisher()%></td>

@@ -75,9 +75,7 @@ input[value='삭제하기'] {
 }
 </style>
 <section>
-
-	<div class="col-sm-1"></div>
-	<div class="col-sm-9">
+	<div class=" col-sm-8">
 <br/><br/>
 		
 		
@@ -94,7 +92,7 @@ input[value='삭제하기'] {
 			<%if(logined!=null||logined.getMemberId().equals("admin")){ %>
 
 			
-			<table class="type10">
+			<table class="type10 table">
 				<thead>
 
 					<tr>
@@ -127,8 +125,10 @@ input[value='삭제하기'] {
 					<tr>
 						<th scope="row" class="even"><h4>등록일</h4></th>
 						<td class="even"><%=ab.getAppDate() %></td>
-
-
+					</tr>
+					<tr>
+						<th scope="row" ><h4>ISBN</h4></th>
+						<td><%=ab.getISBN() %></td>
 					</tr>
 				</tbody>
 
@@ -145,11 +145,16 @@ input[value='삭제하기'] {
 		<br />
 
 		<button id="return" onclick="main_absence();">목록으로</button>
+		<button class="btn" onclick="appendBook();">책 추가하기</button>
 		<br />
 		<br />
 		<br />
 		<br />
 		<script>
+		
+		function appendBook(){
+			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>";
+		}
 		
 		function deleted(){
 			if(!confirm('정말 삭제하시겠습니까?')){
