@@ -81,7 +81,7 @@ public class InfoDao {
 		}
 		return b;
 	}
-	public List<Review> selectInfoReview(Connection conn, int bookId)
+	public List<Review> selectInfoReview(Connection conn, int bookId, int cPage, int numPerPage)
 	{
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -91,6 +91,8 @@ public class InfoDao {
 		{
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, bookId);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -119,6 +121,28 @@ public class InfoDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public int selectReviewCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectReviewCount");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		} 
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		} 
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
 	}
 	public int insertWish(Connection conn, Wish w)
 	{
@@ -190,6 +214,25 @@ public class InfoDao {
 		}
 		finally
 		{
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteReview(Connection conn, int reviewNum) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteReview");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewNum);
+			result=pstmt.executeUpdate();
+			System.out.println("DAO에서 리뷰삭제 넘어오나? "+reviewNum);
+		} 
+		catch(SQLException e) {
+			e.printStackTrace();
+		} 
+		finally {
 			close(pstmt);
 		}
 		return result;
