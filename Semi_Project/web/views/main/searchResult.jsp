@@ -6,7 +6,7 @@
 <% 
 	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
 	List<Author> authors = (List<Author>)request.getAttribute("authorList");
-	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+	List<GenreCount> genreList = (List<GenreCount>)request.getAttribute("genreList");
 	List<Book> recents = (List<Book>)request.getAttribute("recentList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (int)request.getAttribute("cPage"); 
@@ -58,9 +58,9 @@
         
         	<!-- 좌측 카테고리 -->
             <div id='category' class="col-xs-12 col-md-3">
-            <%if(!genres.isEmpty()){
+            <%if(!genreList.isEmpty()){
             	int allGenre = 0;
-            	for(GenreCount g : genres){
+            	for(GenreCount g : genreList){
             		allGenre += g.getCnt();
             	}
             %>
@@ -71,7 +71,7 @@
             		<li class="list-group-item disabled">전체<span class="badge">(<%=allGenre %>)</span></li>    		
             	<% }else{ %>
                 	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%><%=order==null?"":"&order="+order%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
-            <%	}for(GenreCount c : genres){
+            <%	}for(GenreCount c : genreList){
             		//선택된 카테고리
             		if(category.equals(c.getGenre())){%>
                     <li class="list-group-item disabled"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></li>
