@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.service.InfoService;
 import com.kh.member.model.vo.Member;
+import com.kh.review.model.service.ReviewService;
 import com.kh.review.model.vo.Review;
 
 /**
@@ -36,14 +37,88 @@ public class InfoViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
-		List<Review> list=new InfoService().selectInfoReview(bookId);
+		
+		int cPage;//현재페이지를 의미
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}
+		catch(NumberFormatException e)
+		{
+			cPage=1;
+		}
+		int numPerPage = 5;//페이지당 자료수
+		
+
+		List<Review> list=new InfoService().selectInfoReview(bookId, cPage, numPerPage);
+		
+		
+		//페이지구성해보자~!
+		//전체자료수를 확인
+		int totalReview = new InfoService().selectReviewCount();
+		//전체페이지수
+		int totalPage=(int)Math.ceil((double)totalReview/numPerPage);
+		//페이지바 html코드 누적변수
+		String pageBar="<nav>";
+		pageBar += "<ul class='pagination'>";
+		//페이지바길이
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		//페이지바를 구성
+		if(pageNo==1)
+		{
+			pageBar+="<li><span aria-hidden='true'>&laquo;</span></li>";
+		}
+		else 
+		{
+			pageBar+="<li><a href='"+request.getContextPath() +"/inforconpare_hwang/infoView?bookId="+bookId+"&cPage="+(pageNo-1) + "&numPerPage="+numPerPage+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+		}
+				
+		//선택페이지 만들기
+		while(!(pageNo>pageEnd||pageNo>totalPage))
+		{
+			if(cPage==pageNo)
+			{
+				pageBar+="<li><span class='cPage'>"+pageNo+"</span></li>";
+			}
+			else
+			{
+				pageBar+="<li><a href='"+request.getContextPath()+"/inforconpare_hwang/infoView?bookId="+bookId+"&cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
+			}
+			pageNo++;
+		}
+		
+		
+		//[다음]구현
+		
+		if(pageNo>totalPage)
+		{
+			pageBar+="<li><span aria-hidden='true'>&raquo;</span></li>";
+		}
+		else 
+		{
+			pageBar+="<li><a href='"+request.getContextPath()+"/inforconpare_hwang/infoView?bookId="+bookId+"&cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
+		}		
+
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("list", list);
+		
+		int cnt = 0;
+		for(Review r : list) {
+			if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
+			cnt ++;
+		}
+
+		System.out.println("페이징처리 잘되나? "+(cPage-1)*numPerPage+1+" "+cPage*numPerPage);
 
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
+		request.setAttribute("cnt", cnt);
 		request.setAttribute("book", b);
 		request.setAttribute("reviewList", list);
-		request.setAttribute("reviewsize", list.size());
+		request.setAttribute("reviewsize", totalReview);
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
 

@@ -300,3 +300,7 @@ div.author-data div.author-info pre{
 	height: 350px;
 	margin-top: 100px;
 }
+
+table textarea{
+	resize: none;
+}

@@ -35,7 +35,7 @@ public class NoticeDao {
 		ResultSet rs=null;
 		List<Notice> list=new ArrayList();
 		String sql = prop.getProperty("selectall");
-		System.out.println(sql);
+		
 		Notice n=null;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertNotice");
-		System.out.println(sql);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getNoticeTitle());

@@ -197,8 +197,8 @@
 									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
 									<input type="hidden" id="star_grade" name="star_grade" value="">
 									<input type="hidden" id="renum" name="renum" value="">										
-								</form>
 								</td>
+								</form>
 							</tr>
 						</table>
 					</div>
