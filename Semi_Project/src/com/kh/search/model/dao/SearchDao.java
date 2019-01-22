@@ -251,7 +251,7 @@ public class SearchDao {
 		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("getGenreBookCount"));
-			pstmt.setString(1, "%"+genre+"%");
+			pstmt.setString(1, genre);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -302,7 +302,7 @@ List<Book> list=new ArrayList<>();
 			String sql = prop.getProperty("searchGenreBookS") + orderby + prop.getProperty("searchGenreBookE");
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+genre+"%");
+			pstmt.setString(1, genre);
 			pstmt.setInt(2, (cPage-1) * numPerPage+1);
 			pstmt.setInt(3, cPage * numPerPage);
 			
