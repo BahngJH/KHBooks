@@ -39,7 +39,13 @@ public class MultiPaymentServlet extends HttpServlet {
 		 Book b = new Book();
 		 for(int i=0;i<bookIds.length;i++)
 		 {
-			 b.
+			 b.setBookName(bookNames[i]);
+			 b.setBookCount(bookCounts[i]);
+			 b.setPrice(bookPrices[i]);
+			 b.setBookImage(bookImages[i]);
+			 b.setAuthor((bookNames[i]);
+			 b.setBookName(bookNames[i]);
+			 
 		 }
 	}
 
