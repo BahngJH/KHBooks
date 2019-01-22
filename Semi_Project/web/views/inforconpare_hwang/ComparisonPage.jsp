@@ -1,4 +1,11 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8'
+import='java.util.*,
+java.sql.*,
+java.text.*,
+com.kh.book.model.vo.Book, 
+com.kh.review.model.vo.Review,
+com.kh.member.model.vo.Member,
+com.kh.author.model.vo.Author'
 	pageEncoding='UTF-8'%>
     
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
