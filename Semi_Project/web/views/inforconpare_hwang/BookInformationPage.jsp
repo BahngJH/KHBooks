@@ -390,7 +390,7 @@ function fnMove2(){
 									<button class='reviewgogo btn-link'	onclick="fnMove1()">리뷰쓰러가기</button>
 								</p>
 							</span>
-						</div>
+						</div> 
 					</div>
 					<!--  -->
 					<hr>
