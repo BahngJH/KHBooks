@@ -68,23 +68,30 @@
 <script>
 	$(function(){
 		$.ajax({
-   			url: "https://dapi.kakao.com/v3/search/book",
-   			headers: {'Authorization': 'KakaoAK {인증번호}'},
-   			type : "get",
-   			data:{
-   				query: '<%=isbn%>',
-    			target:'isbn'
-   			},
-   			success : function(result){
-   				var data = result.documents[0];
-   				$("#title").val(data.title);
-   				$('#author').val(data.authors);
-   				$('#pub').val(data.publisher);
-   				$('#price').val(data.price);
-   				$('#info').val(data.contents+"...");
-   				console.log(data.authors[0]);
-   			}
-   		});
+			url: "<%=request.getContextPath()%>/file/kakaoApi.txt",
+			type: "get",
+			dataType:"text",
+			success: function(result){
+			$.ajax({
+	   			url: "https://dapi.kakao.com/v3/search/book",
+	   			headers: {'Authorization': 'KakaoAK '+ result},
+	   			type : "get",
+	   			data:{
+	   				query: '<%=isbn%>',
+	    			target:'isbn'
+	   			},
+	   			success : function(result){
+	   				var data = result.documents[0];
+	   				$("#title").val(data.title);
+	   				$('#author').val(data.authors);
+	   				$('#pub').val(data.publisher);
+	   				$('#price').val(data.price);
+	   				$('#info').val(data.contents+"...");
+	   			}
+	   		});
+			}
+		})
+		
 	})
 
 </script>
