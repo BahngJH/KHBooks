@@ -3,8 +3,7 @@
 <%@ include file="/views/common/myHeader.jsp"%>
 <%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.book.model.vo.Book, com.kh.author.model.vo.Author" %>
 <%
-	List<Order> list = (List)request.getAttribute("list");
-	String pageBar=(String)request.getAttribute("pageBar");
+	List<Book> list = (List)request.getAttribute("paymentList");
 %>
 
 <style>
@@ -23,13 +22,7 @@
 		min-height: 150px;
 		margin-top: 10px;
 	}
-	div#pager nav{
-		width: 140px;
-	}
-	div#pager{
-		display: inline-block;
-		margin-left: 500px;
-	}
+
 </style>
 
 
@@ -38,22 +31,7 @@
 				<article class="buyList-container">
 					<div id="buyList-title">
 						<h3>구매 목록</h3>
-					</div>
-					<div id="buyList-options">
-						<div class="input-group">
-							<form class="form-controll navbar-right" role="search" action="<%=request.getContextPath()%>/order/orderSearch" method="get">
-				                <div class="form-group">
-				                    <div class="input-group">
-				                        <input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="책 또는 저자명">
-				                        <span class="input-group-btn">
-				                            <button type="submit" class="btn btn-default" id="searchBar">검색</button>
-				                        </span>
-				                    </div>
-				                </div>
-				            </form>
-						</div>										
-					</div>	
-												
+					</div>					
 					
 					<table class="table table-responsive" id="tbl-orderList">
 						<thaed>
@@ -65,52 +43,39 @@
 							</tr>
 						</thaed>
 						<tbody>							
-							<%for(Order o : list) {%>
-								<%if(o.getStatus().equals("Y") || o.getStatus().equals("y")) { %>
+							<%for(Book b : list) {%>						
 									<tr>
 										<!-- 책 이미지 -->
 										<td>
 											<div id="bookImg">
-		                                		<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>" class="thumbnail">
-		                                    		<img src="<%=request.getContextPath() %>/images/book/<%=o.getBook().getBookImage() %>"alt="책 이미지">
+		                                		<a href="" class="thumbnail">
+		                                    		<img src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"alt="책 이미지">
 		                                		</a>
 	                                		</div>
 										</td>
 										<!-- 제목, 저자, 가격 -->                        		                            	
 										<td style="text-align: left;">
 		                                	<h4 class='book_info'>
-	    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=o.getBook().getBookId()%>">
-		                                    	<h3><strong><%=o.getBook().getBookName()%></strong></h3>
+	    	                                <a href="">
+		                                    	<h3><strong><%=b.getBookName() %></strong></h3>
 	                                    	</a>
 		                                	</h4>
-		                                	<h5><%=o.getBook().getAuthor().getAuthorName() %></h5>  
-		                                	<h4 id="bookPrice"><%=o.getBook().getPrice() %>원</h4>       
+		                                	<h5><%=b.getAuthor().getAuthorName() %></h5>  
+		                                	<h4 id="bookPrice"><%=b.getPrice() %></h4>       
 										</td>
-										<!-- 구매일 -->
-										<td>
-	                            			<p><%=o.getOrderDate() %></p>
-										</td>
+									
 										<!-- 수량 -->
 										<td>
-		                            		<p><%=o.getBookCount()%></p>
+		                            		<p><%=b.getBookCount() %></p>
 										</td>
 										<!-- 총 가격 -->
 										<td>
-											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
+											<p>원</p>
 										</td>
 									</tr>
-								<%} else {%>	
-									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
-									</tr>							
-																		
-							<% break;}
-							}%>
+								<%} %>							
 						</tbody>
 					</table>
-					<div id="pageer">
-						<%=pageBar %>
-					</div>							
 				</article>
 			</section>
 		</div>

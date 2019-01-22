@@ -1,14 +1,19 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.book.model.service.BookService;
 import com.kh.book.model.vo.Book;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class MultiPaymentServlet
@@ -29,24 +34,20 @@ public class MultiPaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String[] bookNames =request.getParameterValues("bookName");
-		 String[] bookCounts =request.getParameterValues("bookCount");
-		 String[] bookPrices =request.getParameterValues("bookPrice");
-		 String[] bookImages =request.getParameterValues("bookImage");
-		 String[] authorNames =request.getParameterValues("authorName");
-		 String[] publishers =request.getParameterValues("publisher");
+		Member logined = (Member) request.getSession(false).getAttribute("logined");
+		int memberNum = logined.getMemberNum();
+		
+		 String[] bookIds = request.getParameterValues("BookId");
+		 List<Integer> ids = new ArrayList();		 
 		 
-		 Book b = new Book();
-		 for(int i=0;i<bookIds.length;i++)
-		 {
-			 b.setBookName(bookNames[i]);
-			 b.setBookCount(bookCounts[i]);
-			 b.setPrice(bookPrices[i]);
-			 b.setBookImage(bookImages[i]);
-			 b.setAuthor((bookNames[i]);
-			 b.setBookName(bookNames[i]);
-			 
+		 for(int i=0; i<bookIds.length; i++) {
+			 ids.add(Integer.parseInt(bookIds[i]));  
 		 }
+		 
+		 List<Book> payList = new BookService().payList(ids, memberNum);
+		 
+		 request.setAttribute("payList", payList);
+		 request.getRequestDispatcher("/views/login_myPage/payment.jsp").forward(request, response);
 	}
 
 	/**
