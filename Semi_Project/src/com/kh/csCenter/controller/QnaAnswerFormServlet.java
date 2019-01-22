@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.csCenter.model.service.QnaService;
 import com.kh.csCenter.model.vo.Qna;
+import com.kh.csCenter.model.vo.QnaRe;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.notice.model.service.NoticeService;
@@ -35,13 +36,12 @@ public class QnaAnswerFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// 받아올 문의 번호
+		int qnaNo = Integer.parseInt(request.getParameter("no"));
+		Qna q = new QnaService().selectNo(qnaNo);
 		
-		/*int memberNum=Integer.parseInt(request.getParameter("memberNum"));
-		Member m=new MemberService().selectNo(memberNum);*/
-		int no = Integer.parseInt(request.getParameter("no"));
-		Qna q = new QnaService().selectNo(no);
-			
-		//request.setAttribute("m", m);
+	
 		request.setAttribute("q", q);
 		request.getRequestDispatcher("/views/csCenter/qnaAnswerForm.jsp").forward(request, response);
 		
