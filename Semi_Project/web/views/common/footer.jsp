@@ -13,7 +13,7 @@ marquee {
 
 div.title , div.notice {
 	float: left;
-	margin: 0px 0px 0px 700px;
+	margin: 0px 0px 0px 780px;
 	
 }
 
@@ -46,7 +46,7 @@ a#MOVE_TOP_BTN {
 }
 footer.fot {background-color:#f8f8f8;}
 .fot hr{border: 1px solid gray;}
-div#btn{ margin:0px 0px 0px 500px;}
+div#btn{ margin:0px 0px 0px 590px;}
 div#btn a{float:left; margin:0px 10px 0px 120px; }
 div#btn  a{color:black;}
 </style>
