@@ -80,4 +80,5 @@ padding: 8px 10px;
 				</div>
 		</div>
 		</div>
+		</div>
 <%@include file="/views/common/footer.jsp"%>
