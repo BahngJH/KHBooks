@@ -1,6 +1,5 @@
 package com.kh.csCenter.controller;
 
-import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,26 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
 import com.kh.csCenter.model.service.QnaService;
 import com.kh.csCenter.model.vo.Qna;
 import com.kh.csCenter.model.vo.QnaRe;
-import com.oreilly.servlet.MultipartRequest;
-
-import common.MyFileRenamePolicy;
 
 /**
- * Servlet implementation class QnaAnswerEndServlet
+ * Servlet implementation class UpdateAnswerEndServlet
  */
-@WebServlet("/qna/qnaAnswerEnd")
-public class QnaAnswerEndServlet extends HttpServlet {
+@WebServlet("/qna/answerUpdateEnd")
+public class UpdateAnswerEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaAnswerEndServlet() {
+    public UpdateAnswerEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,41 +29,51 @@ public class QnaAnswerEndServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		String reCheck=request.getParameter("reCheck");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String reMail=request.getParameter("reMail");
-		String reContent=request.getParameter("reContent");
+		String reContent=request.getParameter("reContent");		
+		String reCheck=request.getParameter("reCheck");
+		int reNum=Integer.parseInt(request.getParameter("reNum"));
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
-		int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
-				
+		//int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
+					
+		int no=Integer.parseInt(request.getParameter("no"));
+		
 		QnaRe qr=new QnaRe();
-		qr.setReNum(0);
+		qr.setReNum(reNum);	
 		qr.setAdminNum(memberNum);
-		qr.setQnaNum(qnaNum);
+		qr.setReContent(reContent);
 		qr.setReCheck(reCheck);
 		qr.setReMail(reMail);
-		qr.setReContent(reContent);
-		qr.setReStatus(null);
-		qr.setReDate(null);		
-		int rs=new QnaService().qnaAnswerEnroll(qr);
-		System.out.println(qr);
+		qr.setQnaNum(no);
 		
-		//응답처리
+		System.out.println("qr="+qr);
+		
+		int rs=new QnaService().updateAnswer(qr);
+		
+		System.out.println("수정된 답변 : "+qr);
+		System.out.println(rs);
+		
 		String msg="";
-		String loc="";
 		String view="/views/common/msg.jsp";
+		String loc="";
 		
 		if(rs>0) {
-			//문의 정상 등록
-			msg="답변이 정상적으로 등록되었습니다.";			
-			loc="/qna/qnaListAdmin";
+			msg="수정 성공";
+			loc="/qna/qnaContent?no="+qr.getQnaNum();
 		}else {
-			msg="답변 등록에 실패하였습니다.";
-			loc="/qna/qnaContent";						
+			msg="수정실패";
+			loc="/qna/answerUpdate";
 		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
 		request.getRequestDispatcher(view).forward(request, response);
+		
+		
+		
+		
+		
+		
 	}
 
 	/**

@@ -26,11 +26,12 @@ public class Book {
 	private int sales;
 	private Author author;
 	private Member member;
-	
+	private int grade;
 	
 	public Book() {
 		super();
 	}
+	
 	public Book(String bookName, int price, String publisher, int authorNum, String genre, int bookId, String isbn,
 			String bookImage, Date bookDate, String bookInfo, String bookContent, String editor, String translator, int pageNum, int stock,
 			int sales, String toc) {
@@ -291,6 +292,11 @@ public class Book {
 		this.member = member;
 	}
 	
-	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	
 }

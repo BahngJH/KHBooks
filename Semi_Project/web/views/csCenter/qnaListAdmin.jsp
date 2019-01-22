@@ -8,8 +8,19 @@
    // int cnt = (int)request.getAttribute("cnt");
 	 String pageBar = (String) request.getAttribute("pageBar");
 %> 
-
-
+<style>
+table th{
+ border-bottom:1px solid skyblue;
+margin: 5px 0;
+padding: 8px 10px;
+border-width: 2px;
+border-height: 10px;
+ text-align:center;
+ }
+.qna-paging {
+	text-align: center;
+}
+</style>
 <!-- 최상단  -->
 
 <section id="board-container">
@@ -68,22 +79,42 @@
 					    </tbody>
 					  </table>
   					</div>
-  				</div>				 				 				                   		                 
-			</div>
-		</div>	
-		<!--페이징처리 -->
-		<div class="row">		                
-	   		<div class="qna-paging col-md-offset-1 col-md-7" >
-	   			<div id='pageBar'>
-		 			<nav>
-		 				<ul class="pagination">			  		
-							<li><%=pageBar %></li>				
-						</ul>
-	   	  		 	</nav>
-   	  		 	</div>		 	
-	   		</div>
-		</div>			 		  			
+  						<!--페이징처리 -->
+				<div class="qna-paging col-md-offset-2 col-md-7" >
+		   			<div id='pageBar'>
+			 			<nav>
+			 				<ul class="pagination">			  		
+								<li><%=pageBar %></li>				
+							</ul>
+		   	  		 	</nav>
+	 	  		 	</div>		 	
+	   			</div>
+			</div>				 				 				                   		                 
+		</div>
+	</div>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+						 		  			
  </section>
+ 
+ 
+
+ 
 </div>
 
 
