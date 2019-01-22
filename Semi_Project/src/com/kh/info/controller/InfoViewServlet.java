@@ -109,7 +109,7 @@ public class InfoViewServlet extends HttpServlet {
 			if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
 			cnt ++;
 		}
-		
+
 		System.out.println("페이징처리 잘되나? "+(cPage-1)*numPerPage+1+" "+cPage*numPerPage);
 
 		//쿠키 설정
@@ -118,7 +118,7 @@ public class InfoViewServlet extends HttpServlet {
 		request.setAttribute("cnt", cnt);
 		request.setAttribute("book", b);
 		request.setAttribute("reviewList", list);
-		request.setAttribute("reviewsize", list.size());
+		request.setAttribute("reviewsize", totalReview);
 		request.getRequestDispatcher("/views/inforconpare_hwang/BookInformationPage.jsp").forward(request, response);
 	}
 
