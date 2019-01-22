@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.kh.csCenter.model.vo.Qna;
 import com.kh.csCenter.model.vo.QnaRe;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.vo.Notice;
 
 import static common.JDBCTemplate.*;
@@ -26,8 +27,45 @@ public class QnaDao {
 			e.printStackTrace();
 		}
 	}
-	
-	//답변수정	
+
+	//관리자 답변 메일 전송
+	public Qna sendEmail(Connection conn, int qnaNum) {
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		String sql = prop.getProperty("sendEmail");
+		Qna q =null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qnaNum);			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				q=new Qna();
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaWriter(rs.getInt("memberNum"));
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaContent(rs.getString("qnaContent"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setQnaStatus(rs.getString("qnaStatus"));
+				q.setQnaPart(rs.getString("qnaPart"));
+				q.setQnaOriFile(rs.getString("qna_original_filename"));
+				q.setQnaReFile(rs.getString("qna_renamed_filename"));
+				q.setQnaAnswer(rs.getString("qnaAnswer"));
+				q.setQnaMail(rs.getString("qnaMail"));
+				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReContent(rs.getString("reContent"));							
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return q;
+	}
+
+	// 답변수정
 	public int updateAnswer(Connection conn, QnaRe qr) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -36,11 +74,11 @@ public class QnaDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qr.getReNum());
 			pstmt.setInt(2, qr.getAdminNum());
-			pstmt.setString(3, qr.getReCheck());	
+			pstmt.setString(3, qr.getReCheck());
 			pstmt.setString(4, qr.getReMail());
 			pstmt.setString(5, qr.getReContent());
 			pstmt.setInt(6, qr.getQnaNum());
-			
+
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -48,12 +86,10 @@ public class QnaDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println("결과값은???"+result);
+		System.out.println("결과값은???" + result);
 		return result;
 
 	}
-	
-	
 
 	public int selectCount(Connection conn) {
 		PreparedStatement pstmt = null;
@@ -74,8 +110,8 @@ public class QnaDao {
 		}
 		return result;
 	}
-	
-	//내가 쓴 문의글 갯수
+
+	// 내가 쓴 문의글 갯수
 	public int selectMyCount(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -96,7 +132,7 @@ public class QnaDao {
 		}
 		return result;
 	}
-	
+
 	// 내가 쓴 글목록 list 페이징
 	public List<Qna> selecMyQnaList(Connection conn, int memberNum, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
@@ -108,7 +144,7 @@ public class QnaDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
 			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
-			pstmt.setInt(3, cPage * numPerPage);					
+			pstmt.setInt(3, cPage * numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Qna q = new Qna();
@@ -124,8 +160,8 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
-				q.setReContent(rs.getString("reContent"));	
-				
+				q.setReContent(rs.getString("reContent"));
+
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -137,29 +173,29 @@ public class QnaDao {
 		return list;
 
 	}
-		
-	//관리자 답변
+
+	// 관리자 답변
 	public List<QnaRe> selectMyRe(Connection conn, int memberNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<QnaRe> qrList = new ArrayList();
 		String sql = prop.getProperty("selectRe");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNum);
 			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {	
+
+			while (rs.next()) {
 				QnaRe qr = new QnaRe();
 				qr.setReNum(rs.getInt("reNum"));
 				qr.setAdminNum(rs.getInt("memberNum"));
 				qr.setQnaNum(rs.getInt("qnaNum"));
 				qr.setReCheck(rs.getString("reCheck"));
-				qr.setReMail(rs.getString("reMail"));				
+				qr.setReMail(rs.getString("reMail"));
 				qr.setReContent(rs.getString("reContent"));
 				qr.setReStatus(rs.getString("reStatus"));
-				qr.setReDate(rs.getDate("reDate"));			
+				qr.setReDate(rs.getDate("reDate"));
 				qrList.add(qr);
 			}
 		} catch (SQLException e) {
@@ -206,7 +242,7 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("list : "+list);
+		System.out.println("list : " + list);
 		return list;
 
 	}
@@ -246,7 +282,7 @@ public class QnaDao {
 			close(rs);
 		}
 		return q;
-	}	
+	}
 
 	// 1:1 답변 등록
 	public int qnaAnswerEnroll(Connection conn, QnaRe qr) {
@@ -268,7 +304,7 @@ public class QnaDao {
 		}
 		return rs;
 	}
-	
+
 	// 1:1 문의글 등록 Dao
 	public int qnaEnroll(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;

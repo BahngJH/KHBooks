@@ -100,11 +100,7 @@ a {
          <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
          </li>
          <br />
-         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서
-          <br />
-         <li><a href="<%=request.getContextPath()%>/qna/qnaListAdmin">1:1 (관리자)</a>
-         </li>
-
+         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신천</a></li> 
       </ul>
       <%}else {%>
 
@@ -113,17 +109,10 @@ a {
          <li><a onclick="a_click();">1:1문의</a></li>
          <br />
          <li><a onclick="a_click();">희망도서 신청</a></li> 
-         <br />    
-         <li><a onclick="a_click();">1:1 관리자</a></li>
-
       </ul>
       <%}%>
 
       <hr>
-      <a href=""><strong>도서신청</strong></a>
-      <hr>
-
-
 
       <a href="<%=request.getContextPath()%>/notice/noticemain"><strong>공지사항</strong></a>
       <hr />
