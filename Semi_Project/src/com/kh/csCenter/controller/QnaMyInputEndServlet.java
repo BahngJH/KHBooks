@@ -56,7 +56,7 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		//파일 업로드 객체 생성
 		MultipartRequest mr=new MultipartRequest(request, saveDir, maxSize, "UTF-8", new MyFileRenamePolicy());
 		String qnaPart=mr.getParameter("qnaPart");
-		System.out.println(qnaPart);
+		
 		int qnaWriter=Integer.parseInt(mr.getParameter("memberNum"));
 		String qnaAnswer=mr.getParameter("qnaAnswer");
 		String mail1=mr.getParameter("mail1");
@@ -84,11 +84,12 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		q.setQnaMail(qnaMail);
 		q.setQnaTel(qnaTel);
 		q.setReContent(null);
+		q.setReNum(0);
 		q.setQnaContent(qnaContent);
 		q.setQnaOriFile(mr.getOriginalFileName("upfile"));
 		q.setQnaReFile(mr.getFilesystemName("upfile"));
 						
-		System.out.println(q);
+	
 		
 		int rs=new QnaService().qnaEnroll(q);
 		

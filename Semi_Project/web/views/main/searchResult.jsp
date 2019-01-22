@@ -6,7 +6,7 @@
 <% 
 	List<Book> books = (List<Book>)request.getAttribute("bookList"); 
 	List<Author> authors = (List<Author>)request.getAttribute("authorList");
-	List<GenreCount> genres = (List<GenreCount>)request.getAttribute("genreList");
+	List<GenreCount> genreList = (List<GenreCount>)request.getAttribute("genreList");
 	List<Book> recents = (List<Book>)request.getAttribute("recentList");
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (int)request.getAttribute("cPage"); 
@@ -58,9 +58,9 @@
         
         	<!-- 좌측 카테고리 -->
             <div id='category' class="col-xs-12 col-md-3">
-            <%if(!genres.isEmpty()){
+            <%if(!genreList.isEmpty()){
             	int allGenre = 0;
-            	for(GenreCount g : genres){
+            	for(GenreCount g : genreList){
             		allGenre += g.getCnt();
             	}
             %>
@@ -71,7 +71,7 @@
             		<li class="list-group-item disabled">전체<span class="badge">(<%=allGenre %>)</span></li>    		
             	<% }else{ %>
                 	<li class="list-group-item"><a href="<%=request.getContextPath()%>/search/search?keyword=<%=keyword%>&cPage=<%=cPage%><%=order==null?"":"&order="+order%>">전체<span class="badge">(<%=allGenre %>)</span></a></li>
-            <%	}for(GenreCount c : genres){
+            <%	}for(GenreCount c : genreList){
             		//선택된 카테고리
             		if(category.equals(c.getGenre())){%>
                     <li class="list-group-item disabled"><%=c.getGenre() %><span class="badge">(<%=c.getCnt() %>)</span></li>
@@ -81,11 +81,13 @@
 				<%}
 				}%>            	
                 </ul>
-          <%}%> 
-                    
+          <%}else{%> 
+          	<h3 id="empty">카테고리 결과 없음</h3>        
+          <%} %>  
             </div>
             <!-- 중앙 검색 결과 -->
             <div id='search' class="col-xs-12 col-md-8">
+            	<h3><strong><%=keyword %> </strong>검색 결과</h3>
      			<!-- 저자 검색 결과 -->
                 <div id="author" class="col-xs-12 col-md-12">
                     <h3>저자 검색</h3>
@@ -112,7 +114,10 @@
                 
                 <!-- 책 검색 결과 -->
                 <div id="book" class="col-xs-12 col-md-12">
+                	
                     <h3>책 검색</h3>
+                    <!-- 검색 결과가 있을 경우 -->
+                    <%if(!books.isEmpty()) {%>
                     <div id='order' class="row">
                         <ul class="order-buttons list-inline col-xs-12 col-md-12">
                             <!-- 정렬 버튼 -->
@@ -133,10 +138,7 @@
                         </ul>
                     </div>
                     <div>
-                    <!-- 검색 결과가 있을 경우 -->
-                    <%if(!books.isEmpty()) {
-                    	for(Book b : books){
-                   	%>
+                    	<%for(Book b : books){	%>
                     	<div class='book-result row'>
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
@@ -153,7 +155,7 @@
                                     </a>
                                 </h4>
                                 <p class="book_info">
-                                	<span class="book_info"><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>">5.0</a>|</span>
+                                	<span class="book_info"><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>"><%=b.getGrade() %> 점</a>|</span>
                                 	<span class="book_info"><a href="<%=request.getContextPath()%>/author/authorInfo?author=<%=b.getAuthor().getauthorNum()%>"><%=b.getAuthor().getAuthorName() %></a>|</span>
                                 	<span class="book_info"><a href="#"><%=b.getPublisher() %></a></span>
                                 </p>
@@ -176,18 +178,17 @@
                         </div>
                     
                     		
-                   	<%	
-                    	}
-                    }
-                    %>
+                   	<%}%>
+	                <!--페이지네이션-->
+	                <div class="paging col-xs-12" style="text-align: center">
+    	                <ul class="pagination pagination-lg">
+        	                <%=pageBar %>
+            	        </ul>
                     </div>
                 </div>
-                <!--페이지네이션-->
-                <div class="paging col-xs-12" style="text-align: center">
-                    <ul class="pagination pagination-lg">
-                        <%=pageBar %>
-                    </ul>
-
+                  <%}else{%>
+					<h3 id="empty">검색 결과가 없습니다.</h3>
+					<%} %>
                 </div>
             </div>
 

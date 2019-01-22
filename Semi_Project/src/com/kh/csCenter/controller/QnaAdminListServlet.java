@@ -51,11 +51,11 @@ public class QnaAdminListServlet extends HttpServlet {
 		}
 		
 		int totalQna=new QnaService().selectCount();
-		System.out.println(totalQna);
+	
 		int totalPage=(int)Math.ceil((double)totalQna/numPerPage);
-		System.out.println(totalPage);
+	
 		List<Qna> list=new QnaService().selectList(cPage,numPerPage);
-		System.out.println("list"+list);
+	
 		String pageBar="";
 		int pageSize=5;
 		int pageNo=((cPage-1)/pageSize)*pageSize+1;
@@ -93,7 +93,7 @@ public class QnaAdminListServlet extends HttpServlet {
 		{
 			pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListAdmin?cPage="+pageNo+"&numPerPage="+numPerPage+"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
 		}
-		System.out.println(pageBar);
+		
 				
 		request.setAttribute("cPage",cPage);
 		request.setAttribute("pageBar",pageBar);

@@ -4,7 +4,7 @@
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
   <%
-	List<Qna> list = (List) request.getAttribute("list");
+	
     Qna q =(Qna)request.getAttribute("q");
     //Member m =(Member)request.getAttribute("m");
    
@@ -66,26 +66,25 @@
 					           <tr>				      
 						         <th><strong>등록된 답변</strong></th>					        
 						         <th></th>						         
-						         <th><b><%if(q.getReContent()!=null){ %>
-						         <%=q.getReContent() %></b></th>
+						         <th><b><%=q.getReContent() %></b></th>
 						         <th></th>					        
 						         <th></th>			        	     					      
-					           </tr>			          
+					           </tr>		           
             			 </table>	              
-	             </div>
-	              <div class="">			  			     				          		         		         
-			         <button type="update" class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변 수정</button>			        	      				       			        		  
-		  		  </div>
-				  <div class=""><%}else{ %>			  			     				          			        
-		  		   <form name="enrollAnswer" action="<%=request.getContextPath()%>/qna/qnaAnswerEnd" onsubmit="return validate();" method="post" > 	                                    	
-			          <textarea id="" class="noresize" rows="7" cols="60" name="reContent" required="required"/></textarea>
-			          <button type="submit" class="btn_sub btn btn-default" onclick="fn_enrollAnswer()">답변 등록</button><%} %>	
-			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>
+	             </div>          
 			          <input type="hidden" name="memberNum" value="<%=q.getQnaWriter()%>"/>
 			  		  <input type="hidden" name="qnaNum" value="<%=q.getQnaNum()%>"/>
+				   <div class="">		  			     				          			        
+		  		   <form action="<%=request.getContextPath()%>/qna/answerUpdateEnd" method="post" > 	                                    	
+			          <textarea id="" class="noresize" rows="7" cols="60" name="reContent" required="required"/></textarea>
 			  		  <input type="hidden" name="reCheck" value="<%=q.getQnaAnswer()%>"/>
-			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">	      				       			        		  
+			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">
+			  		  <input type="hidden" name="reNum" value="<%=q.getReNum()%>">
+			  		  <input type="hidden" name="memberNum" value="<%=q.getQnaWriter()%>">
+			  		  <input type="hidden" name="no" value="<%=q.getQnaNum()%>"> 				  		  			  		  		 	      				       			        		  
+			          <input type="submit" value="등록" />
   			  		</form>				         			        					        					 					  								      						 					       		    				   			
+			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>
 		  		  </div> 
 			</div>				 				 				                   		                 
 		</div>
@@ -94,24 +93,28 @@
 
 
 	 <script>	
-	<%-- 	function fn_fileDounwLoad(rName,oName)
-		{
-			var url="<%=request.getContextPath()%>/board/boardFileDownLoad";
-			//한글파일명이 있을경우 인코딩 처리를 해야함.
-			oName=encodeURIComponent(oName);
-			location.href=url+"?oName="+oName+"&rName="+rName;
-		}		
-			 --%>	
-	
+	 	
 		function fn_AnswerList(){
 			location.href="<%=request.getContextPath()%>/qna/qnaListAdmin";
 		}
-		function fn_updateAnswer()
-		{
-			location.href="<%=request.getContextPath()%>/qna/answerUpdate?no=<%=q.getQnaNum()%>";
-		} 
 		
 	</script> 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 <%@ include file="/views/common/footer.jsp"%>

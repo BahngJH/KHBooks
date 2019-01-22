@@ -1,30 +1,28 @@
-package com.kh.admin.controller;
+package com.kh.csCenter.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.absence.model.service.AbsenceService;
-import com.kh.absence.model.vo.Absence;
+import com.kh.csCenter.model.service.QnaService;
+import com.kh.csCenter.model.vo.Qna;
 import com.kh.notice.model.service.NoticeService;
 import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class AdminMainServlet
+ * Servlet implementation class UpdateAnswer
  */
-@WebServlet("/admin/mainview")
-public class AdminMainServlet extends HttpServlet {
+@WebServlet("/qna/answerUpdate")
+public class UpdateAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMainServlet() {
+    public UpdateAnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +31,23 @@ public class AdminMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int no=Integer.parseInt(request.getParameter("no"));
+		Qna q=new QnaService().selectNo(no);
 		
-		List<Absence> list=new AbsenceService().selectAllAbsence();
-		List<Notice> list1=new NoticeService().allNotice();
-		System.out.println("서블릿 "+list1);
-		request.setAttribute("list",list);
-		request.setAttribute("list1",list1);
-		
-		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+		request.setAttribute("q", q);
+		String view="";
+
+		if(q!=null)
+		{
+			view="/views/csCenter/updateAnswer.jsp";
+		}
+		else 
+		{
+			request.setAttribute("msg", "조회된 자료가 없습니다.");
+			request.setAttribute("loc", "/qna/qnaListAdmin");
+			view="/views/common/msg.jsp";
+		}
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

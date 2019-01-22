@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.kh.csCenter.model.vo.Qna;
 import com.kh.csCenter.model.vo.QnaRe;
+import com.kh.notice.model.vo.Notice;
 
 import static common.JDBCTemplate.*;
 
@@ -25,6 +26,34 @@ public class QnaDao {
 			e.printStackTrace();
 		}
 	}
+	
+	//답변수정	
+	public int updateAnswer(Connection conn, QnaRe qr) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qr.getReNum());
+			pstmt.setInt(2, qr.getAdminNum());
+			pstmt.setString(3, qr.getReCheck());	
+			pstmt.setString(4, qr.getReMail());
+			pstmt.setString(5, qr.getReContent());
+			pstmt.setInt(6, qr.getQnaNum());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("결과값은???"+result);
+		return result;
+
+	}
+	
+	
 
 	public int selectCount(Connection conn) {
 		PreparedStatement pstmt = null;
@@ -95,7 +124,7 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
-				q.setReContent(rs.getString("reContent"));
+				q.setReContent(rs.getString("reContent"));	
 				
 				list.add(q);
 			}
@@ -207,6 +236,7 @@ public class QnaDao {
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
 				q.setReContent(rs.getString("reContent"));
+				q.setReNum(rs.getInt("reNum"));
 			}
 
 		} catch (SQLException e) {
@@ -215,9 +245,8 @@ public class QnaDao {
 			close(conn);
 			close(rs);
 		}
-		System.out.println(q);
 		return q;
-	}
+	}	
 
 	// 1:1 답변 등록
 	public int qnaAnswerEnroll(Connection conn, QnaRe qr) {

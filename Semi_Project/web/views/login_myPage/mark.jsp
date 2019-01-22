@@ -84,7 +84,8 @@
                     	}
                     }else{
                     %>
-                    <h2><b>현재 찜하신 상품이 없습니다.</b></h2>
+                    <h2 id="empty"><b>현재 찜하신 상품이 없습니다.</b></h2>
+                    
                     <%} %>
 				<!--페이지네이션-->
                 <div class="paging col-xs-12" style="text-align: center">
@@ -99,6 +100,8 @@
 					</div>
 				</article>
 			</section>
+		</div>
+		</div>
 		</div>
 		<script>
 			function cAll(){
