@@ -16,6 +16,7 @@ com.kh.author.model.vo.Author'
 	int cnt=(int)request.getAttribute("cnt");
 	int avg=(int)request.getAttribute("avg");
 	int reviewsize=(int)request.getAttribute("reviewsize");
+	int reviewCnt=(int)request.getAttribute("reviewCnt");
 %>
 <%@ include file='/views/common/header.jsp'%>
 <style>
@@ -384,7 +385,7 @@ function fnMove2(){
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
 										onclick="fnMove2()">
-										리뷰 <span class='counting'><%=reviewsize %></span>개
+										리뷰 <span class='counting'><%=reviewCnt %></span>개
 									</button>
 									<span class='line'>|</span>
 									<button class='reviewgogo btn-link'	onclick="fnMove1()">리뷰쓰러가기</button>

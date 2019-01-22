@@ -37,7 +37,7 @@ public class InfoViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
-
+		int reviewCnt=new InfoService().selectReviewCnt(bookId);
 		int avg=new InfoService().selectReviewAvg();
 		
 		
@@ -116,6 +116,7 @@ public class InfoViewServlet extends HttpServlet {
 		//쿠키 설정
 		response = setCookie(bookId, request, response);
 		
+		request.setAttribute("reviewCnt", reviewCnt);
 		request.setAttribute("avg", avg);
 		request.setAttribute("cnt", cnt);
 		request.setAttribute("book", b);

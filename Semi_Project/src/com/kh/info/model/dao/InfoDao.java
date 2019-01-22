@@ -81,6 +81,7 @@ public class InfoDao {
 		}
 		return b;
 	}
+	
 	public List<Review> selectInfoReview(Connection conn, int bookId, int cPage, int numPerPage)
 	{
 		PreparedStatement pstmt=null;
@@ -121,6 +122,34 @@ public class InfoDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int selectReviewCnt(Connection conn, int bookId)
+	{
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int cnt=0;
+		String sql=prop.getProperty("selectReviewCnt");
+		try
+		{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				cnt=rs.getInt("cnt");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			close(rs);
+			close(pstmt);
+		}
+		return cnt;
 	}
 	
 	public int selectReviewAvg(Connection conn) {
