@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class BookAppendServlet
  */
@@ -26,11 +28,24 @@ public class BookAppendServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String isbn = request.getParameter("isbn");
-		isbn = "9788996991342";
-		//테스트용
-		request.setAttribute("isbn", isbn);
-		request.getRequestDispatcher("/views/admin/bookAppendForm.jsp").forward(request, response);
+		Member logined = (Member) request.getSession().getAttribute("logined");
+
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
+			int memberNum = logined.getMemberNum();	
+		
+			String isbn = request.getParameter("isbn");
+			
+			request.setAttribute("isbn", isbn);
+			request.getRequestDispatcher("/views/admin/bookAppendForm.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainView");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
+		}else {
+			response.sendRedirect(request.getContextPath()+"/member/login");
+		}
 	}
 
 	/**
