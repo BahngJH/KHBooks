@@ -87,11 +87,15 @@
                             </div>
                             <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
 	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">권	                       	                          		                          	
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="1">권		                          	                       	                          		                          
 	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
-	                            	
+	                            <!-- 구매 창으로 넘기는 책 이미지, 작가, 출판사 정보 -->
+	                            <input type="hidden" name="bookImage" value="<%=b.getBookImage()%>">
+	                            <input type="hidden" name="authorName" value="<%=b.getAuthor().getAuthorName()%>">
+	                            <input type="hidden" name="publisher" value="<%=b.getPublisher()%>">
+	                            <input type="hidden" name="bookName" value="<%=b.getBookName() %>">
                             </div>
                         </div>		
                    	<%	
@@ -110,7 +114,7 @@
 	                    	</table>
 	                    	<div id="btnCheck">
 	                    	<button class="btn btn-danger" onclick="multiDelete();">선택 삭제</button>
-							<button class="btn btn-primary">선택 구매</button>
+							<button class="btn btn-primary" onclick="multiPayment();">선택 구매</button>
 							</div>
                     	<%
                     }else{
@@ -194,6 +198,12 @@
 				var bookId = $(event.target).next('input').val();
 				location.href="<%=request.getContextPath()%>/member/wishlistMultiDelete?BookId="+bookId;
 			} 
+			 function multiPayment(){
+				 var payList = $('#checkedList');
+					var url = "<%=request.getContextPath()%>/member/multiPayment";
+					deleteList.attr("action",url);
+					deleteList.submit();
+			 }
 		
 		</script>
 
