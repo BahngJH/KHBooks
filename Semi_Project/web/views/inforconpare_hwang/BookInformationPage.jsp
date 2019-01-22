@@ -13,7 +13,8 @@ com.kh.author.model.vo.Author'
 	Book b=(Book)request.getAttribute("book");
 	List<Review> list=(List<Review>)request.getAttribute("reviewList");
 	String pageBar=(String)request.getAttribute("pageBar");
-	int cnt = (int)request.getAttribute("cnt");
+	int cnt=(int)request.getAttribute("cnt");
+	int avg=(int)request.getAttribute("avg");
 	int reviewsize=(int)request.getAttribute("reviewsize");
 %>
 <%@ include file='/views/common/header.jsp'%>
@@ -336,9 +337,9 @@ function fnMove2(){
 								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
 						<div class='pluslate'>
-							<button class='plus btn-link' onclick="showBigPic();"');">크게보기</button>
+							<button class='plus btn-link' onclick="showBigPic();">크게보기</button>
 							<span>|</span>
-							<button class='late btn-link' onclick="location.href='#'"">평점보기</button>
+							<button class='late btn-link' onclick="location.href='#'">평점보기</button>
 						</div>
 					</div>
 				</div>
@@ -370,8 +371,16 @@ function fnMove2(){
 								<%=b.getBookDate() %> <span>출간</span>
 							</span> <span class='lating'>
 								<p>
+								<%String rating="";%>
+								<%switch(avg) {
+								case 1 : rating="★"; break;
+								case 2 : rating="★★"; break;
+								case 3 : rating="★★★"; break;
+								case 4 : rating="★★★★"; break;
+								case 5 : rating="★★★★★"; break;
+								}%>
 									<button class='starlating btn-link' onclick="location.href='#'">
-										★★★★★</button>
+										<%=rating%></button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
 										onclick="fnMove2()">
@@ -381,7 +390,7 @@ function fnMove2(){
 									<button class='reviewgogo btn-link'	onclick="fnMove1()">리뷰쓰러가기</button>
 								</p>
 							</span>
-						</div>
+						</div> 
 					</div>
 					<!--  -->
 					<hr>
