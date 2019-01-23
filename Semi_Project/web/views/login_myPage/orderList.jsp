@@ -55,8 +55,7 @@
 							    <li><a href="<%=request.getContextPath()%>/order/orderSort?sort=3">저자순</a></li>
 						 	</ul>
 						</div>
-					</div>	
-												
+					</div>																
 					
 					<table class="table table-responsive" id="tbl-orderList">
 						<thaed>

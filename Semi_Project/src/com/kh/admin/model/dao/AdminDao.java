@@ -27,24 +27,13 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
-	
-	
 	public int deleteBook(Connection conn,String[] id) {
 		PreparedStatement pstmt=null;
 		int result=0;
-		String sql=prop.getProperty("delbook");
-		System.out.println("길이"+id.length);
-		for(String i : id) {
-			System.out.println("DAO" + i);
-		}
-		for(int i=0; i<id.length; i++) {
-			System.out.println(Integer.parseInt(id[i]));
-		}
+		String sql=prop.getProperty("deletebook");
+	
 		try {
-			for(int i=0; i<id.length; i++) {
-				System.out.println(Integer.parseInt(id[i]));
-			}
-			System.out.println(sql);
+			
 			pstmt=conn.prepareStatement(sql);
 			
 			for(int i=0; i<id.length; i++) {
@@ -61,6 +50,8 @@ public class AdminDao {
 		}
 		return result;
 	}
+
+	
 
 	
 	public List<Book> selectBook(Connection conn,int cPage,int numPerPage){
