@@ -158,7 +158,9 @@ input[value='삭제하기'] {
 		<br />
 
 		<button id="return" onclick="main_absence();">목록으로</button>
+		<%if(logined.getMemberId().equals("admin")){ %>
 		<button class="btn" onclick="appendBook();">책 추가하기</button>
+		<%} %>
 		<br />
 		<br />
 		<br />
