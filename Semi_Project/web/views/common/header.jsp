@@ -67,9 +67,11 @@
 			            		<li><a href="<%=request.getContextPath()%>/search/category?category=<%=g%> "><%=g %></a></li>    
 			          	<%}%> 
 		                </ul>
+		            
 	            	</div>
 	        	</div>
 		        <!-- 상단 검색창 -->
+		        <a class="navbar-brand" href="<%=request.getContextPath() %>/inforconpare_hwang/conpareView"><strong><span style='color:pink;'>Conpare Books</span></strong></a>
 		        <div class="collapse navbar-collapse" id="navbar-collapse-1">
 			        <div class="row">
 			            <form class="form-controll navbar-right" id="navSearchFrm" role="search" action="<%=request.getContextPath()%>/search/search" method="get" onsubmit="fn_search();">
