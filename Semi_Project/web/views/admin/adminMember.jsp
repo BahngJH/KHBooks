@@ -10,37 +10,57 @@
 
 
 <style>
-.col-sm-10 table {
-	cellspacing: 0;
-	cellpadding: 0;
-	border: 0px;
-}
-
-table th {
-	border-bottom: 1px solid skyblue;
-	padding: 8px 10px;
-	text-align: center;
-}
-
-table td {
-	text-align: center;
-}
-
-input[type=checkbox] {
-	/* 체크박스 크기키움 */
-	-webkit-transform: scale(1.3);
-}
-div#buyList-options{margin-top: 50px; display: inline;}
+	.col-sm-10 table {
+		cellspacing: 0;
+		cellpadding: 0;
+		border: 0px;
+	}
+	
+	table th {
+		border-bottom: 1px solid skyblue;
+		padding: 8px 10px;
+		text-align: center;
+	}
+	
+	table td {
+		text-align: center;
+	}
+	
+	input[type=checkbox] {
+		/* 체크박스 크기키움 */
+		-webkit-transform: scale(1.3);
+	}
+	
+	div#buyList-options {
+		margin-top: 50px;
+		display: inline;
+	}
+	
+	div.input-group {
+		float: left;
+	}
+	
+	div.btn-group {
+		float: right;
+	}
+	
+	div.btn-group button {
+		background-color: skyblue;
+		border: none;
+		color: white;
+		padding: 8px 20px;
+		margin: 10px 0px 10px 10px;
+		text-decoration: none;
+		float: right;
+		cursor: pointer;
+	}
 </style>
 
 
 
-
-
-		<div class="col-sm-10">
-		
+<div class="col-sm-10">
 			<h2>회원정보</h2>
-		<hr />
+			<hr />
 			<div id="buyList-options">
 				<div class="input-group">
 					<form class="form-controll navbar-right" role="search"
@@ -57,8 +77,11 @@ div#buyList-options{margin-top: 50px; display: inline;}
 						</div>
 					</form>
 				</div>
+				<div class="btn-group">
+					<button type="button" id="deleted" onclick="">삭제</button>
+					<button type="button" id="update" onclick="">추가</button>
+				</div>
 			</div>
-		
 		<br />
 		<table class="table table-striped">
 			<tr>
