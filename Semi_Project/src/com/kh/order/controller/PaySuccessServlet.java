@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
@@ -50,6 +51,7 @@ public class PaySuccessServlet extends HttpServlet {
 		}
 		
 		milage = m.getMileage()+milag;
+		m.setMileage(milage);
 		//마일리지 적립하기
 		int rs3 = new OrderService().insertMilage(m.getMemberNum(),milage);
 		if(rs3>0) {
@@ -73,7 +75,9 @@ public class PaySuccessServlet extends HttpServlet {
 		}else {
 			System.out.println("구매된 책, 장바구니에서 삭제 실패");
 		}
-		
+		//마일리지 갱신을 위해 세션 재 설정
+		request.getSession().setAttribute("logined", m);;
+		//메인으로 화면 전환
 		request.getRequestDispatcher("/views/buy_won/paySuccess.jsp").forward(request, response);
 	}
 
