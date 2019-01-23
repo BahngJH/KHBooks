@@ -75,6 +75,9 @@ li {
 #emailInput {
 	
 }
+.emailG{
+padding-left:20px;
+}
 </style>
 
 
@@ -136,7 +139,7 @@ li {
 	 		 		</li></ul>			 		 	
 				   	</div> 				   			   	
 				    <hr/>	 			 
-				 	<div class="form-group">
+				 	<div class="emailG form-group">
 					   <label for="emailInput">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					   <input  type="text" name="mail1" class="form-control input_style10" id="emailInput" value="<%=mail1[0] %>" maxlength="20" required_msg="E-Mail 정보가 없습니다. 입력하세요.">&nbsp; @&nbsp;												  
 					   <input type="text" name="mail2" id="inputMail" name="" class="form-control" value="<%=mail1[1] %>" readonly>&nbsp;&nbsp;&nbsp;&nbsp;
