@@ -46,6 +46,10 @@ a#MOVE_TOP_BTN {
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
 
+footer{
+	margin-top:50px;
+}
+
 footer.fot, div#btn a {
 	background-color: #f8f8f8;
 }
@@ -101,7 +105,6 @@ div.notice{
 				</marquee>
 			</div>
 		</div>
-		<br />
 		<hr />
 		<div id="btn" class="row">
 			
