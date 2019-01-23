@@ -61,6 +61,38 @@ public class ReviewDao {
 		return list;
 	}
 	
+	
+	public List<Review> selectList(Connection conn, int memberNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Review> list = new ArrayList();
+		String sql = prop.getProperty("mySelectList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Review r = new Review();
+				r.setReviewNum(rs.getInt("reviewNum"));
+				r.setWriteDate(rs.getDate("writeDate"));
+				r.setGrade(rs.getInt("grade"));
+				r.setReviewContext(rs.getString("reviewContext"));
+				r.setStatus(rs.getString("status"));				
+				r.setBookId(rs.getInt("bookId"));				
+				Book b = new Book();
+				b.setBookName(rs.getString("bookName"));
+				r.setBook(b);
+				list.add(r);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public int selectReviewCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

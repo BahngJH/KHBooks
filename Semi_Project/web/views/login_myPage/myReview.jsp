@@ -80,9 +80,13 @@
 										</a>
 										<input type="checkbox" name="check" id="c<%=r.getReviewNum()%>" value="<%=r.getReviewNum()%>" style="float: right;" required>
 										<h6>
-											<%for(int i = 0; i <r.getGrade(); i++) { %>
-											<span class="glyphicon glyphicon-star" aria-hidden="true"></span> 
-											<%} %>
+											<%for(int i = 0; i < 5; i++) {%>
+												<%if(i <r.getGrade()) { %>
+													<span style="color: red;" class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+												<%} else { %>
+													<span style="color: #ccc;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+												<%}
+											}%>
 											<%=r.getWriteDate() %>
 										</h6>
 										<br/>
@@ -130,8 +134,10 @@
 									/* 리뷰 수정 메소드 */
 									function updateReview<%=r.getReviewNum()%>() {
 										$('.modal').modal();						
-										$('#renum').val(<%=r.getReviewNum()%>);
+										$('#renum').val(<%=r.getReviewNum()%>);										
 										$('#updateContext').val("<%=r.getReviewContext()%>");
+										$('#star<%=r.getGrade()%>').parent().children("a").removeClass("on");
+										$('#star<%=r.getGrade()%>').addClass("on").prevAll("a").addClass("on");
 										
 									}							
 									/* 리뷰 삭제 메소드 */
@@ -167,7 +173,7 @@
 			    text-decoration:none;
 			}
 			.star_rating a:first-child {margin-left:0;}
-			.star_rating a.on {color:#777;}
+			.star_rating a.on {color:#FF0000;}
 		</style>		
 		
 		<!-- 리뷰 수정 모달창 -->
@@ -183,11 +189,11 @@
 								<th><label>평점</label></th>
 								<td>
 									<p class="star_rating">
-									    <a href="#" class="on">★</a>
-									    <a href="#">★</a>
-										<a href="#">★</a>
-										<a href="#">★</a>
-										<a href="#">★</a>
+									    <a id="star1" href="#">★</a>
+									    <a id="star2" href="#">★</a>
+										<a id="star3" href="#">★</a>
+										<a id="star4" href="#">★</a>
+										<a id="star5" href="#">★</a>
 									</p>								
 								</td>
 							</tr>

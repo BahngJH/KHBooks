@@ -105,7 +105,16 @@ public class OrderListServlet extends HttpServlet {
 			pageBar+="<li><a href='"+request.getContextPath()+"/member/orderList?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}		
 
+		boolean status = false;
+		for(Order o : list) {
+			if (o.getStatus().equals("y") || o.getStatus().equals("Y") ) {
+				status = true;
+			}
+		}
+		
+		
 		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("status", status);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/login_myPage/orderList.jsp").forward(request, response);
 	}

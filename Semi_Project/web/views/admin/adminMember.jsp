@@ -90,48 +90,7 @@ div#buyList-options{margin-top: 50px; display: inline;}
 		</table>
 		<div class="text-center">
 			<%=pageBar%>
-
-<div class="col-sm-10">
-  			
-  				<h2>회원정보</h2>
-				<hr/>
-				<br/>
-		<table class="table table-striped">
-					<colgroup>
-						<col width="86px" />
-						<col width="*" />
-						<col width="126px" />
-					</colgroup>
-					<tr>
-						<th>선택</th>
-						<th>ID</th>
-						<th>이름</th>
-						<th>주소</th>						
-						<th>phone</th>
-						<th>email</th>
-						
-						
-					</tr>
-					<%for(Member m : list) {%>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td><%=m.getMemberId()%></td>
-						<td><%=m.getMemberName()%></td>
-						<td><%=m.getAddress()%></td>					
-						<td><%=m.getPhone()%></td>
-						<td><%=m.getEmail() %></td>
-					
-					
-						
-					</tr>
-					<%} %>
-
-		</table>
-		<div class="text-center">
-
-			<%=pageBar %>
 		</div>
 	</div>
-</div>
 </div>
 <%@include file="/views/common/footer.jsp"%>

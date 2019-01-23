@@ -53,7 +53,6 @@ public class MyReviewServlet extends HttpServlet {
 
 			List<Review> list=new ReviewService().selectList(memberNum, cPage, numPerPage);
 			
-			
 			//페이지구성해보자~!
 			//전체자료수를 확인
 			int totalReview = new ReviewService().selectReviewCount();
@@ -107,7 +106,9 @@ public class MyReviewServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			
 			int cnt = 0;
-			for(Review r : list) {
+			List<Review> reviewCount = new ReviewService().selectList(memberNum);			
+			
+			for(Review r : reviewCount) {
 				if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
 					cnt ++;
 			}

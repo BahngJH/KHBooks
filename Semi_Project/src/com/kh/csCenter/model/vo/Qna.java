@@ -18,6 +18,7 @@ public class Qna {
 	private String reContent;// 관리자 답변 내용
 	private int reNum;// 답글 번호
 	private String reCheck;//답변상태
+	private String status;
 
 
 	public Qna() {
@@ -44,6 +45,16 @@ public class Qna {
 		this.reContent = reContent;
 		this.reNum = reNum;
 		this.reCheck = reCheck;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 
