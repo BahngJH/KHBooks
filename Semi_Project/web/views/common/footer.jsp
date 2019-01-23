@@ -17,7 +17,6 @@ marquee ul {
 
 
 /* div.title, div.notice {
->>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 	float: left;
 	margin: 0px 0px 0px 500px;
 } */
@@ -48,6 +47,10 @@ a#MOVE_TOP_BTN {
 	width: 33px;
 	background-image:
 		url('<%=request.getContextPath()%>/images/icons/top.png');
+}
+
+footer{
+	margin-top:90px;
 }
 
 footer.fot, div#btn a {
@@ -82,6 +85,10 @@ footer#btn a{
 padding:10px;
 text-align:center;
 
+}
+
+div#btn{
+	margin-left: 33.3%
 }
 	
 	
@@ -120,7 +127,6 @@ text-align:center;
 				</marquee>
 			</div>
 		</div>
-		<br />
 		<hr />
 		
 		<div id="btn" class="row">
@@ -130,13 +136,13 @@ text-align:center;
 				</h4>
 			</div>
 
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 			</div>
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
 			</div>
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
 			</div>
 		</div>
@@ -148,11 +154,8 @@ text-align:center;
 		</address>
 		<a id="MOVE_TOP_BTN" href="#"></a>
 		
-
-	
-
+	</div>
 </footer>
-</div>
     
 
 
