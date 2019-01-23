@@ -35,17 +35,15 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		String reCheck=request.getParameter("reCheck");
 		int reNum=Integer.parseInt(request.getParameter("reNum"));
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
-		//int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
 					
-		int no=Integer.parseInt(request.getParameter("no"));
+		int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
 		
 		QnaRe qr=new QnaRe();
 		qr.setReNum(reNum);	
 		qr.setAdminNum(memberNum);
 		qr.setReContent(reContent);
-		qr.setReCheck(reCheck);
 		qr.setReMail(reMail);
-		qr.setQnaNum(no);
+		qr.setQnaNum(qnaNum);
 		
 		System.out.println("qr="+qr);
 		
@@ -60,7 +58,7 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		
 		if(rs>0) {
 			msg="수정 성공";
-			loc="/qna/qnaContent?no="+qr.getQnaNum();
+			loc="/qna/qnaContent?qnaNum="+qr.getQnaNum();
 		}else {
 			msg="수정실패";
 			loc="/qna/answerUpdate";

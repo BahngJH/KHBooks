@@ -23,10 +23,30 @@ public class AuthorService {
 		return author;
 	}
 
+	public Author selectAuthorName(String authorName) {
+		Author author = new AuthorDao().selectAuthorName(conn, authorName);
+		close(conn);
+		return author;
+	}
+
+	
 	public List<Book> selectAuthorBook(String authorId) {
 		List<Book> list = new AuthorDao().selectAuthorBook(conn,authorId);
 		close(conn);
 		return list;
+	}
+
+	public int insertAuthor(String authorName) {
+		int result = new AuthorDao().insertAuthor(conn, authorName);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+		
 	}
 	
 	

@@ -36,14 +36,22 @@ public class MultiPaymentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 		int memberNum = logined.getMemberNum();
-		
-		
-		
-		 String[] bookIds = request.getParameterValues("BookId");
-		 List<Integer> ids = new ArrayList();		 
+		String[] bookIds = request.getParameterValues("BookId");
+		List<Integer> ids = new ArrayList();
 		 
-		 for(int i=0; i<bookIds.length; i++) {
-			 ids.add(Integer.parseInt(bookIds[i])); 
+		//로그인이 안되어 있으면 로그인페이지로 이동
+		if(logined==null) {
+			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+		}
+		
+		if(bookIds==null) {
+			request.setAttribute("msg", "구매할 상품을 선택해주세요");
+			request.setAttribute("loc", "/member/wishlist?memberNum="+logined.getMemberNum());
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}		 
+		 
+		for(int i=0; i<bookIds.length; i++) {
+			ids.add(Integer.parseInt(bookIds[i])); 
 		 }
 		 
 		 List<Book> payList = new BookService().payList(ids, memberNum);

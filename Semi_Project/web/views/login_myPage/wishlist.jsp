@@ -20,7 +20,7 @@
 	.end input{
 		float:right;
 	}
-	#btnCheck{float:right;}
+	#btnCheck{float:right; margin-bottom:20px;}
 	.middle{margin-top:40px;}
 	#allCheck{float:right; margin-right:15px;}
 	#allText{margin-right:10px;}
@@ -80,7 +80,6 @@
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
-                                <button class="btn btn-default" type="button">구매</button>
                                 <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 

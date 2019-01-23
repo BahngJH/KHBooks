@@ -87,6 +87,7 @@ Properties prop=new Properties();
 		}
 		return list;
 	}
+
 	
 	public List<Order> selectList(Connection conn, int no) {
 		PreparedStatement pstmt = null;
@@ -124,6 +125,30 @@ Properties prop=new Properties();
 		}
 		return list;
 	}
+
+	//적립하기
+	public int insertMilage(Connection conn, int memberNum, int milage)
+	{
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("insertMilage");
+		int rs =0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, milage);
+			pstmt.setInt(2, memberNum);
+			rs = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
+
+
 	//구매된 장바구니 데이터 지우기
 	public int deleteWishlist(Connection conn, int memberNum, List<Book> payList) {
 		PreparedStatement pstmt=null;
@@ -218,8 +243,7 @@ Properties prop=new Properties();
 		ResultSet rs = null;
 		List<Order> list = new ArrayList();
 		String sql = "";
-		
-		
+
 		switch(sort) {
 		case 1: sql = prop.getProperty("sortList1"); break;
 		case 2: sql = prop.getProperty("sortList2");; break;

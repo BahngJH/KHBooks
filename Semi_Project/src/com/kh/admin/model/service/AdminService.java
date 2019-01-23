@@ -2,6 +2,8 @@ package com.kh.admin.model.service;
 
 
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -13,6 +15,19 @@ import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
 
 public class AdminService {
+	
+	
+	public  int deleteBook(String[] id) {
+		Connection conn=null;
+		for(String i : id) {
+			System.out.println("서비스" + i);
+		}
+		int result=new AdminDao().deleteBook(conn,id);
+		if(result ==id.length) {commit(conn);}
+		else {rollback(conn);}
+		return result;
+
+	}
 	
 	public List<Member> selectMember(int cPage,int numPerPage){
 		Connection conn =getConnection();

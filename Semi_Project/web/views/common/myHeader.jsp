@@ -30,7 +30,7 @@
                    <li><a href="<%=request.getContextPath()%>/member/mark?memberNum=<%=logined.getMemberNum()%>"> 찜 목록</a></li>
                    <li><a href="<%=request.getContextPath()%>/member/updateInfo"> 정보 변경</a></li>
                    <li><a href="<%=request.getContextPath()%>/member/review">리뷰 관리</a></li>
-                   <li><a href="">1:1 문의</a></li>
+                   <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1 문의</a></li>
             </ul>
          </nav>
       </div>

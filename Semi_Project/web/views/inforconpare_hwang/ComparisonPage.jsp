@@ -145,6 +145,96 @@ com.kh.author.model.vo.Author'
 	position:relative;
 	top:1px;
 }
+.Book1 {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+	background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
+	background-color:#f9f9f9;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:34px;
+	line-height:34px;
+	width:72px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+	margin-bottom:6px;
+}
+.Book1:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
+	background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
+	background-color:#e9e9e9;
+}.Book1:active {
+	position:relative;
+	top:1px;
+}
+.Book2 {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+	background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
+	background-color:#f9f9f9;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:34px;
+	line-height:34px;
+	width:72px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+	margin-bottom:6px;
+}
+.Book2:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
+	background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
+	background-color:#e9e9e9;
+}.Book2:active {
+	position:relative;
+	top:1px;
+}
 </style>
 <script type="text/javascript">
 
@@ -155,14 +245,60 @@ com.kh.author.model.vo.Author'
    <div class="container">
  			<div class="book_choice_wrap">
  			
-			<form name="boardFrm" method="post">
+ 			<%-- <div class='booksearchTab'>
+			<div class='searchTab' style='float:left;'>
+			<%if(logined!=null) {%>
+			<button type="button" class="search btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>검색</button>
+			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' method='post'>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="닫기"><span aria-hidden="true">×</span></button>
+			        <h4 class="modal-title" id="myModalLabel" style="color:black;">수량입력</h4>
+			      </div>
+			      <div class="modal-body">
+					<input type='hidden' name='bookId' value=""/>
+					<input type='number' name='bookCount' placeholder='수량을 입력하세요.' style='color:black;'/>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button>
+			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='검색하기'></button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			</form>
+			</div> --%>
+			
+           <%-- <script>
+			//로그인권한
+			function loginafter(){
+				alert("로그인 후 이용이 가능합니다!");
+				location.href="<%=request.getContextPath()%>/member/login";
+			}
+           // 장바구니탭에서 모달창 띄어주기
+			$('#myModal').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
+			  var button = $(event.relatedTarget) // 모달 윈도우를 오픈하는 버튼
+			  var titleTxt = button.data('title') // 버튼에서 data-title 값을 titleTxt 변수에 저장
+			  var modal = $(this)
+			  modal.find('.modal-title').text('책 ' + titleTxt) // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
+			})
+			</script> --%>
+			</div>
+ 			<!-- 이미지 누르면 찾아가기 -->
+			<form action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post">
+				<!-- 버튼 -->
 				<input type="hidden" name="bookId" value="">
 				<input type="hidden" name="ejkGb" value="">
+				<!-- 이미지1 -->
 				<input type="hidden" name="bookId0" value="<!-- 이미지의 bookid -->9788932917245">
 				<input type="hidden" name="ejkGb0" value="KOR">
+				<!-- 이미지2 -->
 				<input type="hidden" name="bookId1" value="<!-- 이미지의 bookid -->9791159039690">
 				<input type="hidden" name="ejkGb1" value="KOR">
 			</form>
+			
 			
             <div class="w950">
                 <div class="book_choice">
@@ -171,23 +307,22 @@ com.kh.author.model.vo.Author'
                 </div>
                 <div id="buycheck01" class="book_choice2">
                   <div class="book_img">
-                    <p><a id="detail0" href="<!-- bookId를 보내줌 -->#" target="_blank"><img id="img0" width="125" height="179" src="http://image.kyobobook.co.kr/images/book/large/245/l9788932917245.jpg" onerror="javascript:noImage(this,'L','KOR');"></a></p>
-                    <button type="button" class="btn_del_book" id="del0" onclick="javascript:ClearBookInfo('0');" style="">닫</button>
+                    <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=1" target="_blank"><img id="img0" width="125" height="179" src="<%=request.getContextPath() %>/images/book/이방인.jpg"></a></p>
                   </div>
+                  <a href="#" class="Book1">Book1</a>
                   <a href="#" class="jangba">장바구니 담기</a>
                   <a href="#" class="nowbuy">바로 구매하기</a>
                 </div>
                 <div id="buycheck02" class="book_choice2">
                   <div class="book_img">
-                    <p><a id="detail1" href="<!-- bookId를 보내줌 -->#" target="_blank"><img id="img1" width="125" height="179" src="http://image.kyobobook.co.kr/images/book/large/690/l9791159039690.jpg" onerror="javascript:noImage(this,'L','KOR');" alt="도서를 선택하세요"></a></p>
-                  	<button type="button" class="btn_del_book" id="del1" onclick="javascript:ClearBookInfo('1');" style="">닫</button>
+                    <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="<%=request.getContextPath() %>/images/book/어린왕자.jpg"></a></p>
                   </div>
+                  <a href="#" class="Book2">Book2</a>
                   <a href="#" class="jangba">장바구니 담기</a>
                   <a href="#" class="nowbuy">바로 구매하기</a>
                 </div>
             </div>
         </div>
-           
            
            <div class="books_spec">
             <table class="compare_list" summary="">

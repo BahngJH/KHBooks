@@ -79,7 +79,7 @@ input[value='삭제하기'] {
 <br/><br/>
 		
 		
-			<%if(ab.getMemberNum()==logined.getMemberNum()){ %>
+			<%if(ab.getMemberNum()==logined.getMemberNum()||logined.getMemberId().equals("admin")){ %>
 			<input type="button" value="삭제하기" id="deleted" onclick="deleted();" />
 			<%} %>
 			<h2>도서신청 VIEW</h2>
@@ -129,27 +129,42 @@ input[value='삭제하기'] {
 					<tr>
 						<th scope="row" ><h4>ISBN</h4></th>
 						<td><%=ab.getISBN() %></td>
-					</tr>
+					</tr>					
 				</tbody>
 
 				<%}%>
-
-
 			</table>
+								
+			<table class="type10 table">
+				<thead>
+
+					<tr>
+						<th scope="cols">댓글입력</th>
+						<th scope="cols"></th>
+					</tr>
+
+				</thead>
+				
+				<tbody>
+					<tr>					
+						<th scope="row" class="even"><h4><input type='text' name=""></h4></th>
+						<td class="even"><button type="submit" id="btn-insert">등록</button></td>
+					</tr>											
+				</tbody>
+			</table>
+			</div>
 			
-			<!-- 댓글 폼 구현중  -->
-	<%-- 		<div class="comment-editor">			
-				<form action="<%=request.getContextPath() %>/board/commentInsert" name="boardCommentFrm" method="post">
-					<input type="text" class="form-control" placeholder="Text input">
-						<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>"/> 
-						<input type="hidden" name="boardCommentWriter" value="<%=logined.getMemberId() %>"/>
-						<input type="hidden" name="boardCommentLevel" value="1"/>
-						<input type="hidden" name="boardCommentRef" value="0"/>
-						<textarea cols='60' rows='3' name=""></textarea>
-						<button type="submit" id="btn-insert">등록</button>
+		<%-- 			<!-- 댓글 폼 구현중  -->
+			<div class="comment-editor">			
+				<form action="<%=request.getContextPath() %>/board/commentInsert" name="boardCommentFrm" method="post">				
+					<input type="hidden" name="boardRef" value="boardNum"/> 
+					<input type="hidden" name="boardCommentWriter" value="<%=logined.getMemberId() %>"/>
+					<input type="hidden" name="boardCommentLevel" value="1"/>
+					<input type="hidden" name="boardCommentRef" value="0"/>
+					
 				</form>
-			</div> --%>
-			
+			</div> 
+			 --%>
 
 
 
@@ -158,7 +173,9 @@ input[value='삭제하기'] {
 		<br />
 
 		<button id="return" onclick="main_absence();">목록으로</button>
+		<%if(logined.getMemberId().equals("admin")){ %>
 		<button class="btn" onclick="appendBook();">책 추가하기</button>
+		<%} %>
 		<br />
 		<br />
 		<br />

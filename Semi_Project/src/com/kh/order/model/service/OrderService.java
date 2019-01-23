@@ -73,4 +73,14 @@ public class OrderService {
 		close(conn);
 		return rs;
 	}
+	//마일리지 적립
+	public int insertMilage(int memberNum, int milage)
+	{
+		Connection conn = getConnection();
+		int rs = new OrderDao().insertMilage(conn, memberNum, milage);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return rs;
+	}
 }

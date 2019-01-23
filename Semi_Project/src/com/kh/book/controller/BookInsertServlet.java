@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.kh.author.model.service.AuthorService;
+import com.kh.author.model.vo.Author;
+import com.kh.book.model.service.BookService;
 import com.kh.book.model.vo.Book;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -35,14 +40,33 @@ public class BookInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String root = request.getSession().getServletContext().getRealPath("/");
-		int maxSize = 10* 10* 1024;
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg", "도서 등록 오류");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			return;
+		}
+		
+		String root = getServletContext().getRealPath("/");
+		int maxSize = 10* 1024* 1024;
 		String path = root+"/images/book";
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
+		//저자가 디비에 있는지 확인
+		String authorName = mr.getParameter("author");
+		Author author = new AuthorService().selectAuthorName(authorName);
+		
+		//저자가 없을 경우
+		if(author == null) {
+			new AuthorService().insertAuthor(authorName);
+			author = new AuthorService().selectAuthorName(authorName);
+		}		
+		
 		Book book = new Book();
-		book.setBookContent(mr.getParameter("info"));
-		book.setBookCount(Integer.parseInt(mr.getParameter("count")));
+		book.setBookInfo(mr.getParameter("info"));
+		book.setBookContent(mr.getParameter("content"));
+		book.setToc(mr.getParameter("index"));
+		book.setStock(Integer.parseInt(mr.getParameter("count")));
 		book.setBookName(mr.getParameter("title"));
 		book.setPublisher(mr.getParameter("pub"));
 		book.setPrice(Integer.parseInt(mr.getParameter("price")));
@@ -53,8 +77,13 @@ public class BookInsertServlet extends HttpServlet {
 		book.setTranslator(mr.getParameter("traslator"));
 		book.setBookCount(Integer.parseInt(mr.getParameter("count")));
 		book.setBookDate(Date.valueOf(mr.getParameter("date")));
+		book.setBookImage(mr.getOriginalFileName("image"));
+		book.setAuthorNum(author.getauthorNum());
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//도서 정보 삽입
+		int result = new BookService().insertBook(book);
+		
+		System.out.println(result);
 	}
 
 	/**
