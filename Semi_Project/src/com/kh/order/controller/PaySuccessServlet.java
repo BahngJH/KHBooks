@@ -39,6 +39,25 @@ public class PaySuccessServlet extends HttpServlet {
 		List<Book> payBookList = (List<Book>) request.getSession().getAttribute("payBookList");
 		Member m = (Member)request.getSession().getAttribute("logined");
 		
+		//실제 대입될 값
+		int milage =0;
+		//임시저장값
+		int milag =0;
+		
+		for(Book b:payBookList) 
+		{
+			milag +=(b.getPrice()*b.getBookCount())/10;
+		}
+		
+		milage = m.getMileage()+milag;
+		//마일리지 적립하기
+		int rs3 = new OrderService().insertMilage(m.getMemberNum(),milage);
+		if(rs3>0) {
+			System.out.println("적립 완료");
+		}else {
+			System.out.println("적립 실패");
+		}
+		
 		//orderList에 추가하기
 		int rs =  new OrderService().insertOrderlist(m.getMemberNum(),payBookList);
 		if(rs>0) {

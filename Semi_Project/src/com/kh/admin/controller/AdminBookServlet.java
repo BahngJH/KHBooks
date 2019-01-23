@@ -45,7 +45,7 @@ public class AdminBookServlet extends HttpServlet {
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 		}catch(NumberFormatException e) {
-			numPerPage=7;
+			numPerPage=6;
 			
 		}
 		
