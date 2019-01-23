@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.csCenter.model.service.QnaService;
+import com.kh.csCenter.model.vo.Qna;
 import com.kh.member.model.vo.Member;
 import com.kh.order.model.service.OrderService;
 import com.kh.order.model.vo.Order;
+import com.kh.review.model.service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 /**
  * Servlet implementation class MyHomeServlet
@@ -41,15 +45,35 @@ public class MyHomeServlet extends HttpServlet {
 		}	
 		
 		List<Order> orderList = new OrderService().selectList(logined.getMemberNum());
-		boolean status = false;
+		boolean oStatus = false;
 		for(Order o : orderList) {
 			if(o.getStatus().equals("y") || o.getStatus().equals("Y")) {
-				status = true;
+				oStatus = true;
+			}
+		}
+		
+		List<Review> reviewList = new ReviewService().selectList(logined.getMemberNum());
+		boolean rStatus = false;
+		for(Review r : reviewList) {
+			if(r.getStatus().equals("y") || r.getStatus().equals("Y")) {
+				rStatus = true;
+			}
+		}
+		
+		List<Qna> qnaList = new QnaService().selectList(logined.getMemberNum());
+		boolean qStatus = false;
+		for(Qna q : qnaList) {
+			if(q.getStatus().equals("y") || q.getStatus().equals("Y")) {
+				qStatus = true;
 			}
 		}
 		
 		request.setAttribute("orderList", orderList);
-		request.setAttribute("status", status);
+		request.setAttribute("oStatus", oStatus);
+		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("rStatus", rStatus);
+		request.setAttribute("qnaList", qnaList);
+		request.setAttribute("qStatus", qStatus);		
 		request.setAttribute("flag", "pass");
 		request.getRequestDispatcher("/views/login_myPage/myHome.jsp").forward(request, response);
 	
