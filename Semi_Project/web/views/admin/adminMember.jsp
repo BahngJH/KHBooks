@@ -90,6 +90,7 @@ div#buyList-options{margin-top: 50px; display: inline;}
 		</table>
 		<div class="text-center">
 			<%=pageBar%>
-</div>
+		</div>
+	</div>
 </div>
 <%@include file="/views/common/footer.jsp"%>
