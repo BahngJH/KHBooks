@@ -50,8 +50,8 @@ public class MultiPaymentServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}		 
 		 
-		for(int i=0; i<bookIds.length; i++) {
-			ids.add(Integer.parseInt(bookIds[i])); 
+		for(String i:bookIds) {
+			ids.add(Integer.parseInt(i)); 
 		 }
 		 
 		 List<Book> payList = new BookService().payList(ids, memberNum);
