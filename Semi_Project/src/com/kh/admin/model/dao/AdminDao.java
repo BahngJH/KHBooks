@@ -29,6 +29,40 @@ public class AdminDao {
 	}
 	
 	
+	public int deleteBook(Connection conn,String[] id) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("delbook");
+		System.out.println("길이"+id.length);
+		for(String i : id) {
+			System.out.println("DAO" + i);
+		}
+		for(int i=0; i<id.length; i++) {
+			System.out.println(Integer.parseInt(id[i]));
+		}
+		try {
+			for(int i=0; i<id.length; i++) {
+				System.out.println(Integer.parseInt(id[i]));
+			}
+			System.out.println(sql);
+			pstmt=conn.prepareStatement(sql);
+			
+			for(int i=0; i<id.length; i++) {
+				
+				pstmt.setInt(1, Integer.parseInt(id[i]));
+				
+				result+=pstmt.executeUpdate();
+			}
+			System.out.println(result);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	
 	public List<Book> selectBook(Connection conn,int cPage,int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;

@@ -4,7 +4,7 @@
 <%String isbn = (String)request.getAttribute("isbn"); %>
 <section class='container'>
 <h4>도서 정보 입력 </h4>
-	<form action="/book/insertbook" method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath() %>/book/insertbook" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<th>책 제목</th>
@@ -30,9 +30,9 @@
 			</tr>
 			<tr>
 				<th>책 표지</th>
-				<td><input type="file" name="image" id="image" class="form-control"/></td>
+				<td><input type="file" name="image" id="image" class="form-control" required/></td>
 				<th>페이지 수</th>
-				<td><input type="number" name="page" id="page" class="form-control"/></td>
+				<td><input type="number" name="page" id="page" class="form-control" required/></td>
 			</tr>
 			<tr>
 				<th>책 소개</th>
@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<th>엮은이</th>
-				<td><input type="text" name="editor" id="editor" class="form-control"/></td>
+				<td><input type="text" name="editor" id="editor" value =" " class="form-control"/></td>
 				<th>번역가</th>
 				<td><input type="text" name="translator" id="translator" class="form-control"/></td>
 			</tr>

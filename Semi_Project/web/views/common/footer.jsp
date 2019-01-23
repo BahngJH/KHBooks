@@ -15,7 +15,7 @@ marquee ul {list-style-type: none;}
 
 div.title , div.notice {
 	float: left;
-	margin: 0px 0px 0px 400px;
+	margin: 0px 0px 0px 500px;
 	
 }
 div.notice{margin:0px 0px 0px 0px;}
@@ -44,16 +44,18 @@ a#MOVE_TOP_BTN {
 	background-image:
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
-footer.fot, div#btn a {background-color:#f8f8f8;content:"width:device-width,initial-scale:1"; }
+
+footer.fot, div#btn a {background-color:#f8f8f8;}
 
 .fot hr{border: 1px solid gray;}
-div#btn{ margin:0px 0px 0px 550px;position:relative;}
+div#btn{ margin:0px 0px 0px 650px;position:relative;}
 div#btn a,div#btn h4{float:left; margin:0px 0px 0px 80px;color:black; }
 
 </style>
 
+	
 <footer class="fot">
-
+	<div class="row">
 	<div class="title">
 		<h4><strong>공지사항:</strong><h4>
 	</div>
@@ -69,9 +71,9 @@ div#btn a,div#btn h4{float:left; margin:0px 0px 0px 80px;color:black; }
 			</ul>
 		</marquee>
 	</div>
-	<br/>	<br/>
+	<br/>	
 	<hr/>
-	<div id="btn">
+	<div id="btn" class="row">
 	
 	 <h4>
          <strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
@@ -82,7 +84,7 @@ div#btn a,div#btn h4{float:left; margin:0px 0px 0px 80px;color:black; }
 	<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
 	
 	</div>
-	<br/><br/>
+	
 	
 	 <address>
 		㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 
@@ -93,8 +95,9 @@ div#btn a,div#btn h4{float:left; margin:0px 0px 0px 80px;color:black; }
 
 	<a id="MOVE_TOP_BTN" href="#"></a>
 
-
+</div>
 </footer>
+
 <!-- top버튼 -->
 <script>
 	$(function() {

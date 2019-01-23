@@ -32,4 +32,16 @@ public class BookService {
 		return list;
 	}
 	
+	public int insertBook(Book book) {
+		int result = new BookDao().insertBook(conn, book);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 }

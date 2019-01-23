@@ -380,7 +380,7 @@ function fnMove2(){
 								case 4 : rating="★★★★"; break;
 								case 5 : rating="★★★★★"; break;
 								}%>
-									<button class='starlating btn-link' onclick="location.href='#'">
+									<button class='starlating btn-link' onclick="fnMove2()">
 										<%=rating%></button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
