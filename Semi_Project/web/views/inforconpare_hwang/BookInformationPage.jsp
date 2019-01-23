@@ -470,7 +470,8 @@ function fnMove2(){
 			
 			
 			<div class='buyTab' style='float:left; margin-left:5px;'>
-			<form action='<%=request.getContextPath() %>/inforconpare_hwang/infoInsertBuyEnd' method='post'>
+			<form action='<%=request.getContextPath() %>//member/multiPayment' method='get'>
+			<input type="hidden" name="BookId" value="<%=b.getBookId()%>">			
 			<button type='submit' class='buy btn-lg' onmouseout='change2(this)'	onmouseover='change1(this)'>
 				<strong>구매하기</strong>
 			</button>

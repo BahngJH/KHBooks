@@ -32,7 +32,8 @@ border-height: 10px;
 		 </div>
 			 <!-- 날짜 조회 -->	
 		<div class="row">	
-			<div class="searchDate col-md-offset-1 col-md-7">	 
+		<!-- 구현시간이 모자라서 주석처리합니다. 기간조회 -->
+			<%-- <div class="searchDate col-md-offset-1 col-md-7">	 
 				 <div class="sch-lcont">
 					<strong>기간별 조회</strong>
 					<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
@@ -52,7 +53,7 @@ border-height: 10px;
 						  <hr>
 					</div>
 				 </div>
-			 </div>	
+			 </div>	 --%>
 			 <div class="row">	
 				<div class="searchDate col-md-offset-1 col-md-7">		
 				  <div class="qnaList">

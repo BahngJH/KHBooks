@@ -80,6 +80,7 @@
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
+                                <button class="btn btn-default" type="button" onclick="payOne();">구매</button>
                                 <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 
@@ -226,9 +227,13 @@
 					payList.attr("action",url);
 					payList.submit();
 			 }
+			 function payOne(){
+				var bookId = $(event.target).next().next('input').val();
+				location.href="<%=request.getContextPath()%>/member/multiPayment?BookId="+bookId;
+			 }
 		
 		</script>
 		
 		</div>
 	</div>
-
+<%@ include file="/views/common/footer.jsp"%>

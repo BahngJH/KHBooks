@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+
 marquee {
 	height: 35px;
 }
@@ -11,8 +12,9 @@ marquee ul {
 
 .title h4, .notice h4 {
 	color: black;
-	text-decoration: none;
+	text-align:center;
 }
+
 
 /* div.title, div.notice {
 	float: left;
@@ -26,6 +28,7 @@ div.notice {
 .fot address {
 	text-align: center;
 }
+
 
 .Notice_List {
 	color: black;
@@ -46,12 +49,18 @@ a#MOVE_TOP_BTN {
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
 
+footer{
+	margin-top:90px;
+}
+
 footer.fot, div#btn a {
 	background-color: #f8f8f8;
+	
 }
 
 .fot hr {
 	border: 1px solid gray;
+	padding:0px;
 }
 
 div#btn a, div#btn h4 {
@@ -67,8 +76,25 @@ div.notice{
 	display:inline;
 	
 }
-</style>
+footer.fot{
 
+text-align:center;
+
+}
+footer#btn a{
+padding:10px;
+text-align:center;
+
+}
+
+div#btn{
+	margin-left: 33.3%
+}
+	
+	
+
+
+</style>
 
 <footer class="fot container-fluid">
 	<div class="row">
@@ -76,7 +102,7 @@ div.notice{
 			<div class="title col-xs-3 col-md-offset-4 col-md-2">
 				<h4>
 					<strong>공지사항:</strong>
-					<h4>
+				</h4>
 			</div>
 			<div class="notice col-xs-9 col-md-4">
 				<marquee onmouseover='this.stop()' onmouseout='this.start()'
@@ -101,23 +127,22 @@ div.notice{
 				</marquee>
 			</div>
 		</div>
-		<br />
 		<hr />
+		
 		<div id="btn" class="row">
-			
 			<div class='col-xs-1 col-sm-1 col-md-1'>
 				<h4>
 					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
 				</h4>
 			</div>
 
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 			</div>
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
 			</div>
-			<div class="col-xs-3 col-sm-3 col-md-1">
+			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
 			</div>
 		</div>
@@ -127,13 +152,13 @@ div.notice{
 			㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
 			02-858-8282(발신자부담전화)<br /> 팩스 :785-41258 (지역번호공통)
 		</address>
-
-
 		<a id="MOVE_TOP_BTN" href="#"></a>
 		
-
 	</div>
 </footer>
+    
+
+
 
 <!-- top버튼 -->
 <script>
