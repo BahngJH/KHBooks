@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.kh.member.model.vo.Member"%>
 <%@ include file="/views/common/myHeader.jsp"%>
-<%@ page import="java.util.*, com.kh.order.model.vo.Order" %>
+<%@ page import="java.util.*, com.kh.order.model.vo.Order, com.kh.review.model.vo.Review, com.kh.csCenter.model.vo.Qna" %>
 <%
 	String flag = (String)request.getAttribute("flag");
 	if(flag == null){
@@ -9,7 +9,11 @@
 		return;
 	}
 	List<Order> orderList = (List)request.getAttribute("orderList");
-	boolean status = (boolean)request.getAttribute("status");
+	boolean oStatus = (boolean)request.getAttribute("oStatus");
+	List<Review> reviewList = (List)request.getAttribute("reviewList");
+	boolean rStatus = (boolean)request.getAttribute("rStatus");
+	List<Qna> qnaList = (List)request.getAttribute("qnaList");
+	boolean qStatus = (boolean)request.getAttribute("qStatus");
 %>
 
 
@@ -56,32 +60,31 @@
 	article.review-container{
 		margin-top: 40px;
 	}
-	div#buyTitle {
+	article.qna-container{
+		margin-top: 40px;
+	}	
+	div#buy-Title {
 		width: 100%;
 		min-height: 40px;
 		margin-top: 20px;
 	}
-	div#reviewTitle {
+	div#review-Title {
 		width: 100%;
 		min-height: 40px;
 		margin-top: 20px;
 	}
-	div.buyList{
-		overflow: hidden;
+	div#qna-Title {
 		width: 100%;
-		height: 250px;
-		border: 1px solid black;
+		min-height: 40px;
+		margin-top: 20px;
 	}
-	div.reviewList{
-		overflow: hidden;
-		width: 100%;
-		height: 250px;
-		border: 1px solid black;
-	}
+
 	article.buy-container h4{display: inline; float: left; width: 40%;}
 	article.buy-container a#btn-buyListAll{display: inline; float: right;}
 	article.review-container h4{display: inline; float: left; width: 40%;}
 	article.review-container a#btn-reviewListAll{display: inline; float: right;}
+	article.qna-container h4{display: inline; float: left; width: 40%;}
+	article.qna-container a#btn-qnaListAll{display: inline; float: right;}
 	
 	div#orderImg{
 		width: 100px;
@@ -91,6 +94,12 @@
 		width: 100px;
 		height: 90px;
 	}
+	
+	table th, table td{
+		text-align: center;
+		vertical-align: middle;
+	}
+	
 </style>
 		<div class="col-sm-10">
 			<section>
@@ -124,6 +133,37 @@
 						</table>
 					</div>
 				</article>
+														
+				<article class="qna-container">
+					<div id="qna-title">
+						<h4>1:1 문의 내역</h4>
+						<a href="<%=request.getContextPath()%>/qna/qnaListMain" class="btn btn-primary" id="btn-qnaListAll">전체 보기</a>
+					</div>
+					<table class="table table-stripe" id="tbl-qnaList">
+						<tr>
+							<th scope="col">제목</th>
+							<th scope="col">답변 여부</th>
+							<th scope="col">작성일</th>								
+						</tr>				
+			
+						<tbody>
+							<%for(int i = 0; i < 3; i++) {%>
+								<%if(qStatus) { %>
+							<tr>						
+								<td><%=qnaList.get(i).getQnaTitle()%></td>
+								<td><%=qnaList.get(i).getReCheck()%></td>
+								<td><%=qnaList.get(i).getQnaDate()%></td>
+							</tr>	
+								<%} else {%>	
+									<tr>
+										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+									</tr>																									
+							<% break;}
+							}%>					
+						</tbody>	
+					</table>
+				
+				</article>				
 				
 				<article class="buy-container">
 					<div id="buy-title">
@@ -132,17 +172,16 @@
 					</div>
 								
 						<table class="table  table-stripe" id="tbl-orderList">
-							<thaed>
-								<tr>
-									<th id="t-info" colspan='2' scope="col">도서 정보</th>
-									<th id="t-date" scope="col">구매일</th>
-									<th id="t-count" scope="col">수량</th>
-									<th id="t-price" scope="col">결제 금액</th>
-								</tr>
-							</thaed>
+							<tr>
+								<th colspan='2' scope="col">도서 정보</th>
+								<th scope="col">구매일</th>
+								<th scope="col">수량</th>
+								<th scope="col">결제 금액</th>
+							</tr>
+							
 							<tbody>							
 								<%for(int i = 0; i < 3; i++) {%>
-									<%if(status) { %>
+									<%if(oStatus) { %>
 										<tr>
 											<!-- 책 이미지 -->
 											<td>
@@ -192,24 +231,43 @@
 						<a href="<%=request.getContextPath()%>/member/review" class="btn btn-primary" id="btn-reviewListAll">전체 보기</a>
 					</div>				
 					
-					<table class="table  table-stripe" id="tbl-orderList">
-						<thaed>
-							<tr>
-								<th id="t-info" colspan='2' scope="col">도서 정보</th>
-								<th id="t-date" scope="col">구매일</th>
-								<th id="t-count" scope="col">수량</th>
-								<th id="t-price" scope="col">결제 금액</th>
-							</tr>
-						</thaed>
+					<table class="table table-stripe" id="tbl-reviewList">
+						<tr>
+							<th scope="col">도서 정보</th>
+							<th colspan='2' scope="col">리뷰 내용</th>
+							<th scope="col">별점</th>
+							<th scope="col">작성일</th>
+						</tr>							
 						
-						<tbody>	
+						<tbody>
+							<%for(int i = 0; i < 3; i++) {%>
+								<%if(rStatus) { %>
+							<tr>
+								<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=reviewList.get(i).getBookId()%>"><%=reviewList.get(i).getBook().getBookName()%></a></td>
+								<td colspan='2'><%=reviewList.get(i).getReviewContext()%></td>								
+								<td>
+									<%for(int j = 0; j < 5; j++) {%>
+										<%if(j < reviewList.get(i).getGrade()) { %>
+											<span style="color: red;" class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+										<%} else { %>
+											<span style="color: #ccc;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										<%}
+									}%>									
+								</td>
+								<td><%=reviewList.get(i).getWriteDate()%></td>
+							</tr>
+								<%} else {%>	
+									<tr>
+										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+									</tr>																									
+							<% break;}
+							}%>							
 						</tbody>
 						
 					</table>			
 					
-				</article>
-				
-				
+				</article>				
+					
 			</section>				
 		</div>
 	</div>

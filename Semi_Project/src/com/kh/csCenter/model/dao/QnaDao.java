@@ -89,6 +89,39 @@ public class QnaDao {
 		return result;
 
 	}
+	
+	// 마이페이지 문의글 리스트
+	public List<Qna> selectList(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = prop.getProperty("mySelectList");
+		List<Qna> list = new ArrayList();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Qna q = new Qna();
+				q.setQnaTitle(rs.getString("qnaTitle"));
+				q.setQnaNum(rs.getInt("qnaNum"));
+				q.setQnaDate(rs.getDate("qnaDate"));
+				q.setStatus(rs.getString("qnaStatus"));
+				q.setReCheck(rs.getString("recheck"));
+				
+				list.add(q);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
 
 	public int selectCount(Connection conn) {
 		PreparedStatement pstmt = null;

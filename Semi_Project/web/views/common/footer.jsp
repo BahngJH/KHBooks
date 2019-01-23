@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
 
 marquee {
@@ -20,11 +15,12 @@ marquee ul {
 	text-align:center;
 }
 
-div.title, div.notice {
 
+/* div.title, div.notice {
+>>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 	float: left;
 	margin: 0px 0px 0px 500px;
-}
+} */
 
 div.notice {
 	margin: 0px 0px 0px 0px;
@@ -64,15 +60,18 @@ footer.fot, div#btn a {
 	padding:0px;
 }
 
-div#btn {
-	margin: 0px 0px 0px 650px;
-	position: relative;
+div#btn a, div#btn h4 {
+	color: black;
+	display:inline;
+	text-align: center;
 }
 
-div#btn a, div#btn h4 {
-	float: left;
-	margin: 0px 0px 0px 80px;
-	color: black;
+div.notice-scroll{
+	text-align: center;
+}
+div.notice{
+	display:inline;
+	
 }
 footer.fot{
 
@@ -90,52 +89,56 @@ text-align:center;
 
 </style>
 
-
+<footer class="fot container-fluid">
 	<div class="row">
-      
-   
-<footer class="fot">
-		<div class="title">
-			<h4>
-				<strong>공지사항:</strong>
-			<h4>
-		</div>
-		<div class="notice">
-			<marquee onmouseover='this.stop()' onmouseout='this.start()'
-				direction='up' scrolldelay=1500>
-				<ul class="Notice_List">
-					<h4>
-						<li>kh문고 시스템 점검 1/30</li>
-					</h4>
-					<h4>
-						<li>개인정보처리방침 개정</li>
-					</h4>
-					<h4>
-						<li>설 연휴기간 휴무</li>
-					</h4>
-					<h4>
-						<li>고객센터 하단메뉴이용</li>
-					</h4>
-					<h4>
-						<li>2019년 휴무일 안내</li>
-					</h4>
-				</ul>
-			</marquee>
+		<div class="row notice-scroll">
+			<div class="title col-xs-3 col-md-offset-4 col-md-2">
+				<h4>
+					<strong>공지사항:</strong>
+				</h4>
+			</div>
+			<div class="notice col-xs-9 col-md-4">
+				<marquee onmouseover='this.stop()' onmouseout='this.start()'
+					direction='up' scrolldelay=1500>
+					<ul class="Notice_List">
+						<h4>
+							<li>kh문고 시스템 점검 1/30</li>
+						</h4>
+						<h4>
+							<li>개인정보처리방침 개정</li>
+						</h4>
+						<h4>
+							<li>설 연휴기간 휴무</li>
+						</h4>
+						<h4>
+							<li>고객센터 하단메뉴이용</li>
+						</h4>
+						<h4>
+							<li>2019년 휴무일 안내</li>
+						</h4>
+					</ul>
+				</marquee>
+			</div>
 		</div>
 		<br />
 		<hr />
 		
 		<div id="btn" class="row">
-		<address>
-			<h4>
-				<strong><span class="glyphicon glyphicon-phone-alt"
-					aria-hidden="true"></span></strong>
-			</h4>
+			<div class='col-xs-1 col-sm-1 col-md-1'>
+				<h4>
+					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
+				</h4>
+			</div>
 
-			<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
-			<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
-			<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
-</address>
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
+			</div>
 		</div>
 
 		
@@ -143,8 +146,6 @@ text-align:center;
 			㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
 			02-858-8282(발신자부담전화)<br /> 팩스 :785-41258 (지역번호공통)
 		</address>
-
-
 		<a id="MOVE_TOP_BTN" href="#"></a>
 		
 

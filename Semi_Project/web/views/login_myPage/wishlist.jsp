@@ -87,7 +87,7 @@
                             </div>
                             <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
 	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="<%=b.getBookCount()%>">권	                       	                          		                          	
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="<%=b.getStock() %>" value="<%=b.getBookCount()%>">권	                       	                          		                          	
 	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
@@ -228,5 +228,7 @@
 			 }
 		
 		</script>
+		
+		</div>
+	</div>
 
-<%@ include file="/views/common/footer.jsp" %>

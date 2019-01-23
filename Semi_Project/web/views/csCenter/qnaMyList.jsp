@@ -81,7 +81,7 @@ em {
 }
 
 .answer_tg {
-	padding: 0 106px 0 75px;
+	padding: 0 130px 0 50px;
 }
 
 .myAsk {
@@ -118,41 +118,19 @@ width:20px;height:20px;
 				<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
 			<% } %> 
 		</div>	  												
-	</div>btn-danger
-	<!-- 날짜 조회 -->	
-	<div class="row">	
-		<div class="searchDate col-md-12">	 
+	</div>
+	<div class="row">
+		<div class="csCenter col-md-10">			
 			<hr>
-			 <div class="sch-lcont">
-				 <div class="cal col-md-12">
-					<strong>기간별 조회</strong>
-					<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-					<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
-					<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-					<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
-				</div>
-				<div class="search_btn col-md-12">
-					<span class="cbtn">					  		
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
-				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>
-				       <button class="btn btn-default" onclick="fn_selectAll();" id="choAll" role="button">전체선택</button>
-				      <button class="btn btn-default" onclick="fn_choDelete();" id="cho1" role="button">선택삭제</button>      
-					</span>
-				</div>
-			 </div>				                   		                 
-		</div>
-	</div>	
+		</div>	  												
+	</div>
     <!-- 문의리스트 -->
     <div class="row">
 		<div class="csCenter col-md-12">  				
 			<div class="askTitle">
 				<ul class="askList">						
 			 	  <%for(Qna q : list){ System.out.println(q);%>									 	   		   					   
-	                <li class="askLi">
-	                <input type="checkbox" class="cho_b"/>
+	                <li class="askLi">	               
 		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     						        
 						        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>
 						        <span class=""><%=q.getQnaDate() %></span>
@@ -172,7 +150,7 @@ width:20px;height:20px;
 	  								<% }else{%>
 	  								<strong>답변 : 답변대기중입니다.</strong><%} %>
 							 </div>			                     	                    	                       																			                        						                                              
-						 	<button >삭제하기</button>
+						 	<!-- <button >삭제하기</button> -->
 	                      </div>                       
 	                 </div> 
 	                 <%} %> 	                                           							
@@ -192,12 +170,6 @@ width:20px;height:20px;
   	  		 </div>		 	
    		</div>
 	</div>
-	
-	<th colspan="2">
-<input type="button" value="수정하기" onclick="fn_updateBoard()"/>
-<input type="button" value="삭제하기" onclick="fn_deleteBoard()"/>
-</th>
-	 
 </section>
 </div>
 
@@ -216,6 +188,37 @@ return;
 }
 $('[name=boardDelFrm]').submit();
 }
+
+
+function fn_selectAll(){
+	if($('#th_checkAll').is(':checked')){
+		$('input[name=checkRow]').prop("checked",true);
+	}else{
+		$('input[name=checkRow]').prop("checked",false);
+	}
+}
+
+/* 	
+function allChk(obj){
+    var chkObj = document.getElementsByName("RowCheck");
+    var rowCnt = chkObj.length - 1;
+    var check = obj.checked;
+    if (check) {﻿
+        for (var i=0; i<=rowCnt; i++){
+         if(chkObj[i].type == "checkbox")
+             chkObj[i].checked = true; 
+        }
+    } else {
+        for (var i=0; i<=rowCnt; i++) {
+         if(chkObj[i].type == "checkbox"){
+             chkObj[i].checked = false; 
+         }
+        }
+    } */
+}
+	
+	
+	
 
 
 </script>
