@@ -274,7 +274,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><label><h3>결제 수단</h3></label></td>
+                                    <td><label><h3> 수단</h3></label></td>
                                     <td></td>
                                 </tr>
 
@@ -323,7 +323,7 @@
 
                         <p>
 
-                            <button type="button" class="btn btn-primary btn-lg btn-block">결제 확인</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block"> 확인</button>
 
                         </p>
 

@@ -43,11 +43,9 @@ padding: 8px 10px;
 					</colgroup>
 					<tr>
 						<th>선택</th>
-						<th>이름</th>
 						<th>ID</th>
-						<th>주소</th>
-						<th>생년월일</th>
-						<th>성별</th>
+						<th>이름</th>
+						<th>주소</th>						
 						<th>phone</th>
 						<th>email</th>
 						
@@ -56,11 +54,9 @@ padding: 8px 10px;
 					<%for(Member m : list) {%>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><%=m.getMemberName()%></td>
 						<td><%=m.getMemberId()%></td>
-						<td><%=m.getAddress()%></td>
-						<td><%=m.getBirth()%></td>
-						<td><%=m.getGender()%></td>
+						<td><%=m.getMemberName()%></td>
+						<td><%=m.getAddress()%></td>					
 						<td><%=m.getPhone()%></td>
 						<td><%=m.getEmail() %></td>
 					
@@ -69,11 +65,13 @@ padding: 8px 10px;
 					</tr>
 					<%} %>
 
-	</table>
+		</table>
 		<div class="text-center">
-					<%=pageBar %>
-			</div>
+
+			<%=pageBar %>
+
 		</div>
-		</div>
-		</div>
+	</div>
+</div>
+</div>
 <%@include file="/views/common/footer.jsp"%>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
 
-<%@ include file="/views/common/noticeHeader.jsp"%>
+<%@ include file="/views/common/adminheader.jsp"%>
 
  <%
 	List<Qna> list = (List) request.getAttribute("list");
@@ -69,10 +69,9 @@ border-height: 10px;
 					      <%for(Qna q : list){ %>	
 					  		 <% if(q.getQnaStatus().equals("Y")){ %> 	
 						        <th><b><%=q.getQnaPart()%></b></th>
-						        <th><b><a href="<%=request.getContextPath() %>/qna/qnaContent?no=<%=q.getQnaNum()%>"><%=q.getQnaTitle()%></a></b></th>						   					        
+						        <th><b><a href="<%=request.getContextPath() %>/qna/qnaContent?qnaNum=<%=q.getQnaNum()%>"><%=q.getQnaTitle()%></a></b></th>						   					        
 						        <th><b><%=q.getQnaDate()%></a></b></th>					       
-						        <th><b>답변여부</b></th>					        
-						        <th><b>읽음|안읽음</b></th>				        					         
+						        <th><b><%=q.getReCheck() %></b></th>					        						       			        					         
 						      </tr>
 					       	<%} 
 				    	  } %> 	 		    
@@ -93,11 +92,8 @@ border-height: 10px;
 		</div>
 	</div>							 		  			
  </section>
- 
- 
+ </div>
 
- 
-</div>
 
 
 <%@ include file="/views/common/footer.jsp"%>

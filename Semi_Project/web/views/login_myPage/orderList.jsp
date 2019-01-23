@@ -23,9 +23,6 @@
 		min-height: 150px;
 		margin-top: 10px;
 	}
-	ul.pagination{
-		margin-left: 350px;
-	}
 </style>
 
 
@@ -105,7 +102,7 @@
 											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
 										</td>
 									</tr>
-								<%} else {%>	
+								<%} if(list.size()<1) {%>	
 									<tr>
 										<td colspan='5'>구매 도서 정보가 없습니다.</td>
 									</tr>							
@@ -114,7 +111,7 @@
 							}%>
 						</tbody>
 					</table>
-					<div id="pageer">
+	                <div class="paging col-xs-12" style="text-align: center">
 						<%=pageBar %>
 					</div>							
 				</article>

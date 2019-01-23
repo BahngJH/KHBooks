@@ -88,6 +88,7 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		q.setQnaContent(qnaContent);
 		q.setQnaOriFile(mr.getOriginalFileName("upfile"));
 		q.setQnaReFile(mr.getFilesystemName("upfile"));
+		q.setReCheck(null);
 						
 	
 		

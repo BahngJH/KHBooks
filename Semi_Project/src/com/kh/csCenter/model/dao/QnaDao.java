@@ -73,11 +73,10 @@ public class QnaDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qr.getReNum());
-			pstmt.setInt(2, qr.getAdminNum());
-			pstmt.setString(3, qr.getReCheck());
-			pstmt.setString(4, qr.getReMail());
-			pstmt.setString(5, qr.getReContent());
-			pstmt.setInt(6, qr.getQnaNum());
+			pstmt.setInt(2, qr.getAdminNum());		
+			pstmt.setString(3, qr.getReMail());
+			pstmt.setString(4, qr.getReContent());
+			pstmt.setInt(5, qr.getQnaNum());
 
 			result = pstmt.executeUpdate();
 
@@ -161,6 +160,7 @@ public class QnaDao {
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
 				q.setReContent(rs.getString("reContent"));
+				q.setReCheck(rs.getString("reCheck"));
 
 				list.add(q);
 			}
@@ -191,7 +191,6 @@ public class QnaDao {
 				qr.setReNum(rs.getInt("reNum"));
 				qr.setAdminNum(rs.getInt("memberNum"));
 				qr.setQnaNum(rs.getInt("qnaNum"));
-				qr.setReCheck(rs.getString("reCheck"));
 				qr.setReMail(rs.getString("reMail"));
 				qr.setReContent(rs.getString("reContent"));
 				qr.setReStatus(rs.getString("reStatus"));
@@ -234,6 +233,7 @@ public class QnaDao {
 				q.setQnaAnswer(rs.getString("qnaAnswer"));
 				q.setQnaMail(rs.getString("qnaMail"));
 				q.setQnaTel(rs.getString("qnaTel"));
+				q.setReCheck(rs.getString("reCheck"));
 				list.add(q);
 			}
 		} catch (SQLException e) {
@@ -273,6 +273,7 @@ public class QnaDao {
 				q.setQnaTel(rs.getString("qnaTel"));
 				q.setReContent(rs.getString("reContent"));
 				q.setReNum(rs.getInt("reNum"));
+				q.setReCheck(rs.getString("reCheck"));
 			}
 
 		} catch (SQLException e) {
@@ -292,10 +293,9 @@ public class QnaDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qr.getAdminNum());
-			pstmt.setString(2, qr.getReCheck());
-			pstmt.setString(3, qr.getReMail());
-			pstmt.setInt(4, qr.getQnaNum());
-			pstmt.setString(5, qr.getReContent());
+			pstmt.setString(2, qr.getReMail());
+			pstmt.setInt(3, qr.getQnaNum());
+			pstmt.setString(4,qr.getReContent());
 			rs = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -304,6 +304,27 @@ public class QnaDao {
 		}
 		return rs;
 	}
+	
+	//답변 등록 상태 업데이트
+	public int updateReCheck(Connection conn, Qna q){
+		PreparedStatement pstmt = null;
+		int rs1 = 0;
+		String sql = prop.getProperty("updateReCheck");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, q.getReCheck());
+			pstmt.setInt(2, q.getQnaNum());
+
+			rs1 = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println("recheck 수정 됐나요?"+rs1);
+		return rs1;
+	}
+		
 
 	// 1:1 문의글 등록 Dao
 	public int qnaEnroll(Connection conn, Qna q) {
