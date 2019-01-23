@@ -23,9 +23,6 @@
 		min-height: 150px;
 		margin-top: 10px;
 	}
-	ul.pagination{
-		margin-left: 350px;
-	}
 </style>
 
 
@@ -114,7 +111,7 @@
 							}%>
 						</tbody>
 					</table>
-					<div id="pageer">
+	                <div class="paging col-xs-12" style="text-align: center">
 						<%=pageBar %>
 					</div>							
 				</article>
