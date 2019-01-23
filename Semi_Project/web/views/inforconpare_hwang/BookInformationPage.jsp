@@ -489,7 +489,7 @@ function fnMove2(){
 			
 			<div class='buyTab' style='float:left; margin-left:5px;'>
 			<%if(logined!=null) {%>
-			<form action='<%=request.getContextPath() %>/member/multiPayment' method='get'>
+			<form action='<%=request.getContextPath() %>/member/directPay' method='get'>
 			<input type="hidden" name="BookId" value="<%=b.getBookId()%>">			
 			<input type='submit' class='buy btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='구매하기' style='font-weight:bold;'>
 			</form>

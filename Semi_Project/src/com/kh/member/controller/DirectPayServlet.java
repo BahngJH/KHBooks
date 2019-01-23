@@ -1,7 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,16 +15,16 @@ import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MultiPaymentServlet
+ * Servlet implementation class DirectPayServlet
  */
-@WebServlet("/member/multiPayment")
-public class MultiPaymentServlet extends HttpServlet {
+@WebServlet("/member/directPay")
+public class DirectPayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MultiPaymentServlet() {
+    public DirectPayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,24 +34,11 @@ public class MultiPaymentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		int memberNum = logined.getMemberNum();
-		String[] bookIds = request.getParameterValues("BookId");
+		int bookId = Integer.parseInt(request.getParameter("BookId"));
 		
-		List<Integer> ids = new ArrayList();
-		 
-		if(bookIds==null) {
-			request.setAttribute("msg", "구매할 상품을 선택해주세요");
-			request.setAttribute("loc", "/member/wishlist?memberNum="+logined.getMemberNum());
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}		 
-		 
-		for(String i:bookIds) {
-			ids.add(Integer.parseInt(i));
-		 }
-		 
-		 List<Book> payList = new BookService().payList(ids, memberNum);
-		 
-		 //장바구니 목록제거, 구매목록 추가에 쓰기 위해 세션에 값을 저장
+		List<Book> payList = new BookService().directPay(bookId);
+		
+		//장바구니 목록제거, 구매목록 추가에 쓰기 위해 세션에 값을 저장
 		 HttpSession s = request.getSession();
 		 s.setAttribute("payBookList", payList);
 		 
