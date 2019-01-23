@@ -81,7 +81,7 @@ em {
 }
 
 .answer_tg {
-	padding: 0 130px 0 50px;
+	padding: 0 106px 0 75px;
 }
 
 .myAsk {
@@ -95,6 +95,11 @@ em {
 .pageBar{
 
 padding-top: 30px;
+}
+
+.cho_b{
+
+width:20px;height:20px;
 }
 </style>
 
@@ -113,7 +118,7 @@ padding-top: 30px;
 				<button class="btn btn-primary" id="askBtn" onclick="fn_addQna()">1:1 문의하기</buton>
 			<% } %> 
 		</div>	  												
-	</div>
+	</div>btn-danger
 	<!-- 날짜 조회 -->	
 	<div class="row">	
 		<div class="searchDate col-md-12">	 
@@ -146,10 +151,11 @@ padding-top: 30px;
 				<ul class="askList">						
 			 	  <%for(Qna q : list){ System.out.println(q);%>									 	   		   					   
 	                <li class="askLi">
-		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     
-						        <input type="checkbox"/>
+	                <input type="checkbox" class="cho_b"/>
+		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     						        
 						        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>
-						        <span class=""><%=q.getQnaDate() %></span> 
+						        <span class=""><%=q.getQnaDate() %></span>
+						        <span class="">답변 상태:<%=q.getReCheck() %></span>  
 						       <em class="">&nbsp;</em>						   						     
 						</button>					
 					</li> 							 						
@@ -158,13 +164,14 @@ padding-top: 30px;
 	                     <div class="well" value="">
 	                     	 <div class="myAsk alert alert-info">
 	  								<strong>내질문 : <%=q.getQnaContent() %></strong>
-							 </div>
+							 </div>							
 							  <div class="Answer alert alert-warning">
 	  								<%if(q.getReContent()!=null){%>
 	  								<strong>답변 : <%=q.getReContent() %></strong>   								
 	  								<% }else{%>
 	  								<strong>답변 : 답변대기중입니다.</strong><%} %>
 							 </div>			                     	                    	                       																			                        						                                              
+						 	<button >삭제하기</button>
 	                      </div>                       
 	                 </div> 
 	                 <%} %> 	                                           							

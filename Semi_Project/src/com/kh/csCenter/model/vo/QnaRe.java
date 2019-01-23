@@ -6,7 +6,6 @@ public class QnaRe {
 	private int reNum;// 답변글 번호
 	private int adminNum;// 회원번호(관리자) memberNum
 	private int qnaNum;// 문의글 번호
-	private String reCheck;// 사용자 메일 수신 동의 여부
 	private String reMail;// 메일전송여부
 	private String reContent;// 답변내용
 	private String reStatus;// 글상태
@@ -16,13 +15,11 @@ public class QnaRe {
 		super();
 	}
 
-	public QnaRe(int reNum, int adminNum, int qnaNum, String reCheck, String reMail, String reContent, String reStatus,
-			Date reDate) {
+	public QnaRe(int reNum, int adminNum, int qnaNum, String reMail, String reContent, String reStatus, Date reDate) {
 		super();
 		this.reNum = reNum;
 		this.adminNum = adminNum;
 		this.qnaNum = qnaNum;
-		this.reCheck = reCheck;
 		this.reMail = reMail;
 		this.reContent = reContent;
 		this.reStatus = reStatus;
@@ -51,14 +48,6 @@ public class QnaRe {
 
 	public void setQnaNum(int qnaNum) {
 		this.qnaNum = qnaNum;
-	}
-
-	public String getReCheck() {
-		return reCheck;
-	}
-
-	public void setReCheck(String reCheck) {
-		this.reCheck = reCheck;
 	}
 
 	public String getReMail() {
@@ -95,9 +84,9 @@ public class QnaRe {
 
 	@Override
 	public String toString() {
-		return "QnaRe [reNum=" + reNum + ", adminNum=" + adminNum + ", qnaNum=" + qnaNum + ", reCheck=" + reCheck
-				+ ", reMail=" + reMail + ", reContent=" + reContent + ", reStatus=" + reStatus + ", reDate=" + reDate
-				+ "]";
+		return "QnaRe [reNum=" + reNum + ", adminNum=" + adminNum + ", qnaNum=" + qnaNum + ", reMail=" + reMail
+				+ ", reContent=" + reContent + ", reStatus=" + reStatus + ", reDate=" + reDate + "]";
 	}
 
+	
 }
