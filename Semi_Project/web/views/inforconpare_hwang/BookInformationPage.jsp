@@ -438,7 +438,7 @@ function fnMove2(){
 			      <div class="modal-body">
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
 					<p style="font-size:10pt; color:black;"><strong><%=b.getBookName() %></strong>의 총 재고는 <strong><%=b.getStock() %></strong>개 입니다.</p>
-					<input type='number' name='bookCount' id='bookCount' min="1" max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' value="<%=b.getStock()%>" style='color:black; width:100%'/>
+					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%; '/>
 					<div class="selectedvalue"></div>
 			      </div>
 			      <div class="modal-footer">
@@ -471,9 +471,9 @@ function fnMove2(){
 			function fn_insertJangba() 
 			{
 				var context=$('[name=bookCount]').val();
-				if(context.trim().length==0)
+				if(context.trim().length==0||context==0)
 				{
-					alert("내용을 입력하세요!");
+					alert("입력값이 0이거나 입력하지 않으셨습니다. 다시 입력하세요!");
 					return false;
 				}
 				else if(context><%=b.getStock()%>)
