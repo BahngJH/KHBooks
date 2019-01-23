@@ -80,6 +80,39 @@ public class BookDao {
 		
 		return list;
 	}
+	public List<Book> directPay(Connection conn, int bookId){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Book> list = new ArrayList();
+			
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("directPay"));
+				pstmt.setInt(1, bookId);
+				rs = pstmt.executeQuery();				
+				while(rs.next()) {
+					Book b = new Book();
+					b.setBookId(rs.getInt("bookId"));
+					b.setBookName(rs.getString("bookname"));				
+					b.setBookImage(rs.getString("bookImage"));
+					b.setPrice(rs.getInt("price"));
+					b.setBookCount(1);
+					b.setPublisher(rs.getString("publisher"));
+					
+					Author a = new Author();
+					a.setAuthorName(rs.getString("authorName"));
+					b.setAuthor(a);
+					
+					list.add(b);
+				}
+			}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
 	
 	public List<Book> payList(Connection conn, List<Integer> ids, int memberNum) {
 		PreparedStatement pstmt = null;

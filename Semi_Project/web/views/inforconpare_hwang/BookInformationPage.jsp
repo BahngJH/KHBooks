@@ -222,7 +222,8 @@ li {
 
 .snline {
 	display: inline-block;
-	white-space: inherit;
+	white-space: pre-line;
+	text-align: center;
 }
 
 .reviewpre {
@@ -438,7 +439,7 @@ function fnMove2(){
 			      <div class="modal-body">
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
 					<p style="font-size:10pt; color:black;"><strong><%=b.getBookName() %></strong>의 총 재고는 <strong><%=b.getStock() %></strong>개 입니다.</p>
-					<input type='number' name='bookCount' id='bookCount' min="1" max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' value="<%=b.getStock()%>" style='color:black; width:100%'/>
+					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%; '/>
 					<div class="selectedvalue"></div>
 			      </div>
 			      <div class="modal-footer">
@@ -471,9 +472,9 @@ function fnMove2(){
 			function fn_insertJangba() 
 			{
 				var context=$('[name=bookCount]').val();
-				if(context.trim().length==0)
+				if(context.trim().length==0||context==0)
 				{
-					alert("내용을 입력하세요!");
+					alert("입력값이 0이거나 입력하지 않으셨습니다. 다시 입력하세요!");
 					return false;
 				}
 				else if(context><%=b.getStock()%>)
@@ -489,7 +490,7 @@ function fnMove2(){
 			
 			<div class='buyTab' style='float:left; margin-left:5px;'>
 			<%if(logined!=null) {%>
-			<form action='<%=request.getContextPath() %>/member/multiPayment' method='get'>
+			<form action='<%=request.getContextPath() %>/member/directPay' method='get'>
 			<input type="hidden" name="BookId" value="<%=b.getBookId()%>">			
 			<input type='submit' class='buy btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='구매하기' style='font-weight:bold;'>
 			</form>
@@ -523,9 +524,9 @@ function fnMove2(){
 					</br>
 					</br>
 					<ul>
-					<pre class='wrline' style='width:96%;'>
+					<pre class='wrline content' style='width:96%;'>
 					<small>
-                    <pre class='wrline1' style='border: 1px solid gray; width:100%'>
+                    <pre class='wrline1 content' style='border: 1px solid gray; width:100%'>
 					<small><strong>저자 : <%=b.getAuthor().getAuthorName() %></strong></small>
 					</pre><br>
 						<%= (b.getAuthor().getAuthorInfo()==null) ? "저자 정보가 없습니다." : b.getAuthor().getAuthorInfo() %>
@@ -545,7 +546,7 @@ function fnMove2(){
 			<br>
 			<br>
 					<ul>
-						<pre class='biline' style='width:96%;'>
+						<pre class='biline content' style='width:96%;'>
 							<small>
 								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
@@ -564,9 +565,9 @@ function fnMove2(){
 				<br>
 				<br>
 				   <ul>
-				      <pre class='bsline' style='width:96%;'>
+				      <pre class='bsline content' style='width:96%;'>
 				        <small>
-			                  <%=b.getAuthor().getAuthorInfo() %>
+			                  <%=b.getBookContent()==null?"줄거리가 없습니다." : b.getBookContent()%>
 			             </small>
 				      </pre>
 				   </ul>
@@ -588,7 +589,7 @@ function fnMove2(){
 					<br>
 					<ul>
 					<%String msg="이 책은 목차가 없습니다."; %>
-						<pre class='snline' style='width:20%; word-break:break-all;'>
+						<pre class='snline content' style='width:96%;'>
 							<small>
                     		<%if(b.getToc()!=null) {%>
 								<%=b.getToc() %>

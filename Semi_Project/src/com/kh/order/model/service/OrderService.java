@@ -1,9 +1,12 @@
 package com.kh.order.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.book.model.vo.Book;
@@ -55,6 +58,33 @@ public class OrderService {
 		close(conn);
 		return list;
 	}
+	//판매숫자 만큼 stock 제거
+	public int stockSelect(List<Book> payList)
+	{
+		Connection conn = getConnection();
+		List<Book> stock = new ArrayList();
+		List<Book> stockList = new OrderDao().stockSelect(conn, payList);
+		for(int i =0;i<stockList.size();i++) {
+			if(stockList.get(i).getBookId()==payList.get(i).getBookId())
+			{
+				Book newStock = new Book();
+				
+				newStock.setBookId(payList.get(i).getBookId());
+				System.out.println("서비스단 newStock의 bookId : "+newStock.getBookId());
+				
+				newStock.setStock(stockList.get(i).getStock()-payList.get(i).getBookCount());
+				System.out.println("서비스단 newStock의 stock : "+newStock.getStock());
+				stock.add(newStock);
+			}
+		}
+		int rs = new OrderDao().stockMinus(conn,stock);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return rs;
+		
+	}
+	
 	//구매된 책, 장바구니에서 제거
 	public int deleteWishlist(int memberNum, List<Book> payList) {
 		Connection conn =getConnection();

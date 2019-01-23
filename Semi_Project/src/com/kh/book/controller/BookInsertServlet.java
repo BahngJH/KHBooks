@@ -83,7 +83,15 @@ public class BookInsertServlet extends HttpServlet {
 		//도서 정보 삽입
 		int result = new BookService().insertBook(book);
 		
-		System.out.println(result);
+		//도서 정보 삽입 성공
+		if(result >0) {
+			request.setAttribute("msg", "도서 등록 성공");
+		}else {
+			//실패
+			request.setAttribute("msg", "도서 등록 오류");
+		}
+		request.setAttribute("loc", "/book/appendlist");
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**
