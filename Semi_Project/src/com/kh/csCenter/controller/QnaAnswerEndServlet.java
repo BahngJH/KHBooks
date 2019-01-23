@@ -85,6 +85,8 @@ public class QnaAnswerEndServlet extends HttpServlet {
 			sendEmail(request, response, qr);
 			msg = "답변이 정상적으로 등록되었습니다.";
 			loc = "/qna/qnaListAdmin";
+			//loc = "/qna/qnaContent?qnaNum="+qnaNum;
+			
 		} else {
 			msg = "답변 등록에 실패하였습니다.";
 			loc = "/qna/qnaContent?qnaNum="+qnaNum;
@@ -153,6 +155,6 @@ public class QnaAnswerEndServlet extends HttpServlet {
 				e.printStackTrace();// TODO: handle exception
 			}
 		}
-		request.getRequestDispatcher("/views/csCenter/qnaListAdmin.jsp").forward(request, response);
+		
 	}
 }

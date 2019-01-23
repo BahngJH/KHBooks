@@ -25,8 +25,6 @@ html, body
 	width:100%; height:100%;
 }
 
-body {
-}
 .container {
 	height:auto;
 	background-color: white;
@@ -57,6 +55,12 @@ body {
 
 .bookcover {
 	size: 100px;
+	width: 175px;
+	height: 250px;
+}
+
+div.bookcover>img{
+	border:1px solid lightgrey;
 	width: 175px;
 	height: 250px;
 }
@@ -294,8 +298,11 @@ li {
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
 }
+
+
 </style>
-<script language='javascript'>
+
+<script>
 /* 장바구니, 바로구매 버튼 호버 */
 function change1(obj) {
 	obj.style.background = '#0066ff';
@@ -332,9 +339,7 @@ function fnMove2(){
 					<div class='cover'>
 						<div class='bookcover'>
 						<!-- 이미지보여주기 -->
-							<img style="border:1px solid lightgrey;" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>'
-								width='175' height='250'
-								onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
+							<img class="img-responsive" src='<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>' onerror="javascript:noImage(this,'L','KOR');' alt="도서 이미지'>
 						</div>
 						<div class='pluslate'>
 							<button class='plus btn-link' onclick="showBigPic();">크게보기</button>
@@ -343,7 +348,7 @@ function fnMove2(){
 						</div>
 					</div>
 				</div>
-				<div class='all col-sm-4'>
+				<div class='all col-sm-8'>
 					<div class='alltitle'>
 						<!--책제목,작가이름,관심작가등록,지음,옮김,출판사,출간일 -->
 						<h1 class='booktitle'>
@@ -369,17 +374,18 @@ function fnMove2(){
 							<span class='name' title='출판사'> <!-- 출판사정보 --> <a href='#'><%=b.getPublisher() %></a>
 							</span> <br> <span class='date' title='출간일'> <!-- 출간일 -->
 								<%=b.getBookDate() %> <span>출간</span>
-							</span> <span class='lating'>
+							</span> 
+							<span class='lating'>
 								<p>
-								<%String rating="";%>
-								<%switch(avg) {
-								case 0 : rating="이 책은 평점이 없습니다."; break;
-								case 1 : rating="★"; break;
-								case 2 : rating="★★"; break;
-								case 3 : rating="★★★"; break;
-								case 4 : rating="★★★★"; break;
-								case 5 : rating="★★★★★"; break;
-								}%>
+									<%String rating="";%>
+									<%switch(avg) {
+									case 0 : rating="이 책은 평점이 없습니다."; break;
+									case 1 : rating="★"; break;
+									case 2 : rating="★★"; break;
+									case 3 : rating="★★★"; break;
+									case 4 : rating="★★★★"; break;
+									case 5 : rating="★★★★★"; break;
+									}%>
 									<button class='starlating btn-link' onclick="fnMove2()">
 										<%=rating%></button>
 									<span class='line'>|</span>
@@ -400,22 +406,17 @@ function fnMove2(){
 						<!-- 가격정보 -->
 						<ul class='listprice'>
 						<%int oriPrice=b.getPrice()+2000; %>
-							<li>정가 : <span class='org_price'><%=oriPrice %> 원 </span> <br>
-								판매가 : <span class='sell_price' title='판매가'> <strong>
-										<%=b.getPrice() %> </strong> 원
-							</span>
+							<li>정가 : <span class='org_price'><%=oriPrice %> 원 </span> 
+							<br>
+								판매가 : <span class='sell_price' title='판매가'> <strong><%=b.getPrice() %> </strong> 원</span>
 							</li>
 							<li>
 								<!-- 포인트 -->
-								<%double point1 = b.getPrice()*0.05;
+								<%double point1 = b.getPrice()*0.1;
 								int point = (int)point1;%>
 								<div class='inkpoint'>
-									<span class='all_inkpoint'>통합포인트 : </span> <span
-										class='nom_point'> [포인트적립] <strong><%=point %></strong>원 적립 [<strong>5</strong>%
-										적립]
-									</span> <br> <span class='earn_point'>[추가적립] 5만원 이상 구매 시
-										2천원 추가적립</span> <br> <span class='earn_point'>[회원혜택] 우수회원
-										5만원 이상 구매 시 2~3% 추가적립</span>
+									<span class='all_inkpoint'>통합포인트 : </span> 
+									<span class='nom_point'> [포인트적립] <strong><%=point %></strong>원 적립 [<strong>10</strong>%적립]</span> 
 								</div>
 							</li>
 						</ul>
@@ -441,7 +442,7 @@ function fnMove2(){
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button>
-			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='장바구니담기'></button>
+			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='장바구니담기'>
 			      </div>
 			    </div>
 			  </div>
@@ -498,15 +499,15 @@ function fnMove2(){
 					<thead class='writerinfor'>
 						<strong>저자소개</strong>
 					</thead>
-					<br>
-					<br>
+					</br>
+					</br>
 					<ul>
 					<pre class='wrline' style='width:96%;'>
 					<small>
                     <pre class='wrline1' style='border: 1px solid gray; width:100%'>
 					<small><strong>저자 : <%=b.getAuthor().getAuthorName() %></strong></small>
 					</pre><br>
-						<%=b.getAuthor().getAuthorInfo() %>
+						<%= (b.getAuthor().getAuthorInfo()==null) ? "저자 정보가 없습니다." : b.getAuthor().getAuthorInfo() %>
                 	</small>
 					</pre>
 					</ul>
@@ -525,7 +526,7 @@ function fnMove2(){
 					<ul>
 						<pre class='biline' style='width:96%;'>
 							<small>
-								<%=b.getBookInfo() %>
+								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
 						</pre>
 					</ul>
@@ -569,9 +570,9 @@ function fnMove2(){
 						<pre class='snline' style='width:20%; word-break:break-all;'>
 							<small>
                     		<%if(b.getToc()!=null) {%>
-<%=b.getToc() %>
+								<%=b.getToc() %>
 	                          <%} else{%>
-<%=msg %>
+								<%=msg %>
 	                          <%} %>
                 			</small>
 						</pre>
@@ -628,8 +629,6 @@ function fnMove2(){
 			});
 			</script>
 			
-			<style>
-			</style>
 			<div class='reviewtable'>
 				<thead class='reviewth'>
 					<strong>회원리뷰</strong>
