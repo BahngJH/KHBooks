@@ -36,6 +36,10 @@ public class BookAppendServlet extends HttpServlet {
 		
 			String isbn = request.getParameter("isbn");
 			
+			if(isbn == null) {
+				isbn = "";
+			}
+			
 			request.setAttribute("isbn", isbn);
 			request.getRequestDispatcher("/views/admin/bookAppendForm.jsp").forward(request, response);
 			}else {

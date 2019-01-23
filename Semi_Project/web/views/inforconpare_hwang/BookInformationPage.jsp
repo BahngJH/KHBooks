@@ -222,7 +222,8 @@ li {
 
 .snline {
 	display: inline-block;
-	white-space: inherit;
+	white-space: pre-line;
+	text-align: center;
 }
 
 .reviewpre {
@@ -298,8 +299,6 @@ li {
   padding: 0 .5em 0 .5em;
   font-size: 0.75em;
 }
-
-
 </style>
 
 <script>
@@ -405,18 +404,19 @@ function fnMove2(){
 					<div class='priceinfor'>
 						<!-- 가격정보 -->
 						<ul class='listprice'>
-						<%int oriPrice=b.getPrice()+2000; %>
-							<li>정가 : <span class='org_price'><%=oriPrice %> 원 </span> 
+						<%double oriPrice=b.getPrice()+(b.getPrice()*0.2); 
+						int jungga=(int)oriPrice;%>
+							<li>정가 : <span class='org_price'><%=jungga %> 원 </span> 
 							<br>
 								판매가 : <span class='sell_price' title='판매가'> <strong><%=b.getPrice() %> </strong> 원</span>
 							</li>
 							<li>
 								<!-- 포인트 -->
-								<%double point1 = b.getPrice()*0.1;
+								<%double point1 = b.getPrice()/10;
 								int point = (int)point1;%>
 								<div class='inkpoint'>
-									<span class='all_inkpoint'>통합포인트 : </span> 
-									<span class='nom_point'> [포인트적립] <strong><%=point %></strong>원 적립 [<strong>10</strong>%적립]</span> 
+									<span class='all_inkpoint'>통합포인트 : </span>
+									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span> 
 								</div>
 							</li>
 						</ul>
@@ -428,7 +428,7 @@ function fnMove2(){
 			<div class='jangbaTab' style='float:left;'>
 			<%if(logined!=null) {%>
 			<button type="button" class="jangba btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>장바구니담기</button>
-			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' method='post'>
+			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' id='jangbaFrm' method='post'>
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -438,11 +438,13 @@ function fnMove2(){
 			      </div>
 			      <div class="modal-body">
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
-					<input type='number' name='bookCount' placeholder='수량을 입력하세요.' style='color:black;'/>
+					<p style="font-size:10pt; color:black;"><strong><%=b.getBookName() %></strong>의 총 재고는 <strong><%=b.getStock() %></strong>개 입니다.</p>
+					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%; '/>
+					<div class="selectedvalue"></div>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button>
-			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='장바구니담기'>
+			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button> <!-- 닫기버튼 -->
+			        <input type='button' class="gogo" style='background-color:cornflowerblue;' onclick="fn_insertJangba();" value='장바구니담기'>
 			      </div>
 			    </div>
 			  </div>
@@ -465,17 +467,36 @@ function fnMove2(){
 			  var modal = $(this)
 			  modal.find('.modal-title').text('책 ' + titleTxt) // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
 			})
+			
+			//장바구니
+			function fn_insertJangba() 
+			{
+				var context=$('[name=bookCount]').val();
+				if(context.trim().length==0||context==0)
+				{
+					alert("입력값이 0이거나 입력하지 않으셨습니다. 다시 입력하세요!");
+					return false;
+				}
+				else if(context><%=b.getStock()%>)
+				{
+					alert("해당 책의 재고를 초과하였습니다.")
+					return false;
+				}
+				$('#jangbaFrm').submit();
+				return true;
+			}
 			</script>
 			
 			
-			
 			<div class='buyTab' style='float:left; margin-left:5px;'>
-			<form action='<%=request.getContextPath() %>//member/multiPayment' method='get'>
+			<%if(logined!=null) {%>
+			<form action='<%=request.getContextPath() %>/member/directPay' method='get'>
 			<input type="hidden" name="BookId" value="<%=b.getBookId()%>">			
-			<button type='submit' class='buy btn-lg' onmouseout='change2(this)'	onmouseover='change1(this)'>
-				<strong>구매하기</strong>
-			</button>
+			<input type='submit' class='buy btn-lg' onmouseout='change2(this)' onmouseover='change1(this)' value='구매하기' style='font-weight:bold;'>
 			</form>
+			<%} else{ %>
+			<input type='submit' class='buy btn-lg' onclick='loginafter();' onmouseout='change2(this)' onmouseover='change1(this)' value='구매하기' style='font-weight:bold;'>
+			<% }%>
 			</div>
 			
 			
@@ -503,9 +524,9 @@ function fnMove2(){
 					</br>
 					</br>
 					<ul>
-					<pre class='wrline' style='width:96%;'>
+					<pre class='wrline content' style='width:96%;'>
 					<small>
-                    <pre class='wrline1' style='border: 1px solid gray; width:100%'>
+                    <pre class='wrline1 content' style='border: 1px solid gray; width:100%'>
 					<small><strong>저자 : <%=b.getAuthor().getAuthorName() %></strong></small>
 					</pre><br>
 						<%= (b.getAuthor().getAuthorInfo()==null) ? "저자 정보가 없습니다." : b.getAuthor().getAuthorInfo() %>
@@ -525,7 +546,7 @@ function fnMove2(){
 			<br>
 			<br>
 					<ul>
-						<pre class='biline' style='width:96%;'>
+						<pre class='biline content' style='width:96%;'>
 							<small>
 								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
@@ -544,9 +565,9 @@ function fnMove2(){
 				<br>
 				<br>
 				   <ul>
-				      <pre class='bsline' style='width:96%;'>
+				      <pre class='bsline content' style='width:96%;'>
 				        <small>
-			                  <%=b.getAuthor().getAuthorInfo() %>
+			                  <%=b.getBookContent()==null?"줄거리가 없습니다." : b.getBookContent()%>
 			             </small>
 				      </pre>
 				   </ul>
@@ -568,7 +589,7 @@ function fnMove2(){
 					<br>
 					<ul>
 					<%String msg="이 책은 목차가 없습니다."; %>
-						<pre class='snline' style='width:20%; word-break:break-all;'>
+						<pre class='snline content' style='width:96%;'>
 							<small>
                     		<%if(b.getToc()!=null) {%>
 								<%=b.getToc() %>
@@ -646,7 +667,7 @@ function fnMove2(){
 					if(context.trim().length==0)
 					{
 						alert("내용을 입력하세요!");
-						return false
+						return false;
 					}
 					var grade = $('.on').length;
 					$('#star_grade').val(grade);

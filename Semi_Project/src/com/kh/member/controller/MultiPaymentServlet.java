@@ -37,13 +37,9 @@ public class MultiPaymentServlet extends HttpServlet {
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
 		int memberNum = logined.getMemberNum();
 		String[] bookIds = request.getParameterValues("BookId");
+		
 		List<Integer> ids = new ArrayList();
 		 
-		//로그인이 안되어 있으면 로그인페이지로 이동
-		if(logined==null) {
-			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
-		}
-		
 		if(bookIds==null) {
 			request.setAttribute("msg", "구매할 상품을 선택해주세요");
 			request.setAttribute("loc", "/member/wishlist?memberNum="+logined.getMemberNum());
@@ -51,10 +47,11 @@ public class MultiPaymentServlet extends HttpServlet {
 		}		 
 		 
 		for(String i:bookIds) {
-			ids.add(Integer.parseInt(i)); 
+			ids.add(Integer.parseInt(i));
 		 }
 		 
 		 List<Book> payList = new BookService().payList(ids, memberNum);
+		 
 		 //장바구니 목록제거, 구매목록 추가에 쓰기 위해 세션에 값을 저장
 		 HttpSession s = request.getSession();
 		 s.setAttribute("payBookList", payList);

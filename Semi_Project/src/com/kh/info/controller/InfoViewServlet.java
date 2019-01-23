@@ -38,7 +38,7 @@ public class InfoViewServlet extends HttpServlet {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		Book b=new InfoService().selectInfoBook(bookId);
 		int reviewCnt=new InfoService().selectReviewCnt(bookId);
-		int avg=new InfoService().selectReviewAvg();
+		int avg=new InfoService().selectReviewAvg(bookId);
 		
 		
 		int cPage;//현재페이지를 의미
@@ -112,10 +112,11 @@ public class InfoViewServlet extends HttpServlet {
 		}
 
 		System.out.println("페이징처리 잘되나? "+(cPage-1)*numPerPage+1+" "+cPage*numPerPage);
-
+		System.out.println("avg 값 잘 넘어오나? "+avg);
 		//쿠키 설정
-		response = setCookie(bookId, request, response);
 		
+		
+		response = setCookie(bookId, request, response);
 		request.setAttribute("reviewCnt", reviewCnt);
 		request.setAttribute("avg", avg);
 		request.setAttribute("cnt", cnt);
