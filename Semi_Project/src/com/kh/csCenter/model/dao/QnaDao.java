@@ -29,7 +29,7 @@ public class QnaDao {
 	}
 
 	//관리자 답변 메일 전송
-	public Qna sendEmail(Connection conn, int qnaNum) {
+	/*public Qna sendEmail(Connection conn, int qnaNum) {
 		PreparedStatement pstmt =null;
 		ResultSet rs =null;
 		String sql = prop.getProperty("sendEmail");
@@ -63,7 +63,7 @@ public class QnaDao {
 			close(pstmt);
 		}
 		return q;
-	}
+	}*/
 
 	// 답변수정
 	public int updateAnswer(Connection conn, QnaRe qr) {

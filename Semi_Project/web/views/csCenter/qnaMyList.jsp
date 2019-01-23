@@ -138,7 +138,8 @@ width:20px;height:20px;
 				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
 				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
 				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>
-				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">선택삭제</a>      
+				       <button class="btn btn-default" onclick="fn_selectAll();" id="choAll" role="button">전체선택</button>
+				      <button class="btn btn-default" onclick="fn_choDelete();" id="cho1" role="button">선택삭제</button>      
 					</span>
 				</div>
 			 </div>				                   		                 
@@ -191,19 +192,23 @@ width:20px;height:20px;
   	  		 </div>		 	
    		</div>
 	</div>
+	
+	<th colspan="2">
+<input type="button" value="수정하기" onclick="fn_updateBoard()"/>
+<input type="button" value="삭제하기" onclick="fn_deleteBoard()"/>
+</th>
 	 
 </section>
 </div>
 
 
 <script>
-<th colspan="2">
-<input type="button" value="목록으로" onclick="fn_boardList()"/>
+/* <th colspan="2">
 <input type="button" value="수정하기" onclick="fn_updateBoard()"/>
 <input type="button" value="삭제하기" onclick="fn_deleteBoard()"/>
-</th>
+</th> */
 
-function fn_deleteBoard()
+function fn_choDelete()
 {
 if(!confirm('정말로 삭제하시겠습니까?'))
 {
