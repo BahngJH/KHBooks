@@ -30,4 +30,13 @@ public class ReplyService {
 		close(conn);
 		return list;
 	}
+	
+	/* 멤버&댓글 조인하기
+		public Reply findId(int memberNum) {
+			Connection conn = getConnection();
+			List<Reply> list = new ReplyDao().findId(conn, memberNum);
+			close(conn);
+			return list;
+		}	*/
+		
 }

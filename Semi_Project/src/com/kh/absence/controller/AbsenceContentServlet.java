@@ -46,7 +46,7 @@ public class AbsenceContentServlet extends HttpServlet {
 			view = "/views/notice/absenceboardContent.jsp";
 			request.setAttribute("ab", ab);
 			request.setAttribute("reply", rlist);
-			System.out.println("Reply list 값은? "+rlist);
+			System.out.println("댓글 있나요?"+rlist);
 
 		}else {
 			view="views/common/msg.jsp";

@@ -4,7 +4,7 @@
 <%@ page import="java.util.*,com.kh.notice.model.vo.*, com.kh.reply.model.vo.*"%>
 <%
 	Absence ab = (Absence) request.getAttribute("ab");
-	//List<Reply> rlist=(List)request.getAttribute("reply");
+	List<Reply> rlist=(List)request.getAttribute("reply");
 	Member m = (Member) request.getSession().getAttribute("logined");
 %>
 <%@ include file="/views/common/noticeHeader.jsp"%>
@@ -327,7 +327,8 @@ input[value='삭제하기'] {
 
 
 
-
+<%for(Reply r:rlist) {%>
+<%if(r.getOrderReContent()!=null&&logined!=null){%>
 
 <div class="container bootstrap snippet">
     <div class="row">
@@ -339,13 +340,13 @@ input[value='삭제하기'] {
 				<ul class="comments">			
 				<li class="clearfix">
 				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-				  <div class="post-comments">
-				      <p class="meta"> <a href="#"></a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				  <div class="post-comments">				
+				      <p class="meta"><%=r.getMemberNum() %> says : <%=r.getOrderReContent() %> <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
 				      <p>
 				         댓글단거 올곳
 				      </p>
 				  </div>
-				
+				  <%} %>
 				   <ul class="comments">
 				      <li class="clearfix">
 				          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
@@ -396,6 +397,9 @@ input[value='삭제하기'] {
 		<br />
 		<br />
 		<br />
+		
+		
+		
 		<script>
 		
 		function appendBook(){
@@ -409,8 +413,7 @@ input[value='삭제하기'] {
 			location.href="<%=request.getContextPath()%>/absence/deleted?no3=<%=ab.getAppNum()%>";
 			
 		}
-		
-		
+				
 		function main_absence(){
 			location.href="<%=request.getContextPath()%>/absence/page";
 		}
