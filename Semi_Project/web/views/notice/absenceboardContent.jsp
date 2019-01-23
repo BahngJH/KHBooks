@@ -7,6 +7,38 @@
 %>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 <style>
+
+
+body { padding-top:30px; }
+.widget .panel-body { padding:0px; }
+.widget .list-group { margin-bottom: 0; }
+.widget .panel-title { display:inline }
+.widget .label-info { float: right; }
+.widget li.list-group-item {border-radius: 0;border: 0;border-top: 1px solid #ddd;}
+.widget li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
+.widget .mic-info { color: #666666;font-size: 11px; }
+.widget .action { margin-top:5px; }
+.widget .comment-text { font-size: 12px; }
+.widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
+.ui-group-buttons .or{position:relative;float:left;width:.3em;height:1.3em;z-index:3;font-size:12px}
+.ui-group-buttons .or:before{position:absolute;top:50%;left:50%;content:'';background-color:#5a5a5a;margin-top:-.1em;margin-left:-.9em;width:1.8em;height:1.8em;line-height:1.55;color:#fff;font-style:normal;font-weight:400;text-align:center;border-radius:500px;-webkit-box-shadow:0 0 0 1px rgba(0,0,0,0.1);box-shadow:0 0 0 1px rgba(0,0,0,0.1);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+.ui-group-buttons .or:after{position:absolute;top:0;left:0;content:' ';width:.3em;height:2.84em;background-color:rgba(0,0,0,0);border-top:.6em solid #5a5a5a;border-bottom:.6em solid #5a5a5a}
+.ui-group-buttons .or.or-lg{height:1.3em;font-size:16px}
+.ui-group-buttons .or.or-lg:after{height:2.85em}
+.ui-group-buttons .or.or-sm{height:1em}
+.ui-group-buttons .or.or-sm:after{height:2.5em}
+.ui-group-buttons .or.or-xs{height:.25em}
+.ui-group-buttons .or.or-xs:after{height:1.84em;z-index:-1000}
+.ui-group-buttons{display:inline-block;}
+.ui-group-buttons:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.ui-group-buttons .btn{float:left;border-radius:0}
+.ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
+.ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
+
+
+
+
+
 #return {
 	background-color: #555555;
 	color: white;
@@ -134,23 +166,130 @@ input[value='삭제하기'] {
 
 				<%}%>
 			</table>
+			
+			
+			
+			
+			
+		<div class="container">
+    <div class="row">
+    <div class="ui-group-buttons">
+                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-pencil" style="padding-right:4px;"></span>Compose</a>
+                <div class="or"></div>
+                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-inbox" style="padding-right:4px;"></span>Inbox</a>
+                <div class="or"></div>
+                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-send" style="padding-right:4px;"></span>Send</a>
+            </div>
+        
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Reply</h3>
+            
+                    
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="#">
+                                        Congratulations</a>
+                                    <div class="mic-info">
+                                        By: <a href="#">Check My Athletics</a> on 12 Jun 2014
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    We would like to congratulate John on his achievement...
+                                </div>
+                               
+                        
+    
+      
+                              
+                            </div>
+                        </div>
+                    </li>
+                
+                    
+                </ul>
+                
+            </div>
+            <div class="col">
+
+
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+    <textarea class="form-control" rows="3" placeholder="Write in your wall" autofocus=""></textarea>
+ 	
+
+                                </div>
+                                
+                            
+                        <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">Post reply</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                        </div>
+
+                </div>
+</div>
+        </div>
+    </div>
+</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
 								
 			
 			
-<div id="disqus_thread"></div>
-<script>
-(function() { // DON'T EDIT BELOW THIS LINE
-	var d = document, s = d.createElement('script');
-	s.src = 'https://semitest.disqus.com/embed.js';
-	s.setAttribute('data-timestamp', +new Date());
-	(d.head || d.body).appendChild(s);
-	})();
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+
+
+
 			
 			
 			
-		<%-- 			<!-- 댓글 폼 구현중  -->
+	<%-- 			<!-- 댓글 폼 구현중  -->
 		
 		<table class="type10 table">
 				<thead>
@@ -180,8 +319,8 @@ input[value='삭제하기'] {
 					
 				</form>
 			</div> 
-			 --%>
-
+			
+ --%>
 
 
 
