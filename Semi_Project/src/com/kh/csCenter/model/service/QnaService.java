@@ -69,6 +69,13 @@ public class QnaService {
 		close(conn);
 		return list;
 	}
+	
+	public List<Qna> selectList(int no) {
+		Connection conn = getConnection();
+		List<Qna> list = new QnaDao().selectList(conn, no);
+		close(conn);
+		return list;
+	}
 
 	// 문의글 등록 Service
 	public int qnaEnroll(Qna q) {
