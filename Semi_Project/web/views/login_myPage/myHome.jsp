@@ -53,7 +53,15 @@
 	article.buy-container{
 		margin-top: 40px;
 	}
+	article.review-container{
+		margin-top: 40px;
+	}
 	div#buyTitle {
+		width: 100%;
+		min-height: 40px;
+		margin-top: 20px;
+	}
+	div#reviewTitle {
 		width: 100%;
 		min-height: 40px;
 		margin-top: 20px;
@@ -64,8 +72,17 @@
 		height: 250px;
 		border: 1px solid black;
 	}
+	div.reviewList{
+		overflow: hidden;
+		width: 100%;
+		height: 250px;
+		border: 1px solid black;
+	}
 	article.buy-container h4{display: inline; float: left; width: 40%;}
 	article.buy-container a#btn-buyListAll{display: inline; float: right;}
+	article.review-container h4{display: inline; float: left; width: 40%;}
+	article.review-container a#btn-reviewListAll{display: inline; float: right;}
+	
 	div#orderImg{
 		width: 100px;
 		height: 100px;
@@ -113,7 +130,7 @@
 						<h4>최근 구매 목록</h4>
 						<a href="<%=request.getContextPath()%>/member/orderList" class="btn btn-primary" id="btn-buyListAll">전체 보기</a>
 					</div>
-					
+								
 						<table class="table  table-stripe" id="tbl-orderList">
 							<thaed>
 								<tr>
@@ -130,7 +147,7 @@
 											<!-- 책 이미지 -->
 											<td>
 												<div id="orderImg">
-													<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBook().getBookId()%>" class="thumbnail">
+													<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBookId()%>" class="thumbnail">
 														<img id="bookImg" src="<%=request.getContextPath()%>/images/book/<%=orderList.get(i).getBook().getBookImage()%>" alt="도서사진">
 													</a>
 												</div>																					
@@ -138,7 +155,7 @@
 											<!-- 제목, 저자, 가격 -->                        		                            	
 											<td style="text-align: left;">
 			                                	<h5 class='book_info'>
-		    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBook().getBookId()%>">
+		    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBookId()%>">
 			                                    	<h5><strong><%=orderList.get(i).getBook().getBookName()%></strong></h5>
 		                                    	</a>
 			                                	</h5>
@@ -166,8 +183,33 @@
 								}%>
 							</tbody>
 						</table>
-
 				</article>
+				
+				
+				<article class="review-container">
+					<div id="review-title">
+						<h4>나의 리뷰 목록</h4>
+						<a href="<%=request.getContextPath()%>/member/review" class="btn btn-primary" id="btn-reviewListAll">전체 보기</a>
+					</div>				
+					
+					<table class="table  table-stripe" id="tbl-orderList">
+						<thaed>
+							<tr>
+								<th id="t-info" colspan='2' scope="col">도서 정보</th>
+								<th id="t-date" scope="col">구매일</th>
+								<th id="t-count" scope="col">수량</th>
+								<th id="t-price" scope="col">결제 금액</th>
+							</tr>
+						</thaed>
+						
+						<tbody>	
+						</tbody>
+						
+					</table>			
+					
+				</article>
+				
+				
 			</section>				
 		</div>
 	</div>
