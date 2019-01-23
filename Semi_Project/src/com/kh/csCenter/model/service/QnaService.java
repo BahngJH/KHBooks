@@ -69,6 +69,13 @@ public class QnaService {
 		close(conn);
 		return list;
 	}
+	
+	public List<Qna> selectList(int no) {
+		Connection conn = getConnection();
+		List<Qna> list = new QnaDao().selectList(conn, no);
+		close(conn);
+		return list;
+	}
 
 	// 문의글 등록 Service
 	public int qnaEnroll(Qna q) {
@@ -92,24 +99,35 @@ public class QnaService {
 	}
 
 	// 관리자 답변 등록
-	public int qnaAnswerEnroll(QnaRe qr) {
+	public int qnaAnswerEnroll(QnaRe qr, Qna q) {
 		Connection conn = getConnection();
 		int rs = new QnaDao().qnaAnswerEnroll(conn, qr);
+
 		if (rs > 0) {
+			//답변 상태 변경
+			q.setReCheck("Y");
 			commit(conn);
+			
+			int rs1 = new QnaDao().updateReCheck(conn, q);			
+			if (rs1 > 0) {
+				commit(conn);
+			}
+
 		} else {
 			rollback(conn);
 		}
+
 		close(conn);
 		return rs;
-	}
 
+	}
+/*
 	// 관리자 답변 메일 전송
 	public Qna sendEmail(int qnaNum) {
 		Connection conn = getConnection();
 		Qna q = new QnaDao().sendEmail(conn, qnaNum);
 		close(conn);
 		return q;
-	}
+	}*/
 
 }

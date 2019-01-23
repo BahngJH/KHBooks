@@ -88,6 +88,67 @@ Properties prop=new Properties();
 		return list;
 	}
 
+	
+	public List<Order> selectList(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Order> list = new ArrayList();
+		String sql = prop.getProperty("mySelectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Order o = new Order();
+				o.setBookCount(rs.getInt("bookCount"));
+				o.setOrderDate(rs.getDate("orderDate"));
+				o.setOrderNum(rs.getInt("orderNum"));
+				o.setStatus(rs.getString("status"));
+				o.setBookId(rs.getInt("bookId"));
+				Book b = new Book();			 			
+				b.setBookName(rs.getString("bookName"));
+				b.setPrice(rs.getInt("price"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookImage(rs.getString("bookImage"));
+				Author a = new Author();
+				a.setAuthorName(rs.getString("authorName"));
+				b.setAuthor(a);
+				o.setBook(b);
+				list.add(o);				
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	//적립하기
+	public int insertMilage(Connection conn, int memberNum, int milage)
+	{
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("insertMilage");
+		int rs =0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, milage);
+			pstmt.setInt(2, memberNum);
+			rs = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
+
+
 	//구매된 장바구니 데이터 지우기
 	public int deleteWishlist(Connection conn, int memberNum, List<Book> payList) {
 		PreparedStatement pstmt=null;
@@ -182,8 +243,7 @@ Properties prop=new Properties();
 		ResultSet rs = null;
 		List<Order> list = new ArrayList();
 		String sql = "";
-		
-		
+
 		switch(sort) {
 		case 1: sql = prop.getProperty("sortList1"); break;
 		case 2: sql = prop.getProperty("sortList2");; break;

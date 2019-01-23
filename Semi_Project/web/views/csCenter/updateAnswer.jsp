@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
 
-<%@ include file="/views/common/noticeHeader.jsp"%>
+<%@ include file="/views/common/adminheader.jsp"%>
 
   <%
 	
@@ -81,7 +81,7 @@
 			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">
 			  		  <input type="hidden" name="reNum" value="<%=q.getReNum()%>">
 			  		  <input type="hidden" name="memberNum" value="<%=q.getQnaWriter()%>">
-			  		  <input type="hidden" name="no" value="<%=q.getQnaNum()%>"> 				  		  			  		  		 	      				       			        		  
+			  		  <input type="hidden" name="qnaNum" value="<%=q.getQnaNum()%>"> 				  		  			  		  		 	      				       			        		  
 			          <input type="submit" value="등록" />
   			  		</form>				         			        					        					 					  								      						 					       		    				   			
 			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>
@@ -89,7 +89,7 @@
 			</div>				 				 				                   		                 
 		</div>
  </section>
-</div>
+
 
 
 	 <script>	
@@ -99,20 +99,6 @@
 		}
 		
 	</script> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

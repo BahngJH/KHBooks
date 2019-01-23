@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.kh.csCenter.model.vo.Qna"%>
 
-<%@ include file="/views/common/noticeHeader.jsp"%>
+<%@ include file="/views/common/adminheader.jsp"%>
 
   <%
 	List<Qna> list = (List) request.getAttribute("list");
@@ -61,7 +61,7 @@ color: #5F5AF3;
 				  		<div>				  		 
 				            <span><b>첨부파일: </b></span>					         						         
 					         <%if(q.getQnaReFile()!=null) {%>
-					         <img src="<%=request.getContextPath()%>/upload/qna/<%=q.getQnaReFile() %>">					         >
+					         <img src="<%=request.getContextPath()%>/upload/qna/<%=q.getQnaReFile() %>">					        
 					         <%}else{ %><b> 없음</b><%} %>
 					         <br>				          			      				     					         
 					         <strong>등록된 답변 :</strong>
@@ -70,7 +70,7 @@ color: #5F5AF3;
 					         <%=q.getReContent() %></p>	<br>				         					          		                     			 	              
 	           		  </div>
 	              <div class="">			  			     				          		         		         
-			         <button type="update" class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변 수정</button>			        	      				       			        		  
+			         <button class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변수정</button>			        	      				       			        		  
 		  		  </div>
 				  <div class=""><%}else{ %>			  			     				          			        
 		  		   <form name="enrollAnswer" action="<%=request.getContextPath()%>/qna/qnaAnswerEnd" method="post" > 	                                    	
@@ -80,7 +80,7 @@ color: #5F5AF3;
 			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>
 			          <input type="hidden" name="memberNum" value="<%=q.getQnaWriter()%>"/>
 			  		  <input type="hidden" name="qnaNum" value="<%=q.getQnaNum()%>"/>
-			  		  <input type="hidden" name="reCheck" value="<%=q.getQnaAnswer()%>"/>
+			  		  <input type="hidden" name="reCheck" value="<%=q.getReCheck() %>"/>
 			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">	      				       			        		  
   			  		</form>				         			        					        					 					  								      						 					       		    				   			
 		  		  </div> 
@@ -88,7 +88,6 @@ color: #5F5AF3;
 		</div>
 	</div>
  </section>
-</div>
 
 
 <script>	
@@ -100,23 +99,15 @@ color: #5F5AF3;
 		location.href=url+"?oName="+oName+"&rName="+rName;
 	}		
 		 --%>	
-/* function validate(){
-	var emailOk=$('input[name=reMail]').val();
-	if(emailOk==='yes'){
-		return true;
-	}
-	return false;
-	
-}  */
 	function fn_AnswerList(){
 		location.href="<%=request.getContextPath()%>/qna/qnaListAdmin";
 	}
 	function fn_updateAnswer()
 	{
-		location.href="<%=request.getContextPath()%>/qna/answerUpdate?no=<%=q.getQnaNum()%>";
+		location.href="<%=request.getContextPath()%>/qna/answerUpdate?qnaNum=<%=q.getQnaNum()%>";
 	} 
 	
 </script>
-
+</div>
 
 <%@ include file="/views/common/footer.jsp"%>

@@ -67,6 +67,7 @@
 			            		<li><a href="<%=request.getContextPath()%>/search/category?category=<%=g%> "><%=g %></a></li>    
 			          	<%}%> 
 		                </ul>
+		            
 	            	</div>
 	        	</div>
 		        <!-- 상단 검색창 -->
@@ -92,6 +93,7 @@
 			                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/wishlist"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/mark"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
+			                <li><a href="<%=request.getContextPath()%>/inforconpare_hwang/conpareView"><img src="<%=request.getContextPath()%>/images/icons/bookconpare.png" alt="책 비교"></a></li>
 			            </ul>
 			            <%}else{ %>
 			            <ul class="nav navbar-nav navbar-right nav-button">
@@ -103,6 +105,7 @@
 			                <%} %>
 			                <li><a href="<%=request.getContextPath()%>/member/wishlist?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/mark?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
+			                <li><a href="<%=request.getContextPath()%>/inforconpare_hwang/conpareView"><img src="<%=request.getContextPath()%>/images/icons/bookconpare.png" alt="책 비교"></a></li>
 			            </ul>
 			            <%} %>
 		        	</div>

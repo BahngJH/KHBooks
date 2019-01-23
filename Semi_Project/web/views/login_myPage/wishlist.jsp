@@ -20,7 +20,7 @@
 	.end input{
 		float:right;
 	}
-	#btnCheck{float:right;}
+	#btnCheck{float:right; margin-bottom:20px;}
 	.middle{margin-top:40px;}
 	#allCheck{float:right; margin-right:15px;}
 	#allText{margin-right:10px;}
@@ -80,7 +80,7 @@
                                 </h4>
                                 <!-- 저자, 출판사 정보 -->
                                 <p><%=b.getAuthor().getAuthorName()%> | <%=b.getPublisher() %></p>
-                                <button class="btn btn-default" type="button">구매</button>
+                                <button class="btn btn-default" type="button" onclick="payOne();">구매</button>
                                 <button class="btn btn-default" type="button" onclick="deleteOne();">삭제</button>
                                 <input type="hidden" value="<%=b.getBookId()%>">
                                 
@@ -88,7 +88,7 @@
                             </div>
                             <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
 	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="" value="<%=b.getBookCount()%>">권	                       	                          		                          	
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="<%=b.getStock() %>" value="<%=b.getBookCount()%>">권	                       	                          		                          	
 	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
@@ -227,7 +227,13 @@
 					payList.attr("action",url);
 					payList.submit();
 			 }
+			 function payOne(){
+				var bookId = $(event.target).next().next('input').val();
+				location.href="<%=request.getContextPath()%>/member/multiPayment?BookId="+bookId;
+			 }
 		
 		</script>
-
-<%@ include file="/views/common/footer.jsp" %>
+		
+		</div>
+	</div>
+<%@ include file="/views/common/footer.jsp"%>

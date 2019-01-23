@@ -31,8 +31,8 @@ public class UpdateAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no=Integer.parseInt(request.getParameter("no"));
-		Qna q=new QnaService().selectNo(no);
+		int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
+		Qna q=new QnaService().selectNo(qnaNum);
 		
 		request.setAttribute("q", q);
 		String view="";

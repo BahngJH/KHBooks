@@ -156,12 +156,12 @@ public class InfoViewServlet extends HttpServlet {
 						//값이 5개 일 때
 						if(values.length > 4) {
 							//처음 들어간 쿠키 값 제거
-							for(int i=1;i<values.length;i++) {
+							for(int i=0;i<values.length-1;i++) {
 								newValue += values[i] + "|";
 							}
 						//중복 값이 없고 값이 5개 미만일 때
 						}else {
-							newValue = cookieValue;
+							newValue += cookieValue;
 						}
 						
 					}else {

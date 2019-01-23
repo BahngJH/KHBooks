@@ -1,4 +1,4 @@
-package com.kh.info.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ConpareViewServlet
+ * Servlet implementation class SelectModal
  */
-@WebServlet("/inforconpare_hwang/conpareView")
-public class ConpareViewServlet extends HttpServlet {
+@WebServlet("/book/modal")
+public class SelectModal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConpareViewServlet() {
+    public SelectModal() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,7 @@ public class ConpareViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	request.getRequestDispatcher("/views/admin/modal.jsp").forward(request, response);
 	}
 
 	/**

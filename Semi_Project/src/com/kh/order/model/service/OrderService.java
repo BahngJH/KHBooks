@@ -29,6 +29,16 @@ public class OrderService {
 		return list;		
 	}
 	
+	public List<Order> selectList(int no) {
+		Connection conn = getConnection();
+		
+		List<Order> list = new OrderDao().selectList(conn, no);
+		
+		close(conn);
+		
+		return list;		
+	}
+	
 
 	public List<Order> searchOrder(String keyword, int no) {
 		Connection conn = getConnection();
@@ -58,6 +68,16 @@ public class OrderService {
 	public int insertOrderlist(int memberNum, List<Book> payList) {
 		Connection conn = getConnection();
 		int rs = new OrderDao().insertOrderlist(conn,memberNum,payList);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return rs;
+	}
+	//마일리지 적립
+	public int insertMilage(int memberNum, int milage)
+	{
+		Connection conn = getConnection();
+		int rs = new OrderDao().insertMilage(conn, memberNum, milage);
 		if(rs>0) commit(conn);
 		else rollback(conn);
 		close(conn);

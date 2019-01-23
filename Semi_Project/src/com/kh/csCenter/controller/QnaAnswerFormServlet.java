@@ -38,7 +38,7 @@ public class QnaAnswerFormServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// 받아올 문의 번호
-		int qnaNo = Integer.parseInt(request.getParameter("no"));
+		int qnaNo = Integer.parseInt(request.getParameter("qnaNum"));
 		Qna q = new QnaService().selectNo(qnaNo);
 		
 	

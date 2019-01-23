@@ -12,7 +12,7 @@
 
 <style>
 .askLi {
-	padding: 11px 50px 2px 50px;
+	padding: 11px 0 2px 0;
 	list-style: none;
 }
 
@@ -60,8 +60,9 @@ em {
 }
 
 #askTitle_tg {
-	width: 700px;
+	width: 100%;
 	text-aglign: center;
+	outline:none;
 }
 
 .sch-lcont {
@@ -81,12 +82,12 @@ em {
 }
 
 .answer_tg {
-	padding: 0 130px 0 50px;
+	
+	width: 100%;
+	
 }
-
-.myAsk {
-	padding-right: 80px;
-	margin-right: 70px;
+element {
+    outline: none;
 }
 
 .Answer {
@@ -95,6 +96,19 @@ em {
 .pageBar{
 
 padding-top: 30px;
+}
+
+.cho_b{
+
+width:20px;height:20px;
+}
+.myAsk{
+margin-right:100px;
+}
+
+.answer{
+margin-left:100px;
+
 }
 </style>
 
@@ -114,60 +128,48 @@ padding-top: 30px;
 			<% } %> 
 		</div>	  												
 	</div>
-	<!-- 날짜 조회 -->	
-	<div class="row">	
-		<div class="searchDate col-md-12">	 
+	<div class="row">
+		<div class="csCenter col-md-12">			
 			<hr>
-			 <div class="sch-lcont">
-				 <div class="cal col-md-12">
-					<strong>기간별 조회</strong>
-					<input type="text" id="htxtFromDate" name="htxtFromDate" value="2018-07-13" class="txt" style="width:76px;" maxlength="8" onfocus="javascript:$.onCalendarFocus(this);" onblur="javascript:$.onCalendarBlur(this, 'htxtToDate');" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);" />
-					<img style='cursor:pointer' id=ucCalendarFrom onclick="displayDatePicker('htxtFromDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'> ~
-					<input type="text" id="htxtToDate" name="htxtToDate" value="2019-01-13" class="txt" style="width:76px;" maxlength="8"  onfocus="javascript:$.onCalendarFocus(this);"  onblur="javascript:$.onCalendarBlur(this);" onkeydown="javascript:$.onCalendarKeyDown();"  onkeyup="javascript:$.onCalendarKeyUp(this);"/>
-					<img style='cursor:pointer' id=ucCalendarTo onclick="displayDatePicker('htxtToDate','','','',event);return false;" src="<%=request.getContextPath()%>/images/icons/ico_cal.gif" align='absMiddle'>												
-				</div>
-				<div class="search_btn col-md-12">
-					<span class="cbtn">					  		
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">오늘</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">일주일</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">3개월</a>  
-				      <a class="btn btn-default" href="javascript:$.setDate('dateFieldName, year, month, day');" role="button">6개월</a>  	 
-				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">조회</a>
-				      <a class="btn btn-default" href="javascript:$.onClickBtnSearch();" id="btnSearch" role="button">선택삭제</a>      
-					</span>
-				</div>
-			 </div>				                   		                 
-		</div>
-	</div>	
+		</div>	  												
+	</div>
     <!-- 문의리스트 -->
     <div class="row">
 		<div class="csCenter col-md-12">  				
 			<div class="askTitle">
 				<ul class="askList">						
-			 	  <%for(Qna q : list){ System.out.println(q);%>									 	   		   					   
-	                <li class="askLi">
-		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     
-						        <input type="checkbox"/>
-						        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>
-						        <span class=""><%=q.getQnaDate() %></span> 
-						       <em class="">&nbsp;</em>						   						     
+			 	  <%for(Qna q : list){%>									 	   		   					   
+	                <li class="askLi">	               
+		               	 <button class="btn btn-primary" id="askTitle_tg" type="button" onclick="fn_Content()" data-toggle="collapse" data-target="#Qnum<%=q.getQnaNum() %>" aria-expanded="false" aria-controls="collapseExample">				       		 			       							    					     						       							    							    						     							     						        
+		               	 	<div class="row">
+		               	 		<div class="col-xs-3">
+							        <span class="">답변 상태: <%=q.getReCheck() %></span> 			   						     		               	 		
+		               	 		</div>
+		               	 		<div class="col-xs-6">
+							        <em class="askInfo"><b><%=q.getQnaTitle() %></b></em>	               	 		
+		               	 		</div>
+		               	 		<div class="col-xs-3">
+							        <span class=""><%=q.getQnaDate() %></span>		               	 		
+		               	 		</div>
+		               	 	</div>
 						</button>					
 					</li> 							 						
 					<!--문의글 확인 및 재문의 -->			
 					<div class="answer_tg collapse" id="Qnum<%=q.getQnaNum()%>">
 	                     <div class="well" value="">
 	                     	 <div class="myAsk alert alert-info">
-	  								<strong>내질문 : <%=q.getQnaContent() %></strong>
-							 </div>
+	  								<strong><h4>내질문 :><%=q.getQnaContent() %></h4></strong>
+							 </div>							
 							  <div class="Answer alert alert-warning">
 	  								<%if(q.getReContent()!=null){%>
-	  								<strong>답변 : <%=q.getReContent() %></strong>   								
+	  								<strong><h4>답변 : <%=q.getReContent() %></h4></strong>   								
 	  								<% }else{%>
 	  								<strong>답변 : 답변대기중입니다.</strong><%} %>
 							 </div>			                     	                    	                       																			                        						                                              
+						 	<!-- <button >삭제하기</button> -->
 	                      </div>                       
-	                 </div> 
-	                 <%} %> 	                                           							
+	                 </div>
+ 	                 <%} %> 	                                           							
 				</ul>
 			</div>									 	  
 		</div>
@@ -184,416 +186,17 @@ padding-top: 30px;
   	  		 </div>		 	
    		</div>
 	</div>
-	 
 </section>
 </div>
 
 
-<script>
+<%-- 
 <th colspan="2">
-<input type="button" value="목록으로" onclick="fn_boardList()"/>
 <input type="button" value="수정하기" onclick="fn_updateBoard()"/>
 <input type="button" value="삭제하기" onclick="fn_deleteBoard()"/>
-</th>
-
-function fn_deleteBoard()
-{
-if(!confirm('정말로 삭제하시겠습니까?'))
-{
-return;	
-}
-$('[name=boardDelFrm]').submit();
-}
+</th> 
 
 
-</script>
-
-
-
-
-
-
-
-    
-	
-<script type ="text/javascript" language ="javascript">
-	function onDelete(seqNo, questionNo) {
-		if (confirm("문의내용을 삭제하시겠습니까?") == false)
-			return false;
-		document.getElementById("htxtSelectedSeqNo").value = seqNo;
-		document.getElementById("htxtSelectedQestionNo").value = questionNo;
-		
-		
-		return false;
-	}
-
-
-	$.extend({
-		deleteQuestion: function(seqNo, questionNo) {
-			if (confirm("문의내용을 삭제하시겠습니까?") == false)
-				return false;
-			alert(seqNo);
-			alert(questionNo);
-			$.ajax({
-				type: "GET",
-				url: "http://buy.auction.co.kr/Buy/Service/ItemQnAService.svc/RemoveQuestion",
-				dataType: 'json',
-				data: "SeqNo=" + seqNo + "&QuestionNo=" + questionNo,
-				async: true,
-				cache: false,
-				success: function(response) {
-					alert(response);
-					//$("#htxtIsRead" + elementIdx).val(1);
-				},
-				error: function(xhr, textStatus) {
-					alert(xhr.status);
-					window.status = xhr.status + textStatus;
-				}
-			});
-			return false;
-		},
-		
-		setRead: function(isSened, elementIdx, seqNo) {
-			if (isSened.toLowerCase() != "true") return;
-			var isRead = $("#htxtIsRead" + elementIdx).val();
-			//alert(seqNo);
-			if (seqNo < 1 || isRead == 1)
-				return;
-
-			$.ajax({
-				type: "GET",
-				url: "http://buy.auction.co.kr/Buy/Service/ItemQnAService.svc/SetRead",
-				dataType: 'json',
-				data: "SeqNo=" + seqNo,
-				async: true,
-				cache: false,
-				success: function(response) {
-					//alert(response);
-					$("#htxtIsRead" + elementIdx).val(1);
-				},
-				error: function(xhr, textStatus) {
-					alert(xhr.status);
-					window.status = xhr.status + textStatus;
-				}
-			});
-		},
-
-	    setReadByItemNo: function(itemno) {
-	        //if (isSened.toLowerCase() != "true") return;
-	        //var isRead = $("#htxtIsRead" + elementIdx).val();
-	        ////alert(seqNo);
-	        //if (seqNo < 1 || isRead == 1)
-	        //    return;
-
-	        $.ajax({
-	            type: "POST",
-	            glabal: false,
-	            async: true,
-	            url: "http://buy.auction.co.kr/Buy/Service/ItemQnA.asmx/SetReadByItemNo",
-	            contentType: "application/json;charset=utf-8",
-	            data: "{itemno:'" + itemno + "'}",
-	            success: function (response) {
-				    //alert(response);
-				    //$("#htxtIsRead" + elementIdx).val(1);
-				},
-				error: function(xhr, textStatus) {
-				    alert(xhr.status);
-				    window.status = xhr.status + textStatus;
-				}
-			});
-        }
-	});
-
-	$(document).ready(function() {
-		
-	
-		$("table tr td span[name='hdivSeller']").mouseout(function() { $("#sellerovermenu").css("display", "none"); });
-
-
-
-		$("img[name='himgViewOrder']", "#uxcOrderTab6 table").bind("click", function(e) {
-			if (this.src.indexOf("off.gif") != -1) this.src = this.src.replace("off.gif", "on.gif");
-			else if (this.src.indexOf("on.gif") != -1) this.src = this.src.replace("on.gif", "off.gif");
-
-			var divIndex = $(this).attr("viewIndex");
-
-			if ($("#" + divIndex).css("display") == "none")
-				$("#" + divIndex).css("display", "block")
-			else
-				$("#" + divIndex).css("display", "none")
-
-			if ($("#" + divIndex).css("display") == "none" ||
-				($("#" + divIndex).css("display") == "block" && $("#" + divIndex + " >ul li").length > 0))
-				return;
-
-			var itemNo = $(this).attr("ItemNo");
-			var orderNo = $(this).attr("orderNo");
-
-			//alert(itemNo);
-			//alert(orderNo);
-
-			$.ajax({
-				type: "GET",
-				//glabal: false,
-				//async: true,
-				url: "http://buy.auction.co.kr/Buy/Service/ItemQnAService.svc/GetOrderRequest",
-				dataType: 'text',
-				//async: true,
-				cache: false,
-				data: "itemNo=" + itemNo + "&orderNo=" + orderNo,
-				success: function(response) {
-					var result = jQuery.parseJSON(response)
-
-					for (i = 0; i < result.length; i++) {
-						var formatedPrice = result[i].Price.toLocaleString();
-						var orderText = result[i].OrderSectionName + "/" + result[i].OrderText
-							+ " (" + formatedPrice.substring(0, formatedPrice.indexOf(".")) + "원)/" + result[i].Qty + "개";
-
-						$("#" + divIndex + " >ul").append("<li>" + orderText + "</li>");
-					}
-
-				},
-				error: function(xhr, textStatus) {
-					//alert(xhr.status);
-					window.status = xhr.status + textStatus;
-				}
-			});
-		});
-		//$("img[name='himgViewOrder']", "#uxcOrderTab6 table").filter(function() { return $(this).css("display") != "none" }).bind("click", $.isVislble);
-	});
-</script>
-
-<!--MyQnAList.ascx 에서 사용하는 script-->
-<!-- 판구매자 775.07.06 :: 리스트 탭시 문의리스트 노출 script -->
-<script type="text/javascript">
-	function winPopup(itemno) {
-
-		window.open("http://buy.auction.co.kr/Buy/QnA/ItemQnAInsert.aspx?ItemNo=" + itemno + "", "", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no");
-    }
-
-    function showDetail(val, more, itemno) {
-    	//if (more == false) {
-    	//    if (document.getElementById("preQnaSeqno").value != "") {
-    	//        var preSeq = "si" + document.getElementById("preQnaSeqno").value;
-    	//        document.getElementById(preSeq).style.display = "none";
-    	//    }
-
-    	//    if (val != document.getElementById("preQnaSeqno").value) {
-    	//        weblogQnA();
-    	//        document.getElementById("si" + val).style.display = "";
-    	//        document.getElementById("preQnaSeqno").value = val;
-    	//    }
-    	//    else {
-    	//        document.getElementById("preQnaSeqno").value = "";
-    	//    }
-    	//}
-
-    	if (more == false) {
-    		$("#htrAnswers" + val).html("");
-
-    		if (document.getElementById("htrAnswers" + val).style.display == "none")
-    			document.getElementById("htrAnswers" + val).style.display = "";
-    		else
-    			document.getElementById("htrAnswers" + val).style.display = "none"
-    	}
-
-    	if (document.getElementById("htrAnswers" + val).style.display == "") {
-    		$.ajax({
-    			type: "POST",
-    			glabal: false,
-    			async: true,
-    			url: "http://buy.auction.co.kr/Buy/Service/ItemQnA.asmx/GetQnADetail",
-        		contentType: "application/json;charset=utf-8",
-        		data: "{QuestionNo:" + val + ", more:" + more + "}",
-        		success: function (response) {
-
-        			var result = response.d;
-        			var text = "";
-
-        			text = "<td colspan='3'>";
-        			text += "<table class='reply v2'>";
-        			text += "<colgroup>";
-        			text += "<col>";
-        			text += "<col style='width:18%'>";
-        			text += "</colgroup>";
-        			text += "<tbody>";
-
-        			//<!-- 판구매자 775.07.06 :: '지난 문의 보기' 영역 신규-->
-        			if (more == false) {
-        				if (result[1].MoreYN == true) {
-        					text += "<tr class='btn_load'>";
-        					text += "<td colspan='2'>";
-        					text += "<div class='btn_list'>";
-        					text += "<a href='#' class='btn_load' onclick='javascript:showDetail(" + val + ",true, \"" + itemno + "\");'><span class='btn_txt'>지난 문의 보기</span></a>";
-        					text += "<span class='btn_lft'></span>";
-        					text += "<span class='btn_rgt'></span>";
-        					text += "</div>";
-        					text += "</td>";
-        					text += "</tr>";
-        				}
-        			}
-
-
-        			var beforedate = "";
-
-        			for (i = 0; i < result.length; i++) {
-
-        				if (result[i].IsType == "D") {
-        					text += "<tr>";
-        					text += "<td colspan='2' class='datewrp'><p class='txt_date'><span><em>" + result[i].Content + "</em></span></p></td>";
-        					text += "</tr>";
-        				}
-        				else if (result[i].IsType == "Q") {
-        					if (result[i - 1].IsType == "D")
-        						text += "<tr class='first reply-ans' id='" + result[i].SeqNo + "'>";
-        					else
-        						text += "<tr class='reply-ans' id='" + result[i].SeqNo + "'>";
-        					text += "<td colspan='2' class='add-qna'>";
-        					text += "<div class='qst bx_qna'>";
-        					text += "<div class='quest'>";
-        					text += "<span class='ico_qna'><span class='blind'>문의</span></span>";
-        					text += "<div class='bx_txt'>";
-        					text += "<strong class='txt_writer'><span class='blind'>작성자</span>" + result[i].MemberID + "</strong>";
-        					text += "<div class='txt_writing'>";
-        					text += "<p class='txt_comnt'>" + result[i].Content;
-        					text += "<span class='txt_time'><span class='blind'>작성시간</span>" + result[i].Time + "</span>";
-
-        					if (result[i].SecretYN == true)
-        						text += "<span class='ico_lock'><span class='blind'>비공개</span></span>";//<!-- [d] 판구매자 775.07.06 :: 공개/비공개 -->
-        					if (result[i].AnsweredYN == "N")    //mns979 
-        						text += "<a class=\"btn_del\" href=\"javascript:fnPreMyQnAListDel('" + result[i].SeqNo + "', '" + result[i].QnaNo + "', '" + itemno + "');\"><img src=\"http://pics.auction.co.kr/itempage/btn_del02.gif\" alt=\"문의 삭제\"></a>"
-
-        					text += "</p>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</td>";
-        					text += "</tr>";
-        				}
-        				else if (result[i].IsType == "A") {
-        					if (result[i - 1].IsType == "D")
-        						text += "<tr class='first reply-ans' id='" + result[i].QustionNo + "'>";
-        					else
-        						text += "<tr class='reply-ans' id='" + result[i].QustionNo + "'>";
-        					text += "<td colspan='2' class='add-qna'>";
-        					text += "<div class='add-ans bx_qna'>";
-        					text += "<div class='answer'>";
-        					text += "<span class='ico_qna'><span class='blind'>답변</span></span>";
-        					text += "<div class='bx_txt'>";
-        					text += "<strong class='txt_writer'><span class='blind'>작성자</span>" + result[i].SellerID + "</strong>";
-        					text += "<div class='txt_writing'>";
-        					text += "<p class='txt_comnt'>" + result[i].Content;
-        					text += "<span class='txt_days'>" + result[i].AnswerDate + "</span>";
-        					text += "<span class='txt_time'><span class='blind'>작성시간</span>" + result[i].Time + "</span>";
-        					text += "</p>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</div>";
-        					text += "</td>";
-        					text += "</tr>";
-        				}
-        				beforedate = result[i].Date;
-
-        			}
-        			text += "<tr>";
-        			text += "<td colspan='2' class='re_qa'><a href='#' class='lnk_qa' onclick='javascript:winPopup(\"" + itemno + "\")' >다시문의</a></td>";
-        			text += "</tr>";
-
-        			text += "</tbody>";
-        			text += "</table>";
-        			text += "</td>";
-
-        			$("#htrAnswers" + val).html(text);
-
-
-        			$("#ifMyAuctionTabSection", parent.document).setHeight($("#uxcOrderTab6").outerHeight() + 20);
-        		},
-        		error: function (xhr, textStatus) {
-        			alert(xhr.status);
-        			alert(textStatus);
-        			window.status = xhr.status + textStatus;
-        		}
-        	});
-		}
-		else {
-			$("#ifMyAuctionTabSection", parent.document).setHeight($("#uxcOrderTab6").outerHeight() + 20);
-		}
-	}
-
-	function js_event_anti_stop_event(evt) {
-		if (window.event) {
-			window.event.keyCode = 0;
-			window.event.cancelBubble = true;
-			window.event.returnValue = true;
-		} else {
-			evt.stopPropagation();
-			evt.preventDefault();
-			evt.initEvent;
-		}
-		return false;
-	}
-
-	function fnPreMyQnAListDel(seqNo, qnaNo, itemNo) {
-
-		//삭제 문의글 정보 저장
-		$("#hdnSeqNo").val(seqNo);
-		$("#hdnQnaNo").val(qnaNo);
-		$("#hdnItemNo").val(itemNo);
-
-		//문의글 삭제 확인
-		$("#pop_inquiry").show();
-	}
-
-	//20160212 mns979 
-	//문의내역 삭제
-	function fnMyQnAListDel() {
-
-		var seqNo, qnaNo, itemNo
-		seqNo = $("#hdnSeqNo").val();
-		qnaNo = $("#hdnQnaNo").val();
-		itemNo = $("#hdnItemNo").val();
-
-		if (!($("#hdnDelYN").val() == "Y")) {
-
-			seqNo = "";
-			qnaNo = "";
-			itemNo = "";
-
-			$("#hdnSeqNo").val("");
-			$("#hdnQnaNo").val("");
-			$("#hdnItemNo").val("");
-
-			return;
-		}
-
-		$.ajax({
-			type: "POST",
-			glabal: false,
-			async: true,
-			url: "http://buy.auction.co.kr/Buy/Service/ItemQnA.asmx/GetMyQnADelete",
-            contentType: "application/json;charset=utf-8",
-            data: "{seqNo:" + seqNo + ", qnaNo:" + qnaNo + ", itemNo:'" + itemNo + "'}",
-            success: function (response) {
-            	if (response.d > 0) {
-            		alert("삭제 되었습니다.");
-            		$("#" + seqNo).remove();
-
-            	} else {
-            		alert("삭제 실패 하였습니다.");
-            	}
-
-            },
-            error: function (xhr, textStatus) {
-            	alert(xhr.status);
-            	alert(textStatus);
-            	window.status = xhr.status + textStatus;
-            }
-        });
-	}
-
- </script>
 	    <input type="hidden" name="htxtDateFrom" id="htxtDateFrom">
 	    <input type="hidden" name="htxtDateTo" id="htxtDateTo">
 	    <input type="hidden" name="htxtSearchType" id="htxtSearchType">
@@ -1082,4 +685,4 @@ function adjustiFrame(pickerDiv, iFrameDiv)
 
 
 
-<%@ include file="/views/common/footer.jsp"%>
+<%@ include file="/views/common/footer.jsp"%> --%>

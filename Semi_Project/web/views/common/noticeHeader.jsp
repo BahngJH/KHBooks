@@ -12,7 +12,7 @@
    text-decoration: none;
 }
 
-a {
+div a {
    color: black;
    cursor: pointer;
    text-decoration: none;
@@ -86,7 +86,7 @@ a {
 
       <h4>
          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true">
-            <strong>고객센터</strong>
+            <a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
          </span>
       </h4>
       <hr>
@@ -100,7 +100,14 @@ a {
          <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
          </li>
          <br />
-         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신천</a></li> 
+
+
+         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청</a></li> 
+
+
+
+
+
       </ul>
       <%}else {%>
 

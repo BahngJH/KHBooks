@@ -11,7 +11,6 @@ import java.util.List;
 import com.kh.book.model.vo.Book;
 import com.kh.info.model.dao.InfoDao;
 import com.kh.mark.model.vo.Mark;
-import com.kh.review.model.dao.ReviewDao;
 import com.kh.review.model.vo.Review;
 import com.kh.wish.model.vo.Wish;
 
