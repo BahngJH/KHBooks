@@ -44,6 +44,7 @@ public class AdminDao {
 			for(int i=0; i<id.length; i++) {
 				System.out.println(Integer.parseInt(id[i]));
 			}
+			System.out.println(sql);
 			pstmt=conn.prepareStatement(sql);
 			
 			for(int i=0; i<id.length; i++) {
