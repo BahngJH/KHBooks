@@ -10,46 +10,64 @@
 
 
 <style>
-.col-sm-10 table {
-	cellspacing: 0;
-	cellpadding: 0;
-	border: 0px;
-}
-
-table th {
-	border-bottom: 1px solid skyblue;
-	padding: 8px 10px;
-	text-align: center;
-}
-
-table td {
-	text-align: center;
-}
-
-input[type=checkbox] {
-	/* 체크박스 크기키움 */
-	-webkit-transform: scale(1.3);
-}
-div#buyList-options{margin-top: 50px; display: inline;}
+	.col-sm-10 table {
+		cellspacing: 0;
+		cellpadding: 0;
+		border: 0px;
+	}
+	
+	table th {
+		border-bottom: 1px solid skyblue;
+		padding: 8px 10px;
+		text-align: center;
+	}
+	
+	table td {
+		text-align: center;
+	}
+	
+	input[type=checkbox] {
+		/* 체크박스 크기키움 */
+		-webkit-transform: scale(1.3);
+	}
+	
+	div#buyList-options {
+		margin-top: 50px;
+		display: inline;
+	}
+	
+	div.input-group {float: left;}
+	div.button-group {float: right;}
+	
+	button#deleted, input[value='추가'] {
+		background-color: skyblue;
+		border: none;
+		color: white;
+		padding: 8px 20px;
+		margin: 10px 0px 10px 10px;
+		text-decoration: none;
+		float: right;
+		cursor: pointer;
+	}
 </style>
 
 
 
 
 
-		<div class="col-sm-10">
+<div class="col-sm-10">
 		
 			<h2>회원정보</h2>
 		<hr />
 			<div id="buyList-options">
 				<div class="input-group">
-					<form class="form-controll navbar-right" role="search"
+					<form class="form-controll" role="search"
 						action="<%=request.getContextPath()%>/order/orderSearch"
 						method="get">
 						<div class="form-group">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword"
-									id="keyword" autocomplete="off" placeholder="책 또는 저자명"> <span
+									id="keyword" autocomplete="off" placeholder="회원 정보 입력"> <span
 									class="input-group-btn">
 									<button type="submit" class="btn btn-default" id="searchBar">검색</button>
 								</span>
@@ -57,10 +75,14 @@ div#buyList-options{margin-top: 50px; display: inline;}
 						</div>
 					</form>
 				</div>
+				<div class="button-group">
+					<button type="button" id="deleted" onclick="deleted();">삭제</button>					
+					<input type="button" value="추가" id="update" onclick="" />
+				</div>
 			</div>
 		
 		<br />
-		<table class="table table-striped">
+		<table class="table table-hover">
 			<tr>
 				<th>ID</th>
 				<th>이름</th>
@@ -69,10 +91,9 @@ div#buyList-options{margin-top: 50px; display: inline;}
 				<th>email</th>
 				<th>선택</th>
 			</tr>
-			<%
-					for (Member m : list) {
-				%>
-			<tr>
+					
+			<%for (Member m : list) { %>
+			<tr id="memberInfo">
 				<td><%=m.getMemberId()%></td>
 				<td><%=m.getMemberName()%></td>
 				<td><%=m.getAddress()%></td>
@@ -80,12 +101,13 @@ div#buyList-options{margin-top: 50px; display: inline;}
 				<td><%=m.getEmail()%></td>
 				<td><input type="checkbox"></td>
 			</tr>
+			
 			<script>
-					
-				</script>
-			<%
-					}
-				%>
+				$('#memberInfo').click(function(){
+					console.log('<%=m.getMemberId()%>');
+				});
+			</script>
+			<%}%>
 
 		</table>
 		<div class="text-center">
