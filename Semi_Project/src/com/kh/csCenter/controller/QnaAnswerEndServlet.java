@@ -58,19 +58,23 @@ public class QnaAnswerEndServlet extends HttpServlet {
 		String reContent = request.getParameter("reContent");
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
 		int qnaNum = Integer.parseInt(request.getParameter("qnaNum"));
-
+ 				
 		QnaRe qr = new QnaRe();
 		qr.setReNum(0);
 		qr.setAdminNum(memberNum);
 		qr.setQnaNum(qnaNum);
-		qr.setReCheck(reCheck);
 		qr.setReMail(reMail);
 		qr.setReContent(reContent);
 		qr.setReStatus(null);
 		qr.setReDate(null);
-		int rs = new QnaService().qnaAnswerEnroll(qr);
 		System.out.println(qr);
 
+		Qna q=new Qna();
+		q.setReCheck(reCheck);
+		q.setQnaNum(qnaNum);
+		
+		int rs = new QnaService().qnaAnswerEnroll(qr, q);
+	
 		// 응답처리
 		String msg = "";
 		String loc = "";
@@ -82,7 +86,7 @@ public class QnaAnswerEndServlet extends HttpServlet {
 			loc = "/qna/qnaListAdmin";
 		} else {
 			msg = "답변 등록에 실패하였습니다.";
-			loc = "/qna/qnaContent";
+			loc = "/qna/qnaContent?qnaNum="+qnaNum;
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

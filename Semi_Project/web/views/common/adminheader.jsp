@@ -25,7 +25,7 @@
 
 
 
-    <div class="container">
+  <div class="container">
    <div class="col-sm-2">
 
       <h4>
@@ -36,9 +36,15 @@
       <hr/>
       <a href="<%=request.getContextPath()%>/admin/member"><strong>회원정보</strong></a>
       <hr/>
+
+		
+	  <a herf=""><strong>도서신청 목록</strong></a>
+	  <hr/>
+
       
      <a herf=""><strong>도서신청 목록</strong></a>
      <hr/>
+
       <a href="<%=request.getContextPath()%>/qna/qnaListAdmin"><strong>1대 1문의</strong></a>
       <hr/>
       </div>
