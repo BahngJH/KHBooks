@@ -28,43 +28,6 @@ public class QnaDao {
 		}
 	}
 
-	//관리자 답변 메일 전송
-	/*public Qna sendEmail(Connection conn, int qnaNum) {
-		PreparedStatement pstmt =null;
-		ResultSet rs =null;
-		String sql = prop.getProperty("sendEmail");
-		Qna q =null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qnaNum);			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				q=new Qna();
-				q.setQnaNum(rs.getInt("qnaNum"));
-				q.setQnaWriter(rs.getInt("memberNum"));
-				q.setQnaTitle(rs.getString("qnaTitle"));
-				q.setQnaContent(rs.getString("qnaContent"));
-				q.setQnaDate(rs.getDate("qnaDate"));
-				q.setQnaStatus(rs.getString("qnaStatus"));
-				q.setQnaPart(rs.getString("qnaPart"));
-				q.setQnaOriFile(rs.getString("qna_original_filename"));
-				q.setQnaReFile(rs.getString("qna_renamed_filename"));
-				q.setQnaAnswer(rs.getString("qnaAnswer"));
-				q.setQnaMail(rs.getString("qnaMail"));
-				q.setQnaTel(rs.getString("qnaTel"));
-				q.setReContent(rs.getString("reContent"));							
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return q;
-	}*/
-
 	// 답변수정
 	public int updateAnswer(Connection conn, QnaRe qr) {
 		PreparedStatement pstmt = null;

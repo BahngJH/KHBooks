@@ -31,15 +31,16 @@ public class EnrollReplyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String orderReContent = request.getParameter("orderReContentt");
+		String orderReContent = request.getParameter("orderReContent");
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
 		int orderBookNum = Integer.parseInt(request.getParameter("orderBookNum"));
+		System.out.println("orderBookNum: "+orderBookNum);
 
 		Reply r = new Reply();
-		r.setOrderReCoNum(0);
-		r.setMemberNum(memberNum);
 		r.setOrderBookNum(orderBookNum);
+		r.setMemberNum(memberNum);
 		r.setOrderReContent(orderReContent);
+		r.setOrderReCoNum(0);
 		r.setStatus(null);
 		r.setOrderReDate(null);
 
@@ -53,19 +54,17 @@ public class EnrollReplyServlet extends HttpServlet {
 		String view = "/views/common/msg.jsp";
 
 		if (rs > 0) {
-			// 댓글 정상 등록		
+			// 댓글 정상 등록
 			msg = "댓글 등록 완료!";
-			loc = "/qna/qnaListAdmin";		
-
+			loc = "/absence/page";
 		} else {
 			msg = "댓글 등록 실패!";
-			loc = "/qna/qnaContent?qnaNum=" + qnaNum;
+			loc = "/notice/absencecontent";
+
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
-	}
-
 	}
 
 	/**

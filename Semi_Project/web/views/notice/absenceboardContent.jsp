@@ -37,28 +37,6 @@ body { padding-top:30px; }
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
 #replyContent{resize: none;}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #return {
 	background-color: #555555;
 	color: white;
@@ -189,9 +167,7 @@ input[value='삭제하기'] {
 				<%}%>
 			</table>
 			
-			<br>
-
-	
+			<br>	
 		    <div class="row">  
 		        <div class="panel panel-default widget">
 		            <div class="panel-heading">
