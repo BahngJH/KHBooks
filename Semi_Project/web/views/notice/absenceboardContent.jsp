@@ -79,7 +79,7 @@ input[value='삭제하기'] {
 <br/><br/>
 		
 		
-			<%if(ab.getMemberNum()==logined.getMemberNum()){ %>
+			<%if(ab.getMemberNum()==logined.getMemberNum()||logined.getMemberId().equals("admin")){ %>
 			<input type="button" value="삭제하기" id="deleted" onclick="deleted();" />
 			<%} %>
 			<h2>도서신청 VIEW</h2>

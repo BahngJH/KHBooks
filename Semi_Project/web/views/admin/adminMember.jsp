@@ -72,7 +72,8 @@ padding: 8px 10px;
 	</table>
 		<div class="text-center">
 					<%=pageBar %>
-				</div>
+			</div>
+		</div>
 		</div>
 		</div>
 <%@include file="/views/common/footer.jsp"%>
