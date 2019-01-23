@@ -32,6 +32,8 @@ public class DeleteBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String [] id =request.getParameterValues("delete");	
 			
+		
+		
 		int result=new AdminService().deleteBook(id);
 		
 		String msg="";
