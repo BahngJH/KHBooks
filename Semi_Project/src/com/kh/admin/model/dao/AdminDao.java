@@ -27,7 +27,32 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
+	public int deleteBook(Connection conn,String[] id) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deletebook");
 	
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			for(int i=0; i<id.length; i++) {
+				
+				pstmt.setInt(1, Integer.parseInt(id[i]));
+				
+				result+=pstmt.executeUpdate();
+			}
+			System.out.println(result);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	
+
 	
 	public List<Book> selectBook(Connection conn,int cPage,int numPerPage){
 		PreparedStatement pstmt=null;

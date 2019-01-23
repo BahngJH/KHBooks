@@ -390,7 +390,7 @@ function fnMove2(){
 										<%=rating%></button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
-										onclick="fnMove2()">
+										onclick="fnMove2();">
 										리뷰 <span class='counting'><%=reviewCnt %></span>개
 									</button>
 									<span class='line'>|</span>

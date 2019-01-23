@@ -82,8 +82,11 @@ public class QnaAnswerEndServlet extends HttpServlet {
 
 		if (rs > 0) {
 			// 문의 정상 등록
+			sendEmail(request, response, qr);
 			msg = "답변이 정상적으로 등록되었습니다.";
 			loc = "/qna/qnaListAdmin";
+			//loc = "/qna/qnaContent?qnaNum="+qnaNum;
+			
 		} else {
 			msg = "답변 등록에 실패하였습니다.";
 			loc = "/qna/qnaContent?qnaNum="+qnaNum;
@@ -103,11 +106,10 @@ public class QnaAnswerEndServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void sendEmail(HttpServletRequest request, HttpServletResponse response, String reMail, String reContent,
-			Date reDate, int qnaNum) throws ServletException, IOException {
+	private void sendEmail(HttpServletRequest request, HttpServletResponse response, QnaRe qr) throws ServletException, IOException {
 
 		// 메일 수신여부 'yes' 체크 한 사람에 한하여 메일 전송.
-		Qna q = new QnaService().sendEmail(qnaNum);
+		Qna q = new QnaService().selectNo(qr.getQnaNum());
 		if (q.getQnaAnswer().equals("yes")) {
 
 			Properties prop = new Properties();
@@ -144,8 +146,8 @@ public class QnaAnswerEndServlet extends HttpServlet {
 				// 메일 제목
 				msg.setSubject("안녕하세요 KH BOOKS입니다. 문의 하신 답변 입니다.");
 				// 메일 내용
-				msg.setText(q.getReContent());
-
+				msg.setText("문의주신 내용입니다.\n\n"+q.getQnaContent()+"\n\n\n\n\n답변 내용입니다.\n\n"+q.getReContent());
+				
 				Transport.send(msg);
 				System.out.println("이메일 전송");
 
@@ -153,6 +155,6 @@ public class QnaAnswerEndServlet extends HttpServlet {
 				e.printStackTrace();// TODO: handle exception
 			}
 		}
-		request.getRequestDispatcher("/views/csCenter/qnaListAdmin.jsp").forward(request, response);
+		
 	}
 }
