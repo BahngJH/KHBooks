@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.book.model.vo.Book, java.util.*" %>
+<%@ page import="com.kh.book.model.vo.Book, java.util.*, com.kh.notice.model.vo.Notice" %>
 <%
 	List<Book> best = (List)request.getAttribute("best");
 	List<Book> recent = (List)request.getAttribute("recent");
+	List<Notice> notices = (List)request.getAttribute("notice");
+	boolean active = false;
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -11,24 +13,24 @@
 
             <div id="carousel-id" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-id" data-slide-to="0" class=""></li>
+                    <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-id" data-slide-to="1" class=""></li>
-                    <li data-target="#carousel-id" data-slide-to="2" class="active"></li>
+                    <li data-target="#carousel-id" data-slide-to="2" class=""></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="item active">
+                   	<%for(Notice n : notices){%>
+                    <div class="item <%=active?"":"active"%>">
+                    	<%active=true; %>
                         <img class="img-responsive" alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
                         <div class="container">
                             <div class="carousel-caption">
-                                <h1>공지사항</h1>
-                                <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and
-                                    "previous" Glyphicon buttons on the left and right might not load/display properly
-                                    due
-                                    to web browser security rules.</p>
-                                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                                <h2><%=n.getNoticeTitle() %></h2>
+                                <p><%=n.getNoticeContent().substring(0, 94)+"..." %></p>
+                                
                             </div>
                         </div>
                     </div>
+                   	<%} %>
                 </div>
                 <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
