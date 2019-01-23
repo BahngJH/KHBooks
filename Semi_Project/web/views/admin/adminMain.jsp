@@ -88,7 +88,7 @@ border-height: 10px;
 					<% if(n.getStatus().equals("Y")){ %>
 					<tr>
 						<td><%=n.getNoticeNo() %></td>
-						<td>><%=n.getNoticeTitle()%></td>
+						<td><%=n.getNoticeTitle()%></td>
 						<td><%=n.getNoticeDate()%></td>					
 					</tr> 
 					<%} 

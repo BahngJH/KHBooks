@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+
 marquee {
 	height: 35px;
 }
@@ -11,10 +12,12 @@ marquee ul {
 
 .title h4, .notice h4 {
 	color: black;
-	text-decoration: none;
+	text-align:center;
 }
 
+
 /* div.title, div.notice {
+>>>>>>> branch 'master' of https://github.com/BahngJH/KHBooks
 	float: left;
 	margin: 0px 0px 0px 500px;
 } */
@@ -26,6 +29,7 @@ div.notice {
 .fot address {
 	text-align: center;
 }
+
 
 .Notice_List {
 	color: black;
@@ -52,10 +56,12 @@ footer{
 
 footer.fot, div#btn a {
 	background-color: #f8f8f8;
+	
 }
 
 .fot hr {
 	border: 1px solid gray;
+	padding:0px;
 }
 
 div#btn a, div#btn h4 {
@@ -71,8 +77,21 @@ div.notice{
 	display:inline;
 	
 }
-</style>
+footer.fot{
 
+text-align:center;
+
+}
+footer#btn a{
+padding:10px;
+text-align:center;
+
+}
+	
+	
+
+
+</style>
 
 <footer class="fot container-fluid">
 	<div class="row">
@@ -80,7 +99,7 @@ div.notice{
 			<div class="title col-xs-3 col-md-offset-4 col-md-2">
 				<h4>
 					<strong>공지사항:</strong>
-					<h4>
+				</h4>
 			</div>
 			<div class="notice col-xs-9 col-md-4">
 				<marquee onmouseover='this.stop()' onmouseout='this.start()'
@@ -106,8 +125,8 @@ div.notice{
 			</div>
 		</div>
 		<hr />
+		
 		<div id="btn" class="row">
-			
 			<div class='col-xs-1 col-sm-1 col-md-1'>
 				<h4>
 					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
@@ -130,13 +149,16 @@ div.notice{
 			㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
 			02-858-8282(발신자부담전화)<br /> 팩스 :785-41258 (지역번호공통)
 		</address>
-
-
 		<a id="MOVE_TOP_BTN" href="#"></a>
 		
 
-	</div>
+	
+
 </footer>
+</div>
+    
+
+
 
 <!-- top버튼 -->
 <script>
