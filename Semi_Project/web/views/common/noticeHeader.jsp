@@ -12,7 +12,7 @@
    text-decoration: none;
 }
 
-a {
+div a {
    color: black;
    cursor: pointer;
    text-decoration: none;
@@ -86,7 +86,7 @@ a {
 
       <h4>
          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true">
-            <strong>고객센터</strong>
+            <a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
          </span>
       </h4>
       <hr>

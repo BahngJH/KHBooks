@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
+
 marquee {
 	height: 35px;
 }
@@ -16,10 +17,11 @@ marquee ul {
 
 .title h4, .notice h4 {
 	color: black;
-	text-decoration: none;
+	text-align:center;
 }
 
 div.title, div.notice {
+
 	float: left;
 	margin: 0px 0px 0px 500px;
 }
@@ -31,6 +33,7 @@ div.notice {
 .fot address {
 	text-align: center;
 }
+
 
 .Notice_List {
 	color: black;
@@ -53,10 +56,12 @@ a#MOVE_TOP_BTN {
 
 footer.fot, div#btn a {
 	background-color: #f8f8f8;
+	
 }
 
 .fot hr {
 	border: 1px solid gray;
+	padding:0px;
 }
 
 div#btn {
@@ -69,15 +74,31 @@ div#btn a, div#btn h4 {
 	margin: 0px 0px 0px 80px;
 	color: black;
 }
+footer.fot{
+
+text-align:center;
+
+}
+footer#btn a{
+padding:10px;
+text-align:center;
+
+}
+	
+	
+
+
 </style>
 
 
-<footer class="fot">
 	<div class="row">
+      
+   
+<footer class="fot">
 		<div class="title">
 			<h4>
 				<strong>공지사항:</strong>
-				<h4>
+			<h4>
 		</div>
 		<div class="notice">
 			<marquee onmouseover='this.stop()' onmouseout='this.start()'
@@ -103,8 +124,9 @@ div#btn a, div#btn h4 {
 		</div>
 		<br />
 		<hr />
+		
 		<div id="btn" class="row">
-
+		<address>
 			<h4>
 				<strong><span class="glyphicon glyphicon-phone-alt"
 					aria-hidden="true"></span></strong>
@@ -113,7 +135,7 @@ div#btn a, div#btn h4 {
 			<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 			<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
 			<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
-
+</address>
 		</div>
 
 		
@@ -126,8 +148,13 @@ div#btn a, div#btn h4 {
 		<a id="MOVE_TOP_BTN" href="#"></a>
 		
 
-	</div>
+	
+
 </footer>
+</div>
+    
+
+
 
 <!-- top버튼 -->
 <script>

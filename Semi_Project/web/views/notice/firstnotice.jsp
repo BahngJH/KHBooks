@@ -6,13 +6,14 @@
 
 
 <style>
+.notice1 a{color:black;}
  a{color:black; cursor:pointer;text-decoration:none;}
 
 .QAtitle, .QAtitle a {
 	color: black;
 }
 
-#QAtitle2 a {height: 200px;}
+#QAtitle2 a {height: 200px; color: black;}
 
 
 .QAtitle{
@@ -42,16 +43,17 @@ border-bottom:2px solid darkgray;
 								<strong>공지사항</strong>
 							</h2>
 							<hr/>
-							
-                    <a href=""> kh문고 시스템 점검 안내</a>
+					<p>상세내용은 왼쪽에 공지사항 참조</p>
+					<hr/>	
+                    <p> kh문고 시스템 점검 안내</p>
                     <hr/>
-				    <a href="">개인정보처리방침 개정 안내</a>
+				    <p>개인정보처리방침 개정 안내</p>
                     <hr/>
-                    <a href="">설 연휴기간 주문 안내</a>
+                    <p>설 연휴기간 주문 안내</p>
                     <hr/>
-                    <a href="">도서 신청 안내</a>
+                    <p>도서 신청 안내</p>
 					<hr/>
-					<a href="">2019년 휴무일 안내</a>
+					<p>2019년 휴무일 안내</p>
                   
 				</div>
 
