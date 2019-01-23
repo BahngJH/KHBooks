@@ -102,7 +102,7 @@
 											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
 										</td>
 									</tr>
-								<%} else {%>	
+								<%} if(list.size()<1) {%>	
 									<tr>
 										<td colspan='5'>구매 도서 정보가 없습니다.</td>
 									</tr>							
