@@ -147,7 +147,7 @@
 											<!-- 책 이미지 -->
 											<td>
 												<div id="orderImg">
-													<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBook().getBookId()%>" class="thumbnail">
+													<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBookId()%>" class="thumbnail">
 														<img id="bookImg" src="<%=request.getContextPath()%>/images/book/<%=orderList.get(i).getBook().getBookImage()%>" alt="도서사진">
 													</a>
 												</div>																					
@@ -155,7 +155,7 @@
 											<!-- 제목, 저자, 가격 -->                        		                            	
 											<td style="text-align: left;">
 			                                	<h5 class='book_info'>
-		    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBook().getBookId()%>">
+		    	                                <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=orderList.get(i).getBookId()%>">
 			                                    	<h5><strong><%=orderList.get(i).getBook().getBookName()%></strong></h5>
 		                                    	</a>
 			                                	</h5>
