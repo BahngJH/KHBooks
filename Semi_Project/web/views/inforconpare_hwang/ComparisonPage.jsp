@@ -287,7 +287,7 @@ com.kh.author.model.vo.Author'
 			</script> --%>
 			</div>
  			<!-- 이미지 누르면 찾아가기 -->
-			<form action="/inforconpare_hwang/conpareView" method="post">
+			<form action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post">
 				<!-- 버튼 -->
 				<input type="hidden" name="bookId" value="">
 				<input type="hidden" name="ejkGb" value="">
@@ -307,7 +307,7 @@ com.kh.author.model.vo.Author'
                 </div>
                 <div id="buycheck01" class="book_choice2">
                   <div class="book_img">
-                    <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img0" width="125" height="179" src="http://image.kyobobook.co.kr/images/book/large/245/l9788932917245.jpg"></a></p>
+                    <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=1" target="_blank"><img id="img0" width="125" height="179" src="<%=request.getContextPath() %>/images/book/이방인.jpg"></a></p>
                   </div>
                   <a href="#" class="Book1">Book1</a>
                   <a href="#" class="jangba">장바구니 담기</a>
@@ -315,7 +315,7 @@ com.kh.author.model.vo.Author'
                 </div>
                 <div id="buycheck02" class="book_choice2">
                   <div class="book_img">
-                    <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="http://image.kyobobook.co.kr/images/book/large/690/l9791159039690.jpg"></a></p>
+                    <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="<%=request.getContextPath() %>/images/book/어린왕자.jpg"></a></p>
                   </div>
                   <a href="#" class="Book2">Book2</a>
                   <a href="#" class="jangba">장바구니 담기</a>
