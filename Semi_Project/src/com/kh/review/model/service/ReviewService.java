@@ -23,6 +23,14 @@ public class ReviewService {
 		return list;
 	}
 	
+	public List<Review> selectList(int memberNum) {
+		Connection conn = getConnection();
+		List<Review> list = new ReviewDao().selectList(conn, memberNum);
+		
+		close(conn);
+		return list;
+	}
+	
 	public int selectReviewCount() {
 		Connection conn = getConnection();
 		int result = new ReviewDao().selectReviewCount(conn);
