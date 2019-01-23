@@ -380,7 +380,7 @@ function fnMove2(){
 								case 4 : rating="★★★★"; break;
 								case 5 : rating="★★★★★"; break;
 								}%>
-									<button class='starlating btn-link' onclick="location.href='#'">
+									<button class='starlating btn-link' onclick="fnMove2()">
 										<%=rating%></button>
 									<span class='line'>|</span>
 									<button class='reviewCount btn-link'
@@ -786,21 +786,6 @@ function fnMove2(){
 							cursor: pointer;
 						}
 						</style>
-						<script>
-						function delete_review<%=r.getReviewNum()%>(){
-							if(confirm("정말 삭제하시겠습니까?")==true){
-								document.getElementById('deletefrm').submit();
-							}
-							else{
-								return;	
-							}
-						}
-						
-						function update_review<%=r.getReviewNum() %>(){
-							//모달창띄워주자
-						}
-						
-						</script>
 	                    <div class='content'>
 	                        <small>
 	                            <input type='checkbox' id='readmore<%=r.getReviewNum()%>' /> 
@@ -811,7 +796,7 @@ function fnMove2(){
 	                            <%if(logined!=null&&(logined.getMemberNum()==r.getMemberNum()||logined.getIsAdmin()==1)) {%>
 	                            <div type='hidden' class='delal'>
 	                            
-								<form id="deletefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoDeleteReview" style='float:right;'>
+								<form action="<%=request.getContextPath()%>/inforconpare_hwang/infoDeleteReview" style='float:right;'>
 								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
 								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
 								<input type="button" class="del<%=r.getReviewNum() %>" onclick="delete_review<%=r.getReviewNum()%>();"/>
@@ -822,15 +807,26 @@ function fnMove2(){
 								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
 								<input type="button" class="alt<%=r.getReviewNum() %>" style='float:right;'/>
 								</form>
+								<script>
+								function delete_review<%=r.getReviewNum()%>(){
+									/* console.log($(event.target).parents('form')); */
+									if(confirm("정말 삭제하시겠습니까?")==true){
+										$(event.target).parents('form').submit();
+									}
+									else{
+										return;
+									}
+								}
 								
+								function update_review<%=r.getReviewNum() %>(){
+									//모달창띄워주자
+								}
+								
+								</script>
 		                    	</div>
 		                    	<%}%>
-		                    	<script type='text/javaScript'>
-		                    	$('#concontext').val().split('\n').length(function(){
-		                            var rows = $('#textarea').val().split('\n').length;
-		                            var maxRows = 3;
-		                    	</script>
 								<label id='lala' for='readmore<%=r.getReviewNum()%>'></label>
+		                    	</script>
 	                        </small>
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>

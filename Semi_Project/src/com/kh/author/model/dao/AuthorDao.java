@@ -90,4 +90,43 @@ public class AuthorDao {
 		
 	}
 
+	public Author selectAuthorName(Connection conn, String authorName) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		Author author = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectAuthorName"));
+			pstmt.setString(1, authorName);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				author = new Author();
+				author.setAuthorInfo(rs.getString("authorinfo"));
+				author.setAuthorName(rs.getString("authorname"));
+				author.setauthorNum(rs.getInt("authornum"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return author;
+	}
+
+	public int insertAuthor(Connection conn, String authorName) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertAuthor"));
+			pstmt.setString(1, authorName);
+			pstmt.setString(2, "");
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 }

@@ -3,6 +3,7 @@ package com.kh.book.model.dao;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -116,5 +117,42 @@ public class BookDao {
 		}
 		
 		return list;
+	}
+
+	public int insertBook(Connection conn, Book b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			System.out.println(b);
+			pstmt = conn.prepareStatement(prop.getProperty("insertBook"));
+			pstmt.setString(1, b.getBookName());
+			pstmt.setInt(2, b.getPrice());
+			pstmt.setString(3, b.getPublisher());
+			pstmt.setInt(4, b.getAuthorNum());
+			pstmt.setString(5, b.getGenre());
+			pstmt.setString(6, b.getIsbn());
+			pstmt.setString(7, b.getBookImage());
+			pstmt.setDate(8, (Date) b.getBookDate());
+			pstmt.setString(9, b.getBookInfo());
+			pstmt.setString(10, b.getEditor());
+			pstmt.setString(11, b.getTranslator());
+			pstmt.setInt(12, b.getPageNum());
+			pstmt.setInt(13, 0);
+			pstmt.setInt(14, b.getStock());
+			pstmt.setString(15, b.getBookContent());
+			pstmt.setString(16, b.getToc());
+			
+			System.out.println(pstmt);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
