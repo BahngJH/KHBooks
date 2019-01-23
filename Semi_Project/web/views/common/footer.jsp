@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
 marquee {
 	height: 35px;
@@ -19,10 +14,10 @@ marquee ul {
 	text-decoration: none;
 }
 
-div.title, div.notice {
+/* div.title, div.notice {
 	float: left;
 	margin: 0px 0px 0px 500px;
-}
+} */
 
 div.notice {
 	margin: 0px 0px 0px 0px;
@@ -59,61 +54,72 @@ footer.fot, div#btn a {
 	border: 1px solid gray;
 }
 
-div#btn {
-	margin: 0px 0px 0px 650px;
-	position: relative;
+div#btn a, div#btn h4 {
+	color: black;
+	display:inline;
+	text-align: center;
 }
 
-div#btn a, div#btn h4 {
-	float: left;
-	margin: 0px 0px 0px 80px;
-	color: black;
+div.notice-scroll{
+	text-align: center;
+}
+div.notice{
+	display:inline;
+	
 }
 </style>
 
 
-<footer class="fot">
+<footer class="fot container-fluid">
 	<div class="row">
-		<div class="title">
-			<h4>
-				<strong>공지사항:</strong>
+		<div class="row notice-scroll">
+			<div class="title col-xs-3 col-md-offset-4 col-md-2">
 				<h4>
-		</div>
-		<div class="notice">
-			<marquee onmouseover='this.stop()' onmouseout='this.start()'
-				direction='up' scrolldelay=1500>
-				<ul class="Notice_List">
+					<strong>공지사항:</strong>
 					<h4>
-						<li>kh문고 시스템 점검 1/30</li>
-					</h4>
-					<h4>
-						<li>개인정보처리방침 개정</li>
-					</h4>
-					<h4>
-						<li>설 연휴기간 휴무</li>
-					</h4>
-					<h4>
-						<li>고객센터 하단메뉴이용</li>
-					</h4>
-					<h4>
-						<li>2019년 휴무일 안내</li>
-					</h4>
-				</ul>
-			</marquee>
+			</div>
+			<div class="notice col-xs-9 col-md-4">
+				<marquee onmouseover='this.stop()' onmouseout='this.start()'
+					direction='up' scrolldelay=1500>
+					<ul class="Notice_List">
+						<h4>
+							<li>kh문고 시스템 점검 1/30</li>
+						</h4>
+						<h4>
+							<li>개인정보처리방침 개정</li>
+						</h4>
+						<h4>
+							<li>설 연휴기간 휴무</li>
+						</h4>
+						<h4>
+							<li>고객센터 하단메뉴이용</li>
+						</h4>
+						<h4>
+							<li>2019년 휴무일 안내</li>
+						</h4>
+					</ul>
+				</marquee>
+			</div>
 		</div>
 		<br />
 		<hr />
 		<div id="btn" class="row">
+			
+			<div class='col-xs-1 col-sm-1 col-md-1'>
+				<h4>
+					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
+				</h4>
+			</div>
 
-			<h4>
-				<strong><span class="glyphicon glyphicon-phone-alt"
-					aria-hidden="true"></span></strong>
-			</h4>
-
-			<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
-			<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
-			<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
-
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-1">
+				<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
+			</div>
 		</div>
 
 		
