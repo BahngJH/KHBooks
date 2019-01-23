@@ -1,10 +1,12 @@
 <%@page import="com.kh.absence.model.vo.Absence"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,com.kh.notice.model.vo.*"%>
+<%@ page import="java.util.*,com.kh.notice.model.vo.*, com.kh.reply.model.vo.*"%>
 <%
 	Absence ab = (Absence) request.getAttribute("ab");
+	List<Reply> rList=(List)request.getAttribute("reply");
 	Member m = (Member) request.getSession().getAttribute("logined");
+	
 %>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 <style>
@@ -36,6 +38,121 @@ body { padding-top:30px; }
 .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
 #replyContent{resize: none;}
+
+
+
+
+
+
+
+
+body{
+    background:#eee;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+a {
+    color: #82b440;
+    text-decoration: none;
+}
+.blog-comment::before,
+.blog-comment::after,
+.blog-comment-form::before,
+.blog-comment-form::after{
+    content: "";
+	display: table;
+	clear: both;
+}
+
+.blog-comment{
+    padding-left: 15%;
+	padding-right: 15%;
+}
+
+.blog-comment ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.blog-comment img{
+	opacity: 1;
+	filter: Alpha(opacity=100);
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	  	 -o-border-radius: 4px;
+			border-radius: 4px;
+}
+
+.blog-comment img.avatar {
+	position: relative;
+	float: left;
+	margin-left: 0;
+	margin-top: 0;
+	width: 65px;
+	height: 65px;
+}
+
+.blog-comment .post-comments{
+	border: 1px solid #eee;
+    margin-bottom: 20px;
+    margin-left: 85px;
+	margin-right: 0px;
+    padding: 10px 20px;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       	 -o-border-radius: 4px;
+    		border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+}
+
+.blog-comment .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.blog-comment ul.comments ul{
+	list-style-type: none;
+	padding: 0;
+	margin-left: 85px;
+}
+
+.blog-comment-form{
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 40px;
+}
+
+.blog-comment h3,
+.blog-comment-form h3{
+	margin-bottom: 40px;
+	font-size: 26px;
+	line-height: 30px;
+	font-weight: 800;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #return {
 	background-color: #555555;
@@ -190,6 +307,7 @@ input[value='삭제하기'] {
 		                    </li>                                  
 		                </ul>               
 		            </div>
+		            <!--댓글 입력 부분 -->
 		            <div class="col">
 		                  <div class="panel-body">
 		                        <form role="form" action="<%=request.getContextPath()%>/reply/enrollReply">
@@ -207,6 +325,61 @@ input[value='삭제하기'] {
 		     	 </div>
 		   </div>
     
+
+
+
+
+
+
+<div class="container bootstrap snippet">
+    <div class="row">
+		<div class="col-md-12">
+		    <div class="blog-comment">
+				<h3 class="text-success">댓글목록</h3>
+                <hr/>
+				<%if(rList!=null) {
+					for(Reply r : rList){
+						%>
+				<ul class="comments">			
+				<li class="clearfix">
+				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+				  <div class="post-comments">
+				      <p class="meta"><%= %> <a href="#"><%= %></a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				      <p>
+				         댓글단거 올곳
+				      </p>
+				  </div>
+				
+				  <ul class="comments">
+				      <li class="clearfix">
+				          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+				          <div class="post-comments">
+				              <p class="meta">Dec 20, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				              <p>
+				                  더 문의하지마요
+				              </p>
+				          </div>
+				      </li>
+				  </ul>
+				</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
