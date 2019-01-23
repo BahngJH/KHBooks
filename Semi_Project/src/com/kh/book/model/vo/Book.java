@@ -1,12 +1,18 @@
 package com.kh.book.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.kh.author.model.vo.Author;
 import com.kh.member.model.vo.Member;
 
 //책 정보 객체
-public class Book {
+public class Book implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -836895272153800238L;
+	
 	private String bookName;
 	private int price;
 	private String publisher;

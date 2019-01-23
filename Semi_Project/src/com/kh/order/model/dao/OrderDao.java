@@ -125,6 +125,62 @@ Properties prop=new Properties();
 		}
 		return list;
 	}
+	//원본에서 판매수 만큼 빼는거
+	public int stockMinus(Connection conn, List<Book> newStock)
+	{
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("stockMinus");
+		int rs = 0;
+		for(Book b:newStock) {
+			System.out.println(b);
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i=0;i<newStock.size();i++) {
+				pstmt.setInt(1, newStock.get(i).getStock());
+				pstmt.setInt(2, newStock.get(i).getBookId());
+				rs +=pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+	}
+	
+	//원본 stock 가져옴 
+	public List<Book> stockSelect(Connection conn, List<Book> payList)
+	{
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("stockSelect");
+		ResultSet rs =null;
+		List<Book> totalStock = new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			for(int i=0;i<payList.size();i++)
+			{
+				pstmt.setInt(1, payList.get(i).getBookId());
+				rs = pstmt.executeQuery();
+				if(rs.next())
+				{
+					Book b = new Book();
+					b.setStock(rs.getInt("stock"));
+					b.setBookId(rs.getInt("bookid"));
+					totalStock.add(b);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return totalStock;
+	}
 
 	//적립하기
 	public int insertMilage(Connection conn, int memberNum, int milage)

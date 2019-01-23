@@ -40,6 +40,13 @@ public class PaySuccessServlet extends HttpServlet {
 		List<Book> payBookList = (List<Book>) request.getSession().getAttribute("payBookList");
 		Member m = (Member)request.getSession().getAttribute("logined");
 		
+		//판매한 수 만큼 stock 제거 
+		int rs4 = new OrderService().stockSelect(payBookList);
+		if(rs4>0) {
+			System.out.println("수량제거 완료");
+		}else {
+			System.out.println("수량제거 실패");
+		}
 		//실제 대입될 값
 		int milage =0;
 		//임시저장값
@@ -73,6 +80,8 @@ public class PaySuccessServlet extends HttpServlet {
 		if(rs2>0) {
 			System.out.println("구매된 책, 장바구니에서 삭제 성공");
 		}else {
+			//이거 다이렉트로 1개만 구매할 때는 장바구니를 거치지 않고 가기 때문에 장바구니에서 실패 할 수 밖에 없음
+			
 			System.out.println("구매된 책, 장바구니에서 삭제 실패");
 		}
 		//마일리지 갱신을 위해 세션 재 설정
