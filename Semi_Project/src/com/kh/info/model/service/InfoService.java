@@ -33,9 +33,9 @@ public class InfoService {
 		return list;
 	}
 	
-	public int selectReviewAvg() {
+	public int selectReviewAvg(int bookId) {
 		Connection conn=getConnection();
-		int avg=new InfoDao().selectReviewAvg(conn);
+		int avg=new InfoDao().selectReviewAvg(conn,bookId);
 		close(conn);
 		return avg;
 	}
