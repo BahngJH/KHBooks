@@ -242,50 +242,54 @@ div.book-container>div>a.author-name{
 @media (min-width: 992px) and (max-width: 1200px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 465px;
+		height: 475px;
 	} 	
 }
 
 @media (min-width:768px) and (max-width: 991px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 350px;
+		height: 360px;
 	}
 }
 
 @media (min-width:700px) and (max-width:768px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 550px;
+		height: 560px;
 	}
 }
 
 @media (min-width:600px) and (max-width:700px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 500px;
+		height: 510px;
 	}
 }
 
 @media (min-width:500px) and (max-width:600px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 400px;
+		height: 410px;
 	}
 }
 
 @media (min-width:400px) and (max-width:500px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 330px;
+		height: 340px;
 	}
 }
 
 @media (min-width:300px) and (max-width:400px){
 	div.thumbnail-container{
 		padding: 0px;
-		height: 250px;
+		height: 260px;
 	}
+}
+
+div.book-container>div:first-child{
+	margin-bottom: 10px;
 }
 
 a.book-thumbnail{
@@ -314,6 +318,9 @@ span.border{
 	height: 100%;
 }
 
+div#carousel-id, div.carousel-inner, div.item{
+	height:300px;
+}
 /* 작가 정보 창 */
 section.author-container{
 	padding-right: 50px;
