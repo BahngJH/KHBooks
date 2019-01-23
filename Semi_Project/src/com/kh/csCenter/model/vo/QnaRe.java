@@ -9,7 +9,7 @@ public class QnaRe {
 	private String reMail;// 메일전송여부
 	private String reContent;// 답변내용
 	private String reStatus;// 글상태
-	private Date reDate;// 답변 날짜>>읽음여부 판단
+	private Date reDate;// 답변날짜
 
 	public QnaRe() {
 		super();

@@ -3,7 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,com.kh.notice.model.vo.*"%>
 <%
-	Absence ab =(Absence)request.getAttribute("ab");
+	Absence ab = (Absence) request.getAttribute("ab");
+	Member m = (Member) request.getSession().getAttribute("logined");
 %>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 <style>
@@ -34,6 +35,25 @@ body { padding-top:30px; }
 .ui-group-buttons .btn{float:left;border-radius:0}
 .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
+#replyContent{resize: none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,6 +125,8 @@ input[value='삭제하기'] {
 	float: right;
 	cursor: pointer;
 }
+
+
 </style>
 <section>
 	<div class=" col-sm-8">
@@ -167,160 +189,53 @@ input[value='삭제하기'] {
 				<%}%>
 			</table>
 			
-			
-			
-			
-			
-		<div class="container">
-    <div class="row">
-    <div class="ui-group-buttons">
-                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-pencil" style="padding-right:4px;"></span>Compose</a>
-                <div class="or"></div>
-                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-inbox" style="padding-right:4px;"></span>Inbox</a>
-                <div class="or"></div>
-                <a href="http://www.jquery2dotnet.com" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-send" style="padding-right:4px;"></span>Send</a>
-            </div>
-        
-        <div class="panel panel-default widget">
-            <div class="panel-heading">
-                <span class="glyphicon glyphicon-comment"></span>
-                <h3 class="panel-title">
-                    Reply</h3>
-            
-                    
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-2 col-md-1">
-                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
-                            <div class="col-xs-10 col-md-11">
-                                <div>
-                                    <a href="#">
-                                        Congratulations</a>
-                                    <div class="mic-info">
-                                        By: <a href="#">Check My Athletics</a> on 12 Jun 2014
-                                    </div>
-                                </div>
-                                <div class="comment-text">
-                                    We would like to congratulate John on his achievement...
-                                </div>
-                               
-                        
+			<br>
+
+	
+		    <div class="row">  
+		        <div class="panel panel-default widget">
+		            <div class="panel-heading">
+		                <span class="glyphicon glyphicon-comment"></span>
+		                <h3 class="panel-title">댓글입력</h3>	      		         
+		            </div>
+		            <div class="panel-body">
+		                <ul class="list-group">
+		                    <li class="list-group-item">
+		                        <div class="row">
+		                            <div class="col-xs-2 col-md-1">
+		                                <img src="<%=request.getContextPath()%>/images/icons/user_icon.png" class="img-circle img-responsive" alt="" />
+		                            </div>
+		                            <div class="col-xs-10 col-md-11">
+		                                <div>
+		                                    <a href="#">안녕하세요 <%=logined.getMemberId() %> 님</a>                                  
+		                                </div>                                                    
+		                            </div>
+		                        </div>
+		                    </li>                                  
+		                </ul>               
+		            </div>
+		            <div class="col">
+		                  <div class="panel-body">
+		                        <form role="form" action="<%=request.getContextPath()%>/reply/enrollReply">
+		                            <fieldset>
+		                                <div class="form-group">
+		    								<textarea class="form-control" rows="3" id="replyContent" name="orderReContent" placeholder="댓글을 입력하세요." required></textarea>
+		                                    <input type="hidden" name="memberNum" value="<%=logined.getMemberNum()%>"/>
+		                                    <input type="hidden" name="orderBookNum" value="<%=ab.getAppNum() %>"/>
+		                                </div>                                                           
+		                       			 <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">댓글등록</button>
+		                            </fieldset>
+		                        </form>
+		               	  </div>
+		            </div>
+		     	 </div>
+		   </div>
     
-      
-                              
-                            </div>
-                        </div>
-                    </li>
-                
-                    
-                </ul>
-                
-            </div>
-            <div class="col">
-
-
-                    <div class="panel-body">
-                        <form role="form">
-                            <fieldset>
-                                <div class="form-group">
-    <textarea class="form-control" rows="3" placeholder="Write in your wall" autofocus=""></textarea>
- 	
-
-                                </div>
-                                
-                            
-                        <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">Post reply</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                        </div>
-
-                </div>
-</div>
-        </div>
-    </div>
-</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-			
-								
-			
-			
 
 
 
 
 
-
-
-
-
-
-
-			
-			
-			
-	<%-- 			<!-- 댓글 폼 구현중  -->
-		
-		<table class="type10 table">
-				<thead>
-
-					<tr>
-						<th scope="cols">댓글입력</th>
-						<th scope="cols"></th>
-					</tr>
-
-				</thead>
-				
-				<tbody>
-					<tr>					
-						<th scope="row" class="even"><h4><input type='text' name=""></h4></th>
-						<td class="even"><button type="submit" id="btn-insert">등록</button></td>
-					</tr>											
-				</tbody>
-			</table>
-			</div>
-			
-			<div class="comment-editor">			
-				<form action="<%=request.getContextPath() %>/board/commentInsert" name="boardCommentFrm" method="post">				
-					<input type="hidden" name="boardRef" value="boardNum"/> 
-					<input type="hidden" name="boardCommentWriter" value="<%=logined.getMemberId() %>"/>
-					<input type="hidden" name="boardCommentLevel" value="1"/>
-					<input type="hidden" name="boardCommentRef" value="0"/>
-					
-				</form>
-			</div> 
-			
- --%>
 
 
 
@@ -354,6 +269,7 @@ input[value='삭제하기'] {
 			location.href="<%=request.getContextPath()%>/absence/page";
 		}
 		
+	
 			<%-- function main_Notice(){
 				location.href="<%=request.getContextPath()%>/notice/noticemain";
 			}
