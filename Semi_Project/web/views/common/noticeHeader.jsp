@@ -106,7 +106,6 @@ a {
 
 
 
-         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청</a></li> 
 
 
       </ul>
