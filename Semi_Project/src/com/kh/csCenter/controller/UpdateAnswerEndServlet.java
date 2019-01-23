@@ -58,7 +58,7 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		
 		if(rs>0) {
 			msg="수정 성공";
-			loc="/qna/qnaContent?no="+qr.getQnaNum();
+			loc="/qna/qnaContent?qnaNum="+qr.getQnaNum();
 		}else {
 			msg="수정실패";
 			loc="/qna/answerUpdate";

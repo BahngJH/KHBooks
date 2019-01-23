@@ -70,7 +70,7 @@ color: #5F5AF3;
 					         <%=q.getReContent() %></p>	<br>				         					          		                     			 	              
 	           		  </div>
 	              <div class="">			  			     				          		         		         
-			         <button type="update" class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변 수정</button>			        	      				       			        		  
+			         <button class="btn_sub btn btn-default"  onclick="fn_updateAnswer()">답변 수정</button>			        	      				       			        		  
 		  		  </div>
 				  <div class=""><%}else{ %>			  			     				          			        
 		  		   <form name="enrollAnswer" action="<%=request.getContextPath()%>/qna/qnaAnswerEnd" method="post" > 	                                    	
@@ -104,7 +104,7 @@ color: #5F5AF3;
 	}
 	function fn_updateAnswer()
 	{
-		location.href="<%=request.getContextPath()%>/qna/answerUpdate?no=<%=q.getQnaNum()%>";
+		location.href="<%=request.getContextPath()%>/qna/answerUpdate?qnaNum=<%=q.getQnaNum()%>";
 	} 
 	
 </script>

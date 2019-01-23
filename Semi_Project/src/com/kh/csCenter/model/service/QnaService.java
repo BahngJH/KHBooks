@@ -114,13 +114,13 @@ public class QnaService {
 		return rs;
 
 	}
-
+/*
 	// 관리자 답변 메일 전송
 	public Qna sendEmail(int qnaNum) {
 		Connection conn = getConnection();
 		Qna q = new QnaDao().sendEmail(conn, qnaNum);
 		close(conn);
 		return q;
-	}
+	}*/
 
 }
