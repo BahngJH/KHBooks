@@ -18,10 +18,8 @@ public class AdminService {
 	
 	
 	public  int deleteBook(String[] id) {
-		Connection conn=null;
-		for(String i : id) {
-			System.out.println("서비스" + i);
-		}
+		Connection conn=getConnection();
+	
 		int result=new AdminDao().deleteBook(conn,id);
 		if(result ==id.length) {commit(conn);}
 		else {rollback(conn);}
