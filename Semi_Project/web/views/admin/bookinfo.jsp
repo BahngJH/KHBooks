@@ -39,6 +39,7 @@ padding: 8px 10px;
 <script>
 function update(){
 	
+	location.href="<%=request.getContextPath()%>/book/modal";
 	
 }
 
@@ -51,20 +52,20 @@ function update(){
 
 	<h2>도서정보</h2>
 	<hr />
-	
+
 	<form method="get" action="<%=request.getContextPath()%>/book/deleted">
-		
+
 		<input type="submit" value="삭제" id="deleted" onclick="deleted();" />
-		<input type="button" value="수정" id="update" onclick="update();" />
-		<input type="button" value="추가" id="update" onclick="" />
-		
+		<input type="button" value="수정" id="update" onclick="update();" /> <input
+			type="button" value="추가" id="update" onclick="" />
+
 		<table class="table table-striped">
 			<colgroup>
 				<col width="86px" />
 				<col width="*" />
 				<col width="126px" />
 			</colgroup>
-			
+
 			<tr>
 				<th>표지</th>
 				<th>책 제목</th>
@@ -81,7 +82,10 @@ function update(){
 			<tr>
 
 
-				<td><a href="#" class="thumbnail"><img src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>" alt="도서사진"></a></td>
+				<td><a href="#" class="thumbnail"><img
+						src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"
+						alt="도서사진"></a></td>
+				
 				<td><%=b.getBookName()%></td>
 				<td><%=b.getPrice()%></td>
 				<td><%=b.getPublisher()%></td>
@@ -89,7 +93,8 @@ function update(){
 				<td><%=b.getBookId()%></td>
 				<td><%=b.getIsbn()%></td>
 				<td><%=b.getBookDate()%></td>
-				<td><input type="checkbox" name="delete" value="<%=b.getBookId()%>"/></td>
+				<td><input type="checkbox" name="delete"
+					value="<%=b.getBookId()%>" /></td>
 
 
 			</tr>
@@ -98,9 +103,52 @@ function update(){
 		</table>
 	</form>
 	<div class="text-center">
-		<%=pageBar1 %>
+		<%=pageBar1%>
 	</div>
 </div>
 </div>
 </div>
+<!-- 리뷰 수정 모달창 -->
+		<div class="modal" id="updateModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						리뷰 수정
+					</div>
+					<div class="modal-body">
+						<table class="tbl-modal">
+							<tr>
+								<th><label>평점</label></th>
+								<td>
+									<p class="star_rating">
+									    <a href="#" class="on">★</a>
+									    <a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+										<a href="#">★</a>
+									</p>								
+								</td>
+							</tr>
+							<tr>
+								<form action="<%=request.getContextPath()%>/review/updateReview" method="POST" id="updateReviewFrm">
+								<th><label for="updateContext">내용</label></th>
+								<td>									
+									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
+									<input type="hidden" id="star_grade" name="star_grade" value="">
+									<input type="hidden" id="renum" name="renum" value="">										
+								</td>
+								</form>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 <%@include file="/views/common/footer.jsp"%>

@@ -27,7 +27,7 @@ border: none;
 }
 
 
-fieldset a{float:left;}
+
 #content{margin:100px 0 0 0; white-space: pre-line; }
 
 </style>
@@ -51,7 +51,7 @@ fieldset a{float:left;}
 				
 						<h2><%=n.getNoticeTitle()%></h2>
 						<hr/>
-					<a><%=n.getNoticeDate()%></a>
+					<p><%=n.getNoticeDate()%></p>
 										
 						
 						
