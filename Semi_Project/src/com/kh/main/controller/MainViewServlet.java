@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.book.model.service.BookService;
 import com.kh.book.model.vo.Book;
+import com.kh.notice.model.service.NoticeService;
+import com.kh.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class MainViewServlet
@@ -34,9 +36,11 @@ public class MainViewServlet extends HttpServlet {
 
 		List<Book> best = new BookService().selectBestseller();
 		List<Book> recent = new BookService().selectRecently();
+		List<Notice> notice = new NoticeService().selectList(1, 3); 
 		
 		request.setAttribute("best", best);
 		request.setAttribute("recent", recent);
+		request.setAttribute("notice", notice);
 		request.getRequestDispatcher("/views/main/main.jsp").forward(request, response);
 	}
 
