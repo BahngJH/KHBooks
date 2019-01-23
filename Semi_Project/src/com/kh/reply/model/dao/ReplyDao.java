@@ -47,16 +47,15 @@ public class ReplyDao {
 	}
 	
 	//주문도서 댓글 목록	
-	public List<Reply> selectReplyList(Connection conn, int no, int memberNum)
+	public List<Reply> selectReplyList(Connection conn, int no)
 	{
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Reply> list=new ArrayList();
 		String sql=prop.getProperty("selectReplyList");
 		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, memberNum);
-			pstmt.setInt(2, no);
+			pstmt=conn.prepareStatement(sql);			
+			pstmt.setInt(1, no);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -66,7 +65,9 @@ public class ReplyDao {
 				r.setOrderBookNum(rs.getInt("orderBookNum"));
 				r.setOrderReContent(rs.getString("orderReContent"));
 				r.setStatus(rs.getString("status"));
-				r.setOrderReDate(rs.getDate("orderReDate"));			
+				r.setOrderReDate(rs.getDate("orderReDate"));
+				//r.setMemberId(rs.getString("memberId"));
+	
 				list.add(r);
 			}			
 		}

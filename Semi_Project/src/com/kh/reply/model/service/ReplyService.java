@@ -24,9 +24,9 @@ public class ReplyService {
 	}
 
 	// 댓글 목록 불러오기
-	public List<Reply> selectReplyList(int no, int memberNum) {
+	public List<Reply> selectReplyList(int no) {
 		Connection conn = getConnection();
-		List<Reply> list = new ReplyDao().selectReplyList(conn, no, memberNum);
+		List<Reply> list = new ReplyDao().selectReplyList(conn, no);
 		close(conn);
 		return list;
 	}

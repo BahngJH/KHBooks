@@ -48,7 +48,6 @@ public class QnaDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println("결과값은???" + result);
 		return result;
 
 	}

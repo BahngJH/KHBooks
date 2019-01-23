@@ -36,17 +36,17 @@ public class AbsenceContentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int no = Integer.parseInt(request.getParameter("no"));
-		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
+		int no = Integer.parseInt(request.getParameter("no"));		
 		Absence ab = new AbsenceService().selectNo(no);
 		
 
 		String view = "";
 		if (ab != null) {
-			List<Reply> rlist = new ReplyService().selectReplyList(no, memberNum);
+			List<Reply> rlist = new ReplyService().selectReplyList(no);
 			view = "/views/notice/absenceboardContent.jsp";
 			request.setAttribute("ab", ab);
 			request.setAttribute("reply", rlist);
+			System.out.println("Reply list 값은? "+rlist);
 
 		}else {
 			view="views/common/msg.jsp";
