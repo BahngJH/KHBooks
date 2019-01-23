@@ -49,10 +49,7 @@
 	/* 체크박스 크기키움 */
 		-webkit-transform: scale(1.3);
 	}
-	
-	ul.pagination{
-		margin-left: 350px;
-	}
+
 </style>
 
 
@@ -151,7 +148,7 @@
 					<%} else { %>
 						<h2>남긴 리뷰가 없습니다..</h2>
 					<%} %>
-					<div id="pageer">
+                	<div class="paging col-xs-12" style="text-align: center">
 						<%=pageBar %>
 					</div>	
 				</article>

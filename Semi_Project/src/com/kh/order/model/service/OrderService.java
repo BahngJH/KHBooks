@@ -29,6 +29,16 @@ public class OrderService {
 		return list;		
 	}
 	
+	public List<Order> selectList(int no) {
+		Connection conn = getConnection();
+		
+		List<Order> list = new OrderDao().selectList(conn, no);
+		
+		close(conn);
+		
+		return list;		
+	}
+	
 
 	public List<Order> searchOrder(String keyword, int no) {
 		Connection conn = getConnection();

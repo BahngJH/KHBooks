@@ -23,9 +23,6 @@
 		min-height: 150px;
 		margin-top: 10px;
 	}
-	ul.pagination{
-		margin-left: 350px;
-	}
 </style>
 
 
@@ -58,8 +55,7 @@
 							    <li><a href="<%=request.getContextPath()%>/order/orderSort?sort=3">저자순</a></li>
 						 	</ul>
 						</div>
-					</div>	
-												
+					</div>																
 					
 					<table class="table table-responsive" id="tbl-orderList">
 						<thaed>
@@ -114,7 +110,7 @@
 							}%>
 						</tbody>
 					</table>
-					<div id="pageer">
+	                <div class="paging col-xs-12" style="text-align: center">
 						<%=pageBar %>
 					</div>							
 				</article>
