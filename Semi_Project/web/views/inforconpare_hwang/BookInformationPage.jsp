@@ -222,7 +222,8 @@ li {
 
 .snline {
 	display: inline-block;
-	white-space: inherit;
+	white-space: pre-line;
+	text-align: center;
 }
 
 .reviewpre {
@@ -523,9 +524,9 @@ function fnMove2(){
 					</br>
 					</br>
 					<ul>
-					<pre class='wrline' style='width:96%;'>
+					<pre class='wrline content' style='width:96%;'>
 					<small>
-                    <pre class='wrline1' style='border: 1px solid gray; width:100%'>
+                    <pre class='wrline1 content' style='border: 1px solid gray; width:100%'>
 					<small><strong>저자 : <%=b.getAuthor().getAuthorName() %></strong></small>
 					</pre><br>
 						<%= (b.getAuthor().getAuthorInfo()==null) ? "저자 정보가 없습니다." : b.getAuthor().getAuthorInfo() %>
@@ -545,7 +546,7 @@ function fnMove2(){
 			<br>
 			<br>
 					<ul>
-						<pre class='biline' style='width:96%;'>
+						<pre class='biline content' style='width:96%;'>
 							<small>
 								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
@@ -564,9 +565,9 @@ function fnMove2(){
 				<br>
 				<br>
 				   <ul>
-				      <pre class='bsline' style='width:96%;'>
+				      <pre class='bsline content' style='width:96%;'>
 				        <small>
-			                  <%=b.getAuthor().getAuthorInfo() %>
+			                  <%=b.getBookContent()==null?"줄거리가 없습니다." : b.getBookContent()%>
 			             </small>
 				      </pre>
 				   </ul>
@@ -588,7 +589,7 @@ function fnMove2(){
 					<br>
 					<ul>
 					<%String msg="이 책은 목차가 없습니다."; %>
-						<pre class='snline' style='width:20%; word-break:break-all;'>
+						<pre class='snline content' style='width:96%;'>
 							<small>
                     		<%if(b.getToc()!=null) {%>
 								<%=b.getToc() %>

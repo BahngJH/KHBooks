@@ -44,7 +44,6 @@ function updateReview() {
 	
 	
 }							
-
 </script>
 
 
@@ -58,7 +57,7 @@ function updateReview() {
 	<form method="get" action="<%=request.getContextPath()%>/book/deleted">
 
 		<input type="submit" value="삭제" id="deleted" onclick="deleted();" />
-		<input type="button" value="추가" id="update" onclick="" />
+		<input type="button" value="추가" id="update" onclick="appendBook();" />
 
 		<table class="table table-hover">
 			<colgroup>
@@ -83,7 +82,7 @@ function updateReview() {
 			<tr>
 
 
-				<td><a href="#" class="thumbnail"><img
+				<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail"><img
 						src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"
 						alt="도서사진"></a></td>
 				<td id="bookname" onclick="updateReview()"><%=b.getBookName()%></td>
@@ -154,6 +153,10 @@ function updateReview() {
 			</div>
 		</div>
 
-
+<script>
+	function appendBook(){
+		location.href="<%=request.getContextPath()%>/admin/bookappend";
+	}
+</script>
 
 <%@include file="/views/common/footer.jsp"%>
