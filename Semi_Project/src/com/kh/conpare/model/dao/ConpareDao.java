@@ -22,4 +22,5 @@ public class ConpareDao {
 			e.printStackTrace();
 		}
 	}
+	
 }

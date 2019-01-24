@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.absence.model.service.AbsenceService;
 import com.kh.author.model.service.AuthorService;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.service.BookService;
 import com.kh.book.model.vo.Book;
+import com.kh.reply.model.service.ReplyService;
+import com.kh.reply.model.vo.Reply;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
@@ -62,6 +65,9 @@ public class BookInsertServlet extends HttpServlet {
 			author = new AuthorService().selectAuthorName(authorName);
 		}		
 		
+		//도서 신청 글 번호
+		String no = mr.getParameter("no");
+		
 		Book book = new Book();
 		book.setBookInfo(mr.getParameter("info"));
 		book.setBookContent(mr.getParameter("content"));
@@ -86,6 +92,17 @@ public class BookInsertServlet extends HttpServlet {
 		//도서 정보 삽입 성공
 		if(result >0) {
 			request.setAttribute("msg", "도서 등록 성공");
+			if(no != null) {
+				//게시글이 있는 도서였을 경우
+				Reply r = new Reply();
+				r.setMemberId("0");
+				r.setOrderBookNum(Integer.parseInt(no));
+				r.setOrderReContent("도서 신청이 완료되었습니다.");
+				
+				new ReplyService().enrollReply(r);
+				new AbsenceService().updateDone(Integer.parseInt(no));
+			}
+			
 		}else {
 			//실패
 			request.setAttribute("msg", "도서 등록 오류");

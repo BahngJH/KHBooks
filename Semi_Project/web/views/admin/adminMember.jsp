@@ -36,6 +36,7 @@
 		display: inline;
 	}
 	
+	button#deleted, input[value='추가'] {
 	div.input-group {
 		float: left;
 	}
@@ -57,19 +58,18 @@
 </style>
 
 
-
 <div class="col-sm-10">
 			<h2>회원정보</h2>
 			<hr />
 			<div id="buyList-options">
 				<div class="input-group">
-					<form class="form-controll navbar-right" role="search"
+					<form class="form-controll" role="search"
 						action="<%=request.getContextPath()%>/order/orderSearch"
 						method="get">
 						<div class="form-group">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword"
-									id="keyword" autocomplete="off" placeholder="책 또는 저자명"> <span
+									id="keyword" autocomplete="off" placeholder="회원 정보 입력"> <span
 									class="input-group-btn">
 									<button type="submit" class="btn btn-default" id="searchBar">검색</button>
 								</span>
@@ -77,13 +77,14 @@
 						</div>
 					</form>
 				</div>
+
 				<div class="btn-group">
 					<button type="button" id="deleted" onclick="">삭제</button>
 					<button type="button" id="update" onclick="">추가</button>
 				</div>
 			</div>
 		<br />
-		<table class="table table-striped">
+		<table class="table table-hover">
 			<tr>
 				<th>ID</th>
 				<th>이름</th>
@@ -92,10 +93,9 @@
 				<th>email</th>
 				<th>선택</th>
 			</tr>
-			<%
-					for (Member m : list) {
-				%>
-			<tr>
+					
+			<%for (Member m : list) { %>
+			<tr id="memberInfo">
 				<td><%=m.getMemberId()%></td>
 				<td><%=m.getMemberName()%></td>
 				<td><%=m.getAddress()%></td>
@@ -103,12 +103,13 @@
 				<td><%=m.getEmail()%></td>
 				<td><input type="checkbox"></td>
 			</tr>
+			
 			<script>
-					
-				</script>
-			<%
-					}
-				%>
+				$('#memberInfo').click(function(){
+					console.log('<%=m.getMemberId()%>');
+				});
+			</script>
+			<%}%>
 
 		</table>
 		<div class="text-center">
