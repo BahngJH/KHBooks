@@ -58,8 +58,7 @@ function insertNotice(){
 }
 </script>
 
-			<div class="col-sm-1"></div>
-			<div class="col-sm-9">
+			<div class="col-sm-12 col-md-9">
 				<div class="notcecontent">
 				<h2>공지사항</h2>
 				<br/>

@@ -457,6 +457,7 @@ function fnMove2(){
 			<% }%>
 			</div>
 			<script>
+			//엔터키 입력 금지
 			$('input[type="number"]').keydown(function(){
 				if(event.keyCode===13){
 					alert('장바구니 담기를 클릭해주세요!');

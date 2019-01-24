@@ -16,6 +16,20 @@ import com.kh.member.model.vo.Member;
 
 public class AdminService {
 	
+	// 멤버 삭제 서비스
+	public int deleteMember(String[] nums) 
+	{
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteMember(conn, nums);
+		if(result == nums.length) 
+			commit(conn);
+		else
+			rollback(conn);
+		
+		return result;		
+	}	
+	
 	
 	public  int deleteBook(String[] id) {
 		Connection conn=getConnection();
@@ -34,6 +48,15 @@ public class AdminService {
 		return list;
 		
 	}
+	
+	public List<Member> selectMember(String keyword){
+		Connection conn =getConnection();
+		List<Member> list=new AdminDao().selectMember(conn, keyword);
+		close(conn);
+		return list;
+		
+	}	
+	
 	public List<Book> selectBook(int cPage,int numPerPage){
 		Connection conn=getConnection();
 		List<Book> list=new AdminDao().selectBook(conn,cPage,numPerPage);
