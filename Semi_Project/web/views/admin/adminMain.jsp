@@ -57,7 +57,7 @@ border-height: 10px;
 						
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>  
-						<td><%=ab.getBookName()%></td>
+						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
 						<td><%=ab.getAppDate()%></td>	
 									
 					</tr> 
@@ -88,7 +88,7 @@ border-height: 10px;
 					<% if(n.getStatus().equals("Y")){ %>
 					<tr>
 						<td><%=n.getNoticeNo() %></td>
-						<td><%=n.getNoticeTitle()%></td>
+						<td><a href="<%=request.getContextPath() %>/notice/noticeContent?no=<%=n.getNoticeNo()%>"><%=n.getNoticeTitle()%></a></td>
 						<td><%=n.getNoticeDate()%></td>					
 					</tr> 
 					<%} 
