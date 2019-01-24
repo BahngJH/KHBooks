@@ -32,8 +32,8 @@
                     </div>
                    	<%} %>
                 </div>
-                <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="left carousel-control" href="#carousel-id" data-slide="prev" style="background-image: none"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="right carousel-control" href="#carousel-id" data-slide="next" style="background-image: none"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
             <div class="row">
                 <div id="bestSeller" class="col-xs-12 col-lg-12">
