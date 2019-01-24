@@ -60,7 +60,7 @@ public class CategoryServlet extends HttpServlet {
 		 * 도서 정보가 부족해서 페이지 테스트를 위해 1로 놓음
 		 * 추후에 10으로 늘릴 예정
 		 * */
-		int numPerPage = 2;
+		int numPerPage = 10;
 		
 		int totalBook = new SearchService().getBookCount(genre);
 		int totalPage = (int)Math.ceil((double)totalBook/numPerPage);
