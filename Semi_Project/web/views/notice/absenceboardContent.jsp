@@ -41,13 +41,6 @@ body { padding-top:30px; }
 
 
 
-
-
-
-body{
-    background:#eee;
-}
-
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
