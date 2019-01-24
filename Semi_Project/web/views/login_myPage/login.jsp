@@ -100,8 +100,9 @@
     	  
     	  //로그인 성공시, kakao API를 호출한다.(카카오에 있는 데이터 불러옴)
     	  Kakao.API.request({
-    		  url: '/v1/user/me',
+    		  url: '/v2/user/me',
     		  success: function(res){
+    			  console.log(res);
     			  console.log(JSON.stringify(res.properties.nickname));
     			  /* console.log(JSON.stringify(res.gender));
     			  console.log(JSON.stringify(res.account_email));
