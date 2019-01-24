@@ -323,7 +323,14 @@ div#carousel-id, div.carousel-inner, div.item{
 }
 
 div.item{
-	background-color: rgb(65, 185, 255);
+
+	background-color: #220471;
+}
+
+div.carousel-caption a{
+	text-decoration: none;
+	color: black;
+
 }
 /* 작가 정보 창 */
 section.author-container{

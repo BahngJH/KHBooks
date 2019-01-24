@@ -48,15 +48,6 @@ width: 50px;
 
 
 <script>
-/* function fn_enroll_validate(){
-	
-	var isbn=$("#isbn");
-	if(isbn.val().length!=13){
-		alert("잘못 입력하셨습니다. 13 숫자를 입력하세요.");
-		isbn.focus();
-		return false;
-	}return true;
-}; */
 
 
 

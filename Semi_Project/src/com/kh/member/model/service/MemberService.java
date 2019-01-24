@@ -181,6 +181,4 @@ public class MemberService {
 		return rs;
 	}
 
-	
-	
 }

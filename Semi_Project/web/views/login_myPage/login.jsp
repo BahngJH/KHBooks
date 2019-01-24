@@ -107,9 +107,9 @@
     			  console.log(res.kakao_accuont_email);
     			  console.log(res.kakao_accuont);
     			  console.log(JSON.stringify(res.properties.nickname));
-    			  /* console.log(JSON.stringify(res.gender));
+    			  console.log(JSON.stringify(res.gender));
     			  console.log(JSON.stringify(res.account_email));
-    			  console.log(JSON.stringify(res.birthday)); */
+    			  console.log(JSON.stringify(res.birthday)); 
     			  
     		  },
     		  fail: function(error){

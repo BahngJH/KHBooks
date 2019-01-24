@@ -16,6 +16,17 @@ import com.kh.member.model.vo.Member;
 
 public class AdminService {
 	
+
+	public int updatebook(Book b) {
+		Connection conn=getConnection();
+		System.out.println("서비스"+b);
+		int result=new AdminDao().updatebook(conn,b);
+		if(result>0) {commit(conn);}
+		else {rollback(conn);}
+		return result;
+		
+	}
+
 	// 멤버 삭제 서비스
 	public int deleteMember(String[] nums) 
 	{
@@ -30,6 +41,7 @@ public class AdminService {
 		return result;		
 	}	
 	
+
 	
 	public  int deleteBook(String[] id) {
 		Connection conn=getConnection();
