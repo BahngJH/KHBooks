@@ -26,7 +26,12 @@
 					<%} %>
 				</select></td>
 				<th>ISBN</th>
-				<td><input type="text" name="isbn" id="isbn" value="<%=isbn%>"class="form-control" required/></td>
+				<td>
+					<div class="input-group">
+						<input type="text" name="isbn" id="isbn" value="<%=isbn%>"class="form-control" required/>
+						<span class="input-group-btn"><button class="btn btn-default" onclick="searchISBN($('#isbn').val());" >검색</button></span>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<th>책 표지</th>
@@ -66,18 +71,28 @@
 	</form>
 </section>
 <script>
+	var key;
+
 	$(function(){
 		$.ajax({
 			url: "<%=request.getContextPath()%>/file/kakaoApi.txt",
 			type: "get",
 			dataType:"text",
 			success: function(result){
+				key = result;
+				searchISBN(<%=isbn%>);
+			}
+		})
+	});
+	
+	function searchISBN(isbn){
+		if(isbn !== undefined && isbn !== ""){
 			$.ajax({
 	   			url: "https://dapi.kakao.com/v3/search/book",
-	   			headers: {'Authorization': 'KakaoAK '+ result},
+	   			headers: {'Authorization': 'KakaoAK '+ key},
 	   			type : "get",
 	   			data:{
-	   				query: '<%=isbn%>',
+	   				query: isbn,
 	    			target:'isbn'
 	   			},
 	   			success : function(result){
@@ -92,10 +107,10 @@
 	   				$('#translator').val(data.translators);
 	   			}
 	   		});
-			}
-		})
+		}
 		
-	})
+		return false;
+	}
 
 </script>
 <%@include file="/views/common/footer.jsp"%>

@@ -65,13 +65,6 @@ div a {
 
 <script>
    
-   $(document).ready(function() {
-
-       $("#side").click(function() {
-
-         $(this).next("ul").toggleClass("hide");
-      });
-   });
    
 
    function a_click() {
@@ -90,35 +83,21 @@ div a {
          </span>
       </h4>
       <hr>
-      <a class="dropdown-toggle" id="side"><strong>게시판</strong><span
-         class="caret"></span></a>
-
+     
 
       <%if(logined!=null){%>
-      <ul class="hide">
-         <br />
-         <li><a href="<%=request.getContextPath()%>/qna/qnaListMain">1:1문의</a>
-         </li>
-         <br />
-
-
-         <li><a href="<%=request.getContextPath()%>/absence/page">희망도서 신청</a></li> 
-
-
-
-
-
-      </ul>
+  
+      
+         <a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1:1문의</strong></a>
+         <hr/>
+        
+         <a href="<%=request.getContextPath()%>/absence/page"><strong>희망도서 신청</strong></a> 
       <%}else {%>
-
-      <ul class="hide">
          <br />
-         <li><a onclick="a_click();">1:1문의</a></li>
+         <a onclick="a_click();"><strong>1:1문의</strong></a>
          <br />
-         <li><a onclick="a_click();">희망도서 신청</a></li> 
-      </ul>
+         <a onclick="a_click();"><strong>희망도서 신청</strong></a>
       <%}%>
-
       <hr>
 
       <a href="<%=request.getContextPath()%>/notice/noticemain"><strong>공지사항</strong></a>

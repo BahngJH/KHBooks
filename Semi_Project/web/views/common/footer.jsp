@@ -3,27 +3,27 @@
 <style>
 
 marquee {
-	height: 35px;
+	height: 30px;
+	width:300px;
 }
+div.notice,div.title{}
 
 marquee ul {
 	list-style-type: none;
 }
 
 .title h4, .notice h4 {
+
 	color: black;
 	text-align:center;
 }
 
 
-/* div.title, div.notice {
-	float: left;
-	margin: 0px 0px 0px 500px;
-} */
 
-div.notice {
-	margin: 0px 0px 0px 0px;
-}
+/*  div.title, div.notice {
+	float: left;
+	margin: 0px 0px 0px 400px;
+}  */
 
 .fot address {
 	text-align: center;
@@ -50,7 +50,7 @@ a#MOVE_TOP_BTN {
 }
 
 footer{
-	margin-top:90px;
+	margin-top:30px;
 }
 
 footer.fot, div#btn a {
@@ -65,30 +65,25 @@ footer.fot, div#btn a {
 
 div#btn a, div#btn h4 {
 	color: black;
-	display:inline;
+	
 	text-align: center;
+	
 }
+
 
 div.notice-scroll{
 	text-align: center;
 }
-div.notice{
-	display:inline;
-	
-}
+
 footer.fot{
-
 text-align:center;
-
 }
-footer#btn a{
-padding:10px;
-text-align:center;
 
-}
 
 div#btn{
-	margin-left: 33.3%
+	margin-left: 25.3%;
+	
+	
 }
 	
 	
@@ -103,8 +98,9 @@ div#btn{
 				<h4>
 					<strong>공지사항:</strong>
 				</h4>
-			</div>
-			<div class="notice col-xs-9 col-md-4">
+			</div> 
+			<div class="notice  col-xs-3 col-md-offset-4 col-md-2">
+			
 				<marquee onmouseover='this.stop()' onmouseout='this.start()'
 					direction='up' scrolldelay=1500>
 					<ul class="Notice_List">

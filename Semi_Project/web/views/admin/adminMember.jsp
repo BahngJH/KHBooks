@@ -36,10 +36,16 @@
 		display: inline;
 	}
 	
-	div.input-group {float: left;}
-	div.button-group {float: right;}
-	
 	button#deleted, input[value='추가'] {
+	div.input-group {
+		float: left;
+	}
+	
+	div.btn-group {
+		float: right;
+	}
+	
+	div.btn-group button {
 		background-color: skyblue;
 		border: none;
 		color: white;
@@ -52,13 +58,9 @@
 </style>
 
 
-
-
-
 <div class="col-sm-10">
-		
 			<h2>회원정보</h2>
-		<hr />
+			<hr />
 			<div id="buyList-options">
 				<div class="input-group">
 					<form class="form-controll" role="search"
@@ -75,12 +77,12 @@
 						</div>
 					</form>
 				</div>
-				<div class="button-group">
-					<button type="button" id="deleted" onclick="deleted();">삭제</button>					
-					<input type="button" value="추가" id="update" onclick="" />
+
+				<div class="btn-group">
+					<button type="button" id="deleted" onclick="">삭제</button>
+					<button type="button" id="update" onclick="">추가</button>
 				</div>
 			</div>
-		
 		<br />
 		<table class="table table-hover">
 			<tr>

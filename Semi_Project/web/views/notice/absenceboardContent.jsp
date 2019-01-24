@@ -135,7 +135,24 @@ input[value='삭제하기'] {
 				<%}%>
 			</table>
 								
-			<table class="type10 table">
+			
+			
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://semitest.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			
+			
+			
+		<%-- 			<!-- 댓글 폼 구현중  -->
+		
+		<table class="type10 table">
 				<thead>
 
 					<tr>
@@ -154,7 +171,6 @@ input[value='삭제하기'] {
 			</table>
 			</div>
 			
-		<%-- 			<!-- 댓글 폼 구현중  -->
 			<div class="comment-editor">			
 				<form action="<%=request.getContextPath() %>/board/commentInsert" name="boardCommentFrm" method="post">				
 					<input type="hidden" name="boardRef" value="boardNum"/> 
