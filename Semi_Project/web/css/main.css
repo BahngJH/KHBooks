@@ -326,6 +326,10 @@ div.item{
 	background: linear-gradient(to right, rgba(221,229,240,1) 1%,rgba(184,223,252,1) 24%,rgba(126,192,242,1) 50%,rgba(184,223,252,1) 75%, rgba(221,229,240,1)100%);
 }
 
+div.carousel-caption{
+	padding-bottom: 70px;
+}
+
 div.carousel-caption a{
 	text-decoration: none;
 	color: black;
