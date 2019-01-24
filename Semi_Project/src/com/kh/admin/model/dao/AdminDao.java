@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.kh.absence.model.vo.Absence;
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
 
@@ -26,6 +25,49 @@ public class AdminDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Book> searchBook(Connection conn,String keyword){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Book> list=new ArrayList();
+		String sql=prop.getProperty("searchbook");
+		Book b=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				b=new Book();
+				b.setBookName(rs.getString("bookname"));
+				b.setPrice(rs.getInt("price"));
+				b.setPublisher(rs.getString("publisher"));
+				b.setAuthorNum(rs.getInt("authornum"));
+				b.setGenre(rs.getString("genre"));
+				b.setBookId(rs.getInt("bookid"));
+				b.setIsbn(rs.getString("isbn"));
+				b.setBookImage(rs.getString("bookImage"));
+				b.setBookDate(rs.getDate("bookdate"));
+				b.setBookInfo(rs.getString("bookinfo"));
+				b.setEditor(rs.getString("editor"));
+				b.setTranslator(rs.getString("translator"));
+				b.setPageNum(rs.getInt("pagenum"));
+				b.setSales(rs.getInt("sales"));
+				b.setStock(rs.getInt("stock"));
+				b.setBookContent(rs.getString("bookcontent"));
+				b.setToc(rs.getString("toc"));
+				list.add(b);
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+		
 	}
 	
 	

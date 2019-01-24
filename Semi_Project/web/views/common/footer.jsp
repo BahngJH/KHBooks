@@ -69,6 +69,7 @@ div.notice-scroll{
 footer.fot{
 text-align:center;
 }
+footer.fot a{color:black;}
 
 
 div#btn{

@@ -27,6 +27,7 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
+ a{color: black;}
 
 </style>
 

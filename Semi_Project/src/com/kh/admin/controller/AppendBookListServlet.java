@@ -70,7 +70,7 @@ public class AppendBookListServlet extends HttpServlet {
 		
 			//2이상이면 이전 클릭시 현재 페이지 -1페이지로 이동
 			pageBar+="<li><a href='"+request.getContextPath()
-			+"/absence/page?cPage="+(pageNo-1)
+			+"/book/appendlist?cPage="+(pageNo-1)
 			+"&numPerPage="+numPerPage+"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}
 		//선택페이지 만들기
@@ -83,7 +83,7 @@ public class AppendBookListServlet extends HttpServlet {
 					else
 					{
 						pageBar+="<li><a href='"+request.getContextPath()
-						+"/absence/page?cPage="+(pageNo)
+						+"/book/appendlist?cPage="+(pageNo)
 						+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 					}
 					pageNo++;
@@ -93,7 +93,7 @@ public class AppendBookListServlet extends HttpServlet {
 			pageBar+="<li><span aria-hidden='true'>&raquo;</span></li>";
 			
 		}else {
-			pageBar+="<li><a href='"+request.getContextPath()+"/absence/page?cPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
+			pageBar+="<li><a href='"+request.getContextPath()+"/book/appendlistcPage="+pageNo+"&numPerPage="+numPerPage+"'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}
 	
 		

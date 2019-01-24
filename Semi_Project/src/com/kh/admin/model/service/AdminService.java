@@ -17,9 +17,16 @@ import com.kh.member.model.vo.Member;
 public class AdminService {
 	
 
+	public List<Book> searchBook(String keyword){
+		Connection conn=getConnection();
+		List<Book> list=new AdminDao().searchBook(conn,keyword);
+		close(conn);
+		return list;
+		
+	}
 	public int updatebook(Book b) {
 		Connection conn=getConnection();
-		System.out.println("서비스"+b);
+		
 		int result=new AdminDao().updatebook(conn,b);
 		if(result>0) {commit(conn);}
 		else {rollback(conn);}
