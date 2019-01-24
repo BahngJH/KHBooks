@@ -360,7 +360,7 @@ margin-right:440px;
 						      	<strong><%=r.getMemberId() %></strong> says :
 						      	<%if(r.getMemberNum()==logined.getMemberNum()){ %>
 						      		<i class="pull-right">
-						      			<a onclick="fn_updateReply();"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
+						      			<a onclick="fn_updateReply(this);"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
 						      			<a onclick="fn_deleteReply( '<%=r.getOrderReCoNum() %>');"><small>삭제</small></a>&nbsp;	<%} %>						      			
 					      			</i>
 		     				  </p>
@@ -405,18 +405,23 @@ margin-right:440px;
 			}
 			location.href="<%=request.getContextPath()%>/reply/deleteReply?no="+no+"&no1="+<%=ab.getAppNum()%>;
 		}
-		function fn_updateReply(){
-			tar reContent
+		function fn_updateReply(btn){
+			console.log(btn);
+			$(btn).parent().parent().next().hide();
+			var txt1="<textArea class='form-control'>Text.</textArea>";
+			$(btn).parent().parent().parent().append(txt1);
+		/* $('#repContent').hide(); */
+		}
 				
-			})
+		
 			
 			
 			
 			
-			 location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; 						
+			<%--  location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; 						 --%>
 			<%-- location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; --%>
 			
-		} 
+	
 
 		</script>
 </section>
