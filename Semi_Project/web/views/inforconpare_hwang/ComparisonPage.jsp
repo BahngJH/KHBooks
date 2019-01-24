@@ -255,10 +255,10 @@ com.kh.author.model.vo.Author'
 			                         <div class="input-group">
 			                            <span class="input-group-addon">책 이름 검색</span>
 			                            	<!-- 검색 하는곳 -->
-			                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName1">
+			                            <input type="text" class = "form-control" onkeyup="searchFunction1();" id="bookName1" name="bookName1">
 			                            <span class="input-group-btn">
 			                            	<!-- 검색 버튼 -->
-			                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn1" name='searchBtn1'>검색</button>
+			                                <button type="button" class="btn btn-default" onclick="searchFunction1();" id="searchBtn1" name='searchBtn1'>검색</button>
 			                            </span>
 			                        </div>
 				                </form>
@@ -296,7 +296,7 @@ com.kh.author.model.vo.Author'
 			                         <div class="input-group">
 			                            <span class="input-group-addon">책 이름 검색</span>
 			                            	<!-- 검색 하는곳 -->
-			                            <input type="text" class = "form-control" onkeyup="searchFunction2();" id="bookName2">
+			                            <input type="text" class = "form-control" onkeyup="searchFunction2();" id="bookName2" name="bookName2">
 			                            <span class="input-group-btn">
 			                            	<!-- 검색 버튼 -->
 			                                <button type="button" class="btn btn-default" onclick="searchFunction2();" id="searchBtn2" name='searchBtn2'>검색</button>
@@ -344,14 +344,12 @@ com.kh.author.model.vo.Author'
                     <a href="#" class="btn_compare">비교하기</a>
                 </div>
                 <div id="buycheck01" class="book_choice2">
-                  <div class="book_img" id="book_img1">
-                    <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=1" target="_blank"><img id="img0" width="125" height="179" src="<%=request.getContextPath() %>/images/book/이방인.jpg"></a></p>
+                  <div class="book_img" id="book_img1" style="top:-12px; width:125px; height:179px; border:1px solid white;">
                   </div>
                   <a class="Book1" href="#" id="zip_codeBtn1" data-toggle="modal" data-target="#conpareModal1">BOOK1</a>
                 </div>
                 <div id="buycheck02" class="book_choice2">
-                  <div class="book_img" id="book_img2">
-                    <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="<%=request.getContextPath() %>/images/book/어린왕자.jpg"></a></p>
+                  <div class="book_img" id="book_img2" style="top:-12px; width:125px; height:179px; border:1px solid white;">
                   </div>
                   <a class="Book2" href="#" id="zip_codeBtn2" data-toggle="modal" data-target="#conpareModal2">BOOK2</a>
                 </div>
@@ -362,49 +360,39 @@ com.kh.author.model.vo.Author'
             <table class="compare_list" summary="">
                 <caption></caption>
                 <colgroup>
-                <col width="189px"><col width="189px"><col width="189px"><col width="189px"><col width="189px">
+                <col width="168px"><col width="189px"><col width="189px"><col width="189px"><col width="189px">
                 </colgroup>
                 <tbody>
                   <tr class="border_color" id="bookNm">
                     <th scope="row">
                       <strong class="rank_title"><small>도서명</small></strong>
                     </th>
-					<td id="buycheck01">
-	                    <span><small>어린 왕자(양장본 HardCover)</small></span>
+					<td id="bottomTitle1">
 					</td>
-					<td id="buycheck02">
+					<td id="bottomTitle2">
 	                    <span><small>어린왕자(초판본)(양장본 HardCover)</small></span>
 					</td>
-					
-					
                   </tr>
                   <tr class="tr_color" id="price">
                     <th scope="row">
                       <strong class="rank_title"><small>가격</small></strong>
                     </th>
-                    <td id="buycheck01">
-                        <div class="spec_price">
-                          <span class="cost"><small>9,800원</small></span>
-                          <span class="price" style='font-size:20px;'><small>8,820원</small></span>ㅣ<span class="discount"><small>490P</small></span>
-                        </div>
+                    <td id="bottomPrice1">
                     </td>
-                    <td id="buycheck02">
+                    <td id="bottomPrice2">
                       <div class="spec_price">
                           <span class="cost"><small>9,800원</small></span>
                           <span class="price" style='font-size:20px;'><small>8,820원</small></span>ㅣ<span class="discount"><small>490P</small></span>
                         </div>
                     </td>
-
-                    
                   </tr>
                   <tr id="pubNm">
                     <th scope="row">
                       <strong class="rank_title"><small>출판사</small></strong>
                     </th>
-                    <td id="buycheck01">
-                      <span><small>열린책들</small></span>
+                    <td id="bottomPubl1">
                     </td>
-                    <td id="buycheck02">
+                    <td id="bottomPubl2">
                       <span><small>더스토리</small></span>
                     </td>
                     
@@ -414,10 +402,9 @@ com.kh.author.model.vo.Author'
                     <th scope="row">
                       <strong class="rank_title"><small>저자</small></strong>
                     </th>
-                    <td id="buycheck01">
-                      <span><small>앙투안 드 생택쥐페리</small></span>
+                    <td id="bottomAuthorName1">
                     </td>
-                    <td id="buycheck02">
+                    <td id="bottomAuthorName2">
                       <span><small>생텍쥐페리</small></span>
                     </td>
                     
@@ -427,10 +414,9 @@ com.kh.author.model.vo.Author'
 					<th scope="row">
 						<strong class="rank_title"><small>출간일자</small></strong>
 					</th>
-                    <td id="buycheck01">
-						<span><small>2015년 10월 20일</small></span>
+                    <td id="bottomDate1">
                     </td>
-                    <td id="buycheck02">
+                    <td id="bottomDate2">
 						<span><small>2018년 9월 10일</small></span>
                     </td>
                   </tr>
@@ -440,19 +426,35 @@ com.kh.author.model.vo.Author'
     </div>
     <script type="text/javascript">
 	var request=new XMLHttpRequest();
-	function searchFunction() {
+	function searchFunction1() {
+		var context=$('[name=bookName1]').val();
+		if(context.trim().length!=0){
 		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName1').value), true);
-		request.onreadystatechange=searchProcess;
+		request.onreadystatechange=searchProcess1;
 		request.send();
+		return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	function searchProcess() 
+	function searchProcess1() 
 	{
 		var table=document.getElementById("ajaxTable1");
-		var imgtable=document.getElementById("book_img1");
-		var bottomtable=document.getElementById("");
 		table.innerHTML="";
-		imgtable.innerHTML="";
-		/*bottomtable.innerHTML=""; */
+/* 		var imgtable=document.getElementById("book_img1");
+		var bottomtable=document.getElementById("bottomTitle1");
+		var bottomPrice1=document.getElementById("bottomPrice1");
+		var bottomPubl1=document.getElementById("bottomPubl1");
+		var bottomAuthorName1=document.getElementById("bottomAuthorName1");
+		var bottomDate1=document.getElementById("bottomDate1"); */
+/* 		imgtable.innerHTML="";
+		bottomtable.innerHTML="";
+		bottomPrice1.innerHTML="";
+		bottomPubl1.innerHTML="";
+		bottomAuthorName1.innerHTML="";
+		bottomDate1.innerHTML=""; */
 		if(request.readyState==4 && request.status==200)
 		{
 			var result=eval(request.responseText);
@@ -460,12 +462,20 @@ com.kh.author.model.vo.Author'
 			for(var i=0; i<result.length; i++)
 			{
 				table.innerHTML+="<tr>";
-				table.innerHTML+="<td><img class='imagess1' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
+				table.innerHTML+="<td><img class='imagess1' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td><strong>"+result[i].bookName+"</strong><a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
 				table.innerHTML+="</tr>";
-				imgtable.innerHTML+="<p>";
-				imgtable.innerHTML+="<a id='detail0' href='<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId='+result[i].bookId+''target='_blank'><img id='img0' width='125' height='179' src='<%=request.getContextPath() %>/images/book/이방인.jpg'></a>";
+				<%-- imgtable.innerHTML+="<p>";
+				imgtable.innerHTML+="<a id='detail0' href='"+'<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId='+result[i].bookId+"' target='_blank'><img id='img0' width='125' height='179' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></a>";
 				imgtable.innerHTML+="</p>";
-				console.log(result[i].bookId);
+				bottomtable.innerHTML+="<span>";
+				bottomtable.innerHTML+="<small>"+result[i].bookName+"</small>";
+				bottomtable.innerHTML+="</span>";
+				bottomPrice1.innerHTML+="<div class='spec_price'>";
+				bottomPrice1.innerHTML+="<span class='cost' style='font-size:20px; color:red;'><small>"+result[i].price+"원</small></span>";
+				bottomPrice1.innerHTML+="</div>";
+				bottomPubl1.innerHTML+="<span><small>"+result[i].publisher+"</small></span>";
+				bottomAuthorName1.innerHTML+="<span><small>"+result[i].author.authorName+"</small></span>";
+				bottomDate1.innerHTML+="<span><small>"+result[i].bookDate+"</small></span>"; --%>
 				
 				console.log(result);
 			}
@@ -474,26 +484,29 @@ com.kh.author.model.vo.Author'
 	
 	
 	function searchFunction2() {
+		var context=$('[name=bookName2]').val();
+		if(context.trim().length!=0){
 		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName2').value), true);
 		request.onreadystatechange=searchProcess2;
 		request.send();
+		return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	function searchProcess2() 
 	{
 		var table=document.getElementById("ajaxTable2");
-		var imgtable=document.getElementById("book_img2");
-		var bottomtable=document.getElementById("");
 		table.innerHTML="";
-		imgtable.innerHTML="";
-		/*bottomtable.innerHTML=""; */
 		if(request.readyState==4 && request.status==200)
 		{
 			var result=eval(request.responseText);
-			
 			for(var i=0; i<result.length; i++)
 			{
 				table.innerHTML+="<tr>";
-				table.innerHTML+="<td><img class='imagess2' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
+				table.innerHTML+="<td><img class='imagess2' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td><strong>"+result[i].bookName+"</strong><a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
 				table.innerHTML+="</tr>";
 				
 				console.log(result);

@@ -44,10 +44,10 @@ public class ConpareViewServlet extends HttpServlet {
 		result.append("{\"result\":[");
 		ConpareService conpareService=new ConpareService();
 		List<Book> bookList=conpareService.selectConpareBook(bookName);
+		System.out.println(bookList.size());
 		for(int i=0; i<bookList.size(); i++)
 		{
-			result.append("[{\"value\":\""+bookList.get(i).getBookImage()+"\"},");
-			result.append("{\"value\":\""+bookList.get(i).getBookName()+"\"}],");
+			result.append("[{\"value\":\""+bookList.get(i).getBookId()+"\"},");
 		}
 		result.append("]}");
 		return result.toString();
