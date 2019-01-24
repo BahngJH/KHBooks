@@ -417,7 +417,7 @@ input[value='삭제하기'] {
 		<script>
 		
 		function appendBook(){
-			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>";
+			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>&no=<%=ab.getAppNum()%>";
 		}
 		
 		function deleted(){

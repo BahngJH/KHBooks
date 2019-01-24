@@ -35,19 +35,23 @@ public class BookAppendServlet extends HttpServlet {
 			int memberNum = logined.getMemberNum();	
 		
 			String isbn = request.getParameter("isbn");
+			String no = request.getParameter("no");
 			
 			if(isbn == null) {
 				isbn = "";
 			}
 			
+			request.setAttribute("no", no);
 			request.setAttribute("isbn", isbn);
 			request.getRequestDispatcher("/views/admin/bookAppendForm.jsp").forward(request, response);
 			}else {
+				//관리자가 아닐 때
 				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
 				request.setAttribute("loc", "/main/mainView");
 				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
 			}
 		}else {
+			//로그인을 안했을 때
 			response.sendRedirect(request.getContextPath()+"/member/login");
 		}
 	}
