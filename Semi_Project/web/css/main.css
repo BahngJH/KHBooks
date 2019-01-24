@@ -281,7 +281,7 @@ div.book-container>div>a.author-name{
 	}
 }
 
-@media (min-width:300px) and (max-width:400px){
+@media (max-width:400px){
 	div.thumbnail-container{
 		padding: 0px;
 		height: 260px;

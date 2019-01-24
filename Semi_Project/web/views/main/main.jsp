@@ -5,6 +5,7 @@
 	List<Book> best = (List)request.getAttribute("best");
 	List<Book> recent = (List)request.getAttribute("recent");
 	List<Notice> notices = (List)request.getAttribute("notice");
+	boolean active = false;
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -15,14 +16,11 @@
                     <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-id" data-slide-to="1" class=""></li>
                     <li data-target="#carousel-id" data-slide-to="2" class=""></li>
-                    <li data-target="#carousel-id" data-slide-to="3" class=""></li>
                 </ol>
                 <div class="carousel-inner">
-                	<div class="item active">
-                    	<img src="<%=request.getContextPath() %>/images/main.png"/>
-                    </div>
                    	<%for(Notice n : notices){%>
-                    <div class="item">
+                    <div class="item <%=active?"":"active"%>">
+                    	<%active=true; %>
                         <div class="container">
                             <div class="carousel-caption">
 	                            <a href="<%=request.getContextPath()%>/notice/noticeContent?no=<%=n.getNoticeNo()%>">
