@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 
@@ -7,21 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.admin.model.service.AdminService;
 
 /**
- * Servlet implementation class DeleteMemberServlet
+ * Servlet implementation class AdminDeleteMemberServlet
  */
-@WebServlet("/member/deleteMember")
-public class DeleteMemberServlet extends HttpServlet {
+@WebServlet("/admin/deleteMember")
+public class AdminDeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberServlet() {
+    public AdminDeleteMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,9 +29,10 @@ public class DeleteMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession(false);
-		int no = Integer.parseInt(request.getParameter("no"));		
-		int result = new MemberService().deleteMember(no);
+		String nums = request.getParameter("nums");
+		String[] num = nums.split(",");
+
+		int result = new AdminService().deleteMember(num);
 		
 		String msg="";
 		String loc="";
@@ -41,14 +41,13 @@ public class DeleteMemberServlet extends HttpServlet {
 		
 		if(result > 0) 
 		{
-			msg="회원 탈퇴 성공";
-			loc="/views/main/main.jsp";
-			session.invalidate();		// 로그인 되어있던 세션을 끊음
+			msg="회원 삭제 성공";
+			loc="/admin/member";			
 		}
 		else 
 		{
 			msg="회원 탈퇴 실패";
-			loc="/member/updateInfo";
+			loc="/admin/member";
 		}
 		
 		request.setAttribute("msg", msg);
