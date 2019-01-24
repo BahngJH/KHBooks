@@ -47,9 +47,9 @@ public class InfoService {
 		return cnt;
 	}
 	
-	public int selectReviewCount() {
+	public int selectReviewCount(int bookId) {
 		Connection conn=getConnection();
-		int result=new InfoDao().selectReviewCount(conn);
+		int result=new InfoDao().selectReviewCount(conn,bookId);
 		close(conn);
 		return result;
 	}

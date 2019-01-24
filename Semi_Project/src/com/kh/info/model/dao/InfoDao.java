@@ -176,14 +176,14 @@ public class InfoDao {
 		return avg;
 	}
 	
-	public int selectReviewCount(Connection conn) {
+	public int selectReviewCount(Connection conn, int bookId) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		int avg=0;
 		String sql=prop.getProperty("selectReviewCount");
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				result=rs.getInt("cnt");

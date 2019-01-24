@@ -55,7 +55,7 @@ public class InfoViewServlet extends HttpServlet {
 		
 		//페이지구성해보자~!
 		//전체자료수를 확인
-		int totalReview = new InfoService().selectReviewCount();
+		int totalReview = new InfoService().selectReviewCount(bookId);
 		//전체페이지수
 		int totalPage=(int)Math.ceil((double)totalReview/numPerPage);
 		//페이지바 html코드 누적변수
