@@ -13,7 +13,6 @@ import java.util.Properties;
 
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
-import com.kh.csCenter.model.vo.Qna;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -488,5 +487,5 @@ public class MemberDao {
 		
 		
 	}
-	
+
 }

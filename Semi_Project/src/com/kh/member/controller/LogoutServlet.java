@@ -33,8 +33,10 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//false : 없으면 그냥 주지마! true : 없으면 만들어서줘
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);		
+				
 		session.invalidate();
+
 		
 		response.sendRedirect(request.getContextPath()+"/");
 		

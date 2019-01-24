@@ -103,9 +103,9 @@
     		  url: '/v1/user/me',
     		  success: function(res){
     			  console.log(JSON.stringify(res.properties.nickname));
-    			  /* console.log(JSON.stringify(res.gender));
+    			  console.log(JSON.stringify(res.gender));
     			  console.log(JSON.stringify(res.account_email));
-    			  console.log(JSON.stringify(res.birthday)); */
+    			  console.log(JSON.stringify(res.birthday)); 
     			  
     		  },
     		  fail: function(error){
