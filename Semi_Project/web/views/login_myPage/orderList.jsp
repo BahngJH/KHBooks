@@ -68,8 +68,8 @@
 							</tr>
 						</thaed>
 						<tbody>							
-							<%for(Order o : list) {%>
-								<%if(status) { %>
+							<%if(status) { %>
+								<%for(Order o : list) {%>
 									<tr>
 										<!-- 책 이미지 -->
 										<td>
@@ -102,17 +102,19 @@
 											<p><%=o.getBook().getPrice() * o.getBookCount()%>원</p>
 										</td>
 									</tr>
-									<%} else {%>	
+									<%} %>
+								<% } else {%>	
 										<tr>
 											<td colspan='5'>구매 도서 정보가 없습니다.</td>
 										</tr>																									
-								<% break;}
-								}%>
+								<% }%>
 						</tbody>
 					</table>
-	                <div class="paging col-xs-12" style="text-align: center">
-						<%=pageBar %>
-					</div>							
+					<%if(status) { %>					
+		                <div class="paging col-xs-12" style="text-align: center">
+							<%=pageBar %>
+						</div>	
+					<%} %>						
 				</article>
 			</section>
 		</div>

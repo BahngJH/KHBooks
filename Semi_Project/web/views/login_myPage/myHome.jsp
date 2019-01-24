@@ -14,6 +14,7 @@
 	boolean rStatus = (boolean)request.getAttribute("rStatus");
 	List<Qna> qnaList = (List)request.getAttribute("qnaList");
 	boolean qStatus = (boolean)request.getAttribute("qStatus");
+	
 %>
 
 
@@ -36,7 +37,7 @@
 	div.userInfo table.tbl-userInfo th {
 	    padding: 10px;
 	    font-weight: bold;
-	    vertical-align: top;
+	    vertical-align: middle;
 	    border-bottom: 1px solid #ccc;
 	    background: #f3f6f7;
 	    text-align: center;
@@ -46,7 +47,7 @@
 	div.userInfo table.tbl-userInfo td {
 		width: 30%;
 	    padding: 10px;
-	    vertical-align: top;
+	    vertical-align: middle;
 	    border-bottom: 1px solid #ccc;
 	}
 	div.myOrderBook{
@@ -121,11 +122,8 @@
 							<tr>
 								<th>phone</th>
 								<td><%=logined.getPhone()%></td>
-								
-							</tr>
-							<tr>
 								<th>이메일</th>
-								<td colspan='3'><%=logined.getEmail() %></td>
+								<td><%=logined.getEmail() %></td>
 							</tr>
 							<tr>
 								<th>주소</th>
@@ -162,13 +160,12 @@
 							</tr>	
 								<%} else {%>	
 									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+										<td colspan='5'>최근 문의 내역이 없습니다.</td>
 									</tr>																									
 							<% break;}
 							}%>					
 						</tbody>	
 					</table>
-				
 				</article>				
 				
 				<article class="buy-container">
@@ -228,7 +225,7 @@
 								}%>
 							</tbody>
 						</table>
-				</article>
+				</article> 
 				
 				
 				<article class="review-container">
@@ -270,7 +267,7 @@
 							</tr>
 								<%} else {%>	
 									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+										<td colspan='5'>남긴 리뷰가 없습니다.</td>
 									</tr>																									
 							<% break;}
 							}%>							
@@ -278,7 +275,7 @@
 						
 					</table>			
 					
-				</article>				
+				</article> 			
 					
 			</section>				
 		</div>

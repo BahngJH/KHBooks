@@ -27,6 +27,7 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
+ a{color: black;}
 
 </style>
 
@@ -38,7 +39,7 @@ border-height: 10px;
   				<h2>최근 부재도서 주문내역</h2>
 				<hr/>
 				<br/>
-		<table class="table table-striped">
+		<table class="table table-striped" style=text-align:center;>
 					<colgroup>
 						<col width="86px" />
 						<col width="*" />
@@ -71,7 +72,7 @@ border-height: 10px;
 				<h2>최근 공지사항내역</h2>
 				<hr/>
 				<br/>
-					<table class="table table-striped">
+					<table class="table table-striped" style=text-align:center;>
 					<colgroup>
 						<col width="86px" />
 						<col width="*" />

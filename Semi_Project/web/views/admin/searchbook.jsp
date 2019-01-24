@@ -3,7 +3,7 @@
     <%@ page import="com.kh.book.model.vo.*,java.util.*" %>
     <%
     	List<Book> list=(List)request.getAttribute("list");
-    String pageBar1=(String)request.getAttribute("pageBar");
+
     %>
 <%@ include file="/views/common/adminheader.jsp"%>
 
@@ -129,7 +129,6 @@ function del(){
 				<th>가격</th>
 				<th>출판사</th>
 				<th>장르</th>
-				<th>책번호</th>
 				<th>ISBN</th>
 				<th>출간일</th>
 				<th>선택</th>
@@ -144,7 +143,6 @@ function del(){
 				<td class="updatebook<%=b.getBookId()%>"><%=b.getPrice()%></td>
 				<td class="updatebook<%=b.getBookId()%>"><%=b.getPublisher()%></td>
 				<td class="updatebook<%=b.getBookId()%>"><%=b.getGenre()%></td>
-				<td class="updatebook<%=b.getBookId()%>"><%=b.getBookId()%></td>
 				<td class="updatebook<%=b.getBookId()%>"><%=b.getIsbn()%></td>
 				<td class="updatebook<%=b.getBookId()%>"><%=b.getBookDate()%></td>
 				<td><input type="checkbox" name="delete" value="<%=b.getBookId()%>"/></td>
@@ -173,9 +171,7 @@ function del(){
 
 		</table>
 	
-	<div class="text-center">
-		<%=pageBar1%>
-	</div>
+	
 </div>
 </div>
 </div>

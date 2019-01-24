@@ -34,25 +34,7 @@ border-height: 10px;
  .col-sm-9 td{
  text-align:center;
  }
- input[value='새등록']{
-  background-color: skyblue;
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-decoration: none;
 
-  float:right;
-  cursor: pointer;}
-input[value='주문하기'] {
-  background-color: skyblue;
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-decoration: none;
-
-  float:right;
-  cursor: pointer;
-}
 
 span.glyphicon-ok{
 	color: #1f8ce6;
@@ -65,10 +47,7 @@ span.glyphicon-ok{
 function absence1(){
 	location.href="<%=request.getContextPath()%>/notice/absence";
 }
-function absence(){
-	alert("로그인후 이용해주세요");
-	location.href="<%=request.getContextPath()%>/notice/absence";
-}
+
 </script>
 
 			<div class="col-sm-1"></div>
@@ -79,11 +58,9 @@ function absence(){
 				<br/>
 				<article id="edit">
 				
-				<%if(logined!=null) {%>
-					<input type="button" value="주문하기" onclick="absence1();"/>
-					<%}else{ %>
-					<input type="button" value="주문하기" onclick="absence();"/>
-				<%} %>
+				
+					
+					
 				
 				</article>
 				
@@ -109,7 +86,7 @@ function absence(){
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>
 						<td>
-							<a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a>
+							<a style="text-decoration:none"><%=ab.getBookName()%></a>
 							<%=ab.getStatus().equals("D")?"<span class='glyphicon glyphicon-ok'></span>":"" %>
 						</td>
 						<td><%=ab.getAppDate()%></td>	

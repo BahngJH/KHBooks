@@ -6,7 +6,7 @@ marquee {
 	height: 30px;
 	width:300px;
 }
-div.notice,div.title{}
+
 
 marquee ul {
 	list-style-type: none;
@@ -18,12 +18,6 @@ marquee ul {
 	text-align:center;
 }
 
-
-
-/*  div.title, div.notice {
-	float: left;
-	margin: 0px 0px 0px 400px;
-}  */
 
 .fot address {
 	text-align: center;
@@ -49,9 +43,6 @@ a#MOVE_TOP_BTN {
 		url('<%=request.getContextPath()%>/images/icons/top.png');
 }
 
-footer{
-	margin-top:0px;
-}
 
 footer.fot, div#btn a {
 	background-color: #f8f8f8;
@@ -60,10 +51,10 @@ footer.fot, div#btn a {
 
 .fot hr {
 	border: 1px solid gray;
-	padding:0px;
+	margin-top:8px;
 }
 
-div#btn a, div#btn h4 {
+div#btn a, {
 	color: black;
 	
 	text-align: center;
@@ -78,12 +69,13 @@ div.notice-scroll{
 footer.fot{
 text-align:center;
 }
+footer.fot a{color:black;}
 
 
 div#btn{
 	margin-left: 35.3%;margin-right:30%;	
 }
-footer.fot div.notice{margin-left:-10%;margin-right: 30%;}
+footer.fot div.notice{margin-left:-5%;margin-right: 30%;}
 footer.fot div.title{margin-left: 20%}
 div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 
@@ -93,7 +85,7 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 	<div class="row">
 		<div class="row notice-scroll">
 			<div class="title col-xs-3 col-md-offset-4 col-md-2">
-				<h4 style="vertical-align: middle;">
+				<h4 >
 					<strong>공지사항:</strong>
 				</h4>
 			</div> 
@@ -102,21 +94,25 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 				<marquee onmouseover='this.stop()' onmouseout='this.start()'
 					direction='up' scrolldelay=1500>
 					<ul class="Notice_List">
-						<h4>
+						<a>
 							<li>kh문고 시스템 점검 1/30</li>
-						</h4>
-						<h4>
+						</a>
+						<br/>
+						<a>
 							<li>개인정보처리방침 개정</li>
-						</h4>
-						<h4>
+						</a>
+						<br/>
+						<a>
 							<li>설 연휴기간 휴무</li>
-						</h4>
-						<h4>
+						</a>
+						<br/>
+						<a>
 							<li>고객센터 하단메뉴이용</li>
-						</h4>
-						<h4>
+						</a>
+						<br/>
+						<a>
 							<li>2019년 휴무일 안내</li>
-						</h4>
+						</a>
 					</ul>
 				</marquee>
 			</div>
@@ -124,7 +120,7 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 		<hr />
 		
 		<div id="btn" class="row">
-			<div class='col-xs-1 col-sm-1 col-md-1'>
+			<div class='mark col-xs-1 col-sm-1 col-md-1'>
 				<h4>
 					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
 				</h4>

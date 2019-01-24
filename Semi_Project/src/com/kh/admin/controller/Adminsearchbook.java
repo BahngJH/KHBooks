@@ -1,4 +1,4 @@
-package com.kh.order.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
-import com.kh.order.model.service.OrderService;
-import com.kh.order.model.vo.Order;
+import com.kh.admin.model.service.AdminService;
+import com.kh.book.model.vo.Book;
 
 /**
- * Servlet implementation class OrderSearchServlet
+ * Servlet implementation class Adminsearchbook
  */
-@WebServlet("/order/orderSearch")
-public class OrderSearchServlet extends HttpServlet {
+@WebServlet("/admin/searchbook")
+public class Adminsearchbook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderSearchServlet() {
+    public Adminsearchbook() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +31,12 @@ public class OrderSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		int no = logined.getMemberNum();
-		String keyword = request.getParameter("keyword");
+		String keyword=request.getParameter("keyword");
+		List<Book> list=new AdminService().searchBook(keyword);
 		
-		List<Order> list = new OrderService().searchOrder(keyword, no);
+		request.setAttribute("list",list);
+		request.getRequestDispatcher("/views/admin/searchbook.jsp").forward(request, response);
 		
-		boolean status = false;
-		for(Order o : list) {
-			if (o.getStatus().equals("y") || o.getStatus().equals("Y") ) {
-				status = true;
-			}
-		}
-		request.setAttribute("status", status);
-		request.setAttribute("searchList", list);
-		request.getRequestDispatcher("/views/login_myPage/searchOrderList.jsp").forward(request, response);
 	}
 
 	/**

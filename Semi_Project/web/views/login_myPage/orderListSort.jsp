@@ -5,6 +5,7 @@
 <%
 	List<Order> list = (List)request.getAttribute("sortList");
 	String pageBar=(String)request.getAttribute("pageBar");
+	boolean status = (boolean)request.getAttribute("status");
 %>
 
 <style>
@@ -67,8 +68,8 @@
 							</tr>
 						</thaed>
 						<tbody>							
-							<%for(Order o : list) {%>
-								<%if(o.getStatus().equals("Y") || o.getStatus().equals("y")) { %>
+							<%if(status) { %>
+								<%for(Order o : list) {%>
 									<tr>
 										<!-- 책 이미지 -->
 										<td>
@@ -101,18 +102,19 @@
 											<h3><%=o.getBook().getPrice() * o.getBookCount()%></h3>
 										</td>
 									</tr>
-								<%} else {%>	
-									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
-									</tr>							
-																		
-							<% break;}
-							}%>
+									<%} %>
+								<% } else {%>	
+										<tr>
+											<td colspan='5'>구매 도서 정보가 없습니다.</td>
+										</tr>																									
+								<% }%>
 						</tbody>
 					</table>
-					<div id="pageer">
-						<%=pageBar %>
-					</div>
+					<%if(status) { %>					
+		                <div class="paging col-xs-12" style="text-align: center">
+							<%=pageBar %>
+						</div>	
+					<%} %>	
 				</article>
 			</section>
 		</div>
