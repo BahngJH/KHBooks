@@ -14,6 +14,7 @@
 	boolean rStatus = (boolean)request.getAttribute("rStatus");
 	List<Qna> qnaList = (List)request.getAttribute("qnaList");
 	boolean qStatus = (boolean)request.getAttribute("qStatus");
+	
 %>
 
 
@@ -165,7 +166,6 @@
 							}%>					
 						</tbody>	
 					</table>
-				
 				</article>				
 				
 				<article class="buy-container">
@@ -225,7 +225,7 @@
 								}%>
 							</tbody>
 						</table>
-				</article>
+				</article> 
 				
 				
 				<article class="review-container">
@@ -275,7 +275,7 @@
 						
 					</table>			
 					
-				</article>				
+				</article> 			
 					
 			</section>				
 		</div>

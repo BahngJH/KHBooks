@@ -86,8 +86,8 @@
         </form>
             <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default">
  	   </div>
-<!-- 카카오로 로그인하기 연구중	   
-<a id="kakao-login-btn"></a>
+   
+<!-- <a id="kakao-login-btn"></a>
 <a href="http://developers.kakao.com/logout"></a>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type='text/javascript'>
@@ -104,9 +104,9 @@
     		  url: '/v2/user/me',
     		  success: function(res){
     			  console.log(res);
-    			  console.log(res.kakao_accuont_email);
-    			  console.log(res.kakao_accuont);
     			  console.log(JSON.stringify(res.properties.nickname));
+    			  console.log(JSON.stringify(res.kakao_account.email));
+    			  console.log(res.kakao_account);
     			  console.log(JSON.stringify(res.gender));
     			  console.log(JSON.stringify(res.account_email));
     			  console.log(JSON.stringify(res.birthday)); 
@@ -124,7 +124,7 @@
       }
     });
   //]]>
-</script> -->
+</script>  -->
     <script>
     	function goEnroll(){
     		location.href="<%=request.getContextPath()%>/member/enroll";
