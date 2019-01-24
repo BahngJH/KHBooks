@@ -32,26 +32,7 @@ public class UpdateReplyServlet extends HttpServlet {
 		int reNo=Integer.parseInt(request.getParameter("no"));//쿼리스트링으로 보내준 댓글번호
 		int no=Integer.parseInt(request.getParameter("no1"));//쿼리스트링으로 보내준 원글 번호
 	
-		Reply r=new ReplyService().selectReplyList(no);
-		int result=new ReplyService().updateReply(reNo);
 	
-		
-		String msg="";
-		String view ="/views/common/msg.jsp";
-		String loc="";
-		if(result>0) {
-			
-			view="/notice/absencecontent?no="+no;
-			
-				
-			}else{
-				msg="삭제실패";
-				loc="/";
-			}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
-		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

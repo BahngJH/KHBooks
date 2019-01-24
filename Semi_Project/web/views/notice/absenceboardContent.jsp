@@ -364,9 +364,14 @@ margin-right:440px;
 						      			<a onclick="fn_deleteReply( '<%=r.getOrderReCoNum() %>');"><small>삭제</small></a>&nbsp;	<%} %>						      			
 					      			</i>
 		     				  </p>
-						      <p id="repContent"><!--댓글 내용부분-->
-						        <%=r.getOrderReContent() %>
-						      </p>
+		     				  <!--댓글 내용부분-->
+		     				<%--   <form action='<%=request.getContextPath()%>/reply/updateReply' method="post" >	 --%>			      
+						      <p id="repContent"><%=r.getOrderReContent() %></p>
+						      <input type="hidden" name="orderreconum" value="<%=r.getOrderReCoNum() %>">
+						      <input type="hidden" name="memberNum" value="<%=r.getMemberNum()%>"> 
+						      <input type="hidden" name="orderbooknum" value="<%=r.getOrderBookNum() %>">
+						      <input type="hidden" name="orderreconum" value="<%=r.getOrderReCoNum() %>">						      						      
+						  <!--     </form> -->
 						  </div> 										  								 			 
 						</li>
 									
@@ -408,7 +413,8 @@ margin-right:440px;
 		function fn_updateReply(btn){
 			console.log(btn);
 			$(btn).parent().parent().next().hide();
-			var txt1="<textArea class='form-control'>Text.</textArea>";
+			var content=$(btn).parent().parent().next().find('p').html();
+			var txt1="<textArea class='form-control' name='orderrecontent' required></textArea><input type='submit' value='취소'/>";				
 			$(btn).parent().parent().parent().append(txt1);
 		/* $('#repContent').hide(); */
 		}
