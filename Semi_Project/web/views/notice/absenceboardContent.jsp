@@ -41,13 +41,6 @@ body { padding-top:30px; }
 
 
 
-
-
-
-body{
-    background:#eee;
-}
-
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -417,7 +410,7 @@ input[value='삭제하기'] {
 		<script>
 		
 		function appendBook(){
-			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>";
+			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>&no=<%=ab.getAppNum()%>";
 		}
 		
 		function deleted(){
