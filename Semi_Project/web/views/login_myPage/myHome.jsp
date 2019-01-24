@@ -36,7 +36,7 @@
 	div.userInfo table.tbl-userInfo th {
 	    padding: 10px;
 	    font-weight: bold;
-	    vertical-align: top;
+	    vertical-align: middle;
 	    border-bottom: 1px solid #ccc;
 	    background: #f3f6f7;
 	    text-align: center;
@@ -46,7 +46,7 @@
 	div.userInfo table.tbl-userInfo td {
 		width: 30%;
 	    padding: 10px;
-	    vertical-align: top;
+	    vertical-align: middle;
 	    border-bottom: 1px solid #ccc;
 	}
 	div.myOrderBook{
@@ -121,11 +121,8 @@
 							<tr>
 								<th>phone</th>
 								<td><%=logined.getPhone()%></td>
-								
-							</tr>
-							<tr>
 								<th>이메일</th>
-								<td colspan='3'><%=logined.getEmail() %></td>
+								<td><%=logined.getEmail() %></td>
 							</tr>
 							<tr>
 								<th>주소</th>
