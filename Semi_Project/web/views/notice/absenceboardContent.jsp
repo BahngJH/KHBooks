@@ -329,8 +329,6 @@ input[value='삭제하기'] {
 
 
 
-<%for(Reply r : rlist) { %>
- <%if(r.getOrderReContent()!=null&&logined!=null){%>
 <div class="container bootstrap snippet">
     <div class="row">
 		<div class="col-md-12">
@@ -338,6 +336,8 @@ input[value='삭제하기'] {
 				<h3 class="text-success">댓글목록</h3>
                 <hr/>				
 					<ul class="comments">			
+<%for(Reply r : rlist) { %>
+ <%if(r.getOrderReContent()!=null&&logined!=null){%>
 						<li class="clearfix">
 						  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
 						  <div class="post-comments">				
