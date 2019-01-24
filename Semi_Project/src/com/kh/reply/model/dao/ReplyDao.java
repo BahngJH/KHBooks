@@ -66,7 +66,7 @@ public class ReplyDao {
 				r.setOrderReContent(rs.getString("orderReContent"));
 				r.setStatus(rs.getString("status"));
 				r.setOrderReDate(rs.getDate("orderReDate"));
-				//r.setMemberId(rs.getString("memberId"));
+				r.setMemberId(rs.getString("memberId"));
 	
 				list.add(r);
 			}			
@@ -80,6 +80,26 @@ public class ReplyDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	//댓글 삭제
+	public int deleteReply(Connection conn, int reNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = prop.getProperty("deleteReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reNo);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
 	}
 	
 

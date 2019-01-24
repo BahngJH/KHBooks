@@ -10,7 +10,8 @@ public class Reply {
 	private String orderReContent; // 내용
 	private String status; // 상태
 	private Date orderReDate; // 날짜, 시간
-	private String memberId;
+	private String memberId;//회원아이디
+	
 	
 
 	public Reply() {
