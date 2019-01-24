@@ -24,8 +24,8 @@
                         <div class="container">
                             <div class="carousel-caption">
 	                            <a href="<%=request.getContextPath()%>/notice/noticeContent?no=<%=n.getNoticeNo()%>">
-    	                            <h2><%=n.getNoticeTitle() %></h2>
-        	                        <p><%=n.getNoticeContent().substring(0, 94)+"..." %></p>
+    	                            <h3><%=n.getNoticeTitle() %></h3>
+        	                        <p><%=n.getNoticeContent().substring(0, 89)+"..." %></p>
 	                            </a>                    
                             </div>
                         </div>
