@@ -41,13 +41,6 @@ body { padding-top:30px; }
 
 
 
-
-
-
-body{
-    background:#eee;
-}
-
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -139,19 +132,6 @@ a {
 	font-weight: 800;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #return {
 	background-color: #555555;
 	color: white;
@@ -177,8 +157,8 @@ table.type10 {
 	line-height: 1.5;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
-	margin: 40px 10px 0px 180px;
-	width:0px; height:30px;
+	/* margin: 40px 10px 0px 180px; */
+	/* width:0px; */ height:30px;
 }
 
 table.type10 thead th {
@@ -222,7 +202,7 @@ input[value='삭제하기'] {
 
 </style>
 <section>
-	<div class=" col-sm-8">
+	<div class=" col-sm-12 col-md-9">
 <br/><br/>
 		
 		

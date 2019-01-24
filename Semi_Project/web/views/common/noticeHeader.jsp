@@ -6,7 +6,7 @@
 
 
 <style>
-.col-sm-2 a {
+.notice-header a {
    color: black;
    cursor: pointer;
    text-decoration: none;
@@ -18,15 +18,15 @@ div a {
    text-decoration: none;
 }
 
-.col-sm-2 {
+.notice-header {
    margin: 120px 0 0 0;
 }
 
-.col-sm-2 hr {
+.notice-header hr {
    border: solid 1px darkgray;
 }
 
-.col-sm-2 h4 {
+.notice-header h4 {
    color: black;
 }
 
@@ -48,7 +48,7 @@ div a {
    vertical-align: top;
 }
 
-.col-sm-2 ol, .col-sm-2 ol a {
+.notice-header ol, .col-sm-2 ol a {
    color: black;
 }
 
@@ -58,7 +58,7 @@ div a {
    aria-expanded: false;
 }
 
-.col-sm-2 .dropdown-toggle {
+.notice-header .dropdown-toggle {
    color: black;
 }
 </style>
@@ -75,7 +75,7 @@ div a {
 
 
 <div class="container">
-   <div class="col-sm-2">
+   <div class="col-sm-12 col-md-3 notice-header">
 
       <h5>
          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true">

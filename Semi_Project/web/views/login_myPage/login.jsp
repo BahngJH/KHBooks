@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style>
  		div{
             text-align: center;
@@ -85,6 +86,45 @@
         </form>
             <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default">
  	   </div>
+<!-- 카카오로 로그인하기 연구중	   
+<a id="kakao-login-btn"></a>
+<a href="http://developers.kakao.com/logout"></a>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('23ff1500d98d0c117c03bfce6245e228');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+    	  
+    	  //로그인 성공시, kakao API를 호출한다.(카카오에 있는 데이터 불러옴)
+    	  Kakao.API.request({
+    		  url: '/v2/user/me',
+    		  success: function(res){
+    			  console.log(res);
+    			  console.log(res.kakao_accuont_email);
+    			  console.log(res.kakao_accuont);
+    			  console.log(JSON.stringify(res.properties.nickname));
+    			  /* console.log(JSON.stringify(res.gender));
+    			  console.log(JSON.stringify(res.account_email));
+    			  console.log(JSON.stringify(res.birthday)); */
+    			  
+    		  },
+    		  fail: function(error){
+    			  alert(JSON.stringify(error));
+    		  }
+    	  });
+        alert(JSON.stringify(authObj));
+        
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+  //]]>
+</script> -->
     <script>
     	function goEnroll(){
     		location.href="<%=request.getContextPath()%>/member/enroll";

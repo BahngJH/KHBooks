@@ -107,7 +107,10 @@
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 188){
+                            			if(content == null){
+                            				content = "책 소개가 없습니다.";
+                            			}
+                            			if(content != null && content.length() > 188){
                             				content = content.substring(0, 188)+"...";
                             			}
                             		%>
@@ -152,7 +155,7 @@
                     <div class="cartContent col-xs-2 col-md-12">
                         <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
                             <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>" alt="도서 이미지">
-                        </a>
+                        </a> 
                     </div>
 				<%}%>
                 </div>

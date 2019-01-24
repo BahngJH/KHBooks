@@ -85,7 +85,27 @@ public class AdminDao {
 	}
 
 	
-
+	public int deleteMember(Connection conn, String[] nums) 
+	{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			for(int i = 0; i < nums.length; i++) {
+				pstmt.setInt(1, Integer.parseInt(nums[i]));
+				result += pstmt.executeUpdate();
+			}			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}	
+	
 	
 	public List<Book> selectBook(Connection conn,int cPage,int numPerPage){
 		PreparedStatement pstmt=null;
@@ -146,6 +166,45 @@ public class AdminDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage-1)*numPerPage+1);
 			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				m=new Member();
+				
+				m.setMemberNum(rs.getInt("membernum"));
+				m.setMemberId(rs.getString("memberid"));
+				m.setMemberPw(rs.getString("memberpw"));
+				m.setMemberName(rs.getString("membername"));
+				m.setAddress(rs.getString("address"));
+				m.setBirth(rs.getString("birth"));
+				m.setPhone(rs.getString("phone"));
+				m.setEmail(rs.getString("email"));
+				m.setEnrollDate(rs.getDate("enrolldate"));
+				m.setGender(rs.getString("gender"));
+				m.setIsAdmin(rs.getInt("isadmin"));
+				m.setMileage(rs.getInt("mileage"));
+				list.add(m);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		} 
+		return list;
+		
+	}
+	
+	public List<Member> selectMember(Connection conn, String keyword){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchMember");
+		List<Member> list=new ArrayList();
+		Member m=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				m=new Member();

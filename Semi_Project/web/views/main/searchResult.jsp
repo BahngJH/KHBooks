@@ -165,7 +165,10 @@
                             		<%
                             			/* 줄거리 내용이 너무 길 경우 자르고 ... 을 추가함 */
                             			String content = b.getBookInfo();
-                            			if(content.length() > 188){
+	                            		if(content == null){
+	                        				content = "책 소개가 없습니다.";
+	                        			}
+                            			if(content != null && content.length() > 188){
                             				content = content.substring(0, 188)+"...";
                             			}
                             		%>
