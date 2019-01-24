@@ -6,6 +6,7 @@
 	List<Review> list = (List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
 	int cnt = (int)request.getAttribute("cnt");
+	boolean status = (boolean)request.getAttribute("status");
 %>
 
 <style>
@@ -60,7 +61,7 @@
 						<h3>내 리뷰 관리</h3>
 					</div>
 					<hr style='margin-top: 10px; border: 1px solid lightgray;'/>
-					<%if(cnt > 0) {%>
+					<%if (status) {%>
 						<p id="count">총 <%=cnt %>개의 리뷰가 있습니다.</p>
 						<div id="selectList">
 							<label for="checkAll">전체선택</label>
@@ -72,7 +73,6 @@
 						</div>					
 						<ul>
 							<%for(Review r : list) { %>
-								<%if (r.getStatus().equals("y") || r.getStatus().equals("Y")) {%>
 								<li>
 									<div class="reviewList">
 										<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=r.getBookId()%>">
@@ -149,14 +149,17 @@
 									}
 								</script>
 							<%} 
-							}%>						
+							} else { %>
+								<h2 id="empty"><b>남긴 리뷰가 없습니다.</b></h2>
+							<% }%>						
 						</ul>
-					<%} else { %>
-						<h2>남긴 리뷰가 없습니다..</h2>
-					<%} %>
-                	<div class="paging col-xs-12" style="text-align: center">
-						<%=pageBar %>
-					</div>	
+						
+						
+					<%if(status) { %>					
+		                <div class="paging col-xs-12" style="text-align: center">
+							<%=pageBar %>
+						</div>	
+					<%} %>	
 				</article>
 			</section>
 		</div>

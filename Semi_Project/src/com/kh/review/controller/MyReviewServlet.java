@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.vo.Member;
 import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 import com.kh.review.model.service.ReviewService;
 import com.kh.review.model.vo.Review;
 
@@ -114,7 +115,13 @@ public class MyReviewServlet extends HttpServlet {
 			}
 			
 			
-			
+			boolean status = false;
+			for(Review r: list) {
+				if (r.getStatus().equals("y") || r.getStatus().equals("Y") ) {
+					status = true;
+				}
+			}
+			request.setAttribute("status", status);
 			request.setAttribute("cnt", cnt);
 			request.getRequestDispatcher("/views/login_myPage/myReview.jsp").forward(request, response);
 		}
