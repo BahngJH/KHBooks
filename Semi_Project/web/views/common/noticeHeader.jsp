@@ -77,11 +77,11 @@ div a {
 <div class="container">
    <div class="col-sm-2">
 
-      <h4>
+      <h5>
          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true">
             <a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
          </span>
-      </h4>
+      </h5>
       <hr>
      
 
