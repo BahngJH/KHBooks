@@ -33,8 +33,7 @@ border: none;
 </style>
 <section>
 	
-	<div class="col-sm-1"></div>
-			<div class="col-sm-9">
+			<div class="col-sm-12 col-md-9">
 				
 				
 				

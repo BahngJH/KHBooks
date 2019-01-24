@@ -23,7 +23,7 @@ border-height: 10px;
 </style>
 <!-- 최상단  -->
 
-<section class="col-sm-10" id="board-container">
+<section class="col-sm-12 col-md-9" id="board-container">
 		 <div class="row col-md-12">
 			 <div>
 				 <h3 class="title">1:1 문의(관리자화면)</h3>
