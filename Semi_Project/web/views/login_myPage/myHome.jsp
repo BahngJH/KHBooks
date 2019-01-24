@@ -120,7 +120,8 @@
 							</tr>
 							<tr>
 								<th>phone</th>
-								<td colspan='3'><%=logined.getPhone()%></td>
+								<td><%=logined.getPhone()%></td>
+								
 							</tr>
 							<tr>
 								<th>이메일</th>
