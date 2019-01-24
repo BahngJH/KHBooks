@@ -50,7 +50,7 @@ a#MOVE_TOP_BTN {
 }
 
 footer{
-	margin-top:30px;
+	margin-top:0px;
 }
 
 footer.fot, div#btn a {
@@ -81,13 +81,11 @@ text-align:center;
 
 
 div#btn{
-	margin-left: 25.3%;
-	
-	
+	margin-left: 35.3%;margin-right:30%;	
 }
-	
-	
-
+footer.fot div.notice{margin-left:-10%;margin-right: 30%;}
+footer.fot div.title{margin-left: 20%}
+div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 
 </style>
 
@@ -95,7 +93,7 @@ div#btn{
 	<div class="row">
 		<div class="row notice-scroll">
 			<div class="title col-xs-3 col-md-offset-4 col-md-2">
-				<h4>
+				<h4 style="vertical-align: middle;">
 					<strong>공지사항:</strong>
 				</h4>
 			</div> 
