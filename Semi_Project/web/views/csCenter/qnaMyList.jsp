@@ -118,7 +118,7 @@ margin-left:100px;
 </script>
 
 
-<section class="board-container col-sm-10">	
+<section class="board-container col-sm-12 col-md-9">	
  <!-- 타이틀 -->
  	<div class="row">
 		<div class="csCenter col-md-10">			

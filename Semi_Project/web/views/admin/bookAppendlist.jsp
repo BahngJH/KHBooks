@@ -53,6 +53,10 @@ input[value='주문하기'] {
   float:right;
   cursor: pointer;
 }
+
+span.glyphicon-ok{
+	color: #1f8ce6;
+}
 </style>
 
 <section>
@@ -101,10 +105,13 @@ function absence(){
 					
  			
 					<%for(Absence ab : list){ %>
-					<% if(ab.getStatus().equals("Y")){ %>
+					<% if(ab.getStatus().equals("Y") || ab.getStatus().equals("D")){ %>
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>
-						<td><a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a></td>
+						<td>
+							<a href="<%=request.getContextPath() %>/notice/absencecontent?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a>
+							<%=ab.getStatus().equals("D")?"<span class='glyphicon glyphicon-ok'></span>":"" %>
+						</td>
 						<td><%=ab.getAppDate()%></td>	
 									
 					</tr> 

@@ -1,28 +1,28 @@
-package com.kh.member.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.service.MemberService;
+import com.kh.admin.model.service.AdminService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class AdminSearchMember
  */
-@WebServlet("/member/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/admin/searchMember")
+public class AdminSearchMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public AdminSearchMember() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +31,11 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String keyword = request.getParameter("keyword");
+		List<Member> list = new AdminService().selectMember(keyword);
 		
-		//false : 없으면 그냥 주지마! true : 없으면 만들어서줘
-		HttpSession session = request.getSession(false);		
-				
-		session.invalidate();
-
-		
-		response.sendRedirect(request.getContextPath()+"/");
-		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/admin/searchMember.jsp").forward(request, response);
 	}
 
 	/**

@@ -14,7 +14,7 @@
 			<h2><%=a.getAuthorName() %></h2>
 		</div>
 		<div class="author-info">
-			<pre><%=a.getAuthorInfo() %></pre>
+			<pre><%=a.getAuthorInfo()==null?"작가 소개가 없습니다.":a.getAuthorInfo() %></pre>
 		</div>
 		<%}else{ %>
 		<h3>작가 정보가 없습니다.</h3>

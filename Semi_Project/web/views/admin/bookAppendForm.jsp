@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<%String isbn = (String)request.getAttribute("isbn"); %>
+<%String isbn = (String)request.getAttribute("isbn"); 
+	String no = (String)request.getAttribute("no");
+%>
 <section class='container'>
 <h4>도서 정보 입력 </h4>
 	<form action="<%=request.getContextPath() %>/book/insertbook" method="post" enctype="multipart/form-data">
@@ -68,6 +70,12 @@
 				<td><input type="submit" value="완료" class="form-control btn btn-primary" /></td>
 			</tr>
 		</table>
+		<%
+			if(no!=null){%>
+			<input type="hidden" name="no" value="<%=no%>"/>				
+		<%
+		}
+		%>
 	</form>
 </section>
 <script>

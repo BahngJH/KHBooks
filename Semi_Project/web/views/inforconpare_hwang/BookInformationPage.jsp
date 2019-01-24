@@ -416,7 +416,9 @@ function fnMove2(){
 								int point = (int)point1;%>
 								<div class='inkpoint'>
 									<span class='all_inkpoint'>통합포인트 : </span>
-									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span> 
+									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span></span>
+									<br>
+									<a href='#' class='returnList' onclick='history.go(-1)'><img style='margin-top:8px' src='<%=request.getContextPath() %>/images/icons/back(-1).png'/></a>
 								</div>
 							</li>
 						</ul>
@@ -438,8 +440,8 @@ function fnMove2(){
 			      </div>
 			      <div class="modal-body">
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
-					<p style="font-size:10pt; color:black;"><strong><%=b.getBookName() %></strong>의 총 재고는 <strong><%=b.getStock() %></strong>개 입니다.</p>
-					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%; '/>
+					<p style="font-size:10pt; color:black;"><strong style='font-size:13pt;'><%=b.getBookName() %></strong>의 총 재고는 <strong style="font-size:15pt"><%=b.getStock() %></strong>개 입니다.</p>
+					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%;'/>
 					<div class="selectedvalue"></div>
 			      </div>
 			      <div class="modal-footer">
@@ -455,6 +457,14 @@ function fnMove2(){
 			<% }%>
 			</div>
 			<script>
+			//엔터키 입력 금지
+			$('input[type="number"]').keydown(function(){
+				if(event.keyCode===13){
+					alert('장바구니 담기를 클릭해주세요!');
+					event.preventDefault();
+				}
+			});
+			
 			//로그인권한
 			function loginafter(){
 				alert("로그인 후 이용이 가능합니다!");
@@ -475,11 +485,6 @@ function fnMove2(){
 				if(context.trim().length==0||context==0)
 				{
 					alert("입력값이 0이거나 입력하지 않으셨습니다. 다시 입력하세요!");
-					return false;
-				}
-				else if(context><%=b.getStock()%>)
-				{
-					alert("해당 책의 재고를 초과하였습니다.")
 					return false;
 				}
 				$('#jangbaFrm').submit();
@@ -743,7 +748,6 @@ function fnMove2(){
 					
 					<hr style='border:0.5px solid lightgray;'>
                     <%for(Review r : list) {%>
-                    <%int over=26; %>
 	                    <style>
 	                    input[type='checkbox'] {
 							display: none;

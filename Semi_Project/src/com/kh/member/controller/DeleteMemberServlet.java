@@ -50,6 +50,7 @@ public class DeleteMemberServlet extends HttpServlet {
 			msg="회원 탈퇴 실패";
 			loc="/member/updateInfo";
 		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);

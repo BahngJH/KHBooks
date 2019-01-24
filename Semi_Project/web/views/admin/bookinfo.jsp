@@ -16,7 +16,7 @@ cellspacing:0;
  border:0px;
  }
 
-table th{
+table.table th{
  border-bottom:1px solid skyblue;
 
 padding: 8px 10px;
@@ -25,7 +25,7 @@ padding: 8px 10px;
  }
  table td{ text-align:center;}
  table#bookname{cursor: pointer;}		
- input[value='삭제'],input[value='수정'],input[value='추가'] {
+ input[value='삭제'],input[value='수정'],input[value='추가'],.modal-footer button {
 	background-color: skyblue;
 	border: none;
 	color: white;
@@ -39,11 +39,35 @@ padding: 8px 10px;
 
 <script>
 function updateReview() {
-	$('.modal').modal();						
-										
+	$('.modal').modal();
+	
+											
 	
 	
-}							
+}	
+
+function del(){
+	if(!confirm("정말 삭제하시겠습니까?")){
+		return;
+	}
+	
+	var check=document.getElementsByName("delete");
+	var checkarr=[];
+	
+	for(var i=0;i<check.length;i++){
+		if(check[i].checked){
+			checkarr.push(check[i].value);		
+		}
+		
+	}
+	if(checkarr.length<1){
+		alert("도서를 선택해주세요");
+		return;
+	}
+	location.href="<%=request.getContextPath()%>/book/deleted?del="+checkarr;
+}
+
+
 </script>
 
 
@@ -54,9 +78,14 @@ function updateReview() {
 	<h2>도서정보</h2>
 	<hr />
 
-	<form method="get" action="<%=request.getContextPath()%>/book/deleted">
+	
 
-		<input type="submit" value="삭제" id="deleted" onclick="deleted();" />
+		<input type="button" value="삭제" name="deleted" id="deleted" onclick="del();" />
+		
+		
+
+
+		
 		<input type="button" value="추가" id="update" onclick="appendBook();" />
 
 		<table class="table table-hover">
@@ -82,25 +111,40 @@ function updateReview() {
 			<tr>
 
 
-				<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail"><img
-						src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"
-						alt="도서사진"></a></td>
-				<td id="bookname" onclick="updateReview()"><%=b.getBookName()%></td>
-				<td><%=b.getPrice()%></td>
-				<td><%=b.getPublisher()%></td>
-				<td><%=b.getGenre()%></td>
-				<td><%=b.getBookId()%></td>
-				<td><%=b.getIsbn()%></td>
-				<td><%=b.getBookDate()%></td>
-				<td><input type="checkbox" name="delete"
-					value="<%=b.getBookId()%>" /></td>
-
+				<td><a href="<%=request.getContextPath()%>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail"><img src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>" alt="도서사진"></a></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getBookName()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getPrice()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getPublisher()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getGenre()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getBookId()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getIsbn()%></td>
+				<td class="updatebook<%=b.getBookId()%>"><%=b.getBookDate()%></td>
+				<td><input type="checkbox" name="delete" value="<%=b.getBookId()%>"/></td>
+				
 
 			</tr>
+			
+			
+			<script>
+		  			$('.updatebook<%=b.getBookId()%>').click(function() {
+		  				$('.modal').modal();
+		  				$('#updatename').val("<%=b.getBookName()%>");
+		  				$('#updateprice').val("<%=b.getPrice()%>");
+		  				$('#updatepublisher').val("<%=b.getPublisher()%>");
+		  				$('#updategenre').val("<%=b.getGenre()%>");
+		  				$('#updateisbn').val("<%=b.getIsbn()%>");
+		  				$('#bookedit').val("<%=b.getEditor()%>");
+		  				$('#bookstock').val("<%=b.getStock()%>");
+		  				$('#bookcontent').val("<%=b.getBookContent()%>");	
+		  				$('#booknum').val("<%=b.getBookId()%>");
+		  			
+		  			});
+		  			
+		  	</script>
 			<%} %>
 
 		</table>
-	</form>
+	
 	<div class="text-center">
 		<%=pageBar1%>
 	</div>
@@ -108,52 +152,77 @@ function updateReview() {
 </div>
 </div>
 <!-- 리뷰 수정 모달창 -->
+
+<style>
+table.tbl-modal tr th{text-align:center;}
+
+</style>
 		<div class="modal" id="updateModal" tabindex="-1" role="dialog">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
 						책 정보 수정
 					</div>
 					<div class="modal-body">
+					<form method="post" action="<%=request.getContextPath()%>/book/updatebook" name="fr" class="frm">
 						<table class="tbl-modal">
-							<tr>
-				       			<th>표지</th>
-				       		</tr>
 				       		<tr>
 								<th>책 제목</th>
+								<td><input type="text" id="updatename"class="form-control" name="updatename" value=""/></td>
 							</tr>
 							<tr>
 								<th>가격</th>
+								<td><input type="text" id="updateprice" class="form-control" name="updateprice" value=""/></td>
 							</tr>
 							<tr>
 								<th>출판사</th>
+								<td><input type="text" id="updatepublisher" class="form-control" name="updatepublisher" value=""/></td>
 							</tr>
 							<tr>
 								<th>장르</th>
+								<td><input type="text" id="updategenre" class="form-control"  name="updategenre" value=""/></td>
 							</tr>
-							<tr>
-								<th>책번호</th>
-							</tr>
+						
 							<tr>
 								<th>ISBN</th>
+								<td><input type="text" id="updateisbn" class="form-control" name="updateisbn" value=""/></td>
 							</tr>
-							<tr>
-								<th>출간일</th>
+	       				   	 	<tr>
+								<th>저자</th>
+								<td><input type="text" id="bookedit" class="form-control" name="bookedit" value=""/></td>
+							</tr>
+	       				   <tr>
+								<th>재고량</th>
+								<td><input type="text" id="bookstock" class="form-control" name="bookstock" value=""/></td>
+							</tr>
+	       				   	<tr>
+								<th>줄거리</th>
+								<td><textarea id="bookcontent" class="form-control"  rows="8" cols="50"  name="updatecontent" value=""/></textarea></td>
 	       				   	</tr>
-						
-							
+	       				   	<tr>	
+	       				   	<td><input id="booknum" type="hidden" name="bookId" value=""></td>
+	       				   	
+	       			
+	       				   	
+	       				   	</tr>
 								
 						</table>
+						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
+						
 						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-primary" onclick="updatebo();">수정</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 <script>
+
+	function updatebo(){
+		$('.frm').submit();
+	}
 	function appendBook(){
 		location.href="<%=request.getContextPath()%>/admin/bookappend";
 	}

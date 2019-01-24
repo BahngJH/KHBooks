@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.absence.model.service.AbsenceService;
 import com.kh.absence.model.vo.Absence;
+import com.kh.member.model.vo.Member;
 import com.kh.reply.model.service.ReplyService;
 import com.kh.reply.model.vo.Reply;
 
@@ -36,27 +37,35 @@ public class AbsenceContentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int no = Integer.parseInt(request.getParameter("no"));		
-		Absence ab = new AbsenceService().selectNo(no);
+		Member logined = (Member) request.getSession().getAttribute("logined");
+
+		if (logined != null) {
 		
-
-		String view = "";
-		if (ab != null) {
-			List<Reply> rlist = new ReplyService().selectReplyList(no);
-			view = "/views/notice/absenceboardContent.jsp";
-			request.setAttribute("ab", ab);
-			request.setAttribute("reply", rlist);
-			System.out.println("댓글 있나요?"+rlist);
-
-		}else {
-			view="views/common/msg.jsp";
-			request.setAttribute("msg", "주문도서가 없습니다");
-			request.setAttribute("loc", "/absence/page");
+			int no = Integer.parseInt(request.getParameter("no"));		
+			Absence ab = new AbsenceService().selectNo(no);
 			
+	
+			String view = "";
+			if (ab != null) {
+				List<Reply> rlist = new ReplyService().selectReplyList(no);
+				view = "/views/notice/absenceboardContent.jsp";
+				request.setAttribute("ab", ab);
+				request.setAttribute("reply", rlist);
+				System.out.println("댓글 있나요?"+rlist);
+	
+			}else {
+				view="views/common/msg.jsp";
+				request.setAttribute("msg", "주문도서가 없습니다");
+				request.setAttribute("loc", "/absence/page");
+				
+			}
+	
+			request.getRequestDispatcher("/views/notice/absenceboardContent.jsp").forward(request, response);
+		
+		}else {
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
 		}
-
-		request.getRequestDispatcher("/views/notice/absenceboardContent.jsp").forward(request, response);
-
 	}
 
 	/**

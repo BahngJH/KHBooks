@@ -20,7 +20,7 @@ public class Member {
 	private String email;
 	private String gender;
 	private Review review;
-	
+	private Date recentLogin;
 	
 	public Member() {}
 
@@ -141,6 +141,14 @@ public class Member {
 
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
+	}
+	
+	public Date getRecentLogin() {
+		return recentLogin;
+	}
+
+	public void setRecentLogin(Date recentLogin) {
+		this.recentLogin = recentLogin;
 	}
 
 	@Override

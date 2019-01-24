@@ -35,15 +35,8 @@ body { padding-top:30px; }
 .ui-group-buttons .btn{float:left;border-radius:0}
 .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
-#replyContent{resize: none;}
+#replyContent{resize: none; margin-bottom: 15px;}
 
-
-
-
-
-body{
-    background:#eee;
-}
 
 hr {
     margin-top: 20px;
@@ -65,8 +58,7 @@ a {
 }
 
 .blog-comment{
-    padding-left: 15%;
-	padding-right: 15%;
+  padding-right:53%;
 }
 
 .blog-comment ul{
@@ -144,17 +136,11 @@ a {
 padding: 0 20px 0 10px;
 }
 
+#addBook{
 
-
-
-
-
-
-
-
-
-
-
+margin-left:120px;
+margin-top: 5px;
+}
 
 
 #return {
@@ -162,8 +148,8 @@ padding: 0 20px 0 10px;
 	color: white;
 	border: none;
 	padding: 8px 20px;
-	margin-top: 100px;
-	margin-left: 370px;
+	margin-top: 10px;
+	margin-left: 55px;
 	text-align: center;
 }
 
@@ -182,8 +168,8 @@ table.type10 {
 	line-height: 1.5;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
-	margin: 40px 10px 0px 180px;
-	width:0px; height:30px;
+	/* margin: 40px 10px 0px 180px; */
+	/* width:0px; */ height:30px;
 }
 
 table.type10 thead th {
@@ -233,7 +219,8 @@ margin-right:440px;
 <section>
 	<div class=" col-sm-8">
 		<br/><br/>
-		
+	<div class=" col-sm-12 col-md-9">
+<br/><br/>
 		
 			<%if(ab.getMemberNum()==logined.getMemberNum()||logined.getMemberId().equals("admin")){ %>
 			<input type="button" value="삭제하기" id="deleted" onclick="deleted();" />
@@ -294,9 +281,9 @@ margin-right:440px;
 					
     <div class="row">
 		<div class="col-md-12">				
-				<span><button id="return" onclick="main_absence();">목록으로</button></span>
+				<span><button class="btn" id="return" onclick="main_absence();">목록으로</button></span>
 				<%if(logined.getMemberId().equals("admin")){ %>
-				<span><button class="btn" onclick="appendBook();">책 추가하기</button></span>
+				<span><button class="btn" id="addBook" onclick="appendBook();">책 추가하기</button></span>
 				<%} %>
 		</div>
 	</div>
@@ -360,7 +347,7 @@ margin-right:440px;
 						      	<strong><%=r.getMemberId() %></strong> says :
 						      	<%if(r.getMemberNum()==logined.getMemberNum()){ %>
 						      		<i class="pull-right">
-						      			<a onclick="fn_updateReply(this);"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
+						      			<!-- <a onclick="fn_updateReply(this);"><small>수정</small></a>&nbsp;&nbsp;&nbsp; -->
 						      			<a onclick="fn_deleteReply( '<%=r.getOrderReCoNum() %>');"><small>삭제</small></a>&nbsp;	<%} %>						      			
 					      			</i>
 		     				  </p>
@@ -386,7 +373,7 @@ margin-right:440px;
 		<script>
 		
 		function appendBook(){
-			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>";
+			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>&no=<%=ab.getAppNum()%>";
 		}
 		
 		function deleted(){
@@ -410,14 +397,15 @@ margin-right:440px;
 			}
 			location.href="<%=request.getContextPath()%>/reply/deleteReply?no="+no+"&no1="+<%=ab.getAppNum()%>;
 		}
-		function fn_updateReply(btn){
+	 	//수정 구현중...
+		/* function fn_updateReply(btn){
 			console.log(btn);
 			$(btn).parent().parent().next().hide();
 			var content=$(btn).parent().parent().next().find('p').html();
 			var txt1="<textArea class='form-control' name='orderrecontent' required></textArea><input type='submit' value='취소'/>";				
 			$(btn).parent().parent().parent().append(txt1);
 		/* $('#repContent').hide(); */
-		}
+		} */
 				
 		
 			
