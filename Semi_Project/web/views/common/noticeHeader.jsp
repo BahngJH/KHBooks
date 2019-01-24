@@ -24,6 +24,8 @@ div a {
 
 .notice-header hr {
    border: solid 1px darkgray;
+   margin-right:80%;
+   width:150px;
 }
 
 .notice-header h4 {
@@ -93,9 +95,10 @@ div a {
         
          <a href="<%=request.getContextPath()%>/absence/page"><strong>희망도서 신청</strong></a> 
       <%}else {%>
-         <br />
+        
          <a onclick="a_click();"><strong>1:1문의</strong></a>
-         <br />
+          <hr/>
+         
          <a onclick="a_click();"><strong>희망도서 신청</strong></a>
       <%}%>
       <hr>

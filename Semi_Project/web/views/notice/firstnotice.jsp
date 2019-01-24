@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
 
+%>
 <%@ include file="/views/common/noticeHeader.jsp"%>
 
 
@@ -41,17 +43,15 @@ border-bottom:2px solid darkgray;
 								<strong>공지사항</strong>
 							</h2>
 							<hr/>
-					<p>상세내용은 왼쪽에 공지사항 참조</p>
+					<h4><strong>*상세내용은 왼쪽에 공지사항 참조*</strong></h4>
 					<hr/>	
                     <p> kh문고 시스템 점검 안내</p>
                     <hr/>
 				    <p>개인정보처리방침 개정 안내</p>
                     <hr/>
-                    <p>설 연휴기간 주문 안내</p>
+                    <p>설 연휴기간 휴무 안내</p>
                     <hr/>
-                    <p>도서 신청 안내</p>
-					<hr/>
-					<p>2019년 휴무일 안내</p>
+					<p>카드사용  안내</p>
                   
 				</div>
 
@@ -76,12 +76,17 @@ border-bottom:2px solid darkgray;
 				<div id="QAtitle2">
 					<h2><strong>고객센터 안내사항</strong></h2>
 					<hr>
-					<a href="" >고객센터 단축운영 공지사항</a>
+					<p >서점 이용시간 평일 10:00~18:00</p>
 					<hr>
-					<a href="" >고객센터 운영시간 평일 10:00~18:00</a>
+					<p>고객센터 운영시간 평일 10:00~18:00</p>
+					<hr/>
+					<p>주말은 휴무입니다.</p>
+					<hr/>
+					<p>하단에 전화번호로 연락주세요</p>
+					<hr/>
 
 				</div>
-				<br> <br> <br> <br>
+				<br> <br> 
 			</div>
 
 			
