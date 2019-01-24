@@ -55,15 +55,14 @@ public class EnrollReplyServlet extends HttpServlet {
 
 		if (rs > 0) {
 			// 댓글 정상 등록
-			msg = "댓글 등록 완료!";
-			loc = "/absence/page";
+			//msg = "댓글 등록 완료!";
+			view = "/notice/absencecontent?no="+orderBookNum;
 		} else {
 			msg = "댓글 등록 실패!";
 			loc = "/notice/absencecontent";
-
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
 		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

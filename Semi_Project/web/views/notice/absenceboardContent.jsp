@@ -316,6 +316,7 @@ input[value='삭제하기'] {
 		                                    <input type="hidden" name="orderBookNum" value="<%=ab.getAppNum() %>"/>
 		                                </div>                                                           
 		                       			 <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">댓글등록</button>
+		                       			 
 		                            </fieldset>
 		                        </form>
 		               	  </div>
@@ -327,40 +328,53 @@ input[value='삭제하기'] {
 
 
 
-<%for(Reply r:rlist) {%>
-<%if(r.getOrderReContent()!=null&&logined!=null){%>
 
+<%for(Reply r : rlist) { %>
+ <%if(r.getOrderReContent()!=null&&logined!=null){%>
 <div class="container bootstrap snippet">
     <div class="row">
 		<div class="col-md-12">
 		    <div class="blog-comment">
 				<h3 class="text-success">댓글목록</h3>
-                <hr/>
-				
-				<ul class="comments">			
-				<li class="clearfix">
-				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-				  <div class="post-comments">				
-				      <p class="meta"><%=r.getMemberNum() %> says : <%=r.getOrderReContent() %> <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-				      <p>
-				         댓글단거 올곳
-				      </p>
-				  </div>
-				  <%} %>
-				   <ul class="comments">
-				      <li class="clearfix">
-				          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
-				          <div class="post-comments">
-				              <p class="meta">Dec 20, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-				              <p>
-				                  더 문의하지마요
-				              </p>
-				          </div>
-				      </li>
-				  </ul> 
-				</li>
-				</ul>
-				
+                <hr/>				
+					<ul class="comments">			
+						<li class="clearfix">
+						  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+						  <div class="post-comments">				
+						      <p class="meta"><%=r.getOrderReDate()%> 
+						      	<strong><%=r.getMemberNum() %></strong> says :
+						      		<i class="pull-right">
+						      			<a href="#"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
+						      			<a href="#"><small>삭제</small></a>&nbsp;&nbsp;&nbsp;
+						      			<a href="#"><small>Reply</small></a>&nbsp;
+					      			</i>
+		     				  </p>
+						      <p>
+						        <%=r.getOrderReContent() %>
+						      </p>
+						  </div> <%} 
+					  			}%>
+					 
+						   <ul class="comments">
+						      <li class="clearfix">
+						          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+						          <div class="post-comments">
+						              <p class="meta">Dec 20, 2014 
+					              		<a href="#">JohnDoe</a> says : 
+					              		<i class="pull-right">
+				              				<a href="#"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
+							      			<a href="#"><small>삭제</small></a>&nbsp;&nbsp;&nbsp;
+							      			<a href="#"><small>Reply</small></a>&nbsp;
+						      			</i>
+		              			 	 </p>
+						              <p>
+						                  더 문의하지마요
+						              </p>
+						          </div>
+						      </li>
+						  </ul> 
+					</li>
+				</ul>				
 			</div>
 		</div>
 	</div>
