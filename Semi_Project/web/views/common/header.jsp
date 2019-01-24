@@ -102,10 +102,11 @@
 			               <li><a href="<%=request.getContextPath()%>/admin/mainview"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
 			              <% } else{%> 
 			                <li><a href="<%=request.getContextPath()%>/member/myHome"><img src="<%=request.getContextPath()%>/images/icons/person2.png" alt="마이페이지"></a></li>
-			                <%} %>
 			                <li><a href="<%=request.getContextPath()%>/member/wishlist?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/basket2.png" alt="장바구니"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/member/mark?memberNum=<%=logined.getMemberNum()%>"><img src="<%=request.getContextPath()%>/images/icons/wishlist2.png" alt="찜 목록"></a></li>
 			                <li><a href="<%=request.getContextPath()%>/inforconpare_hwang/conpareView"><img src="<%=request.getContextPath()%>/images/icons/bookconpare.png" alt="책 비교"></a></li>
+			                <%} %>
+			                
 			            </ul>
 			            <%} %>
 		        	</div>
