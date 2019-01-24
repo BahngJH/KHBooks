@@ -160,7 +160,7 @@
 							</tr>	
 								<%} else {%>	
 									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+										<td colspan='5'>최근 문의 내역이 없습니다.</td>
 									</tr>																									
 							<% break;}
 							}%>					
@@ -267,7 +267,7 @@
 							</tr>
 								<%} else {%>	
 									<tr>
-										<td colspan='5'>구매 도서 정보가 없습니다.</td>
+										<td colspan='5'>남긴 리뷰가 없습니다.</td>
 									</tr>																									
 							<% break;}
 							}%>							

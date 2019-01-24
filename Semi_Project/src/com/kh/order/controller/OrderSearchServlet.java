@@ -38,6 +38,13 @@ public class OrderSearchServlet extends HttpServlet {
 		
 		List<Order> list = new OrderService().searchOrder(keyword, no);
 		
+		boolean status = false;
+		for(Order o : list) {
+			if (o.getStatus().equals("y") || o.getStatus().equals("Y") ) {
+				status = true;
+			}
+		}
+		request.setAttribute("status", status);
 		request.setAttribute("searchList", list);
 		request.getRequestDispatcher("/views/login_myPage/searchOrderList.jsp").forward(request, response);
 	}

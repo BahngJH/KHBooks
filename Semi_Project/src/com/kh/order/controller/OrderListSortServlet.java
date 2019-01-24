@@ -90,6 +90,14 @@ public class OrderListSortServlet extends HttpServlet {
 					+ numPerPage + "'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}
 
+		
+		boolean status = false;
+		for(Order o : list) {
+			if (o.getStatus().equals("y") || o.getStatus().equals("Y") ) {
+				status = true;
+			}
+		}
+		request.setAttribute("status", status);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("sortList", list);
 		request.getRequestDispatcher("/views/login_myPage/orderListSort.jsp").forward(request, response);
