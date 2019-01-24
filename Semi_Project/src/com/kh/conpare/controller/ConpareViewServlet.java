@@ -36,7 +36,10 @@ public class ConpareViewServlet extends HttpServlet {
 	
 	public String getJSON(String bookName)
 	{
-		if(bookName == null) bookName="";
+		if(bookName == null)
+		{
+			bookName="";
+		}
 		StringBuffer result=new StringBuffer("");
 		result.append("{\"result\":[");
 		ConpareService conpareService=new ConpareService();
@@ -44,7 +47,7 @@ public class ConpareViewServlet extends HttpServlet {
 		for(int i=0; i<bookList.size(); i++)
 		{
 			result.append("[{\"value\":\""+bookList.get(i).getBookImage()+"\"},");
-			result.append("[{\"value\":\""+bookList.get(i).getBookName()+"\"}],");
+			result.append("{\"value\":\""+bookList.get(i).getBookName()+"\"}],");
 		}
 		result.append("]}");
 		return result.toString();

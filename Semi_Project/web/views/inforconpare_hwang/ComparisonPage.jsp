@@ -235,6 +235,33 @@ com.kh.author.model.vo.Author'
 	position:relative;
 	top:1px;
 }
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+
+
 </style>
 
 <section>
@@ -265,7 +292,7 @@ com.kh.author.model.vo.Author'
 				                <p>
 				                </p>
 				                <div>
-				                <div style="width:100%; height:200px; overflow:auto">
+				                <div style="width:100%; height:515px; overflow:auto">
 				                       <table class = "table text-center">
 				                        <thead>
 				                            <tr>
@@ -274,9 +301,7 @@ com.kh.author.model.vo.Author'
 			                                </tr>
 				                        </thead>
 				                        <div class="imagess">
-				                        <tbody>
-				                        	<tr id='ajaxTable'>
-				                        	</tr>
+				                        <tbody id='ajaxTable'>
 				                        </tbody>
 				                        </div>
 				                    </table>
@@ -422,17 +447,22 @@ com.kh.author.model.vo.Author'
 			
 			for(var i=0; i<result.length; i++)
 			{
-				table.innerHTML="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' class='choiceBtn' onclick='' style='float:right;'><img src=''></a></td>";
-				console.log(result[i].bookImage);
-				console.log(result[i].bookName);
+				table.innerHTML+="<tr>";
+				table.innerHTML+="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
+				table.innerHTML+="</tr>";
+				console.log(result);
 			}
 		}
 	}
+	/* window.onload=function()
+	{
+		searchFunction();
+	} */
 </script>
 <style>
 #ajaxTable td
 {
-	text-align:left;
+	text-align:left; vertical-align:middle;
 }
 #ajaxTable img
 {

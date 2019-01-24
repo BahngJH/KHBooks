@@ -323,8 +323,7 @@ div#carousel-id, div.carousel-inner, div.item{
 }
 
 div.item{
-
-	background-color: #220471;
+	background: linear-gradient(to right, rgba(221,229,240,1) 1%,rgba(184,223,252,1) 24%,rgba(126,192,242,1) 50%,rgba(184,223,252,1) 75%, rgba(221,229,240,1)100%);
 }
 
 div.carousel-caption a{
@@ -332,6 +331,7 @@ div.carousel-caption a{
 	color: black;
 
 }
+
 /* 작가 정보 창 */
 section.author-container{
 	padding-right: 50px;
