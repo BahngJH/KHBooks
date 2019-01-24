@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -30,8 +33,10 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//false : 없으면 그냥 주지마! true : 없으면 만들어서줘
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);		
+				
 		session.invalidate();
+
 		
 		response.sendRedirect(request.getContextPath()+"/");
 		

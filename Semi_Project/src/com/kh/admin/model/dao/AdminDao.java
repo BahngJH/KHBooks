@@ -27,6 +27,39 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public int updatebook(Connection conn,Book b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		System.out.println("dao:"+b);
+		String sql=prop.getProperty("updatebook");
+		System.out.println(sql);
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBookName());
+			pstmt.setInt(2, b.getPrice());
+			pstmt.setString(3, b.getPublisher());
+			pstmt.setString(4, b.getGenre());
+			pstmt.setInt(9,b.getBookId());
+			pstmt.setString(5, b.getIsbn());
+			pstmt.setString(6,b.getEditor() );
+			pstmt.setInt(7, b.getStock());
+			pstmt.setString(8, b.getBookContent());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+		
+		
+	}
 	public int deleteBook(Connection conn,String[] id) {
 		PreparedStatement pstmt=null;
 		int result=0;
