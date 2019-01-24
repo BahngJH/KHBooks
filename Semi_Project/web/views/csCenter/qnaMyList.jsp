@@ -158,7 +158,7 @@ margin-left:100px;
 					<div class="answer_tg collapse" id="Qnum<%=q.getQnaNum()%>">
 	                     <div class="well" value="">
 	                     	 <div class="myAsk alert alert-info">
-	  								<strong><h4>내질문 :><%=q.getQnaContent() %></h4></strong>
+	  								<strong><h4>내질문 :<%=q.getQnaContent() %></h4></strong>
 							 </div>							
 							  <div class="Answer alert alert-warning">
 	  								<%if(q.getReContent()!=null){%>
