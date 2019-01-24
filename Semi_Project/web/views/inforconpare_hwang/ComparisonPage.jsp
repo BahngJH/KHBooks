@@ -235,57 +235,30 @@ com.kh.author.model.vo.Author'
 	position:relative;
 	top:1px;
 }
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-
-
-
 </style>
 
 <section>
 
    <div class="container">
  			<div class="book_choice_wrap">
-	 			<div class="modal fade" id="conpareModal">
+	 			<div class="modal fade" id="conpareModal1">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
 				            <div class="modal-header text-center">
 				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                    <span aria-hidden="true">×</span>
 				                </button>
-				                <h3 class="modal-title" id="myModalLabel">책 검색</h3>
+				                <h3 class="modal-title" id="myModalLabel">BOOK SEARCH1</h3>
 				            </div>    
 				            <div class="modal-body text-center">
-				                 <form id="conpareForm" role="search" action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post" onsubmit="return false;">
+				                 <form id="conpareForm1" role="search" action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post" onsubmit="return false;">
 			                         <div class="input-group">
 			                            <span class="input-group-addon">책 이름 검색</span>
 			                            	<!-- 검색 하는곳 -->
-			                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName">
+			                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName1">
 			                            <span class="input-group-btn">
 			                            	<!-- 검색 버튼 -->
-			                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn" name='searchBtn'>검색</button>
+			                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn1" name='searchBtn1'>검색</button>
 			                            </span>
 			                        </div>
 				                </form>
@@ -300,10 +273,49 @@ com.kh.author.model.vo.Author'
 				                                <th style="width:600px;">책 이름</th>
 			                                </tr>
 				                        </thead>
-				                        <div class="imagess">
-				                        <tbody id='ajaxTable'>
+				                        <tbody id='ajaxTable1'>
 				                        </tbody>
-				                        </div>
+				                    </table>
+				                </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				<div class="modal fade" id="conpareModal2">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header text-center">
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">×</span>
+				                </button>
+				                <h3 class="modal-title" id="myModalLabel2">BOOK SEARCH2</h3>
+				            </div>    
+				            <div class="modal-body text-center">
+				                 <form id="conpareForm2" role="search" action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post" onsubmit="return false;">
+			                         <div class="input-group">
+			                            <span class="input-group-addon">책 이름 검색</span>
+			                            	<!-- 검색 하는곳 -->
+			                            <input type="text" class = "form-control" onkeyup="searchFunction2();" id="bookName2">
+			                            <span class="input-group-btn">
+			                            	<!-- 검색 버튼 -->
+			                                <button type="button" class="btn btn-default" onclick="searchFunction2();" id="searchBtn2" name='searchBtn2'>검색</button>
+			                            </span>
+			                        </div>
+				                </form>
+				                <p>
+				                </p>
+				                <div>
+				                <div style="width:100%; height:515px; overflow:auto">
+				                       <table class = "table text-center">
+				                        <thead>
+				                            <tr>
+				                                <th style="width:150px;">책 이미지</th>
+				                                <th style="width:600px;">책 이름</th>
+			                                </tr>
+				                        </thead>
+				                        <tbody id='ajaxTable2'>
+				                        </tbody>
 				                    </table>
 				                </div>
 				                </div>
@@ -313,7 +325,7 @@ com.kh.author.model.vo.Author'
 				</div>
 			
  			<!-- 이미지 누르면 찾아가기 -->
-			<form action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post">
+			<%-- <form action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post">
 				<!-- 버튼 -->
 				<input type="hidden" name="bookId" value="">
 				<input type="hidden" name="ejkGb" value="">
@@ -323,7 +335,7 @@ com.kh.author.model.vo.Author'
 				<!-- 이미지2 -->
 				<input type="hidden" name="bookId1" value="<!-- 이미지의 bookid -->9791159039690">
 				<input type="hidden" name="ejkGb1" value="KOR">
-			</form>
+			</form> --%>
 			
 			
             <div class="w950">
@@ -332,20 +344,16 @@ com.kh.author.model.vo.Author'
                     <a href="#" class="btn_compare">비교하기</a>
                 </div>
                 <div id="buycheck01" class="book_choice2">
-                  <div class="book_img">
+                  <div class="book_img" id="book_img1">
                     <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=1" target="_blank"><img id="img0" width="125" height="179" src="<%=request.getContextPath() %>/images/book/이방인.jpg"></a></p>
                   </div>
-                  <a class="Book1" href="#" id="zip_codeBtn" data-toggle="modal" data-target="#conpareModal">BOOK1</a>
-                  <a href="#" class="jangba">장바구니 담기</a>
-                  <a href="#" class="nowbuy">바로 구매하기</a>
+                  <a class="Book1" href="#" id="zip_codeBtn1" data-toggle="modal" data-target="#conpareModal1">BOOK1</a>
                 </div>
                 <div id="buycheck02" class="book_choice2">
-                  <div class="book_img">
+                  <div class="book_img" id="book_img2">
                     <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="<%=request.getContextPath() %>/images/book/어린왕자.jpg"></a></p>
                   </div>
-                  <a class="Book2" href="#" id="zip_codeBtn" data-toggle="modal" data-target="#conpareModal">BOOK2</a>
-                  <a href="#" class="jangba">장바구니 담기</a>
-                  <a href="#" class="nowbuy">바로 구매하기</a>
+                  <a class="Book2" href="#" id="zip_codeBtn2" data-toggle="modal" data-target="#conpareModal2">BOOK2</a>
                 </div>
             </div>
         </div>
@@ -433,14 +441,18 @@ com.kh.author.model.vo.Author'
     <script type="text/javascript">
 	var request=new XMLHttpRequest();
 	function searchFunction() {
-		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName').value), true);
+		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName1').value), true);
 		request.onreadystatechange=searchProcess;
 		request.send();
 	}
 	function searchProcess() 
 	{
-		var table=document.getElementById("ajaxTable");
+		var table=document.getElementById("ajaxTable1");
+		var imgtable=document.getElementById("book_img1");
+		var bottomtable=document.getElementById("");
 		table.innerHTML="";
+		imgtable.innerHTML="";
+		/*bottomtable.innerHTML=""; */
 		if(request.readyState==4 && request.status==200)
 		{
 			var result=eval(request.responseText);
@@ -448,8 +460,42 @@ com.kh.author.model.vo.Author'
 			for(var i=0; i<result.length; i++)
 			{
 				table.innerHTML+="<tr>";
-				table.innerHTML+="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
+				table.innerHTML+="<td><img class='imagess1' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
 				table.innerHTML+="</tr>";
+				imgtable.innerHTML+="<p>";
+				imgtable.innerHTML+="<a id='detail0' href='<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId='+result[i].bookId+''target='_blank'><img id='img0' width='125' height='179' src='<%=request.getContextPath() %>/images/book/이방인.jpg'></a>";
+				imgtable.innerHTML+="</p>";
+				console.log(result[i].bookId);
+				
+				console.log(result);
+			}
+		}
+	}
+	
+	
+	function searchFunction2() {
+		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName2').value), true);
+		request.onreadystatechange=searchProcess2;
+		request.send();
+	}
+	function searchProcess2() 
+	{
+		var table=document.getElementById("ajaxTable2");
+		var imgtable=document.getElementById("book_img2");
+		var bottomtable=document.getElementById("");
+		table.innerHTML="";
+		imgtable.innerHTML="";
+		/*bottomtable.innerHTML=""; */
+		if(request.readyState==4 && request.status==200)
+		{
+			var result=eval(request.responseText);
+			
+			for(var i=0; i<result.length; i++)
+			{
+				table.innerHTML+="<tr>";
+				table.innerHTML+="<td><img class='imagess2' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
+				table.innerHTML+="</tr>";
+				
 				console.log(result);
 			}
 		}
@@ -460,11 +506,19 @@ com.kh.author.model.vo.Author'
 	} */
 </script>
 <style>
-#ajaxTable td
+#ajaxTable1 td
 {
 	text-align:left; vertical-align:middle;
 }
-#ajaxTable img
+#ajaxTable1 img
+{
+	float:left; width:110px; height:140px; border:1px solid lightgrey;
+}
+#ajaxTable2 td
+{
+	text-align:left; vertical-align:middle;
+}
+#ajaxTable2 img
 {
 	float:left; width:110px; height:140px; border:1px solid lightgrey;
 }
