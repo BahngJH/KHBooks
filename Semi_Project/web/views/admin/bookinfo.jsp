@@ -39,11 +39,35 @@ padding: 8px 10px;
 
 <script>
 function updateReview() {
-	$('.modal').modal();						
-										
+	$('.modal').modal();
+	
+											
 	
 	
-}							
+}	
+
+function del(){
+	if(!confirm("정말 삭제하시겠습니까?")){
+		return;
+	}
+	
+	var check=document.getElementsByName("delete");
+	var checkarr=[];
+	
+	for(var i=0;i<check.length;i++){
+		if(check[i].checked){
+			checkarr.push(check[i].value);		
+		}
+		
+	}
+	if(checkarr.length<1){
+		alert("도서를 선택해주세요");
+		return;
+	}
+	location.href="<%=request.getContextPath()%>/book/deleted?del="+checkarr;
+}
+
+
 </script>
 
 
@@ -54,9 +78,14 @@ function updateReview() {
 	<h2>도서정보</h2>
 	<hr />
 
-	<form method="get" action="<%=request.getContextPath()%>/book/deleted">
+	
 
-		<input type="submit" value="삭제" id="deleted" onclick="deleted();" />
+		<input type="button" value="삭제" name="deleted" id="deleted" onclick="del();" />
+		
+		
+
+
+		
 		<input type="button" value="추가" id="update" onclick="appendBook();" />
 
 		<table class="table table-hover">
@@ -82,9 +111,7 @@ function updateReview() {
 			<tr>
 
 
-				<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail"><img
-						src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>"
-						alt="도서사진"></a></td>
+				<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail"><img src="<%=request.getContextPath()%>/images/book/<%=b.getBookImage()%>" alt="도서사진"></a></td>
 				<td id="bookname" onclick="updateReview()"><%=b.getBookName()%></td>
 				<td><%=b.getPrice()%></td>
 				<td><%=b.getPublisher()%></td>
@@ -100,7 +127,7 @@ function updateReview() {
 			<%} %>
 
 		</table>
-	</form>
+	
 	<div class="text-center">
 		<%=pageBar1%>
 	</div>

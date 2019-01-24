@@ -30,28 +30,34 @@ public class DeleteBookServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String [] id =request.getParameterValues("delete");	
-			
 		
 		
-		int result=new AdminService().deleteBook(id);
+		
+		String id =request.getParameter("del");	
+		
+		String [] arr=id.split(",");
+		
+		
+		int result=new AdminService().deleteBook(arr);
 		
 		String msg="";
 		String view="/views/common/msg.jsp";
 		String loc="";
 		
-		if(result==id.length) {
+		if(result==arr.length) {
 			msg="삭제 성공";
 			loc="/admin/book";
 		}else {
 			msg="삭제실패";
 			loc="/admin/book";
 		}
+		
+		
+			
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
-		
-		
 		
 	}
 
