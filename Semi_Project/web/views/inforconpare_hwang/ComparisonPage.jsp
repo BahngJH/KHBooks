@@ -422,7 +422,7 @@ com.kh.author.model.vo.Author'
 			
 			for(var i=0; i<result.length; i++)
 			{
-				table.innerHTML="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' class='choiceBtn' onclick='' style='float:right;'><img src=''></a></td>";
+				table.innerHTML="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' onclick='' style='float:right;'><img style='border:none; width:20px; height:20px;' src='<%=request.getContextPath()%>/images/icons/choice.png'></a></td>";
 				console.log(result[i].bookImage);
 				console.log(result[i].bookName);
 			}
@@ -432,7 +432,7 @@ com.kh.author.model.vo.Author'
 <style>
 #ajaxTable td
 {
-	text-align:left;
+	text-align:left; vertical-align:middle;
 }
 #ajaxTable img
 {
