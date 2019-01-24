@@ -253,9 +253,12 @@ com.kh.author.model.vo.Author'
 			
 			for(var i=0; i<result.length; i++)
 			{
+				table.innerHTML+="<tr>";
+				table.innerHTML+="<td><%=request.getContextPath()%>/inforconpare_hwang/images/book/";
 				var row=table.insertRow(0);
 				console.log(result[i].bookImage);
 				console.log(result[i].bookName);
+				}
 			}
 		}
 	}
