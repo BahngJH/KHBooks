@@ -23,8 +23,8 @@ border-height: 10px;
 </style>
 <!-- 최상단  -->
 
-<section id="board-container">
-		 <div class="row col-md-offset-1 col-md-7">
+<section class="col-sm-10" id="board-container">
+		 <div class="row col-md-12">
 			 <div>
 				 <h3 class="title">1:1 문의(관리자화면)</h3>
 				 <hr>
@@ -55,7 +55,7 @@ border-height: 10px;
 				 </div>
 			 </div>	 --%>
 			 <div class="row">	
-				<div class="searchDate col-md-offset-1 col-md-7">		
+				<div class="searchDate col-md-12">		
 				  <div class="qnaList">
 					  <table class="table table-striped">						  
 					    <thead>

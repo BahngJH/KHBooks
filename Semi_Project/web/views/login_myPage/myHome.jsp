@@ -140,6 +140,11 @@
 						<a href="<%=request.getContextPath()%>/qna/qnaListMain" class="btn btn-primary" id="btn-qnaListAll">전체 보기</a>
 					</div>
 					<table class="table table-stripe" id="tbl-qnaList">
+						<colgroup>
+							<col width="70%" />
+							<col width="10%" />
+							<col width="20%" />
+						</colgroup>
 						<tr>
 							<th scope="col">제목</th>
 							<th scope="col">답변 여부</th>
@@ -232,6 +237,12 @@
 					</div>				
 					
 					<table class="table table-stripe" id="tbl-reviewList">
+						<colgroup>
+							<col width="20%" />
+							<col width="40%" />
+							<col width="20%" />
+							<col width="20%" />
+						</colgroup>
 						<tr>
 							<th scope="col">도서 정보</th>
 							<th colspan='2' scope="col">리뷰 내용</th>
