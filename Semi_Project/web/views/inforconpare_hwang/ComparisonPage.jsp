@@ -236,33 +236,6 @@ com.kh.author.model.vo.Author'
 	top:1px;
 }
 </style>
-<script type="text/javascript">
-	var request=new XMLHttpRequest();
-	function searchFunction() {
-		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById("bookName").value), true);
-		request.onreadystatechange=searchProcess;
-		request.send();
-	}
-	function searchProcess() 
-	{
-		var table=document.getElementById("ajaxTable");
-		table.innerHTML="";
-		if(request.readyState==4 && request.status==200)
-		{
-			var result=eval(request.responseText);
-			
-			for(var i=0; i<result.length; i++)
-			{
-				table.innerHTML+="<tr>";
-				table.innerHTML+="<td><%=request.getContextPath()%>/inforconpare_hwang/images/book/";
-				var row=table.insertRow(0);
-				console.log(result[i].bookImage);
-				console.log(result[i].bookName);
-				}
-			}
-		}
-	}
-</script>
 
 <section>
 
@@ -279,15 +252,15 @@ com.kh.author.model.vo.Author'
 				            </div>    
 				            <div class="modal-body text-center">
 				                 <form id="conpareForm" role="search" action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post" onsubmit="return false;">
-				                         <div class="input-group">
-				                            <span class="input-group-addon">책 이름 검색</span>
-				                            	<!-- 검색 하는곳 -->
-				                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName">
-				                            <span class="input-group-btn">
-				                            	<!-- 검색 버튼 -->
-				                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn" name='searchBtn'>검색</button>
-				                            </span>
-				                        </div>
+			                         <div class="input-group">
+			                            <span class="input-group-addon">책 이름 검색</span>
+			                            	<!-- 검색 하는곳 -->
+			                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName">
+			                            <span class="input-group-btn">
+			                            	<!-- 검색 버튼 -->
+			                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn" name='searchBtn'>검색</button>
+			                            </span>
+			                        </div>
 				                </form>
 				                <p>
 				                </p>
@@ -298,11 +271,14 @@ com.kh.author.model.vo.Author'
 				                            <tr>
 				                                <th style="width:150px;">책 이미지</th>
 				                                <th style="width:600px;">책 이름</th>
-				                                </tr>
+			                                </tr>
 				                        </thead>
-				                        <tbody id="ajaxTable">
-				                        
+				                        <div class="imagess">
+				                        <tbody>
+				                        	<tr id='ajaxTable'>
+				                        	</tr>
 				                        </tbody>
+				                        </div>
 				                    </table>
 				                </div>
 				                </div>
@@ -429,5 +405,39 @@ com.kh.author.model.vo.Author'
               </table>
         </div>
     </div>
+    <script type="text/javascript">
+	var request=new XMLHttpRequest();
+	function searchFunction() {
+		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById('bookName').value), true);
+		request.onreadystatechange=searchProcess;
+		request.send();
+	}
+	function searchProcess() 
+	{
+		var table=document.getElementById("ajaxTable");
+		table.innerHTML="";
+		if(request.readyState==4 && request.status==200)
+		{
+			var result=eval(request.responseText);
+			
+			for(var i=0; i<result.length; i++)
+			{
+				table.innerHTML="<td><img class='imagess' src='"+'<%=request.getContextPath()%>/images/book/'+result[i].bookImage+"'></td>"+"<td>"+result[i].bookName+"<a href='#' class='choiceBtn' onclick='' style='float:right;'><img src=''></a></td>";
+				console.log(result[i].bookImage);
+				console.log(result[i].bookName);
+			}
+		}
+	}
+</script>
+<style>
+#ajaxTable td
+{
+	text-align:left;
+}
+#ajaxTable img
+{
+	float:left; width:110px; height:140px; border:1px solid lightgrey;
+}
+</style>
 </section>
 <%@include file="/views/common/footer.jsp"%>
