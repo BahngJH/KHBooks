@@ -76,5 +76,12 @@ public class AbsenceService {
 		close(conn);
 		return list;
 	}
+	
+	public int updateDone(int no) {
+		Connection conn = getConnection();
+		int result = new AbsenceDao().updateDone(conn, no);
+		close(conn);
+		return result;
+	}
 
 }

@@ -321,6 +321,10 @@ span.border{
 div#carousel-id, div.carousel-inner, div.item{
 	height:300px;
 }
+
+div.item{
+	background-color: rgb(95, 197, 209);
+}
 /* 작가 정보 창 */
 section.author-container{
 	padding-right: 50px;

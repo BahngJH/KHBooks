@@ -7,7 +7,7 @@ com.kh.review.model.vo.Review,
 com.kh.member.model.vo.Member,
 com.kh.author.model.vo.Author'
 	pageEncoding='UTF-8'%>
-    
+    <%List<Book> bookList=(List<Book>)request.getAttribute("bookList"); %>
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%@ include file="/views/common/header.jsp"%>
 
@@ -237,55 +237,77 @@ com.kh.author.model.vo.Author'
 }
 </style>
 <script type="text/javascript">
-
+	var request=new XMLHttpRequest();
+	function searchFunction() {
+		request.open("post","<%=request.getContextPath()%>/search/preview?keyword="+encodeURIComponent(document.getElementById("bookName").value), true);
+		request.onreadystatechange=searchProcess;
+		request.send();
+	}
+	function searchProcess() 
+	{
+		var table=document.getElementById("ajaxTable");
+		table.innerHTML="";
+		if(request.readyState==4 && request.status==200)
+		{
+			var result=eval(request.responseText);
+			
+			for(var i=0; i<result.length; i++)
+			{
+				var row=table.insertRow(0);
+				console.log(result[i].bookImage);
+				console.log(result[i].bookName);
+			}
+		}
+	}
 </script>
 
 <section>
 
    <div class="container">
  			<div class="book_choice_wrap">
- 			
- 			<%-- <div class='booksearchTab'>
-			<div class='searchTab' style='float:left;'>
-			<%if(logined!=null) {%>
-			<button type="button" class="search btn-lg" onmouseout='change2(this)' onmouseover='change1(this)' data-toggle="modal" data-target="#myModal" data-title="수량입력" style='font-weight:bold;'>검색</button>
-			<form action='<%=request.getContextPath()%>/inforconpare_hwang/infoInsertWishEnd' method='post'>
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="닫기"><span aria-hidden="true">×</span></button>
-			        <h4 class="modal-title" id="myModalLabel" style="color:black;">수량입력</h4>
-			      </div>
-			      <div class="modal-body">
-					<input type='hidden' name='bookId' value=""/>
-					<input type='number' name='bookCount' placeholder='수량을 입력하세요.' style='color:black;'/>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="close btn-default pull-left" data-dismiss="modal"></button>
-			        <input type="submit" class="gogo" style='background-color:cornflowerblue;'value='검색하기'></button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			</form>
-			</div> --%>
+	 			<div class="modal fade" id="conpareModal">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header text-center">
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">×</span>
+				                </button>
+				                <h3 class="modal-title" id="myModalLabel">책 검색</h3>
+				            </div>    
+				            <div class="modal-body text-center">
+				                 <form id="conpareForm" role="search" action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post" onsubmit="return false;">
+				                         <div class="input-group">
+				                            <span class="input-group-addon">책 이름 검색</span>
+				                            	<!-- 검색 하는곳 -->
+				                            <input type="text" class = "form-control" onkeyup="searchFunction();" id="bookName">
+				                            <span class="input-group-btn">
+				                            	<!-- 검색 버튼 -->
+				                                <button type="button" class="btn btn-default" onclick="searchFunction();" id="searchBtn" name='searchBtn'>검색</button>
+				                            </span>
+				                        </div>
+				                </form>
+				                <p>
+				                </p>
+				                <div>
+				                <div style="width:100%; height:200px; overflow:auto">
+				                       <table class = "table text-center">
+				                        <thead>
+				                            <tr>
+				                                <th style="width:150px;">책 이미지</th>
+				                                <th style="width:600px;">책 이름</th>
+				                                </tr>
+				                        </thead>
+				                        <tbody id="ajaxTable">
+				                        
+				                        </tbody>
+				                    </table>
+				                </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			
-           <%-- <script>
-			//로그인권한
-			function loginafter(){
-				alert("로그인 후 이용이 가능합니다!");
-				location.href="<%=request.getContextPath()%>/member/login";
-			}
-           // 장바구니탭에서 모달창 띄어주기
-			$('#myModal').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
-			  var button = $(event.relatedTarget) // 모달 윈도우를 오픈하는 버튼
-			  var titleTxt = button.data('title') // 버튼에서 data-title 값을 titleTxt 변수에 저장
-			  var modal = $(this)
-			  modal.find('.modal-title').text('책 ' + titleTxt) // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
-			})
-			</script> --%>
-			</div>
  			<!-- 이미지 누르면 찾아가기 -->
 			<form action="<%=request.getContextPath()%>/inforconpare_hwang/conpareView" method="post">
 				<!-- 버튼 -->
@@ -309,7 +331,7 @@ com.kh.author.model.vo.Author'
                   <div class="book_img">
                     <p><a id="detail0" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=1" target="_blank"><img id="img0" width="125" height="179" src="<%=request.getContextPath() %>/images/book/이방인.jpg"></a></p>
                   </div>
-                  <a href="#" class="Book1">Book1</a>
+                  <a class="Book1" href="#" id="zip_codeBtn" data-toggle="modal" data-target="#conpareModal">BOOK1</a>
                   <a href="#" class="jangba">장바구니 담기</a>
                   <a href="#" class="nowbuy">바로 구매하기</a>
                 </div>
@@ -317,7 +339,7 @@ com.kh.author.model.vo.Author'
                   <div class="book_img">
                     <p><a id="detail1" href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=6648488" target="_blank"><img id="img1" width="125" height="179" src="<%=request.getContextPath() %>/images/book/어린왕자.jpg"></a></p>
                   </div>
-                  <a href="#" class="Book2">Book2</a>
+                  <a class="Book2" href="#" id="zip_codeBtn" data-toggle="modal" data-target="#conpareModal">BOOK2</a>
                   <a href="#" class="jangba">장바구니 담기</a>
                   <a href="#" class="nowbuy">바로 구매하기</a>
                 </div>
