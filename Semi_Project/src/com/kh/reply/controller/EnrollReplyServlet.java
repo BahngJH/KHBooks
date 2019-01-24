@@ -40,9 +40,7 @@ public class EnrollReplyServlet extends HttpServlet {
 		r.setOrderBookNum(orderBookNum);
 		r.setMemberNum(memberNum);
 		r.setOrderReContent(orderReContent);
-		r.setOrderReCoNum(0);
-		r.setStatus(null);
-		r.setOrderReDate(null);
+
 
 		System.out.println(r);
 

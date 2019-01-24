@@ -41,9 +41,6 @@ body { padding-top:30px; }
 
 
 
-
-
-
 body{
     background:#eee;
 }
@@ -89,16 +86,17 @@ a {
 .blog-comment img.avatar {
 	position: relative;
 	float: left;
-	margin-left: 0;
 	margin-top: 0;
-	width: 65px;
-	height: 65px;
+	width: 35px;
+	height: 35px;
+	margin-top: 25px;
 }
 
 .blog-comment .post-comments{
 	border: 1px solid #eee;
     margin-bottom: 20px;
-    margin-left: 85px;
+	margin-left: 50px;
+
 	margin-right: 0px;
     padding: 10px 20px;
     position: relative;
@@ -109,6 +107,7 @@ a {
 	background: #fff;
 	color: #6b6e80;
 	position: relative;
+	
 }
 
 .blog-comment .meta {
@@ -131,12 +130,18 @@ a {
 	padding-top: 40px;
 }
 
-.blog-comment h3,
-.blog-comment-form h3{
-	margin-bottom: 40px;
-	font-size: 26px;
+.blog-comment h5,
+.blog-comment-form h5{
+	margin-bottom: 15px;
+	font-size: 20px;
 	line-height: 30px;
 	font-weight: 800;
+}
+
+
+
+.form-group{
+padding: 0 20px 0 10px;
 }
 
 
@@ -219,11 +224,15 @@ input[value='삭제하기'] {
 	cursor: pointer;
 }
 
+.hello{
+margin-right:440px;
+
+}
 
 </style>
 <section>
 	<div class=" col-sm-8">
-<br/><br/>
+		<br/><br/>
 		
 		
 			<%if(ab.getMemberNum()==logined.getMemberNum()||logined.getMemberId().equals("admin")){ %>
@@ -236,9 +245,7 @@ input[value='삭제하기'] {
 			<br />
 			<br />
 			<br />
-			<%if(logined!=null||logined.getMemberId().equals("admin")){ %>
-
-			
+			<%if(logined!=null||logined.getMemberId().equals("admin")){ %>		
 			<table class="type10 table">
 				<thead>
 
@@ -260,6 +267,7 @@ input[value='삭제하기'] {
 					<tr>
 						<th scope="row"><h4>발행연도</h4></th>
 						<td><%=ab.getBookDate() %></td>
+
 					</tr>
 					<tr>
 						<th scope="row" class="even"><h4>출판사</h4></th>
@@ -276,13 +284,25 @@ input[value='삭제하기'] {
 					<tr>
 						<th scope="row" ><h4>ISBN</h4></th>
 						<td><%=ab.getISBN() %></td>
-					</tr>					
+					</tr>												
+					<br />
+					<br />																
 				</tbody>
-
 				<%}%>
 			</table>
 			
-			<br>	
+					
+    <div class="row">
+		<div class="col-md-12">				
+				<span><button id="return" onclick="main_absence();">목록으로</button></span>
+				<%if(logined.getMemberId().equals("admin")){ %>
+				<span><button class="btn" onclick="appendBook();">책 추가하기</button></span>
+				<%} %>
+		</div>
+	</div>
+				
+			<br>
+			<%if(logined.getMemberId().equals("admin")||ab.getMemberNum() == logined.getMemberNum()){ %>	
 		    <div class="row">  
 		        <div class="panel panel-default widget">
 		            <div class="panel-heading">
@@ -298,14 +318,14 @@ input[value='삭제하기'] {
 		                            </div>
 		                            <div class="col-xs-10 col-md-11">
 		                                <div>
-		                                    <a href="#">안녕하세요 <%=logined.getMemberId() %> 님</a>                                  
-		                                </div>                                                    
+		                                	<span class="hello">안녕하세요 <%=logined.getMemberId() %> 님 </span>	                                	
+                               			</div>  		                                                                                  
 		                            </div>
 		                        </div>
 		                    </li>                                  
 		                </ul>               
-		            </div>
-		            <!--댓글 입력 부분 -->
+		            </div>		            
+		            <!--댓글 입력 부분 -->	 			
 		            <div class="col">
 		                  <div class="panel-body">
 		                        <form role="form" action="<%=request.getContextPath()%>/reply/enrollReply">
@@ -314,106 +334,50 @@ input[value='삭제하기'] {
 		    								<textarea class="form-control" rows="3" id="replyContent" name="orderReContent" placeholder="댓글을 입력하세요." required></textarea>
 		                                    <input type="hidden" name="memberNum" value="<%=logined.getMemberNum()%>"/>
 		                                    <input type="hidden" name="orderBookNum" value="<%=ab.getAppNum() %>"/>
-		                                </div>                                                           
-		                       			 <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">댓글등록</button>
-		                       			 
+	                               			<span><button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">댓글등록</button></span>
+		                                </div>                                                           		                       					                       			 
 		                            </fieldset>
 		                        </form>
 		               	  </div>
-		            </div>
+		            </div> <%} %>           		           
 		     	 </div>
 		   </div>
-    
-
-
-
-
-
+   	 </div>
+	
 <div class="container bootstrap snippet">
     <div class="row">
 		<div class="col-md-12">
 		    <div class="blog-comment">
-				<h3 class="text-success">댓글목록</h3>
+				<h5 class="text-success">댓글목록</h5>
                 <hr/>				
-					<ul class="comments">			
-<%for(Reply r : rlist) { %>
- <%if(r.getOrderReContent()!=null&&logined!=null){%>
+				<%for(Reply r : rlist) { %>
+					<%if(r.getOrderReContent()!=null&&logined!=null){ %> 
+					<ul class="comments">								
 						<li class="clearfix">
-						  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+						  <img src="<%=request.getContextPath()%>/images/icons/user_icon.png" class="avatar"  alt="">
 						  <div class="post-comments">				
 						      <p class="meta"><%=r.getOrderReDate()%> 
-						      	<strong><%=r.getMemberNum() %></strong> says :
+						      	<strong><%=r.getMemberId() %></strong> says :
+						      	<%if(r.getMemberNum()==logined.getMemberNum()){ %>
 						      		<i class="pull-right">
-						      			<a href="#"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
-						      			<a href="#"><small>삭제</small></a>&nbsp;&nbsp;&nbsp;
-						      			<a href="#"><small>Reply</small></a>&nbsp;
+						      			<a onclick="fn_updateReply();"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
+						      			<a onclick="fn_deleteReply( '<%=r.getOrderReCoNum() %>');"><small>삭제</small></a>&nbsp;	<%} %>						      			
 					      			</i>
 		     				  </p>
-						      <p>
+						      <p id="repContent"><!--댓글 내용부분-->
 						        <%=r.getOrderReContent() %>
 						      </p>
-						  </div> <%} 
-					  			}%>
-					 
-						   <ul class="comments">
-						      <li class="clearfix">
-						          <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
-						          <div class="post-comments">
-						              <p class="meta">Dec 20, 2014 
-					              		<a href="#">JohnDoe</a> says : 
-					              		<i class="pull-right">
-				              				<a href="#"><small>수정</small></a>&nbsp;&nbsp;&nbsp;
-							      			<a href="#"><small>삭제</small></a>&nbsp;&nbsp;&nbsp;
-							      			<a href="#"><small>Reply</small></a>&nbsp;
-						      			</i>
-		              			 	 </p>
-						              <p>
-						                  더 문의하지마요
-						              </p>
-						          </div>
-						      </li>
-						  </ul> 
-					</li>
-				</ul>				
-			</div>
-		</div>
+						  </div> 										  								 			 
+						</li>
+									
+					</ul>
+					<%} 
+				 } %>
+			</div>			 
+		</div>			 
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<br />
-		<br />
-
-		<button id="return" onclick="main_absence();">목록으로</button>
-		<%if(logined.getMemberId().equals("admin")){ %>
-		<button class="btn" onclick="appendBook();">책 추가하기</button>
-		<%} %>
-		<br />
-		<br />
-		<br />
-		<br />
-		
-		
-		
+						     
 		<script>
 		
 		function appendBook(){
@@ -431,22 +395,29 @@ input[value='삭제하기'] {
 		function main_absence(){
 			location.href="<%=request.getContextPath()%>/absence/page";
 		}
-	
 		
-			<%-- function main_Notice(){
-				location.href="<%=request.getContextPath()%>/notice/noticemain";
+	
+
+	 	function fn_deleteReply(no){
+			if(!confirm('정말로 삭제하시겠습니까?'))
+			{
+				return;	
 			}
-			function deleteNotice(){
-				if(!confirm('정말로 삭제하시겠습니까?'))
-				{
-					return;	
-				}
-				location.href="<%=request.getContextPath()%>/notice/noticedelete?no=<%=n.getNoticeNo()%>";
-			}
-			function updateNotice(){
-				location.href="<%=request.getContextPath()%>/notice/noticeupdate?no1=<%=n.getNoticeNo()%>";
+			location.href="<%=request.getContextPath()%>/reply/deleteReply?no="+no+"&no1="+<%=ab.getAppNum()%>;
+		}
+		function fn_updateReply(){
+			tar reContent
 				
-			} --%>
+			})
+			
+			
+			
+			
+			 location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; 						
+			<%-- location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; --%>
+			
+		} 
+
 		</script>
 </section>
 </div>
