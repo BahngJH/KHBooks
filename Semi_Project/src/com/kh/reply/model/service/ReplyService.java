@@ -5,6 +5,7 @@ import static common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.notice.model.dao.NoticeDao;
 import com.kh.reply.model.dao.ReplyDao;
 import com.kh.reply.model.vo.Reply;
 
@@ -31,12 +32,32 @@ public class ReplyService {
 		return list;
 	}
 	
-	/* 멤버&댓글 조인하기
-		public Reply findId(int memberNum) {
-			Connection conn = getConnection();
-			List<Reply> list = new ReplyDao().findId(conn, memberNum);
-			close(conn);
-			return list;
-		}	*/
+	//댓글 삭제
+	public int deleteReply(int reNo) {
+		Connection conn =getConnection();
+		int result = new ReplyDao().deleteReply(conn,reNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	//댓글 수정
+	public int updateReply(int reNo) {
+		Connection conn =getConnection();
+		int result = new ReplyDao().deleteReply(conn,reNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	
 		
 }
