@@ -35,7 +35,7 @@ public class AdminService {
 	}
 	
 	public int updateAuthor(Author a) {
-		Connection conn = null;
+		Connection conn  = getConnection();
 		int rs = new AdminDao().updateAuthor(conn,a);
 		if(rs>0) {commit(conn);}
 		else {rollback(conn);}
