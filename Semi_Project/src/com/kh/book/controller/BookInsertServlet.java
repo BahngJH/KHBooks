@@ -107,7 +107,7 @@ public class BookInsertServlet extends HttpServlet {
 			//실패
 			request.setAttribute("msg", "도서 등록 오류");
 		}
-		request.setAttribute("loc", "/absence/page");
+		request.setAttribute("loc", "/book/appendlist");
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
