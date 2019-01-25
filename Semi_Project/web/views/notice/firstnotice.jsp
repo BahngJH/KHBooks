@@ -60,15 +60,15 @@ border-bottom:2px solid darkgray;
 					
 					<h2><strong>자주묻는질문</strong></h2>
 					 <hr/>
-                    <a href="">도서 주문후 얼마나 걸리나요?</a>
+                    <a href="<%=request.getContextPath()%>/views/notice/manyquestion.jsp">도서 주문후 얼마나 걸리나요?</a>
                     <hr/>
-                    <a href="">방문해서 수령 해야하나요?</a>
+                    <a href="<%=request.getContextPath()%>/views/notice/manyquestion1.jsp">방문해서 수령 해야하나요?</a>
                     <hr/>
-                    <a href="">배송도 가능 한가요?</a>
+                    <a href="<%=request.getContextPath()%>/views/notice/manyquestion2.jsp">배송도 가능 한가요?</a>
 					<hr/>
-					<a href="">부재도서 신청은 어떻게 하나요?</a>
+					<a href="<%=request.getContextPath()%>/views/notice/manyquestion3.jsp">부재도서 신청은 어떻게 하나요?</a>
                     <hr/>
-                    <a href="">방문결제도 가능한가요?</a>
+                    <a href="<%=request.getContextPath()%>/views/notice/manyquestion4.jsp">방문결제도 가능한가요?</a>
                     
 
 				</div>

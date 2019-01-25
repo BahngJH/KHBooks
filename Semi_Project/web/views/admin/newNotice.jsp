@@ -10,10 +10,11 @@
 /* #insert {margin: 50px 50px 50px 80px;} */
 form .panel panel-info{border: 1px solid blue;}
 /* div.aa{border: 1px solid darkgray;} */
+div.new{margin-bottom:23%;}
 </style>
 
 <section>
-   <div class="col-sm-12 col-md-9">
+   <div class="new col-sm-12 col-md-9">
 		<form action="<%=request.getContextPath()%>/admin/noticeinsert">
       		<h2>공지사항 등록</h2>
          	<table class="table" id="insert">
