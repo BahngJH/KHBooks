@@ -26,6 +26,7 @@ marquee ul {
 }
 
 
+
 .Notice_List {
 	color: black;
 }
@@ -71,8 +72,8 @@ div.notice-scroll{
 footer.fot{
 text-align:center;
 }
-footer.fot a{color:black;}
-
+footer.fot a{color:black; }
+footer.fot div.notice a{text-decoration:none;}
 div.mark{background-color:#f8f8f8; margin-bottom:0%; margin-top:-3%;}
 div#btn{
 	margin-left: 35.3%;margin-right:30%;	

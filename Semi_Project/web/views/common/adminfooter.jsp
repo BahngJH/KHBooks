@@ -24,7 +24,7 @@ marquee ul {
 .fot address {
 	text-align: center;
 }
-
+footer.fot div.notice a{text-decoration:none;}
 
 .Notice_List {
 	color: black;

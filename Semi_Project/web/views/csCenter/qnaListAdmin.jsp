@@ -97,4 +97,4 @@ border-height: 10px;
 
 
 
-<%@ include file="/views/common/footer.jsp"%>
+<%@ include file="/views/common/adminfooter.jsp"%>
