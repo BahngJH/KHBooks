@@ -121,29 +121,7 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 		</div>
 		<hr />
 		
-		
-		
-		
-		<div id="btn" class="row">
-			<div class='mark col-xs-1 col-sm-1 col-md-1'>
-				<h4>
-					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
-				</h4>
-			</div>
-
-			<div class="col-xs-3 col-sm-3 col-md-3">
-				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
-			</div>
-			<div class="col-xs-3 col-sm-3 col-md-3">
-				<a href="<%=request.getContextPath()%>/qna/qnaListMain"><strong>1대1문의</strong></a>
-			</div>
-			<div class="col-xs-3 col-sm-3 col-md-3">
-				<a href="<%=request.getContextPath()%>/absence/page"><strong>도서주문</strong></a>
-			</div>
-		</div>
-
-
-		
+	
 		<address>
 			㈜ kh문고 서울시 강남구 대표이사 : 사업자등록번호 :123-4514 <br /> 대표전화 :
 			02-858-8282(발신자부담전화)<br /> 팩스 :785-41258 (지역번호공통)
@@ -175,7 +153,6 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
 		});
 	});
 </script>
-
 
 
 

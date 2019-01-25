@@ -30,16 +30,16 @@ public class ConpareDao {
 		}
 	}
 	
-	public List<Book> selectConpareBook(Connection conn, String bookName)
+	public List<Book> selectConpareBook(Connection conn, int bookId)
 	{
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<Book> bookList=new ArrayList();
+		List<Book> bList=new ArrayList<>();
 		String sql=prop.getProperty("selectConpareBook");
 		try
 		{
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+bookName+"%");
+			pstmt.setInt(1, bookId);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -67,7 +67,7 @@ public class ConpareDao {
 				a.setAuthorInfo(rs.getString("authorInfo"));
 				b.setAuthor(a);
 				
-				bookList.add(b);
+				bList.add(b);
 			}
 		}
 		catch(SQLException e)
@@ -79,6 +79,6 @@ public class ConpareDao {
 			close(rs);
 			close(pstmt);
 		}
-		return bookList;
+		return bList;
 	}
 }
