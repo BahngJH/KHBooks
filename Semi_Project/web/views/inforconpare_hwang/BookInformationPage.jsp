@@ -419,6 +419,7 @@ function fnMove2(){
 									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span></span>
 									<br>
 									<a href='#' class='returnList' onclick='history.go(-1)'><img style='margin-top:8px' src='<%=request.getContextPath() %>/images/icons/back(-1).png'/></a>
+									<!-- <a href='#' 'onclick='' style='top:8px' id="saveButton" alt="책 비교"/>책비교하기</a><br/> -->
 								</div>
 							</li>
 						</ul>
@@ -441,7 +442,7 @@ function fnMove2(){
 			      <div class="modal-body">
 					<input type='hidden' name='bookId' value="<%=b.getBookId()%>"/>
 					<p style="font-size:10pt; color:black;"><strong style='font-size:13pt;'><%=b.getBookName() %></strong>의 총 재고는 <strong style="font-size:15pt"><%=b.getStock() %></strong>개 입니다.</p>
-					<input type='number' name='bookCount' id='bookCount' max="<%=b.getStock()%>" placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%;'/>
+					<input type='number' name='bookCount' id='bookCount' max='<%=b.getStock()%>' placeholder='수량을 입력하세요.' onKeyUp="if(this.value><%=b.getStock()%>){this.value='<%=b.getStock()%>';}" style='color:black; width:50%;'/>
 					<div class="selectedvalue"></div>
 			      </div>
 			      <div class="modal-footer">
@@ -847,11 +848,21 @@ function fnMove2(){
 									//모달창띄워주자
 								}
 								
+								$(function(){ //저장버튼 클릭 
+									$("#saveButton").click(function(){ 
+										//입력값 
+										var cookie_value = $("#save").val(); 
+										//'cookie'라는 key값으로 입력값을 저장한다. 
+										//1번째 parameter = 쿠키명
+										// 2번째 parameter = 저장하고자 하는 쿠키값
+										$.cookie('cookie', cookie_value);
+									});
+								});
+
 								</script>
 		                    	</div>
 		                    	<%}%>
 								<label id='lala' for='readmore<%=r.getReviewNum()%>'></label>
-		                    	</script>
 	                        </small>
 	                    </div>
 	                    <hr style='border-top: 1px dotted black'>
