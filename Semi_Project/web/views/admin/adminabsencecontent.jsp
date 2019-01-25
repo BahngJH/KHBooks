@@ -7,7 +7,7 @@
 	List<Reply> rlist=(List)request.getAttribute("reply");
 	Member m = (Member) request.getSession().getAttribute("logined");
 %>
-<%@ include file="/views/common/noticeHeader.jsp"%>
+<%@ include file="/views/common/adminheader.jsp"%>
 <style>
 
 body { padding-top:30px; }
@@ -423,4 +423,4 @@ margin-right:440px;
 </section>
 </div>
 
-<%@include file="/views/common/footer.jsp"%>
+<%@include file="/views/common/adminfooter.jsp"%>

@@ -86,7 +86,7 @@ function absence1(){
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>
 						<td>
-							<a style="text-decoration:none"><%=ab.getBookName()%></a>
+							<a href="<%=request.getContextPath()%>/admin/absencelist?no=<%=ab.getAppNum()%>"><%=ab.getBookName()%></a>
 							<%=ab.getStatus().equals("D")?"<span class='glyphicon glyphicon-ok'></span>":"" %>
 						</td>
 						<td><%=ab.getAppDate()%></td>	
@@ -111,4 +111,4 @@ function absence1(){
 
 
 
-<%@include file="/views/common/footer.jsp"%>
+<%@include file="/views/common/adminfooter.jsp"%>
