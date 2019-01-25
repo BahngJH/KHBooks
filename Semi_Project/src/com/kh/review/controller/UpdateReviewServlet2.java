@@ -14,14 +14,14 @@ import com.kh.review.model.vo.Review;
 /**
  * Servlet implementation class UpdateReviewServlet
  */
-@WebServlet("/review/updateReview")
-public class UpdateReviewServlet extends HttpServlet {
+@WebServlet("/review/updateReview2")
+public class UpdateReviewServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateReviewServlet() {
+    public UpdateReviewServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,8 @@ public class UpdateReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int renum = Integer.parseInt(request.getParameter("renum"));			// 수정 리뷰
-		int grade = Integer.parseInt(request.getParameter("star_grade"));		// 수정 별점
+		int grade = Integer.parseInt(request.getParameter("star_grade1"));		// 수정 별점
+		int bookId = Integer.parseInt(request.getParameter("bid"));
 		String context = request.getParameter("updateContext");					// 수정한 내용
 		
 		Review r = new Review();
@@ -43,7 +44,7 @@ public class UpdateReviewServlet extends HttpServlet {
 		
 		String view = "/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/member/review";
+		String loc = "/inforconpare_hwang/infoView?bookId="+bookId;
 				
 		if(result > 0) {
 			msg = "리뷰 수정 성공!";

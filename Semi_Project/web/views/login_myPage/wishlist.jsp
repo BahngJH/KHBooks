@@ -149,7 +149,7 @@
 			for(var i=0;i<count;i++){
 				if(frm.BookId[i].checked==true){
 					selectBooks +=parseInt(frm.bookCount[i].value);
-					sum += parseInt(frm.bookPrice[i].value);
+					sum += parseInt(frm.bookCount[i].value)*parseInt(frm.bookPrice2[i].value);
 				}
 			}
 		}
@@ -170,7 +170,7 @@
 					var selectBooks=0;
 					for(var i=0;i<count;i++){					
 							selectBooks+=parseInt($('.bookCount')[i].value);
-							sum += parseInt($('.bookPrice')[i].value);
+							sum += parseInt($('.bookCount')[i].value)*parseInt($('.bookPrice2')[i].value);
 					}
 					count = selectBooks;
 					var milage = sum/10;
@@ -203,8 +203,6 @@
 					var changePrice = price * count;
 					
 					$(event.target).parent().children('.bookPrice').val(changePrice);
-					
-					//alert("체크해제 후 다시 체크하세요");
 					
 					//수량이 바뀌면 디비에 그 수량 바꿔줌
 					$.ajax({

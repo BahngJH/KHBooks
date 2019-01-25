@@ -143,7 +143,7 @@
                     		<!-- 책 이미지 -->
                             <div class='result-image col-xs-4 col-sm-3 col-md-3 col-lg-3'>
                                 <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
-                                    <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
+                                    <img style='width:135px; height:211px;' src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>"
                                         alt="책 이미지">
                                 </a>
                             </div>
@@ -210,7 +210,7 @@
 				<%for(Book b: recents){ %>
                     <div class="cartContent col-xs-2 col-md-12">
                         <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail">
-                            <img src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>" alt="도서 이미지">
+                            <img style='width:55px; height:78px;' src="<%=request.getContextPath() %>/images/book/<%=b.getBookImage() %>" alt="도서 이미지">
                         </a>
                     </div>
 				<%}%>
