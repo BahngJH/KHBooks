@@ -408,7 +408,7 @@ function fnMove2(){
 						int jungga=(int)oriPrice;%>
 							<li>정가 : <span class='org_price'><%=jungga %> 원 </span> 
 							<br>
-								판매가 : <span class='sell_price' title='판매가'> <strong><%=b.getPrice() %> </strong> 원</span>
+								판매가 : <span class='sell_price' title='판매가'> <strong><%=b.getPrice() %> </strong>원</span>
 							</li>
 							<li>
 								<!-- 포인트 -->

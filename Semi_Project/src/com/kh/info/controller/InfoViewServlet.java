@@ -148,7 +148,7 @@ public class InfoViewServlet extends HttpServlet {
 					// |1||2||3||4||5| 
 					
 					String [] values = cookieValue.split("\\|");
-										
+					
 					//쿠키 중복 값 막음
 					//중복 값이 없을 때
 					if(!cookieValue.contains(bookId+"|")) {
