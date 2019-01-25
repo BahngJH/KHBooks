@@ -44,12 +44,12 @@ padding: 8px 10px;
 		border: none;
 		color: white;
 		padding: 8px 20px;
-		margin: 10px 0px 10px 10px;
+		margin: 10px 0px 10px 0px;
 		text-decoration: none;
 		float: right;
 		cursor: pointer;
 	}
-	div#buyList-options{margin-top:;}
+
 </style>
 
 <script>
@@ -94,6 +94,7 @@ function del(){
 	<hr />
 	<div id="buyList-options">
 				<div class="input-group">
+			
 					<form class="form-controll" role="search" action="<%=request.getContextPath()%>/admin/searchbook"
 						method="get">
 						<div class="form-group">
@@ -183,7 +184,7 @@ function del(){
 </div>
 </div>
 </div>
-<!-- 리뷰 수정 모달창 -->
+<!-- 수정 모달창 -->
 
 <style>
 table.tbl-modal tr th{text-align:center;}

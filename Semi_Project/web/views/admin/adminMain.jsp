@@ -17,7 +17,7 @@ cellspacing:0;
  }
 
 table th{
- border-bottom:1px solid skyblue;
+ border-bottom:1px solid #B2CCFF;
 margin: 5px 0;
 padding: 8px 10px;
 border-width: 2px;
@@ -40,7 +40,7 @@ border-height: 10px;
   				<h2>최근 부재도서 주문내역</h2>
 				<hr/>
 				<br/>
-		<table class="table table-striped" style=text-align:center;>
+		<table class="table table" style=text-align:center;>
 					<colgroup>
 						<col width="86px" />
 						<col width="*" />
@@ -72,7 +72,7 @@ border-height: 10px;
 				<h2>최근 공지사항내역</h2>
 				<hr/>
 				<br/>
-					<table class="table table-striped" style=text-align:center;>
+					<table class="table table" style=text-align:center;>
 					<colgroup>
 						<col width="86px" />
 						<col width="*" />

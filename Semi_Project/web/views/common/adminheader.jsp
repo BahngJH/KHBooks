@@ -24,8 +24,8 @@
 	<div class="col-sm-2">
 
 		<h4>
-			<span class="glyphicon glyphicon-home" aria-hidden="true"></span> <strong>관리자
-				페이지</strong>
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="<%=request.getContextPath()%>/admin/mainview"><strong>관리자
+				페이지</strong></a>
 		</h4>
 		<hr />
 		<a href="<%=request.getContextPath()%>/admin/book"><strong>도서정보</strong></a>
