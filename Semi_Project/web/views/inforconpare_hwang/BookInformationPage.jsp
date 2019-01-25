@@ -852,18 +852,6 @@ function fnMove2(){
 									$('#star<%=r.getGrade()%>').parent().children("a").removeClass("on");
 									$('#star<%=r.getGrade()%>').addClass("on").prevAll("a").addClass("on");
 								}
-								
-								$(function(){ //저장버튼 클릭 
-									$("#saveButton").click(function(){ 
-										//입력값 
-										var cookie_value = $("#save").val(); 
-										//'cookie'라는 key값으로 입력값을 저장한다. 
-										//1번째 parameter = 쿠키명
-										// 2번째 parameter = 저장하고자 하는 쿠키값
-										$.cookie('cookie', cookie_value);
-									});
-								});
-
 								</script>
 		                    	</div>
 		                    	<%}%>
@@ -906,7 +894,7 @@ function fnMove2(){
 										<a id="star3" href="#">★</a>
 										<a id="star4" href="#">★</a>
 										<a id="star5" href="#">★</a>
-									</p>								
+									</p>
 								</td>
 							</tr>
 							<tr>
@@ -915,8 +903,8 @@ function fnMove2(){
 								<td>									
 									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
 									<input type="hidden" id="star_grade1" name="star_grade1" value="">
-									<input type="hidden" id="renum" name="renum" value="">			
-									<input type="hidden" id="bid" name="bid" value="">							
+									<input type="hidden" id="renum" name="renum" value="">
+									<input type="hidden" id="bid" name="bid" value="">		
 								</td>
 								</form>
 							</tr>
@@ -983,8 +971,6 @@ function fnMove2(){
 				$('#star_grade1').val(grade);
 				$('#updateReviewFrm').submit();
 			}
-			
-				
 		</script>		
 		
 </section>
