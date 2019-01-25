@@ -46,7 +46,7 @@ public class UpdateServlet extends HttpServlet {
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
 		
 		//추가로 더 만듬, 저자소개 목차 책소개
-		String authorInfo = request.getParameter("authorInfo");
+		String authorInfo = request.getParameter("authorinfo");
 		String toc = request.getParameter("toc");
 		String bookInfo = request.getParameter("bookInfo");
 		int authorNum = Integer.parseInt(request.getParameter("authornum"));
@@ -66,9 +66,8 @@ public class UpdateServlet extends HttpServlet {
 		a.setAuthorName(authorName);
 		a.setAuthorInfo(authorInfo);
 		a.setauthorNum(authorNum);
-		
+				
 		int result = new AdminService().updatebook(b);
-		System.out.println("책 정보 수정 리턴값 "+result);
 		int rs = new AdminService().updateAuthor(a);
 		String msg="";
 		String view="/views/common/msg.jsp";

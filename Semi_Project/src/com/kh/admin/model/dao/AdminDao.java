@@ -327,26 +327,25 @@ public class AdminDao {
 		
 	}
 
-	 public int updateAuthor(Connection conn, Author a)
-	   {
-	      PreparedStatement pstmt =null;
-	      int rs =0;
-	      String sql = prop.getProperty("updateAuthor");
-	      try {
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, a.getAuthorName());
-	         pstmt.setString(2, a.getAuthorInfo());
-	         pstmt.setInt(3, a.getauthorNum());
-	         rs = pstmt.executeUpdate();
-	         
-	      } catch (Exception e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }finally {
-	         close(pstmt);
-	      }
-	      return rs;
-	   }
+	public int updateAuthor(Connection conn, Author a) {
+		PreparedStatement pstmt = null;
+		int rs = 0;
+		String sql = prop.getProperty("updateAuthor");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getAuthorName());
+			pstmt.setString(2, a.getAuthorInfo());
+			pstmt.setInt(3, a.getauthorNum());
+			rs = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rs;
+	}
 
 
 }

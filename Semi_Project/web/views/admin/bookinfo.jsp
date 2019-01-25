@@ -224,7 +224,7 @@ table.tbl-modal tr th{text-align:center;}
 							</tr>
 	       				    <tr>
 								<th>책 소개</th>
-	       				   		<td><textarea id="bookinfo" class="form-control"  rows="8" cols="50"  name="bookinfo" value=""/></textarea></td>
+	       				   		<td><textarea id="bookinfo" class="form-control"  rows="8" cols="50"  name="bookInfo" value=""/></textarea></td>
 								<th>줄거리</th>
 								<td><textarea id="bookcontent" class="form-control"  rows="8" cols="50"  name="updatecontent" value=""/></textarea></td>
 	       				   	</tr>
