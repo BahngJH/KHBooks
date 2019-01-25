@@ -24,51 +24,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<style>
- 		div{
-            text-align: center;
-        }
-        #login{
-            position: relative; 
-            top: 50px;
-        }
-        a{
-            text-decoration: none;
-           	color:pink;
-        }
-        #checkdiv{
-            width:305px; height:40px;
-            text-align: center;
-        }
-        .search{
-            position: relative;
-            left: 30px;
-        }
-        #keepLogin {
-            position: relative;
-           right: 10px;
-        }
-        #logo {
-        
-            font-size: 200%;
-        }
-        span{
-        	color:red;
-        }
-        #inputData{
-        	text-align:center;
-        }
-        input[type=password],input[type=text]{
-        width:305px; height:40px;
-        border: 1px solid gray;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        }
-        input[type=submit],input[type=button] {
-        width:305px; height:51px;
-        }
-        
-</style>
 </head>
 
 <body>
