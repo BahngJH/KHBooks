@@ -161,11 +161,14 @@ function del(){
 		  				$('#updatepublisher').val("<%=b.getPublisher()%>");
 		  				$('#updategenre').val("<%=b.getGenre()%>");
 		  				$('#updateisbn').val("<%=b.getIsbn()%>");
-		  				$('#bookedit').val("<%=b.getEditor()%>");
+		  				$('#bookedit').val("<%=b.getAuthor().getAuthorName()%>");
 		  				$('#bookstock').val("<%=b.getStock()%>");
-		  				$('#bookcontent').val("<%=b.getBookContent()%>");	
+		  				$('#bookcontent').val(`<%=b.getBookContent()%>`);	
 		  				$('#booknum').val("<%=b.getBookId()%>");
-		  			
+		  				$('#booktoc').val(`<%=b.getToc()%>`);
+		  				$('#bookinfo').val(`<%=b.getBookInfo()%>`);
+		  				$('#authorinfo').val(`<%=b.getAuthor().getAuthorInfo()%>`);
+		  				$('#authornum').val("<%=b.getAuthorNum()%>");
 		  			});
 		  			
 		  	</script>
@@ -197,41 +200,46 @@ table.tbl-modal tr th{text-align:center;}
 				       		<tr>
 								<th>책 제목</th>
 								<td><input type="text" id="updatename"class="form-control" name="updatename" value=""/></td>
-							</tr>
-							<tr>
 								<th>가격</th>
 								<td><input type="text" id="updateprice" class="form-control" name="updateprice" value=""/></td>
 							</tr>
 							<tr>
 								<th>출판사</th>
 								<td><input type="text" id="updatepublisher" class="form-control" name="updatepublisher" value=""/></td>
-							</tr>
-							<tr>
 								<th>장르</th>
-								<td><input type="text" id="updategenre" class="form-control"  name="updategenre" value=""/></td>
+								<td>
+									<select type="text" id="updategenre" class="form-control"  name="updategenre" value="">
+										<%for(String g: genres){ %>
+										<option value="<%=g%>"><%=g %></option>
+										<%} %>
+									</select>
+								</td>
 							</tr>
-						
 							<tr>
 								<th>ISBN</th>
 								<td><input type="text" id="updateisbn" class="form-control" name="updateisbn" value=""/></td>
-							</tr>
-	       				   	 	<tr>
-								<th>저자</th>
-								<td><input type="text" id="bookedit" class="form-control" name="bookedit" value=""/></td>
-							</tr>
-	       				   <tr>
 								<th>재고량</th>
 								<td><input type="text" id="bookstock" class="form-control" name="bookstock" value=""/></td>
+								
 							</tr>
-	       				   	<tr>
+	       				    <tr>
+								<th>책 소개</th>
+	       				   		<td><textarea id="bookinfo" class="form-control"  rows="8" cols="50"  name="bookinfo" value=""/></textarea></td>
 								<th>줄거리</th>
 								<td><textarea id="bookcontent" class="form-control"  rows="8" cols="50"  name="updatecontent" value=""/></textarea></td>
 	       				   	</tr>
+	       				   	<tr>
+	       				   		<th>목차</th>
+	       				   		<td><textarea id="booktoc" class="form-control"  rows="8" cols="50"  name="toc" value=""/></textarea></td>
+	       				   	</tr>
+	       				   	<tr>
+	       				   		<th>저자</th>
+								<td><input type="text" id="bookedit" class="form-control" name="authorName" value=""/></td>
+		       				   	<th>저자소개</th>
+		       				   	<td><textarea id="authorinfo" class="form-control"  rows="8" cols="50"  name="authorinfo" value=""/></textarea></td>
 	       				   	<tr>	
-	       				   	<td><input id="booknum" type="hidden" name="bookId" value=""></td>
-	       				   	
-	       			
-	       				   	
+		       				   	<td><input id="booknum" type="hidden" name="bookId" value=""></td>
+		       				   	<td><input id="authornum" type="hidden" name="authornum"></td>
 	       				   	</tr>
 								
 						</table>
