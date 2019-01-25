@@ -343,7 +343,7 @@ function fnMove2(){
 						<div class='pluslate'>
 							<button class='plus btn-link' onclick="showBigPic();">크게보기</button>
 							<span>|</span>
-							<button class='late btn-link' onclick="location.href='#'">평점보기</button>
+							<button class='late btn-link' onclick='fnMove2()'>리뷰보기</button>
 						</div>
 					</div>
 				</div>
