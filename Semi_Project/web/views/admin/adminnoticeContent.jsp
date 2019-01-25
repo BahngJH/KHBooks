@@ -75,7 +75,7 @@ border: none;
 				location.href="<%=request.getContextPath()%>/admin/adminnoticedel?no=<%=n.getNoticeNo()%>";
 			}
 			function updateNotice(){
-				location.href="<%=request.getContextPath()%>/admin/adminnoticeupdate?no1=<%=n.getNoticeNo()%>";
+				location.href="<%=request.getContextPath()%>/admin/updateview?no1=<%=n.getNoticeNo()%>";
 				
 			}
 		</script>

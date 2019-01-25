@@ -30,6 +30,37 @@ public class AdminDao {
 	}
 	
 	
+	
+	public Notice selectNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice n = null;
+		String sql = prop.getProperty("selectNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				n = new Notice();
+				n.setNoticeNo(rs.getInt("noticenum"));
+				n.setNoticeTitle(rs.getString("noticetitle"));
+				n.setNoticeContent(rs.getString("noticecontent"));
+				n.setNoticeDate(rs.getDate("noticedate"));
+				n.setStatus(rs.getString("status"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rs);
+		}
+		return n;
+
+	}
+	
+	
 	public int updateNotice(Connection conn, Notice n) {
 		PreparedStatement pstmt = null;
 		int result = 0;

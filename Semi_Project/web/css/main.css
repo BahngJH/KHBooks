@@ -238,6 +238,9 @@ div.book-container>div>a.author-name{
 	height: 35px;
 }
 
+div.thumbnail-container a{
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.8);
+}
 
 @media (min-width: 992px) and (max-width: 1200px){
 	div.thumbnail-container{

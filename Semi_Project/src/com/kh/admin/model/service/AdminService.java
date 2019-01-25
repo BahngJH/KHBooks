@@ -26,6 +26,15 @@ public class AdminService {
 		return list;
 		
 	}
+	
+	public Notice selectNo(int no) {
+		Connection conn = getConnection();
+		Notice n=new AdminDao().selectNo(conn,no);
+		close(conn);
+		return n;
+	}
+	
+	
 	public int updateNotice(Notice n) {
 		Connection conn=getConnection();
 		int result=new AdminDao().updateNotice(conn,n);

@@ -102,7 +102,7 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		if(rs>0) {
 			//문의 정상 등록
 			msg="문의글이 정상적으로 등록되었습니다.";			
-			loc="/";
+			loc="/qna/qnaListMain";
 		}else {
 			msg="문의글 등록에 실패하였습니다.";
 			loc="/csCenter/qnaAskForm";						
