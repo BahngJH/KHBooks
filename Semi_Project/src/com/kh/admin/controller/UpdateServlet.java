@@ -51,6 +51,12 @@ public class UpdateServlet extends HttpServlet {
 		String bookInfo = request.getParameter("bookInfo");
 		int authorNum = Integer.parseInt(request.getParameter("authornum"));
 	
+		//긴 글들 길이 조절
+		bookInfo = bookInfo.length()>1900 ? bookInfo.substring(0, 1900)+"\n(하략..)": bookInfo; 
+		content = content.length()>1900 ? content.substring(0, 1900)+"\n(하략..)": content; 
+		toc = toc.length()>1900 ? toc.substring(0, 1900)+"\n(하략..)": toc;		
+		authorInfo = authorInfo.length()>1900 ? authorInfo.substring(0, 1900)+"\n(하략..)": authorInfo;		
+				
 		Book b=new Book();
 		b.setBookId(bookId);
 		b.setBookName(bookname);

@@ -419,7 +419,6 @@ function fnMove2(){
 									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span></span>
 									<br>
 									<a href='#' class='returnList' onclick='history.go(-1)'><img style='margin-top:8px' src='<%=request.getContextPath() %>/images/icons/back(-1).png'/></a>
-									<!-- <a href='#' 'onclick='' style='top:8px' id="saveButton" alt="책 비교"/>책비교하기</a><br/> -->
 								</div>
 							</li>
 						</ul>
@@ -831,8 +830,8 @@ function fnMove2(){
 								<form id="updatefrm" action="<%=request.getContextPath()%>/inforconpare_hwang/infoUpdateReview" style='float:right;'>
 								<input type="hidden" name="bookId" value="<%=b.getBookId()%>"/>
 								<input type="hidden" name="reviewNum" value="<%=r.getReviewNum()%>"/>
-								<input type="button" class="alt<%=r.getReviewNum() %>" style='float:right;'/>
 								</form>
+								<button type="button" class="alt<%=r.getReviewNum() %>" style='float:right;' onclick="update_review<%=r.getReviewNum()%>();"/>
 								<script>
 								function delete_review<%=r.getReviewNum()%>(){
 									/* console.log($(event.target).parents('form')); */
@@ -846,19 +845,13 @@ function fnMove2(){
 								
 								function update_review<%=r.getReviewNum() %>(){
 									//모달창띄워주자
+									$('#updateModal').modal();						
+									$('#renum').val(<%=r.getReviewNum()%>);		
+									$('#bid').val(<%=r.getBookId()%>);
+									$('#updateContext').val("<%=r.getReviewContext()%>");
+									$('#star<%=r.getGrade()%>').parent().children("a").removeClass("on");
+									$('#star<%=r.getGrade()%>').addClass("on").prevAll("a").addClass("on");
 								}
-								
-								$(function(){ //저장버튼 클릭 
-									$("#saveButton").click(function(){ 
-										//입력값 
-										var cookie_value = $("#save").val(); 
-										//'cookie'라는 key값으로 입력값을 저장한다. 
-										//1번째 parameter = 쿠키명
-										// 2번째 parameter = 저장하고자 하는 쿠키값
-										$.cookie('cookie', cookie_value);
-									});
-								});
-
 								</script>
 		                    	</div>
 		                    	<%}%>
@@ -881,6 +874,105 @@ function fnMove2(){
 				</pre>
 			</ul>
 		</div>
+		
+		
+		<!-- 리뷰 수정 모달창 -->
+		<div class="modal" id="updateModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						리뷰 수정
+					</div>
+					<div class="modal-body">
+						<table class="tbl-modal">
+							<tr>
+								<th><label>평점</label></th>
+								<td>
+									<p class="star_rating">
+									    <a id="star1" href="#">★</a>
+									    <a id="star2" href="#">★</a>
+										<a id="star3" href="#">★</a>
+										<a id="star4" href="#">★</a>
+										<a id="star5" href="#">★</a>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<form action="<%=request.getContextPath()%>/review/updateReview2" method="POST" id="updateReviewFrm">
+								<th><label for="updateContext">내용</label></th>
+								<td>									
+									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
+									<input type="hidden" id="star_grade1" name="star_grade1" value="">
+									<input type="hidden" id="renum" name="renum" value="">
+									<input type="hidden" id="bid" name="bid" value="">		
+								</td>
+								</form>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
+						<button type="button" class="btn" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 여기 까지 리뷰 수정 모달 -->		
+
+		<style>
+			.tbl-modal{
+				border-collapse: separate;
+				border-spacing: 5px 10px;
+				padding: 8px;			
+			}
+
+			.tbl-modal th{
+				width: 50px;
+			}
+
+			.modal {
+		        text-align: center;
+			}
+ 
+			@media screen and (min-width: 768px) { 
+       			.modal:before {
+	                display: inline-block;
+	                vertical-align: middle;
+	                content: " ";
+	                height: 100%;
+	    	    }
+			}	
+ 
+			.modal-dialog {
+		        display: inline-block;
+		        text-align: left;
+		        vertical-align: middle;
+			}
+		
+			div.modal-content{
+				width: 400px;
+			}
+			textarea#updateContext{
+				resize: none;
+			}
+		</style>	
+			
+		<script>
+			// 별점 스크립트
+			$(".star_rating a").click(function() {
+				$(this).parent().children("a").removeClass("on");
+				$(this).addClass("on").prevAll("a").addClass("on");
+				return false;
+			});
+			
+			// 수정 버튼 메소드
+			function updateRe() {
+				var grade = $('.on').length;
+				$('#star_grade1').val(grade);
+				$('#updateReviewFrm').submit();
+			}
+		</script>		
+		
 </section>
 
 <%@include file='/views/common/footer.jsp'%>
