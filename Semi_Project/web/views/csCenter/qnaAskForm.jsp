@@ -10,7 +10,7 @@ String mail1 []=m.getEmail().split("@");
 %>
 
 <style>
-hr {
+div#hr {
 	border: 0;
 	height: 1px;
 	background: #ccc;

@@ -54,7 +54,7 @@ border-height: 10px;
 					
  			
 						<%for(Absence ab : list){%>
-					<% if(ab.getStatus().equals("Y")){ %>
+			
 						
 					<tr>
 						 <td><%=ab.getMember().getMemberId()%></td>  
@@ -63,8 +63,7 @@ border-height: 10px;
 									
 					</tr> 
 					 
-					<%}
-					}%>	
+					<%}%>	
 								
 				</table>
 				<br/>
