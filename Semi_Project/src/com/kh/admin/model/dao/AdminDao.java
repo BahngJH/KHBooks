@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
 
@@ -70,13 +71,33 @@ public class AdminDao {
 		
 	}
 	
+	public int updateAuthor(Connection conn, Author a)
+	{
+		PreparedStatement pstmt =null;
+		int rs =0;
+		String sql = prop.getProperty("updateAuthor");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getAuthorName());
+			pstmt.setString(2, a.getAuthorInfo());
+			rs = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+		
+	}
+	
 	
 	public int updatebook(Connection conn,Book b) {
 		PreparedStatement pstmt=null;
 		int result=0;
-		System.out.println("dao:"+b);
 		String sql=prop.getProperty("updatebook");
-		System.out.println(sql);
 		
 		try {
 			
@@ -85,11 +106,12 @@ public class AdminDao {
 			pstmt.setInt(2, b.getPrice());
 			pstmt.setString(3, b.getPublisher());
 			pstmt.setString(4, b.getGenre());
-			pstmt.setInt(9,b.getBookId());
 			pstmt.setString(5, b.getIsbn());
-			pstmt.setString(6,b.getEditor() );
-			pstmt.setInt(7, b.getStock());
-			pstmt.setString(8, b.getBookContent());
+			pstmt.setInt(6, b.getStock());
+			pstmt.setString(7, b.getBookContent());
+			pstmt.setString(8, b.getToc());
+			pstmt.setString(9, b.getBookInfo());
+			pstmt.setInt(10,b.getBookId());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
