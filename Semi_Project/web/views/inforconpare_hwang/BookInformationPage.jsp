@@ -553,7 +553,7 @@ function fnMove2(){
 					<ul>
 						<pre class='biline content' style='width:96%;'>
 							<small>
-								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
+								<%=b.getBookInfo() == null  && !b.getBookInfo().equals("null")  ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
 						</pre>
 					</ul>
@@ -562,7 +562,7 @@ function fnMove2(){
 				</table>
 			</div>
 
-			<%if(b.getBookContent()!=null) {%>
+			<%if(b.getBookContent()!=null && !b.getBookContent().equals("null") ) {%>
 				<div class='inforstorybs'>
 				   <thead class='bookstroy'>
 				      <strong>줄거리</strong>
@@ -596,7 +596,7 @@ function fnMove2(){
 					<%String msg="이 책은 목차가 없습니다."; %>
 						<pre class='snline content' style='width:96%;'>
 							<small>
-                    		<%if(b.getToc()!=null) {%>
+                    		<%if(b.getToc()!=null && !b.getToc().equals("null")) {%>
 								<%=b.getToc() %>
 	                          <%} else{%>
 								<%=msg %>
