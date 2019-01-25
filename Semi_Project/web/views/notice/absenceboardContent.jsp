@@ -217,8 +217,6 @@ margin-right:440px;
 
 </style>
 <section>
-	<div class=" col-sm-8">
-		<br/><br/>
 	<div class=" col-sm-12 col-md-9">
 <br/><br/>
 		
@@ -277,7 +275,19 @@ margin-right:440px;
 				</tbody>
 				<%}%>
 			</table>
-			
+			<script>
+			function deleted(){
+				if(!confirm('정말 삭제하시겠습니까?')){
+					return;
+				}
+				location.href="<%=request.getContextPath()%>/absence/deleted?no3=<%=ab.getAppNum()%>";
+				
+			}
+					
+			function main_absence(){
+				location.href="<%=request.getContextPath()%>/absence/page";
+			}
+			</script>
 					
     <div class="row">
 		<div class="col-md-12">				
@@ -333,7 +343,7 @@ margin-right:440px;
 	
 <div class="container bootstrap snippet">
     <div class="row">
-		<div class="col-md-12">
+		<div class="col-sm-12 col-md-offset-3 col-md-9">
 		    <div class="blog-comment">
 				<h5 class="text-success">댓글목록</h5>
                 <hr/>				
@@ -376,17 +386,7 @@ margin-right:440px;
 			location.href="<%=request.getContextPath()%>/admin/bookappend?isbn=<%=ab.getISBN()%>&no=<%=ab.getAppNum()%>";
 		}
 		
-		function deleted(){
-			if(!confirm('정말 삭제하시겠습니까?')){
-				return;
-			}
-			location.href="<%=request.getContextPath()%>/absence/deleted?no3=<%=ab.getAppNum()%>";
-			
-		}
-				
-		function main_absence(){
-			location.href="<%=request.getContextPath()%>/absence/page";
-		}
+		
 		
 	
 
@@ -398,14 +398,14 @@ margin-right:440px;
 			location.href="<%=request.getContextPath()%>/reply/deleteReply?no="+no+"&no1="+<%=ab.getAppNum()%>;
 		}
 	 	//수정 구현중...
-		/* function fn_updateReply(btn){
+		 /* function fn_updateReply(btn){
 			console.log(btn);
 			$(btn).parent().parent().next().hide();
 			var content=$(btn).parent().parent().next().find('p').html();
 			var txt1="<textArea class='form-control' name='orderrecontent' required></textArea><input type='submit' value='취소'/>";				
 			$(btn).parent().parent().parent().append(txt1);
-		/* $('#repContent').hide(); */
-		} */
+		 $('#repContent').hide(); 
+		}  */
 				
 		
 			

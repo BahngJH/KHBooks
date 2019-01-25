@@ -35,7 +35,7 @@ public class AbsenceDao {
 		ResultSet rs = null;
 		String sql = prop.getProperty("allabsence");
 		List<Absence> list = new ArrayList();
-		System.out.println(sql);
+		
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class AbsenceDao {
 
 				Member m = new Member();
 				m.setMemberId(rs.getString("memberId"));
-				System.out.println("m객체:" + m.getMemberId());
+			
 				ab.setMember(m);
 				list.add(ab);
 

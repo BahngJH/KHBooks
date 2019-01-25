@@ -59,14 +59,11 @@ width: 50px;
         
 		<title>희망도서신청 -KH북스</title>
 			<section id='enroll-container'>
-				<div class="container col-md-offset-4 col-md-5">
+				<div class="container col-md-offset-1 col-md-5">
 					<div class="row">
 						<h1>희망 도서 신청</h1>
 						<hr/>
-						<h3>도서검색</h3></br>
-						<p> &nbsp; 한 항목만 입력하셔도 됩니다. </br>
-						두 항목 이상 입력하시면 두 항목을 동시에 만족하는 상품을 찾습니다. </br>
-						복합명사는 띄어쓰기를 하면 더 많은 검색 결과를 얻으실 수 있습니다.</p>
+						<br/><br/><br/><br/>
 		            </div>
 		         	<div class="row" >
 						<form name="appendBookFrm" class="form-horizontal" action="<%=request.getContextPath()%>/notice/noticeabsence" method="post" >
@@ -138,7 +135,7 @@ function cancel(){
 	
 	
 	}
-	location.href="<%=request.getContextPath()%>/notice/absenceView";
+	location.href="<%=request.getContextPath()%>/absence/page";
 }
 
 		

@@ -71,7 +71,7 @@ text-align:center;
 }
 footer.fot a{color:black;}
 
-
+div.mark{background-color:#f8f8f8; margin-bottom:0%; margin-top:-2%;}
 div#btn{
 	margin-left: 35.3%;margin-right:30%;	
 }
