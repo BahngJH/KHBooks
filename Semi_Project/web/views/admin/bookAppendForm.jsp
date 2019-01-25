@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<th>장르</th>
-				<td><select name="genre" id="genre" required>
+				<td><select name="genre" id="genre" class="form-control" required>
 					<%for(String g: genres){%>
 						<option value="<%=g%>"><%=g%></option>
 					<%} %>
