@@ -69,9 +69,19 @@ public class BookInsertServlet extends HttpServlet {
 		String no = mr.getParameter("no");
 		
 		Book book = new Book();
-		book.setBookInfo(mr.getParameter("info"));
-		book.setBookContent(mr.getParameter("content"));
-		book.setToc(mr.getParameter("index"));
+		String info = mr.getParameter("info");
+		info = info.length()>1900 ? info.substring(0, 1900)+"\n(하략..)": info; 
+		book.setBookInfo(info);
+		
+		String content = mr.getParameter("content");
+		content = content.length()>1900 ? content.substring(0, 1900)+"\n(하략..)": content; 
+		
+		book.setBookContent(content);
+		
+		String index = mr.getParameter("index");
+		index = index.length()>1900 ? index.substring(0, 1900)+"\n(하략..)": index;
+		book.setToc(index);
+		
 		book.setStock(Integer.parseInt(mr.getParameter("count")));
 		book.setBookName(mr.getParameter("title"));
 		book.setPublisher(mr.getParameter("pub"));
