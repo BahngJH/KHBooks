@@ -17,7 +17,8 @@ div {
         table a{
             float: right;
         }
-        #logo a{
+        #logo{
+     
             font-size: 150%;
         }
         

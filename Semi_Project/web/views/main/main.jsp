@@ -15,7 +15,7 @@
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-id" data-slide-to="1" class=""></li>
-                    <li data-target="#carousel-id" data-slide-to="2" class=""></li>
+                    <li data-target="#carousel-id" data-slide-to="2" class=""></li> 
                 </ol>
                 <div class="carousel-inner">
                    	<%for(Notice n : notices){%>

@@ -54,7 +54,7 @@ border-height: 10px;
 <script>
 
 function insertNotice(){
-	location.href="<%=request.getContextPath()%>/notice/insertNotice";
+	location.href="<%=request.getContextPath()%>/admin/insertform";
 }
 </script>
 

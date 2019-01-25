@@ -49,6 +49,18 @@ public class AdminService {
 		
 	}
 	
+	public int insertNotice(Notice n) {
+		Connection conn=getConnection();
+		int result=new AdminDao().insertNotice(conn,n);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	
 	public int deleteNotice(int no){
 		Connection conn =getConnection();
 		int result = new AdminDao().deleteNotice(conn,no);

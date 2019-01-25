@@ -249,7 +249,7 @@
 						</tr>							
 						
 						<tbody>
-							<%for(int i = 0; i < 3; i++) {%>
+							<%for(int i = 0; (i < reviewList.size())&& (i < 3); i++) {%>
 								<%if(rStatus) { %>
 							<tr>
 								<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=reviewList.get(i).getBookId()%>"><%=reviewList.get(i).getBook().getBookName()%></a></td>
