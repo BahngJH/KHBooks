@@ -26,6 +26,9 @@
 		border: 1px solid gray;
         border-radius: 5px;
 	}
+	#logo {
+		margin-top:40px;
+	}
 	
 
 

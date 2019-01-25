@@ -16,11 +16,18 @@
 		margin-top:9px;
 		display:inline;
 	}
+	#logo{
+	font-size: 150%;
+	margin-top:30px;
+	}
+	#logo a {
+		color:pink;
+	}
 </style>
 </head>
 <body>
  <div id="container">
-        <div id="logo"><a href="<%=request.getContextPath() %>/main/mainview">KH BOOKS</a></div>
+        <div id="logo"><a href="<%=request.getContextPath() %>/main/mainview"><strong>KH BOOKS</strong></a></div>
         <hr>
         <form method="POST" action="<%=request.getContextPath() %>/member/enrollEnd" name="enrollMember" onsubmit="return fn_enroll_validate();">
             <div id="inputId">
