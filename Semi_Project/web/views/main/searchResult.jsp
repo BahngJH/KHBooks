@@ -200,7 +200,6 @@
             <div id='cart' class="col-xs-12 col-md-1">
 
 			<%if(!recents.isEmpty()){ %>
-
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
                         <p class="text-center">최근 본 목록</p>

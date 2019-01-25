@@ -9,10 +9,11 @@
 %>
 <style>
 
-.col-sm-9 table{
+.col-sm-10 table.table{
 cellspacing:0;
  cellpadding:0;
  border:0px;
+ margin-bottom:10%;
  }
 
 table th{
@@ -96,10 +97,11 @@ border-height: 10px;
 				</table>
 				
 				
+				
 
 		</div>
 		</div>
-		</div>
+	</div>
 		
 	
 	
