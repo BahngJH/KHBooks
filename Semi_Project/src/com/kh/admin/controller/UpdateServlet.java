@@ -1,18 +1,16 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-import com.kh.admin.model.service.AdminService;
-import com.kh.book.model.vo.*;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.admin.model.service.AdminService;
+import com.kh.author.model.vo.Author;
+import com.kh.book.model.vo.Book;
 
 /**
  * Servlet implementation class UpdateServlet
@@ -42,11 +40,16 @@ public class UpdateServlet extends HttpServlet {
 		String pulisher=request.getParameter("updatepublisher");
 		String genre=request.getParameter("updategenre");
 		String isbn=request.getParameter("updateisbn");
-		String edit=request.getParameter("bookedit");
+		String authorName=request.getParameter("authorName");
 		int stock=Integer.parseInt(request.getParameter("bookstock"));
 		String content =request.getParameter("updatecontent");
 		int bookId=Integer.parseInt(request.getParameter("bookId"));
-		System.out.println(bookname);
+		
+		//추가로 더 만듬, 저자소개 목차 책소개
+		String authorInfo = request.getParameter("authorInfo");
+		String toc = request.getParameter("toc");
+		String bookInfo = request.getParameter("bookInfo");
+		int authorNum = Integer.parseInt(request.getParameter("authornum"));
 	
 		Book b=new Book();
 		b.setBookId(bookId);
@@ -55,12 +58,18 @@ public class UpdateServlet extends HttpServlet {
 		b.setPublisher(pulisher);
 		b.setGenre(genre);
 		b.setIsbn(isbn);
-		b.setEditor(edit);
 		b.setStock(stock);
 		b.setBookContent(content);
-		System.out.println("서블릿"+b);
+		b.setToc(toc);
+		b.setBookInfo(bookInfo);
+		Author a = new Author();
+		a.setAuthorName(authorName);
+		a.setAuthorInfo(authorInfo);
+		a.setauthorNum(authorNum);
 		
 		int result = new AdminService().updatebook(b);
+		System.out.println("책 정보 수정 리턴값 "+result);
+		int rs = new AdminService().updateAuthor(a);
 		String msg="";
 		String view="/views/common/msg.jsp";
 		String loc="";

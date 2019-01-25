@@ -3,14 +3,14 @@ package com.kh.admin.model.service;
 
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.rollback;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.kh.absence.model.dao.AbsenceDao;
 import com.kh.admin.model.dao.AdminDao;
+import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
 
@@ -32,6 +32,14 @@ public class AdminService {
 		else {rollback(conn);}
 		return result;
 		
+	}
+	
+	public int updateAuthor(Author a) {
+		Connection conn = null;
+		int rs = new AdminDao().updateAuthor(conn,a);
+		if(rs>0) {commit(conn);}
+		else {rollback(conn);}
+		return rs;
 	}
 
 	// 멤버 삭제 서비스
