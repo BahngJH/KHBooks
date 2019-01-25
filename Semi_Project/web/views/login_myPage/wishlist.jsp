@@ -88,7 +88,8 @@
                             </div>
                             <div class="end col-xs-4 col-sm-5 col-md-5 col-lg-5">
 	                          	<p id="book_price" class="book_info book_price"><%=b.getPrice() %>원</p>
-	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="<%=b.getStock() %>" value="<%=b.getBookCount()%>">권	                       	                          		                          	
+	                          	<input type="number" id="bookCount" class="bookCount" name="bookCount" min="0" step="1" max="<%=b.getStock() %>" value="<%=b.getBookCount()%>">권
+	                          	<input type="hidden" id="stockMax" value="<%=b.getStock() %>">	                       	                          		                          	
 	                            <input type="checkbox" id="selectbox" class="BookId" name="BookId" onclick="bookSum(this.form);" value="<%=b.getBookId()%>">
 	                            <input type="hidden" id="bookPrice" class="bookPrice" name="bookPrice" value="<%=b.getPrice()%>">
 	                         	<input type="hidden" id="bookPrice2" class="bookPrice2" value="<%=b.getPrice()%>">
@@ -186,6 +187,15 @@
 			//수량이 바뀌면 값도 변하게 수정
 			$(function(){
 				$('.bookCount').blur(function(){
+					/* var count = parseInt($('.bookCount').val());
+					var maxCount = parseInt($('.bookCount').next().val());
+					console.log(count+" "+maxCount);
+					if(count>maxCount)
+						{
+							alert("재고량보다 많이 선택하셨습니다. 현재 재고 "+maxCount+"권");
+							count = $('.bookCount').val(maxCount);
+							return;
+						} */
 					//원본데이터를 하나 만들어서 본래의 가격 유지
 					var price = parseInt($(event.target).parent().children('.bookPrice2').val());
 					var count = parseInt($(event.target).parent().children('.bookCount').val());
@@ -202,7 +212,8 @@
 						url:"<%=request.getContextPath()%>/member/updateBookcount",
 						data:{bookCount:count, bookId:bookId},
 						success:function(data){
-							console.log(data);
+							
+							
 						}
 						
 					});

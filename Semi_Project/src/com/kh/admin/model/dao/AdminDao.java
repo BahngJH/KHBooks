@@ -89,8 +89,6 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return rs;
-		
-		
 	}
 	
 	
@@ -119,10 +117,6 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return result;
-		
-		
-		
-		
 	}
 	public int deleteBook(Connection conn,String[] id) {
 		PreparedStatement pstmt=null;
