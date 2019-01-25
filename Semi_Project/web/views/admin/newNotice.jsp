@@ -14,7 +14,7 @@ form .panel panel-info{border: 1px solid blue;}
 
 <section>
    <div class="col-sm-12 col-md-9">
-		<form action="<%=request.getContextPath()%>">
+		<form action="<%=request.getContextPath()%>/admin/noticeinsert">
       		<h2>공지사항 등록</h2>
          	<table class="table" id="insert">
 	            <tr>
@@ -42,4 +42,4 @@ form .panel panel-info{border: 1px solid blue;}
 	}
 </script>
 
-<%@include file="/views/common/footer.jsp"%>
+<%@include file="/views/common/adminfooter.jsp"%>
