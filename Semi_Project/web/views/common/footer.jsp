@@ -73,13 +73,13 @@ text-align:center;
 }
 footer.fot a{color:black;}
 
-div.mark{background-color:#f8f8f8; margin-bottom:0%; margin-top:-2%;}
+div.mark{background-color:#f8f8f8; margin-bottom:0%; margin-top:-3%;}
 div#btn{
 	margin-left: 35.3%;margin-right:30%;	
 }
 footer.fot div.notice{margin-left:-5%;margin-right: 30%;}
 footer.fot div.title{margin-left: 20%}
-div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:20px;}
+div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:30px;}
 
 </style>
 

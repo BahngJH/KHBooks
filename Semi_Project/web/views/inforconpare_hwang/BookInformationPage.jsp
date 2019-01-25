@@ -419,7 +419,6 @@ function fnMove2(){
 									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span></span>
 									<br>
 									<a href='#' class='returnList' onclick='history.go(-1)'><img style='margin-top:8px' src='<%=request.getContextPath() %>/images/icons/back(-1).png'/></a>
-									<!-- <a href='#' 'onclick='' style='top:8px' id="saveButton" alt="책 비교"/>책비교하기</a><br/> -->
 								</div>
 							</li>
 						</ul>

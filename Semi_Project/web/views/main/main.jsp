@@ -48,7 +48,7 @@
 	           				</div>
 	                    	<div class="thumbnail-container col-xs-12">
 		                        <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail book-thumbnail">
-		                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
+		                            <img style='width:135px; height:211px;'src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
 		                        </a>
 		                        <!-- <span class="border"></span> -->
 	                    	</div>
@@ -70,7 +70,7 @@
 	           				</div>
 	                    	<div class="thumbnail-container col-xs-12">
 		                        <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail book-thumbnail">
-		                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
+		                            <img style='width:135px; height:211px;'src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
 		                        </a>
 		                        <!-- <span class="border"></span> -->
 	                    	</div>
