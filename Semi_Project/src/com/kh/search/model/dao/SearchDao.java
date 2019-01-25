@@ -68,6 +68,7 @@ public class SearchDao {
 				b.setPageNum(rs.getInt("pagenum"));
 				b.setStock(rs.getInt("stock"));
 				b.setSales(rs.getInt("sales"));
+				b.setBookDate(rs.getDate("bookDate"));
 				
 				list.add(b);
 			}
