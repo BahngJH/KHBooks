@@ -49,6 +49,7 @@ padding: 8px 10px;
 		float: right;
 		cursor: pointer;
 	}
+	div#buyList-options{margin-top:;}
 </style>
 
 <script>
