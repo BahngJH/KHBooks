@@ -69,6 +69,7 @@ public class UpdateServlet extends HttpServlet {
 				
 		int result = new AdminService().updatebook(b);
 		int rs = new AdminService().updateAuthor(a);
+		System.out.println("작가 정보 수정 리턴값 "+rs);
 		String msg="";
 		String view="/views/common/msg.jsp";
 		String loc="";

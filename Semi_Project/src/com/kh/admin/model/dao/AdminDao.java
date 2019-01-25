@@ -71,7 +71,7 @@ public class AdminDao {
 		
 	}
 	
-	
+
 	 public int updatebook(Connection conn,Book b) {
 	      PreparedStatement pstmt=null;
 	      int result=0;
@@ -98,7 +98,6 @@ public class AdminDao {
 	      }
 	      return result;
 	   }
-	 
 	public int deleteBook(Connection conn,String[] id) {
 		PreparedStatement pstmt=null;
 		int result=0;

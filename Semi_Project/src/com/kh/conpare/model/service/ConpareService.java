@@ -11,11 +11,12 @@ import com.kh.conpare.model.dao.ConpareDao;
 
 public class ConpareService {
 	
-	public List<Book> selectConpareBook(String bookName)
+	public List<Book> selectConpareBook(int bookId)
 	{
 		Connection conn=getConnection();
-		List<Book> bookList=new ConpareDao().selectConpareBook(conn, bookName);
+		List<Book> bList=new ConpareDao().selectConpareBook(conn, bookId);
 		close(conn);
-		return bookList;
+		return bList;
 	}
+	
 }
