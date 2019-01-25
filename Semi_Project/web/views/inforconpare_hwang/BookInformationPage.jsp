@@ -419,6 +419,7 @@ function fnMove2(){
 									<span class='nom_point'> [포인트적립]<strong> <%=point %></strong>원 적립 <span style="font-weight:bold;">[10<span style="font-weight:0;">%적립]</span></span></span>
 									<br>
 									<a href='#' class='returnList' onclick='history.go(-1)'><img style='margin-top:8px' src='<%=request.getContextPath() %>/images/icons/back(-1).png'/></a>
+									<!-- <a href='#' 'onclick='' style='top:8px' id="saveButton" alt="책 비교"/>책비교하기</a><br/> -->
 								</div>
 							</li>
 						</ul>
@@ -553,7 +554,7 @@ function fnMove2(){
 					<ul>
 						<pre class='biline content' style='width:96%;'>
 							<small>
-								<%=b.getBookInfo() == null  && !b.getBookInfo().equals("null")  ? "책 소개가 없습니다" : b.getBookInfo() %>
+								<%=b.getBookInfo() == null ? "책 소개가 없습니다" : b.getBookInfo() %>
                 			</small>
 						</pre>
 					</ul>
@@ -562,7 +563,7 @@ function fnMove2(){
 				</table>
 			</div>
 
-			<%if(b.getBookContent()!=null && !b.getBookContent().equals("null") ) {%>
+			<%if(b.getBookContent()!=null) {%>
 				<div class='inforstorybs'>
 				   <thead class='bookstroy'>
 				      <strong>줄거리</strong>
@@ -596,7 +597,7 @@ function fnMove2(){
 					<%String msg="이 책은 목차가 없습니다."; %>
 						<pre class='snline content' style='width:96%;'>
 							<small>
-                    		<%if(b.getToc()!=null && !b.getToc().equals("null")) {%>
+                    		<%if(b.getToc()!=null) {%>
 								<%=b.getToc() %>
 	                          <%} else{%>
 								<%=msg %>
@@ -852,6 +853,18 @@ function fnMove2(){
 									$('#star<%=r.getGrade()%>').parent().children("a").removeClass("on");
 									$('#star<%=r.getGrade()%>').addClass("on").prevAll("a").addClass("on");
 								}
+								
+								$(function(){ //저장버튼 클릭 
+									$("#saveButton").click(function(){ 
+										//입력값 
+										var cookie_value = $("#save").val(); 
+										//'cookie'라는 key값으로 입력값을 저장한다. 
+										//1번째 parameter = 쿠키명
+										// 2번째 parameter = 저장하고자 하는 쿠키값
+										$.cookie('cookie', cookie_value);
+									});
+								});
+
 								</script>
 		                    	</div>
 		                    	<%}%>
@@ -894,7 +907,7 @@ function fnMove2(){
 										<a id="star3" href="#">★</a>
 										<a id="star4" href="#">★</a>
 										<a id="star5" href="#">★</a>
-									</p>
+									</p>								
 								</td>
 							</tr>
 							<tr>
@@ -903,8 +916,8 @@ function fnMove2(){
 								<td>									
 									<textarea cols="40" rows="5" name="updateContext" id="updateContext" class="form-control" value="" required></textarea>
 									<input type="hidden" id="star_grade1" name="star_grade1" value="">
-									<input type="hidden" id="renum" name="renum" value="">
-									<input type="hidden" id="bid" name="bid" value="">		
+									<input type="hidden" id="renum" name="renum" value="">			
+									<input type="hidden" id="bid" name="bid" value="">							
 								</td>
 								</form>
 							</tr>
@@ -971,6 +984,8 @@ function fnMove2(){
 				$('#star_grade1').val(grade);
 				$('#updateReviewFrm').submit();
 			}
+			
+				
 		</script>		
 		
 </section>

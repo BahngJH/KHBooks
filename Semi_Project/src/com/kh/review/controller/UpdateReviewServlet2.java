@@ -31,7 +31,7 @@ public class UpdateReviewServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int renum = Integer.parseInt(request.getParameter("renum"));			// 수정 리뷰
-		int grade = Integer.parseInt(request.getParameter("star_grade1"));		// 수정 별점
+		int grade = Integer.parseInt(request.getParameter("star_grade1")) - 1;		// 수정 별점
 		int bookId = Integer.parseInt(request.getParameter("bid"));
 		String context = request.getParameter("updateContext");					// 수정한 내용
 		
