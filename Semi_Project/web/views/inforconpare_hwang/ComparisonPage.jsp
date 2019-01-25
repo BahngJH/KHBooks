@@ -7,7 +7,7 @@ com.kh.review.model.vo.Review,
 com.kh.member.model.vo.Member,
 com.kh.author.model.vo.Author'
 	pageEncoding='UTF-8'%>
-<%--     <%List<Book> bList=(List<Book>)request.getAttribute("bList"); %> --%>
+<%List<Book> bList=(List<Book>)request.getAttribute("bList"); %>
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
 <%@ include file="/views/common/header.jsp"%>
 

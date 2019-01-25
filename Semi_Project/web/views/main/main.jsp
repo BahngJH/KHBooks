@@ -25,7 +25,7 @@
                             <div class="carousel-caption">
 	                            <a href="<%=request.getContextPath()%>/notice/noticeContent?no=<%=n.getNoticeNo()%>">
     	                            <h3><%=n.getNoticeTitle() %></h3>
-        	                        <p><%=n.getNoticeContent().substring(0, 89)+"..." %></p>
+        	                        <p><%=n.getNoticeContent().length()>89 ? n.getNoticeContent().substring(0, 89)+"..." : n.getNoticeContent()%></p>
 	                            </a>                    
                             </div>
                         </div>
