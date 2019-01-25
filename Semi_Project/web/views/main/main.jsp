@@ -81,7 +81,7 @@
             </div>
         </div>
     </section>
-<%if(logined.getMemberId().equals("admin")) { %>	
+<%if(logined!=null && logined.getMemberId().equals("admin")) { %>	
 	<%@include file="/views/common/adminfooter.jsp"%>
 <%}else{ %>
 	<%@include file="/views/common/footer.jsp"%>
