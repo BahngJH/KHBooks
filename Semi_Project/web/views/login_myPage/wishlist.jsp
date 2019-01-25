@@ -187,15 +187,15 @@
 			//수량이 바뀌면 값도 변하게 수정
 			$(function(){
 				$('.bookCount').blur(function(){
-					/* var count = parseInt($('.bookCount').val());
-					var maxCount = parseInt($('.bookCount').next().val());
-					console.log(count+" "+maxCount);
+					//재고량보다 많으면 막는 로직
+					var count = parseInt($(event.target).val());
+					var maxCount = parseInt($(event.target).next().val());
 					if(count>maxCount)
 						{
 							alert("재고량보다 많이 선택하셨습니다. 현재 재고 "+maxCount+"권");
-							count = $('.bookCount').val(maxCount);
+							count = $(event.target).val(maxCount);
 							return;
-						} */
+						} 
 					//원본데이터를 하나 만들어서 본래의 가격 유지
 					var price = parseInt($(event.target).parent().children('.bookPrice2').val());
 					var count = parseInt($(event.target).parent().children('.bookCount').val());

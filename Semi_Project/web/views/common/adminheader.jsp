@@ -43,6 +43,6 @@
 		<a href="<%=request.getContextPath()%>/qna/qnaListAdmin"><strong>1대
 				1문의</strong></a>
 		<hr />
-		<a href="<%=request.getContextPath()%>/notice/noticemain"><strong>공지사항</strong></a>
+		<a href="<%=request.getContextPath()%>/admin/adminnotice"><strong>공지사항</strong></a>
 		
 	</div>

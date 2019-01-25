@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
+import com.kh.notice.model.vo.Notice;
 
 public class AdminDao {
 	
@@ -26,6 +27,78 @@ public class AdminDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	public Notice selectNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice n = null;
+		String sql = prop.getProperty("selectNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				n = new Notice();
+				n.setNoticeNo(rs.getInt("noticenum"));
+				n.setNoticeTitle(rs.getString("noticetitle"));
+				n.setNoticeContent(rs.getString("noticecontent"));
+				n.setNoticeDate(rs.getDate("noticedate"));
+				n.setStatus(rs.getString("status"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(rs);
+		}
+		return n;
+
+	}
+	
+	
+	public int updateNotice(Connection conn, Notice n) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateNotice");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getNoticeNo());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
+	}
+	
+	public int deleteNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = prop.getProperty("deleteNotice");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
 	}
 	
 	public List<Book> searchBook(Connection conn,String keyword){
