@@ -13,6 +13,8 @@ import com.kh.admin.model.dao.AdminDao;
 import com.kh.author.model.vo.Author;
 import com.kh.book.model.vo.Book;
 import com.kh.member.model.vo.Member;
+import com.kh.notice.model.dao.NoticeDao;
+import com.kh.notice.model.vo.Notice;
 
 public class AdminService {
 	
@@ -24,6 +26,32 @@ public class AdminService {
 		return list;
 		
 	}
+	public int updateNotice(Notice n) {
+		Connection conn=getConnection();
+		int result=new AdminDao().updateNotice(conn,n);
+
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+		
+	}
+	
+	public int deleteNotice(int no){
+		Connection conn =getConnection();
+		int result = new AdminDao().deleteNotice(conn,no);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
 	public int updatebook(Book b) {
 		Connection conn=getConnection();
 		
