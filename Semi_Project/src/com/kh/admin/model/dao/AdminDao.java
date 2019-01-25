@@ -71,59 +71,34 @@ public class AdminDao {
 		
 	}
 	
-	public int updateAuthor(Connection conn, Author a)
-	{
-		PreparedStatement pstmt =null;
-		int rs =0;
-		String sql = prop.getProperty("updateAuthor");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, a.getAuthorName());
-			pstmt.setString(2, a.getAuthorInfo());
-			rs = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return rs;
-		
-		
-	}
 	
-	
-	public int updatebook(Connection conn,Book b) {
-		PreparedStatement pstmt=null;
-		int result=0;
-		String sql=prop.getProperty("updatebook");
-		
-		try {
-			
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, b.getBookName());
-			pstmt.setInt(2, b.getPrice());
-			pstmt.setString(3, b.getPublisher());
-			pstmt.setString(4, b.getGenre());
-			pstmt.setString(5, b.getIsbn());
-			pstmt.setInt(6, b.getStock());
-			pstmt.setString(7, b.getBookContent());
-			pstmt.setString(8, b.getToc());
-			pstmt.setString(9, b.getBookInfo());
-			pstmt.setInt(10,b.getBookId());
-			result=pstmt.executeUpdate();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-		
-		
-		
-		
-	}
+	 public int updatebook(Connection conn,Book b) {
+	      PreparedStatement pstmt=null;
+	      int result=0;
+	      String sql=prop.getProperty("updatebook");
+	      
+	      try {
+	         
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, b.getBookName());
+	         pstmt.setInt(2, b.getPrice());
+	         pstmt.setString(3, b.getPublisher());
+	         pstmt.setString(4, b.getGenre());
+	         pstmt.setString(5, b.getIsbn());
+	         pstmt.setInt(6, b.getStock());
+	         pstmt.setString(7, b.getBookContent());
+	         pstmt.setString(8, b.getToc());
+	         pstmt.setString(9, b.getBookInfo());
+	         pstmt.setInt(10,b.getBookId());
+	         result=pstmt.executeUpdate();
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return result;
+	   }
+	 
 	public int deleteBook(Connection conn,String[] id) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -204,6 +179,10 @@ public class AdminDao {
 				b.setStock(rs.getInt("stock"));
 				b.setBookContent(rs.getString("bookcontent"));
 				b.setToc(rs.getString("toc"));
+				Author a = new Author();
+				a.setAuthorInfo(rs.getString("authorinfo"));
+				a.setAuthorName(rs.getString("authorname"));
+				b.setAuthor(a);
 				list.add(b);
 				
 			}
@@ -347,7 +326,27 @@ public class AdminDao {
 		return result;
 		
 	}
-	
+
+	 public int updateAuthor(Connection conn, Author a)
+	   {
+	      PreparedStatement pstmt =null;
+	      int rs =0;
+	      String sql = prop.getProperty("updateAuthor");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, a.getAuthorName());
+	         pstmt.setString(2, a.getAuthorInfo());
+	         pstmt.setInt(3, a.getauthorNum());
+	         rs = pstmt.executeUpdate();
+	         
+	      } catch (Exception e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return rs;
+	   }
 
 
 }

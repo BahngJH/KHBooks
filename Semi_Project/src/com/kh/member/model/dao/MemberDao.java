@@ -82,7 +82,7 @@ public class MemberDao {
 				m.setGender(rs.getString("gender"));
 				m.setIsAdmin(rs.getInt("isadmin"));
 				m.setMileage(rs.getInt("mileage"));
-				m.setRecentLogin(rs.getDate("recentLogin"));
+				m.setRecentLogin(rs.getDate("recentDate"));
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

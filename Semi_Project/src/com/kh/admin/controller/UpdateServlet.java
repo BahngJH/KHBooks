@@ -49,6 +49,7 @@ public class UpdateServlet extends HttpServlet {
 		String authorInfo = request.getParameter("authorInfo");
 		String toc = request.getParameter("toc");
 		String bookInfo = request.getParameter("bookInfo");
+		int authorNum = Integer.parseInt(request.getParameter("authornum"));
 	
 		Book b=new Book();
 		b.setBookId(bookId);
@@ -64,6 +65,7 @@ public class UpdateServlet extends HttpServlet {
 		Author a = new Author();
 		a.setAuthorName(authorName);
 		a.setAuthorInfo(authorInfo);
+		a.setauthorNum(authorNum);
 		
 		int result = new AdminService().updatebook(b);
 		System.out.println("책 정보 수정 리턴값 "+result);
