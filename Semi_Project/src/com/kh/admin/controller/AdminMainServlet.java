@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.absence.model.service.AbsenceService;
 import com.kh.absence.model.vo.Absence;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.service.NoticeService;
 import com.kh.notice.model.vo.Notice;
 
@@ -33,14 +34,28 @@ public class AdminMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Absence> list=new AbsenceService().selectAllAbsence();
-		List<Notice> list1=new NoticeService().allNotice();
-		
-		request.setAttribute("list",list);
-		request.setAttribute("list1",list1);
-		
-		request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+		Member logined = (Member) request.getSession().getAttribute("logined");
+
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
+				List<Absence> list=new AbsenceService().selectAllAbsence();
+				List<Notice> list1=new NoticeService().allNotice();
+				
+				request.setAttribute("list",list);
+				request.setAttribute("list1",list1);
+				
+				request.getRequestDispatcher("/views/admin/adminMain.jsp").forward(request, response);
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainView");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
+		}else {
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
+		}
+			
 	}
 
 	/**

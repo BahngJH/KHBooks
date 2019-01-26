@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class NoticeForm
  */
@@ -26,7 +28,21 @@ public class NoticeForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/admin/newNotice.jsp").forward(request, response);
+		Member logined = (Member) request.getSession().getAttribute("logined");
+				
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
+				request.getRequestDispatcher("/views/admin/newNotice.jsp").forward(request, response);
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainView");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
+		}else {
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
+		}
 	}
 
 	/**

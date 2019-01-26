@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.model.service.AdminService;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.vo.Notice;
 
 /**
@@ -30,32 +31,46 @@ public class NewNotice extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
+		Member logined = (Member) request.getSession().getAttribute("logined");
 		
-		Notice n = new Notice();
-		n.setNoticeDate(null);
-		n.setNoticeNo(0);
-		n.setStatus(null);
-		n.setNoticeTitle(title);
-		n.setNoticeContent(content);
-		int result= new AdminService().insertNotice(n);
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
 		
-		String msg="";
-		String view="/views/common/msg.jsp";
-		String loc="";
+				String title=request.getParameter("title");
+				String content=request.getParameter("content");
 				
-		if(result>0) {
-			msg="등록완료";
-			loc="/admin/adminnotice";
+				Notice n = new Notice();
+				n.setNoticeDate(null);
+				n.setNoticeNo(0);
+				n.setStatus(null);
+				n.setNoticeTitle(title);
+				n.setNoticeContent(content);
+				int result= new AdminService().insertNotice(n);
+				
+				String msg="";
+				String view="/views/common/msg.jsp";
+				String loc="";
+						
+				if(result>0) {
+					msg="등록완료";
+					loc="/admin/adminnotice";
+				}else {
+					msg="등록실패";
+					loc="/admin/adminnotice";
+				}
+				request.setAttribute("msg",msg);
+				request.setAttribute("loc",loc);
+				request.getRequestDispatcher(view).forward(request, response);
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainView");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
 		}else {
-			msg="등록실패";
-			loc="/admin/adminnotice";
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
 		}
-		request.setAttribute("msg",msg);
-		request.setAttribute("loc",loc);
-		request.getRequestDispatcher(view).forward(request, response);
-
 	
 	}
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.model.service.AdminService;
+import com.kh.member.model.vo.Member;
 import com.kh.notice.model.vo.Notice;
 
 /**
@@ -30,14 +31,27 @@ public class updateView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	int no=Integer.parseInt(request.getParameter("no1"));
+		Member logined = (Member) request.getSession().getAttribute("logined");
 		
-		Notice n = new AdminService().selectNo(no);
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
+				int no=Integer.parseInt(request.getParameter("no1"));
+		
+				Notice n = new AdminService().selectNo(no);
 		
 		
-		request.setAttribute("n",n);
-		request.getRequestDispatcher("/views/admin/updateform.jsp").forward(request, response);
-		
+				request.setAttribute("n",n);
+				request.getRequestDispatcher("/views/admin/updateform.jsp").forward(request, response);
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainView");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
+		}else {
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
+		}
 	}
 
 	/**
