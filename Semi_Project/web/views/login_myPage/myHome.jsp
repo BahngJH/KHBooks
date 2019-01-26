@@ -183,7 +183,7 @@
 							</tr>
 							
 							<tbody>							
-								<%for(int i = 0; i < 3; i++) {%>
+								<%for(int i = 0; i<orderList.size() && i < 3; i++) {%>
 									<%if(oStatus) { %>
 										<tr>
 											<!-- 책 이미지 -->
