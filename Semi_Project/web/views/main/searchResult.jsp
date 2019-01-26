@@ -19,7 +19,7 @@
             var currentPosition = parseInt($("#cart").css("top"));
             $(window).scroll(function () {
                 var width = $(window).width();
-                if (width >= 991) {
+                if (width >= 992) {
                     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
                     
                     $("#cart").stop().animate({
