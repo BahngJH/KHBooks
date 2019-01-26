@@ -40,14 +40,12 @@ public class LoginEndServlet extends HttpServlet {
 		
 		if(m==null || !m.getMemberPw().equals(pw)) {
 			//로그인 실패 or 없는 회원
-			System.out.println("로그인 실패");
-			request.setAttribute("msg", "아이디나 비밀번호를 다시 확인해 주세요");
+			request.setAttribute("msg", "로그인 실패! 아이디나 비밀번호를 다시 확인해 주세요");
 			request.setAttribute("loc", "/member/login");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			
 		}else{
 			//로그인 성공
-			System.out.println("로그인 성공");
 			//아이디 저장 여부를 보고 쿠키로 아이디값 저장
 			if(saveId!=null) {
 				Cookie c = new Cookie("saveId",id);

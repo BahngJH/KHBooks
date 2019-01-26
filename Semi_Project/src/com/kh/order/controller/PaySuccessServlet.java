@@ -43,9 +43,9 @@ public class PaySuccessServlet extends HttpServlet {
 		//판매한 수 만큼 stock 제거 
 		int rs4 = new OrderService().stockSelect(payBookList);
 		if(rs4>0) {
-			System.out.println("수량제거 완료");
+			//수량제거 완료
 		}else {
-			System.out.println("수량제거 실패");
+			//수량제거 실패
 		}
 		//실제 대입될 값
 		int milage =0;
@@ -62,27 +62,26 @@ public class PaySuccessServlet extends HttpServlet {
 		//마일리지 적립하기
 		int rs3 = new OrderService().insertMilage(m.getMemberNum(),milage);
 		if(rs3>0) {
-			System.out.println("적립 완료");
+			//적립완료
 		}else {
-			System.out.println("적립 실패");
+			//적립 실패
 		}
 		
 		//orderList에 추가하기
 		int rs =  new OrderService().insertOrderlist(m.getMemberNum(),payBookList);
 		if(rs>0) {
-			System.out.println("구매목록에 추가 완료");
+			//구매목록 추가 완료
 		}else {
-			System.out.println("구매목록 추가 실패");
+			//구매목록 추가 실패
 		}
 		
 		//장바구니에서 구매된 책들 제거
 		int rs2 = new OrderService().deleteWishlist(m.getMemberNum(),payBookList);
 		if(rs2>0) {
-			System.out.println("구매된 책, 장바구니에서 삭제 성공");
+			//장바구니에서 삭제 성공
 		}else {
 			//이거 다이렉트로 1개만 구매할 때는 장바구니를 거치지 않고 가기 때문에 장바구니에서 실패 할 수 밖에 없음
-			
-			System.out.println("구매된 책, 장바구니에서 삭제 실패");
+			//장바구니 책들 제거 실패
 		}
 		//마일리지 갱신을 위해 세션 재 설정
 		request.getSession().setAttribute("logined", m);;

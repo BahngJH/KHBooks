@@ -45,9 +45,9 @@ public class UpdateBookcountServlet extends HttpServlet {
 		System.out.println(bookId+" "+bookCount);
 		int rs = new MemberService().updateBookcount(b,memberNum);
 		if(rs>0) {
-			System.out.println("수량 변경 성공");
+			//수량 변경 성공
 		}else {
-			System.out.println("수량 변경 실패");
+			//수량 변경 실패
 		}
 		
 		

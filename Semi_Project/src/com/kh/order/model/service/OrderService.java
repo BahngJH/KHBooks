@@ -70,10 +70,7 @@ public class OrderService {
 				Book newStock = new Book();
 				
 				newStock.setBookId(payList.get(i).getBookId());
-				System.out.println("서비스단 newStock의 bookId : "+newStock.getBookId());
-				
 				newStock.setStock(stockList.get(i).getStock()-payList.get(i).getBookCount());
-				System.out.println("서비스단 newStock의 stock : "+newStock.getStock());
 				stock.add(newStock);
 			}
 		}

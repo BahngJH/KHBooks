@@ -38,9 +38,7 @@ public class UpdateInfoEndServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String memberPwNew = request.getParameter("memberPwNew");
-		
-		
-		
+
 		Member m = new Member();
 		m.setMemberId(memberId);
 		m.setBirth(birth);
@@ -56,13 +54,11 @@ public class UpdateInfoEndServlet extends HttpServlet {
 		}
 		
 		if(rs>0) {
-			System.out.println("회원정보 수정 성공");
 			HttpSession session = request.getSession(false);
 			Member logined =new MemberService().memberLogin(memberId);
 			session.setAttribute("logined", logined);
 			request.getRequestDispatcher("/member/myHome").forward(request, response);
 		}else {
-			System.out.println("회원정보 수정 실패");
 			request.setAttribute("msg", "회원정보 수정에 실패 했습니다");
 			request.setAttribute("loc", "/member/myHome");
 		}

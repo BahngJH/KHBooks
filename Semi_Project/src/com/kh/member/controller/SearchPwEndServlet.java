@@ -36,7 +36,6 @@ public class SearchPwEndServlet extends HttpServlet {
 		String AuthenticationUser = request.getParameter("AuthenticationUser");
 		if(!AuthenticationKey.equals(AuthenticationUser))
 		{
-			System.out.println("인증번호 일치하지 않음");
 			request.setAttribute("msg", "인증번호가 일치하지 않습니다");
 			request.setAttribute("loc", "/member/searchPw");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
@@ -51,7 +50,6 @@ public class SearchPwEndServlet extends HttpServlet {
 		int rs = new MemberService().onlyPwUpdate(m);
 		
 		if(rs>0) {
-			System.out.println("패스워드 변경 성공");
 			//사용한 세션은 끊어줌
 			HttpSession session = request.getSession();
 			session.invalidate();
@@ -59,7 +57,6 @@ public class SearchPwEndServlet extends HttpServlet {
 			request.setAttribute("loc", "/member/login");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
-			System.out.println("패스워드 변경 실패");
 			//사용한 세션은 끊어줌
 			HttpSession session = request.getSession();
 			session.invalidate();

@@ -131,9 +131,7 @@ Properties prop=new Properties();
 		PreparedStatement pstmt =null;
 		String sql = prop.getProperty("stockMinus");
 		int rs = 0;
-		for(Book b:newStock) {
-			System.out.println(b);
-		}
+	
 		try {
 			pstmt = conn.prepareStatement(sql);
 			for(int i=0;i<newStock.size();i++) {

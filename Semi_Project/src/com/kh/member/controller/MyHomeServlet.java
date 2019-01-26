@@ -38,7 +38,6 @@ public class MyHomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member logined = (Member) request.getSession(false).getAttribute("logined");
-		System.out.println(logined);
 		if(logined==null) {
 			
 			response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");

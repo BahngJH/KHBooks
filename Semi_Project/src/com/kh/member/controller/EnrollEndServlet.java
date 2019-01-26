@@ -53,7 +53,7 @@ public class EnrollEndServlet extends HttpServlet {
 		m.setGender(gender);
 		m.setAddress(address);
 		
-		System.out.println(m);
+		
 		//회원가입 로직 시작
 		int rs = new MemberService().memberEnroll(m);
 		

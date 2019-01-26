@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 
 		String cookieVal = request.getParameter("cookieVal");
 		request.getRequestDispatcher("/views/login_myPage/login.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath()+"/views/login_myPage/login.jsp");
+		
 
 	}
 

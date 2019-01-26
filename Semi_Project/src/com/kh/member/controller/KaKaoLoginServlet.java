@@ -60,9 +60,8 @@ public class KaKaoLoginServlet extends HttpServlet {
 			int rs = new MemberService().kakaoEnroll(m2);
 			
 			if(rs>0) {
-				System.out.println("카카오 회원가입 완료");
 				//회원가입 했으니 로그인까지 연동
-				System.out.println("로그인까지 자동으로 연결!");
+				
 				//memberNum 데이터는 못불러와서 그거 가져오기위해 다시 실행
 				Member m3 = new MemberService().memberLogin(id);
 				
@@ -75,9 +74,7 @@ public class KaKaoLoginServlet extends HttpServlet {
 			
 		}else {
 			//있는 회원
-			System.out.println("카카오 로그인 성공");
 			session.setAttribute("logined", m);
-			//response.setContentType("text/checkedId;charset=utf-8");
 			response.getWriter().append("/");
 		}
 		
