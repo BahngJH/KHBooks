@@ -83,7 +83,7 @@ public class BookInsertServlet extends HttpServlet {
 		
 		String index = mr.getParameter("index");
 		index = index.equals("") ? "목차가 없습니다." : index;
-		index = index.length()>450 ? index.substring(0, 450)+"\n(하략..)": index;
+		index = index.length()>350 ? index.substring(0, 350)+"\n(하략..)": index;
 		book.setToc(index);
 		
 		book.setStock(Integer.parseInt(mr.getParameter("count")));
