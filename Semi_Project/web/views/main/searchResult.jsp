@@ -17,7 +17,6 @@
 <script>
         $(function () {
             var currentPosition = parseInt($("#cart").css("top"));
-            //$('#cart').css('height', $(window).height()-100);
             $(window).scroll(function () {
                 var width = $(window).width();
                 if (width >= 992) {
