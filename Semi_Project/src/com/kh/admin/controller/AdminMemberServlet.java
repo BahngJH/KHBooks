@@ -107,7 +107,7 @@ public class AdminMemberServlet extends HttpServlet {
 			}else {
 				//관리자가 아닐 때
 				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
-				request.setAttribute("loc", "/main/mainView");
+				request.setAttribute("loc", "/main/mainview");
 				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
 			}
 		}else {

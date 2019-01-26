@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.model.service.AdminService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class AdminDeleteMemberServlet
@@ -29,30 +30,44 @@ public class AdminDeleteMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nums = request.getParameter("nums");
-		String[] num = nums.split(",");
-
-		int result = new AdminService().deleteMember(num);
+		Member logined = (Member) request.getSession().getAttribute("logined");
 		
-		String msg="";
-		String loc="";
-		String view="/views/common/msg.jsp";
+		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
+				String nums = request.getParameter("nums");
+				String[] num = nums.split(",");
 		
-		
-		if(result > 0) 
-		{
-			msg="회원 삭제 성공";
-			loc="/admin/member";			
+				int result = new AdminService().deleteMember(num);
+				
+				String msg="";
+				String loc="";
+				String view="/views/common/msg.jsp";
+				
+				
+				if(result > 0) 
+				{
+					msg="회원 삭제 성공";
+					loc="/admin/member";			
+				}
+				else 
+				{
+					msg="회원 탈퇴 실패";
+					loc="/admin/member";
+				}
+				
+				request.setAttribute("msg", msg);
+				request.setAttribute("loc", loc);
+				request.getRequestDispatcher(view).forward(request, response);
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainview");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
+		}else {
+			//로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/member/login");
 		}
-		else 
-		{
-			msg="회원 탈퇴 실패";
-			loc="/admin/member";
-		}
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

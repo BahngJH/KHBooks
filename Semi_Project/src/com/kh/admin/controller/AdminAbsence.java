@@ -35,8 +35,9 @@ public class AdminAbsence extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member logined = (Member) request.getSession().getAttribute("logined");
-
+		
 		if (logined != null) {
+			if(logined.getIsAdmin() == 1){
 		
 			int no = Integer.parseInt(request.getParameter("no"));		
 			Absence ab = new AbsenceService().selectNo(no);
@@ -59,6 +60,12 @@ public class AdminAbsence extends HttpServlet {
 	
 			request.getRequestDispatcher("/views/admin/adminabsencecontent.jsp").forward(request, response);
 		
+			}else {
+				//관리자가 아닐 때
+				request.setAttribute("msg", "접근할 수 없는 페이지입니다.");
+				request.setAttribute("loc", "/main/mainview");
+				request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);;
+			}
 		}else {
 			//로그인을 안했을 때
 			response.sendRedirect(request.getContextPath()+"/member/login");
