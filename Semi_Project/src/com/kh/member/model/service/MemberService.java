@@ -23,6 +23,16 @@ public class MemberService {
 		
 		return m;
 	}
+	//카카오 회원가입 로직
+	public int kakaoEnroll(Member m)
+	{
+		Connection conn = getConnection();
+		int rs = new MemberDao().kakaoEnroll(conn,m);
+		if(rs>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return rs;
+	}
 	//회원가입 메소드
 	public int memberEnroll(Member m) 
 	{

@@ -35,7 +35,7 @@ public class LoginEndServlet extends HttpServlet {
 		String id = request.getParameter("memberId");
 		String pw = request.getParameter("memberPw");
 		String saveId = request.getParameter("saveId");
-		
+		//로그인 로직 아이디먼저 검사
 		Member m = new MemberService().memberLogin(id);
 		
 		if(m==null || !m.getMemberPw().equals(pw)) {

@@ -9,6 +9,10 @@ div{
             text-decoration: none;
            	color:pink;
         }
+        #kakaoLogin{
+        	margin-top:30px;
+        	text-align:center;
+        }
         #checkdiv{
             width:305px; height:40px;
             text-align: center;

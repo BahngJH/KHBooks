@@ -54,8 +54,9 @@ public class EnrollEndServlet extends HttpServlet {
 		m.setAddress(address);
 		
 		System.out.println(m);
-		
+		//회원가입 로직 시작
 		int rs = new MemberService().memberEnroll(m);
+		
 		if(rs>0)
 		{
 			//회원가입 성공!

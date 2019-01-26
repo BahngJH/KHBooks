@@ -41,10 +41,11 @@
         </form>
             <input type="button" value="회원가입" onclick="goEnroll();" class="btn btn-default">
  	   </div>
-   
-<!--  <a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<div id="kakaoLogin">  
+	<a id="kakao-login-btn"></a>
+	<a href="http://developers.kakao.com/logout"></a>
+</div>
+
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -59,19 +60,29 @@
     		  url: '/v2/user/me',
     		  success: function(res){
     			  console.log(res);
+    			  console.log(res.id);
     			  console.log(res.kakao_account);
     			  console.log(JSON.stringify(res.properties.nickname));
     			  console.log(JSON.stringify(res.kakao_account.email));
     			  console.log(JSON.stringify(res.kakao_account.gender));
     			  console.log(JSON.stringify(res.kakao_account.birthday));
-    			 
+    			 $.ajax({
+    				url:"<%=request.getContextPath()%>/member/kakaoLogin",
+    				data:{"id":res.id, "name":JSON.stringify(res.properties.nickname)},
+    				Type:"post",
+    				success:function(data){
+    					location.href="<%=request.getContextPath()%>/";
+    				}
+    				
+    			 });
     			  
     		  },
     		  fail: function(error){
     			  alert(JSON.stringify(error));
     		  }
     	  });
-        alert(JSON.stringify(authObj));
+    	 //접속된 회원의 토큰값 출력됨
+        //alert(JSON.stringify(authObj));
         
       },
       fail: function(err) {
@@ -79,25 +90,23 @@
       }
     });
   //]]>
-</script>   -->
+</script>  
     <script>
     	function goEnroll(){
     		location.href="<%=request.getContextPath()%>/member/enroll";
     	}
     
-    	function fn_log(){
-
+    	 function fn_log(){
     		var id = $('#id').val().trim().length;
     		var pw = $('#password').val().trim().length;   		
     		
     		if(id==0 || pw==0)
     		{
     			alert("아이디와 비밀번호를 입력해주세요");
-
     			return false;
     		}
     		return true; 
-    	}
+    	} 
     
     </script>
 </body>

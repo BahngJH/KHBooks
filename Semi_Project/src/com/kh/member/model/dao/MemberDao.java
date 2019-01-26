@@ -54,6 +54,34 @@ public class MemberDao {
 		}
 		return rs;
 	}
+	//카카오 자동 로그인
+	public int kakaoEnroll(Connection conn, Member m)
+	{
+		PreparedStatement pstmt =null;
+		int rs = 0;
+		String sql = prop.getProperty("kakaoEnroll");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getGender());
+			pstmt.setString(5, m.getBirth());
+			pstmt.setString(6, m.getEmail());
+			pstmt.setString(7, m.getPhone());
+			pstmt.setString(8, m.getAddress());
+			rs = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rs;
+		
+	}
+	
 	//로그인
 	public Member memberLogin(Connection conn, String id) 
 	{
