@@ -94,6 +94,8 @@
 	});
 	
 	function searchISBN(isbn){
+		event.preventDefault();
+		
 		if(isbn !== undefined && isbn !== ""){
 			$.ajax({
 	   			url: "https://dapi.kakao.com/v3/search/book",
