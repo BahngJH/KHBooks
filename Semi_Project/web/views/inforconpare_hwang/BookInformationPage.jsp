@@ -563,7 +563,7 @@ function fnMove2(){
 				</table>
 			</div>
 
-			<%if(b.getBookContent()!=null) {%>
+			<%if(b.getBookContent()!=null && !b.getBookContent().equals("null")) {%>
 				<div class='inforstorybs'>
 				   <thead class='bookstroy'>
 				      <strong>줄거리</strong>
