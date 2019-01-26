@@ -242,7 +242,14 @@ div.thumbnail-container a{
     box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.8);
 }
 
-@media (min-width: 992px) and (max-width: 1200px){
+@media(min-width: 1200px){
+	a.book-thumbnail img{
+		width:135px; 
+		height:211px;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
 	div.thumbnail-container{
 		padding: 0px;
 		height: 475px;
@@ -301,7 +308,6 @@ a.book-thumbnail{
 	padding: 0px;
 	margin: 0px;
 }
-
 
 div.book-title{
 	border-bottom: 1px solid gray;

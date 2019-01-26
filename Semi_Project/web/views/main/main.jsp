@@ -44,13 +44,12 @@
 	                    <%for(Book b : best) {%>
 	                    <div class="col-xs-6 col-sm-4 col-lg-2 book-container">
 	    	       			<div class="col-xs-12">
-		    	       			<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="author-name"><%=b.getBookName().length()>26 ? b.getBookName().substring(0, 26)+"...": b.getBookName() %></a>
+		    	       			<a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="author-name"><%=b.getBookName().length() > 26 ? b.getBookName().substring(0, 26)+"...": b.getBookName() %></a>
 	           				</div>
 	                    	<div class="thumbnail-container col-xs-12">
 		                        <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail book-thumbnail">
-		                            <img style='width:135px; height:211px;'src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
+		                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
 		                        </a>
-		                        <!-- <span class="border"></span> -->
 	                    	</div>
 	                    </div>
 	                    <%} %>
@@ -70,7 +69,7 @@
 	           				</div>
 	                    	<div class="thumbnail-container col-xs-12">
 		                        <a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=b.getBookId()%>" class="thumbnail book-thumbnail">
-		                            <img style='width:135px; height:211px;'src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
+		                            <img src="<%=request.getContextPath()+"/images/book/"+b.getBookImage() %>" alt="도서 이미지">
 		                        </a>
 		                        <!-- <span class="border"></span> -->
 	                    	</div>
