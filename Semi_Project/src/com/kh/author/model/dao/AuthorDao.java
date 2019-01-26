@@ -120,7 +120,7 @@ public class AuthorDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertAuthor"));
 			pstmt.setString(1, authorName);
-			pstmt.setString(2, "");
+			pstmt.setString(2, "저자 정보가 없습니다.");
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
