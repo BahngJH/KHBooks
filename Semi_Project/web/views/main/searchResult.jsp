@@ -19,7 +19,7 @@
             var currentPosition = parseInt($("#cart").css("top"));
             $(window).scroll(function () {
                 var width = $(window).width();
-                if (width >= 992) {
+                if (width >= 991) {
                     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
                     
                     $("#cart").stop().animate({
@@ -201,7 +201,7 @@
 			<%if(!recents.isEmpty()){ %>
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <p class="text-center">최근 본 목록</p>
+                        <p class="text-center">최근 본 책</p>
                     </div>
                 </div>
                 <div class='row cart-row'>
