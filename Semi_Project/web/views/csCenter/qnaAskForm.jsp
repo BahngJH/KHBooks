@@ -289,7 +289,6 @@ padding-left:20px;
 			this.value = this.value.replace(/\D/g, '')
 			alert('숫자만 입력가능합니다.');
 		}
-
 	});
 	
 	//이메일 알파벳만 입력 받게 하기    
@@ -303,13 +302,11 @@ padding-left:20px;
 	function validate() {
 		var content = $('textArea[name=qnaContent]').val();
 		var qnaPart = $("#ra input[type='radio']:checked").val();
-
 		if (qnaPart == null) {
 			alert("상담 구분을 선택해주세요")
 			document.getElementById("askPartRadio").scrollIntoView();
 			return false;
 		}
-
 		return true;
 	}
 </script>
