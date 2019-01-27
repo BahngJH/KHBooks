@@ -28,13 +28,14 @@ Properties prop=new Properties();
 		} 
 	}
 	
-	public int selectOrderCount(Connection conn) {
+	public int selectOrderCount(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
 		String sql = prop.getProperty("selectOrderCount");
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt("cnt");

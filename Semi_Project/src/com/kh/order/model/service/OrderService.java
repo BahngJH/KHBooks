@@ -15,9 +15,9 @@ import com.kh.order.model.vo.Order;
 
 public class OrderService {
 	
-	public int selectOrderCount() {
+	public int selectOrderCount(int no) {
 		Connection conn = getConnection();
-		int result = new OrderDao().selectOrderCount(conn);
+		int result = new OrderDao().selectOrderCount(conn, no);
 		close(conn);
 		return result;
 	}

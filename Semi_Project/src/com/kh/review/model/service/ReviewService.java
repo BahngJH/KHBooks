@@ -31,9 +31,9 @@ public class ReviewService {
 		return list;
 	}
 	
-	public int selectReviewCount() {
+	public int selectReviewCount(int no) {
 		Connection conn = getConnection();
-		int result = new ReviewDao().selectReviewCount(conn);
+		int result = new ReviewDao().selectReviewCount(conn, no);
 		close(conn);
 		return result;
 	}

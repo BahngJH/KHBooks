@@ -58,7 +58,7 @@ public class OrderListServlet extends HttpServlet {
 		
 		//페이지구성해보자~!
 		//전체자료수를 확인
-		int totalOrder = new OrderService().selectOrderCount();
+		int totalOrder = new OrderService().selectOrderCount(no);
 		//전체페이지수
 		int totalPage=(int)Math.ceil((double)totalOrder/numPerPage);
 		//페이지바 html코드 누적변수
