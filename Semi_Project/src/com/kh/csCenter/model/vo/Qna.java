@@ -6,14 +6,14 @@ public class Qna {
 	private int qnaNum;// 문의 번호 default
 	private String qnaPart;// 상담분류
 	private int qnaWriter;// 회원번호 memberNum
-	private String qnaAnswer;// 메일 답변 여부
+	private String qnaAnswer;// 메일 답변 수신 여부
 	private String qnaMail;// 문의자 메일
 	private String qnaTel;// 문의자 전화번호
 	private String qnaTitle;// 문의 제목
 	private String qnaContent;// 문의 내용
-	private String qnaOriFile;// 이전파일
-	private String qnaReFile;// 새로운 파일
-	private Date qnaDate;// 조회수>>읽음여부 판단
+	private String qnaOriFile;// 원본파일 이름
+	private String qnaReFile;//  처리된 파일 이름
+	private Date qnaDate;// 문의날짜
 	private String qnaStatus;// 삭제여부
 	private String reContent;// 관리자 답변 내용
 	private int reNum;// 답글 번호
