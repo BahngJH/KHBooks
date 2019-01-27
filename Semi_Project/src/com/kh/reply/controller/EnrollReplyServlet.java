@@ -34,15 +34,11 @@ public class EnrollReplyServlet extends HttpServlet {
 		String orderReContent = request.getParameter("orderReContent");
 		int memberNum = Integer.parseInt(request.getParameter("memberNum"));
 		int orderBookNum = Integer.parseInt(request.getParameter("orderBookNum"));
-		System.out.println("orderBookNum: "+orderBookNum);
-
+		
 		Reply r = new Reply();
 		r.setOrderBookNum(orderBookNum);
 		r.setMemberNum(memberNum);
 		r.setOrderReContent(orderReContent);
-
-
-		System.out.println(r);
 
 		int rs = new ReplyService().enrollReply(r);
 

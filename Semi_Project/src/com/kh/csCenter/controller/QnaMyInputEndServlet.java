@@ -71,8 +71,7 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		String qnaTitle=mr.getParameter("qnaTitle");
 		String qnaContent=mr.getParameter("qnaContent");
 		//String upfile=mr.getParameter("upfile");
-		
-		
+				
 		Qna q= new Qna();
 		q.setQnaNum(0);
 		q.setQnaDate(null);
@@ -89,9 +88,7 @@ public class QnaMyInputEndServlet extends HttpServlet {
 		q.setQnaOriFile(mr.getOriginalFileName("upfile"));
 		q.setQnaReFile(mr.getFilesystemName("upfile"));
 		q.setReCheck(null);
-						
-	
-		
+							
 		int rs=new QnaService().qnaEnroll(q);
 		
 		//응답처리

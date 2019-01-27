@@ -93,21 +93,12 @@ public class QnaAdminListServlet extends HttpServlet {
 		{
 			pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListAdmin?cPage="+pageNo+"&numPerPage="+numPerPage+"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
 		}
-		
-				
+						
 		request.setAttribute("cPage",cPage);
 		request.setAttribute("pageBar",pageBar);
-		request.setAttribute("list", list);
-		
+		request.setAttribute("list", list);		
 		request.getRequestDispatcher("/views/csCenter/qnaListAdmin.jsp").forward(request, response);
 		
-		
-
-		//List<Qna> list = new QnaService().selectAllQna();
-		/*request.setAttribute("list", list);
-		request.setAttribute("cnt", list.size());*/
-	
-
 	}
 
 	/**

@@ -301,8 +301,8 @@ Properties prop=new Properties();
 
 		switch(sort) {
 		case 1: sql = prop.getProperty("sortList1"); break;
-		case 2: sql = prop.getProperty("sortList2");; break;
-		case 3: sql = prop.getProperty("sortList3");; break;
+		case 2: sql = prop.getProperty("sortList2"); break;
+		case 3: sql = prop.getProperty("sortList3"); break;
 		default: break;
 		}
 		

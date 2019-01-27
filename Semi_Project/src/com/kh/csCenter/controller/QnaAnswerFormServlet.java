@@ -40,8 +40,7 @@ public class QnaAnswerFormServlet extends HttpServlet {
 		// 받아올 문의 번호
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNum"));
 		Qna q = new QnaService().selectNo(qnaNo);
-		
-	
+			
 		request.setAttribute("q", q);
 		request.getRequestDispatcher("/views/csCenter/qnaAnswerForm.jsp").forward(request, response);
 		

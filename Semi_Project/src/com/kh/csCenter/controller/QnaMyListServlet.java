@@ -39,11 +39,9 @@ public class QnaMyListServlet extends HttpServlet {
 		Member m = (Member) request.getSession().getAttribute("logined");			
 		if (m != null) {
 			int memberNum = m.getMemberNum();
-			System.out.println("회원번호: "+memberNum);
-			
+					
 			List<QnaRe> qrList=new QnaService().selectMyRe(memberNum);
-			
-			
+						
 			int cPage;
 			try {
 			
@@ -104,7 +102,6 @@ public class QnaMyListServlet extends HttpServlet {
 			{
 				pageBar+="<a href='"+request.getContextPath()+"/qna/qnaListMain?cPage="+pageNo+"&numPerPage="+numPerPage+"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
 			}
-			System.out.println(pageBar);
 					
 			request.setAttribute("cPage",cPage);
 			request.setAttribute("pageBar",pageBar);

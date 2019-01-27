@@ -82,9 +82,7 @@ public class QnaDao {
 		return list;
 	}
 	
-	
-	
-
+	//페이징용 전체 글 갯수
 	public int selectCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -197,8 +195,7 @@ public class QnaDao {
 		} finally {
 			close(rs);
 			close(pstmt);
-		}
-		System.out.println(qrList);
+		}		
 		return qrList;
 	}
 
@@ -208,7 +205,6 @@ public class QnaDao {
 		ResultSet rs = null;
 		List<Qna> list = new ArrayList();
 		String sql = prop.getProperty("selectList");
-
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
@@ -237,9 +233,7 @@ public class QnaDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("list : " + list);
 		return list;
-
 	}
 
 	// 문의글 선택(관리자)
@@ -316,7 +310,6 @@ public class QnaDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println("recheck 수정 됐나요?"+rs1);
 		return rs1;
 	}
 		
@@ -325,7 +318,6 @@ public class QnaDao {
 	public int qnaEnroll(Connection conn, Qna q) {
 		PreparedStatement pstmt = null;
 		int rs = 0;
-		System.out.println(q);
 		String sql = prop.getProperty("qnaEnroll");
 		try {
 			pstmt = conn.prepareStatement(sql);
