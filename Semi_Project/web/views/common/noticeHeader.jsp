@@ -23,7 +23,7 @@ div a {
 }
 
 .notice-header hr {
-   border: solid 1px darkgray;
+
    margin-right:80%;
    width:150px;
 }
@@ -33,10 +33,11 @@ div a {
 }
 
 #map table {
-   cellpadding: 0;
-   cellspacing: 0;
+
    width: 100px;
-   
+
+   text-align:center;
+   margin:auto;
 }
 
 #map table td {
@@ -48,21 +49,19 @@ div a {
    height: 180px;
    border: 0px;
    vertical-align: top;
+   
 }
 
 .notice-header ol, .col-sm-2 ol a {
    color: black;
 }
 
-.dropdown-toggle {
-   data-toggle: dropdown;
-   role: button;
-   aria-expanded: false;
-}
 
-.notice-header .dropdown-toggle {
-   color: black;
-}
+
+
+.notice-header{text-align:center;}
+.notice-header hr{width: 100%; text-align: left; margin-left: 0px;}
+
 </style>
 
 <script>

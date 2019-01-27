@@ -14,14 +14,18 @@
 
 .col-sm-2 h4 {
 	color: black;
+	text-align:center;
 }
+
+.admin-header{text-align:center;}
+.admin-header hr{width: 100%; text-align:center; margin-left:100%; }
 </style>
 
 
 
 
 <div class="container">
-	<div class="col-sm-2">
+	<div class="col-sm-2 admin-header">
 
 		<h4>
 			<span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="<%=request.getContextPath()%>/admin/mainview"><strong>관리자
