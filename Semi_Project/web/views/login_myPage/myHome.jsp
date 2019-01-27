@@ -151,19 +151,19 @@
 						</tr>				
 			
 						<tbody>
-							<%for(int i = 0; i < 3; i++) {%>
-								<%if(qStatus) { %>
+							<%if(qStatus) { %>
+								<%for(int i = 0; i < 3; i++) {%>
 							<tr>						
 								<td><%=qnaList.get(i).getQnaTitle()%></td>
 								<td><%=qnaList.get(i).getReCheck()%></td>
 								<td><%=qnaList.get(i).getQnaDate()%></td>
 							</tr>	
-								<%} else {%>	
+								<%}
+							} else {%>	
 									<tr>
 										<td colspan='5'>최근 문의 내역이 없습니다.</td>
 									</tr>																									
-							<% break;}
-							}%>					
+							<%}%>					
 						</tbody>	
 					</table>
 				</article>				
@@ -183,8 +183,8 @@
 							</tr>
 							
 							<tbody>							
-								<%for(int i = 0; i<orderList.size() && i < 3; i++) {%>
-									<%if(oStatus) { %>
+								<%if(oStatus) { %>
+									<%for(int i = 0; i<orderList.size() && i < 3; i++) {%>
 										<tr>
 											<!-- 책 이미지 -->
 											<td>
@@ -217,12 +217,12 @@
 												<p><%=orderList.get(i).getBook().getPrice() * orderList.get(i).getBookCount()%>원</p>
 											</td>
 										</tr>
-									<%} else {%>	
+									<%}
+								} else {%>	
 										<tr>
 											<td colspan='5'>구매 도서 정보가 없습니다.</td>
 										</tr>																									
-								<% break;}
-								}%>
+								<%}%>
 							</tbody>
 						</table>
 				</article> 
@@ -249,28 +249,28 @@
 						</tr>							
 						
 						<tbody>
-							<%for(int i = 0; (i < reviewList.size())&& (i < 3); i++) {%>
-								<%if(rStatus) { %>
-							<tr>
-								<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=reviewList.get(i).getBookId()%>"><%=reviewList.get(i).getBook().getBookName()%></a></td>
-								<td colspan='2'><%=reviewList.get(i).getReviewContext()%></td>								
-								<td>
-									<%for(int j = 0; j < 5; j++) {%>
-										<%if(j < reviewList.get(i).getGrade()) { %>
-											<span style="color: red;" class="glyphicon glyphicon-star" aria-hidden="true"></span> 
-										<%} else { %>
-											<span style="color: #ccc;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
-										<%}
-									}%>									
-								</td>
-								<td><%=reviewList.get(i).getWriteDate()%></td>
-							</tr>
-								<%} else {%>	
-									<tr>
-										<td colspan='5'>남긴 리뷰가 없습니다.</td>
-									</tr>																									
-							<% break;}
-							}%>							
+							<%if(rStatus) { %>
+								<%for(int i = 0; (i < reviewList.size())&& (i < 3); i++) {%>
+								<tr>
+									<td><a href="<%=request.getContextPath() %>/inforconpare_hwang/infoView?bookId=<%=reviewList.get(i).getBookId()%>"><%=reviewList.get(i).getBook().getBookName()%></a></td>
+									<td colspan='2'><%=reviewList.get(i).getReviewContext()%></td>								
+									<td>
+										<%for(int j = 0; j < 5; j++) {%>
+											<%if(j < reviewList.get(i).getGrade()) { %>
+												<span style="color: red;" class="glyphicon glyphicon-star" aria-hidden="true"></span> 
+											<%} else { %>
+												<span style="color: #ccc;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+											<%}
+										}%>									
+									</td>
+									<td><%=reviewList.get(i).getWriteDate()%></td>
+								</tr>
+								<%}
+							} else {%>	
+								<tr>
+									<td colspan='5'>남긴 리뷰가 없습니다.</td>
+								</tr>																									
+							<%}%>							
 						</tbody>
 						
 					</table>			
