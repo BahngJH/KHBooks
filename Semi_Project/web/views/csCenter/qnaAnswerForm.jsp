@@ -80,8 +80,8 @@ color: #5F5AF3;
 			          <button class="btn_sub btn btn-default" onclick="fn_AnswerList()">목록으로</button>
 			          <input type="hidden" name="memberNum" value="<%=q.getQnaWriter()%>"/>
 			  		  <input type="hidden" name="qnaNum" value="<%=q.getQnaNum()%>"/>
-			  		  <input type="hidden" name="reCheck" value="<%=q.getReCheck() %>"/>
-			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">	      				       			        		  
+			  		  <input type="hidden" name="reCheck" value="<%=q.getReCheck() %>"/> <!--답변 여부  --> 
+			  		  <input type="hidden" name="reMail" value="<%=q.getQnaAnswer()%>">	 <!--답변 메일 수신여부  -->     				       			        		  
   			  		</form>				         			        					        					 					  								      						 					       		    				   			
 		  		  </div> 
 			</div>				 				 				                   		                 
