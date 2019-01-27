@@ -102,32 +102,20 @@ public class QnaService {
 	public int qnaAnswerEnroll(QnaRe qr, Qna q) {
 		Connection conn = getConnection();
 		int rs = new QnaDao().qnaAnswerEnroll(conn, qr);
-
 		if (rs > 0) {
 			//답변 상태 변경
 			q.setReCheck("Y");
-			commit(conn);
-			
+			commit(conn);		
 			int rs1 = new QnaDao().updateReCheck(conn, q);			
 			if (rs1 > 0) {
 				commit(conn);
 			}
-
 		} else {
 			rollback(conn);
 		}
-
 		close(conn);
 		return rs;
-
 	}
-/*
-	// 관리자 답변 메일 전송
-	public Qna sendEmail(int qnaNum) {
-		Connection conn = getConnection();
-		Qna q = new QnaDao().sendEmail(conn, qnaNum);
-		close(conn);
-		return q;
-	}*/
+
 
 }
