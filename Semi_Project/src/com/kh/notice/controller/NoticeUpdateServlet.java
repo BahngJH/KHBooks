@@ -45,7 +45,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 		
 		int result=new NoticeService().updateNotice(n);
 		
-		System.out.println("수정후 : "+n);
+		
 		String msg="";
 		String view="/views/common/msg.jsp";
 		String loc="";

@@ -49,7 +49,7 @@ public class AdminAbsence extends HttpServlet {
 				view = "/views/admin/adminabsencecontent.jsp";
 				request.setAttribute("ab", ab);
 				request.setAttribute("reply", rlist);
-				System.out.println("댓글 있나요?"+rlist);
+			
 	
 			}else {
 				view="views/common/msg.jsp";

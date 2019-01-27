@@ -36,7 +36,7 @@ public class NoticeDeleteServlet extends HttpServlet {
 		int no=Integer.parseInt(request.getParameter("no"));	
 		
 		int result = new NoticeService().deleteNotice(no);
-			System.out.println(no);
+			
 		String msg="";
 		String view ="/views/common/msg.jsp";
 		String loc="";
