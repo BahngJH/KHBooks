@@ -34,8 +34,7 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		String reContent=request.getParameter("reContent");		
 		String reCheck=request.getParameter("reCheck");
 		int reNum=Integer.parseInt(request.getParameter("reNum"));
-		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
-					
+		int memberNum=Integer.parseInt(request.getParameter("memberNum"));					
 		int qnaNum=Integer.parseInt(request.getParameter("qnaNum"));
 		
 		QnaRe qr=new QnaRe();
@@ -45,12 +44,7 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		qr.setReMail(reMail);
 		qr.setQnaNum(qnaNum);
 		
-		System.out.println("qr="+qr);
-		
 		int rs=new QnaService().updateAnswer(qr);
-		
-		System.out.println("수정된 답변 : "+qr);
-		System.out.println(rs);
 		
 		String msg="";
 		String view="/views/common/msg.jsp";
@@ -66,12 +60,6 @@ public class UpdateAnswerEndServlet extends HttpServlet {
 		request.setAttribute("msg",msg);
 		request.setAttribute("loc",loc);
 		request.getRequestDispatcher(view).forward(request, response);
-		
-		
-		
-		
-		
-		
 	}
 
 	/**

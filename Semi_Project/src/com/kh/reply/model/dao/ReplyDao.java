@@ -29,8 +29,7 @@ public class ReplyDao {
 	//주문도서 댓글 등록	
 	public int enrollReply(Connection conn, Reply r) {
 		PreparedStatement pstmt = null;
-		int rs = 0;
-		System.out.println(r);
+		int rs = 0;		
 		String sql = prop.getProperty("enrollReply");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -86,7 +85,6 @@ public class ReplyDao {
 	public int deleteReply(Connection conn, int reNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-
 		String sql = prop.getProperty("deleteReply");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -99,8 +97,6 @@ public class ReplyDao {
 			close(pstmt);
 		}
 		return result;
-
 	}
 	
-
 }

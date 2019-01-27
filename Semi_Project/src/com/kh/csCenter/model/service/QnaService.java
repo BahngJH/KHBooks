@@ -69,7 +69,6 @@ public class QnaService {
 		close(conn);
 		return list;
 	}
-	
 	public List<Qna> selectList(int no) {
 		Connection conn = getConnection();
 		List<Qna> list = new QnaDao().selectList(conn, no);

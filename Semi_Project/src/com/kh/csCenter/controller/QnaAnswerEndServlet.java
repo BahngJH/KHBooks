@@ -67,7 +67,6 @@ public class QnaAnswerEndServlet extends HttpServlet {
 		qr.setReContent(reContent);
 		qr.setReStatus(null);
 		qr.setReDate(null);
-		System.out.println(qr);
 
 		Qna q=new Qna();
 		q.setReCheck(reCheck);

@@ -387,9 +387,6 @@ margin-right:440px;
 		}
 		
 		
-		
-	
-
 	 	function fn_deleteReply(no){
 			if(!confirm('정말로 삭제하시겠습니까?'))
 			{
@@ -397,22 +394,21 @@ margin-right:440px;
 			}
 			location.href="<%=request.getContextPath()%>/reply/deleteReply?no="+no+"&no1="+<%=ab.getAppNum()%>;
 		}
-	 	//수정 구현중...
-		 /* function fn_updateReply(btn){
+<%-- 	 	//수정 구현중...
+		  function fn_updateReply(btn){
 			console.log(btn);
 			$(btn).parent().parent().next().hide();
-			var content=$(btn).parent().parent().next().find('p').html();
-			var txt1="<textArea class='form-control' name='orderrecontent' required></textArea><input type='submit' value='취소'/>";				
-			$(btn).parent().parent().parent().append(txt1);
-		 $('#repContent').hide(); 
+			var content=$(btn).parent().parent().next().html();
+			console.log(content);
+			var txt1="<form role='form' action='<%=request.getContextPath()%>/reply/updateReply?no='+no+'&no1='+<%=ab.getAppNum()%>>";			
+			var txt2="<textArea class='form-control' name='orderrecontent' required>"+content+"</textArea><button type='submit' class='[ btn btn-success ]'>등록</button>";	
+			var txt3="<input type='hidden' name='orderBookNum' value='<%=ab.getAppNum() %>'/></form>";
+			$(btn).parent().parent().parent().append(txt1,txt2,txt3);
+		/*  $('#repContent').hide();  */
 
-		} */
-
+		} 
+ --%>
 				
-		
-			
-			
-			
 			
 			<%--  location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; 						 --%>
 			<%-- location.href="<%=request.getContextPath()%>/reply/updateReply?no="+no+"&no1="+<%=ab.getAppNum()%>; --%>
