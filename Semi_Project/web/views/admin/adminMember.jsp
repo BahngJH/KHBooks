@@ -87,7 +87,7 @@
 			<tr>
 				<th>ID</th>
 				<th>이름</th>
-				<th>주소</th>
+				<!-- <th>주소</th> -->
 				<th>phone</th>
 				<th>email</th>
 				<th>선택</th>
@@ -97,7 +97,7 @@
 				<tr>
 					<td class="info<%=m.getMemberNum()%>"><%=m.getMemberId()%></td>
 					<td class="info<%=m.getMemberNum()%>"><%=m.getMemberName()%></td>
-					<td class="info<%=m.getMemberNum()%>"><%=m.getAddress()%></td>
+					<%-- <td class="info<%=m.getMemberNum()%>"><%=m.getAddress()%></td> --%>
 					<td class="info<%=m.getMemberNum()%>"><%=m.getPhone()%></td>
 					<td class="info<%=m.getMemberNum()%>"><%=m.getEmail()%></td>
 					<td><input type="checkbox" name="check" value="<%=m.getMemberNum()%>"></td>
@@ -165,51 +165,50 @@
 								<tr>
 									<th>ID</th>
 									<td>
-										<input type="text" class="form-control" name="moId" id="moId" value=""/>
+										<input type="text" class="form-control" name="moId" id="moId" value="" readonly="readonly"/>
 									</td>
 								</tr>
 								<tr>
 									<th>이름</th>
 									<td>
-										<input type="text" class="form-control" name="moName" id="moName" value=""	/>
+										<input type="text" class="form-control" name="moName" id="moName" value=""	readonly="readonly"/>
 									</td>									
 								</tr>
 								<tr>
 									<th>마일리지</th>
 									<td>
-										<input type="text" class="form-control" name="moMileage" id="moMileage" value=""/>
+										<input type="text" class="form-control" name="moMileage" id="moMileage" value="" readonly="readonly"/>
 									</td>
 								</tr>
 								<tr>
 									<th>주소</th>
 									<td>
-										<textarea rows="3" class="form-control" name="moAddr" id="moAddr" value=""></textarea>
+										<textarea rows="3" class="form-control" name="moAddr" id="moAddr" value="" readonly="readonly"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<th>연락처</th>
 									<td>
-										<input type="text" class="form-control" name="moPhone" id="moPhone" value=""/>
+										<input type="text" class="form-control" name="moPhone" id="moPhone" value="" readonly="readonly"/>
 									</td>
 								</tr>
 								<tr>
 									<th>이메일</th>
 									<td>
-										<input type="text" class="form-control" name="moEmail" id="moEmail" value=""/>
+										<input type="text" class="form-control" name="moEmail" id="moEmail" value="" readonly="readonly"/>
 									</td>
 								</tr>
 								<tr>
 									<th>가입날짜</th>
 									<td>
-										<input type="text" class="form-control" name="moEnrollDate" id="moEnrollDate" value=""/>
+										<input type="text" class="form-control" name="moEnrollDate" id="moEnrollDate" value="" readonly="readonly"/>
 									</td>
 								</tr>
 
 						</table>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="updateRe();">수정</button>
-						<button type="button" class="btn" data-dismiss="modal">취소</button>
+						<button type="button" class="btn" data-dismiss="modal">확인</button>
 					</div>
 				</div>
 			</div>
