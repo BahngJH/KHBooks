@@ -152,7 +152,7 @@
 	
 	
 	
-		<!-- 리뷰 수정 모달창 -->
+		<!-- 회원 상세 정보 모달창 -->
 		<div class="modal" id="memberModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
