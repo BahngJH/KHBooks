@@ -110,9 +110,6 @@ public class InfoViewServlet extends HttpServlet {
 			if(r.getStatus().equals("y") || r.getStatus().equals("Y"))
 			cnt ++;
 		}
-
-		System.out.println("페이징처리 잘되나? "+(cPage-1)*numPerPage+1+" "+cPage*numPerPage);
-		System.out.println("avg 값 잘 넘어오나? "+avg);
 		//쿠키 설정
 		
 		

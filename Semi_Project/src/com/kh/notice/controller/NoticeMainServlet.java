@@ -98,20 +98,11 @@ public class NoticeMainServlet extends HttpServlet {
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/notice/noticemain?cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
-		
-		
+
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/notice/mainnotice.jsp").forward(request, response);
-		
-		
-		
-		
-			
-	
-		
-			
 		
 	}
 
