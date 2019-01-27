@@ -7,7 +7,6 @@
 	int cnt = (int) request.getAttribute("cnt");
 	String pageBar = (String) request.getAttribute("pageBar");
 	List<QnaRe> qrList = (List)request.getAttribute("qrList");
-		/* Member m = (Member) request.getSession().getAttribute("logined");  */
 %>
 
 <style>
