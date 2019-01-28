@@ -42,7 +42,7 @@ public class DeleteMemberServlet extends HttpServlet {
 		if(result > 0) 
 		{
 			msg="회원 탈퇴 성공";
-			loc="/views/main/main.jsp";
+			loc="/main/mainview";
 			session.invalidate();		// 로그인 되어있던 세션을 끊음
 		}
 		else 
