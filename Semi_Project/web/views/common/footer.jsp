@@ -131,7 +131,7 @@ div.col-xs-1 col-sm-1 col-md-1 h4 span{margin-bottom:30px;}
 					<strong><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></strong>
 				</h4>
 			</div>
-
+		
 			<div class="col-xs-3 col-sm-3 col-md-3">
 				<a href="<%=request.getContextPath()%>/notice/firstNotice"><strong>고객센터</strong></a>
 			</div>

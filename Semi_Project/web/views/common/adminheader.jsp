@@ -18,7 +18,7 @@
 }
 
 .admin-header{text-align:center;}
-.admin-header hr{width: 100%; text-align:center; margin-left:100%; }
+.admin-header hr{width: 100%; text-align:center;  }
 </style>
 
 

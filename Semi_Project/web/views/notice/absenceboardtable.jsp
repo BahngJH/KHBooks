@@ -67,7 +67,7 @@ function absence1(){
 }
 function absence(){
 	alert("로그인후 이용해주세요");
-	location.href="<%=request.getContextPath()%>/notice/absence";
+	location.href="<%=request.getContextPath()%>/absence/page";
 }
 </script>
 
