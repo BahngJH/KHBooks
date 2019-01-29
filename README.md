@@ -19,19 +19,19 @@ kh academy에서의 세미프로젝트
 방지훈, 주홍범, 이충현, 황장운, 이향원, 최재웅
 
 ### 개발 환경
--Java 8
--Apache Tomcat 8.5
--Eclipse
--aws - rds (oracle)
+- Java 8
+- Apache Tomcat 8.5
+- Eclipse
+- aws - rds (oracle)
 
 ### 사용한 기술
--AJAX
--Kakao API (간편 로그인, 책 검색)
--SMTP
--Bootstrap 3
--Naver map API
--Daum 우편번호 서비스 API
--import API
+- AJAX
+- Kakao API (간편 로그인, 책 검색)
+- SMTP
+- Bootstrap 3
+- Naver map API
+- Daum 우편번호 서비스 API
+- import API
 
 ### 기능
 #### 회원 시스템
