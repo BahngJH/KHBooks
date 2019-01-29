@@ -34,7 +34,7 @@ kh academy에서의 세미프로젝트
 - Bootstrap 3
 - Naver map API
 - Daum 우편번호 서비스 API
-- import API (결제 시스템)
+- IAMPORT API (결제 시스템)
 
 ### 기능
 #### 회원 시스템 (방지훈, 주홍범)
