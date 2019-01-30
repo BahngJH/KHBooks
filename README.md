@@ -31,7 +31,7 @@ kh academy에서의 세미프로젝트
 - AJAX
 - Kakao API (간편 로그인, 책 검색)
 - [SMTP](https://smujihoon.tistory.com/96) 
-- Bootstrap 3
+- Bootstrap 3 (반응형 웹)
 - Naver map API
 - Daum 우편번호 서비스 API
 - [IAMPORT API (결제 시스템)](https://smujihoon.tistory.com/103)
