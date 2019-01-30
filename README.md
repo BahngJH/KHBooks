@@ -25,7 +25,7 @@ kh academy에서의 세미프로젝트
 - Java 8
 - Apache Tomcat 8.5
 - Eclipse
-- aws - rds (oracle)
+- AWS - RDS (Oracle)
 
 ### 사용한 기술
 - AJAX
