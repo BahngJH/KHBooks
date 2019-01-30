@@ -44,7 +44,7 @@ kh academy에서의 세미프로젝트
 - 찜 목록, 장바구니, 리뷰 수정 및 확인
 - 정보 수정, 삭제
 - 결제 시스템(IAMPORT)
-https://smujihoon.tistory.com/103
+- https://smujihoon.tistory.com/103
 
 #### 도서 시스템 (이충현, 황장운)
 - 도서 검색
