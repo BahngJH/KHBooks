@@ -34,7 +34,7 @@ kh academy에서의 세미프로젝트
 - Bootstrap 3
 - Naver map API
 - Daum 우편번호 서비스 API
-- IAMPORT API (결제 시스템)
+- IAMPORT API (결제 시스템) https://smujihoon.tistory.com/103
 
 ### 기능
 #### 회원 시스템 (방지훈, 주홍범)
@@ -44,7 +44,6 @@ kh academy에서의 세미프로젝트
 - 찜 목록, 장바구니, 리뷰 수정 및 확인
 - 정보 수정, 삭제
 - 결제 시스템(IAMPORT)
-- https://smujihoon.tistory.com/103
 
 #### 도서 시스템 (이충현, 황장운)
 - 도서 검색
