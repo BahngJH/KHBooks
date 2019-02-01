@@ -29,7 +29,7 @@ kh academy에서의 세미프로젝트
 
 ### 사용한 기술
 - AJAX
-- Kakao API (간편 로그인, 책 검색)
+- Kakao API (간편 로그인, [책 검색](https://sinna94.tistory.com/6))
 - [SMTP](https://smujihoon.tistory.com/96) 
 - Bootstrap 3 (반응형 웹)
 - Naver map API
