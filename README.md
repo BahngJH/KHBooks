@@ -29,7 +29,7 @@ kh academy에서의 세미프로젝트
 
 ### 사용한 기술
 - AJAX
-- Kakao API (간편 로그인, [책 검색](https://sinna94.tistory.com/6))
+- Kakao API (간편 로그인, 책 검색)
 - [SMTP](https://smujihoon.tistory.com/96) 
 - Bootstrap 3 (반응형 웹)
 - Naver map API
@@ -39,11 +39,12 @@ kh academy에서의 세미프로젝트
 ### 기능
 #### 회원 시스템 (방지훈, 주홍범)
 - 로그인, 로그아웃
-- 회원가입
+- 계정 찾기 (SMTP로 패스워드 찾기)
+- 회원가입 (패스워드 암호화, 아이디 중복체크 AJAX로 구현)
 - 마이 페이지
-- 찜 목록, 장바구니, 리뷰 수정 및 확인
-- 정보 수정, 삭제
-- 결제 시스템(IAMPORT)
+- 찜 목록, 장바구니, 리뷰관리
+- 정보 수정, 회원탈퇴
+- 결제 시스템(IAMPORT API)
 
 #### 도서 시스템 (이충현, 황장운)
 - 도서 검색
